@@ -28,7 +28,7 @@
 <meta property="og:description" content="Git 下载安装Git 下载地址： https:&#x2F;&#x2F;git-scm.com&#x2F;downloads 安装完成后，在开始菜单里找到 Git-&gt;Git Bash，点击后出现一个类似命令行窗口的东西，就说明 Git 安装成功。在电脑桌面或某个文件夹，鼠标右键可以启动 Git Bash。 Git 配置可以保存 Git 用户名和电子邮件，这样就不必在以后的 Git 命令中再次输入它们。 12$ git c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-09T03:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-09T06:58:18.519Z">
+<meta property="article:modified_time" content="2020-05-09T09:19:02.588Z">
 <meta property="article:author" content="Andy Tian">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-09 11:00:00 / Modified: 14:58:18" itemprop="dateCreated datePublished" datetime="2020-05-09T11:00:00+08:00">2020-05-09</time>
+              <time title="Created: 2020-05-09 11:00:00 / Modified: 17:19:02" itemprop="dateCreated datePublished" datetime="2020-05-09T11:00:00+08:00">2020-05-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,8 +221,8 @@
 <a id="more"></a>
 <h3 id="Git-使用流程"><a href="#Git-使用流程" class="headerlink" title="Git 使用流程"></a>Git 使用流程</h3><h4 id="Git-初始化"><a href="#Git-初始化" class="headerlink" title="Git 初始化"></a>Git 初始化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir demo     <span class="comment"># 创建文件夹</span></span><br><span class="line">$ <span class="built_in">pwd</span>            <span class="comment"># 命令用于显示工作目录</span></span><br><span class="line">$ <span class="built_in">cd</span> demo        <span class="comment"># 进入文件夹 demo 目录</span></span><br><span class="line">$ git init       <span class="comment"># 初始化 Git</span></span><br></pre></td></tr></table></figure>
 <h4 id="Git-工作区域"><a href="#Git-工作区域" class="headerlink" title="Git 工作区域"></a>Git 工作区域</h4><ol>
-<li>Git Repository（Git仓库）：最终确定的文件保存到仓库，成为一个新的版本，并对他人可见</li>
-<li>暂存区：暂存已经修改的文件最后统一提交到Git仓库中</li>
+<li>Git Repository（Git 仓库）：最终确定的文件保存到仓库，成为一个新的版本，并对他人可见</li>
+<li>暂存区：暂存已经修改的文件最后统一提交到 Git 仓库中</li>
 <li>工作区（Working Directory）：添加、编辑、修改文件等动作</li>
 </ol>
 <h4 id="Git-使用命令"><a href="#Git-使用命令" class="headerlink" title="Git 使用命令"></a>Git 使用命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git status      <span class="comment"># 查看当前状态</span></span><br><span class="line">$ touch test.m    <span class="comment"># 创建空文件</span></span><br><span class="line">$ git add test.m  <span class="comment"># 添加到暂停区</span></span><br><span class="line">$ git add .       <span class="comment"># 添加所有更改文件到暂停区</span></span><br><span class="line">$ git commit -m <span class="string">'提交描述'</span></span><br></pre></td></tr></table></figure>
