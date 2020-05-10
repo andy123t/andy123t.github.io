@@ -28,7 +28,7 @@
 <meta property="og:description" content="这是学习书籍 Spectral Method in MATLAB (Lloyd N. Trefethen) 的笔记，因为书是英文的，几乎成了翻译。后期会陆续更新。 Nick Trefethen Homepage 前言这本书有四十个简短的MATLAB程序，这些程序可以在用于求解与流体力学、量子力学、振动、线性和非线性波、复分析等领域有关的各种常微分方程和偏微分方程( ODE 和 PDE )。书的前六">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-11T00:05:00.000Z">
-<meta property="article:modified_time" content="2020-05-10T19:00:54.933Z">
+<meta property="article:modified_time" content="2020-05-10T19:05:24.949Z">
 <meta property="article:author" content="Andy Tian">
 <meta property="article:tag" content="Spectral Method">
 <meta property="article:tag" content="MATLAB">
@@ -196,7 +196,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-11 08:05:00 / Modified: 03:00:54" itemprop="dateCreated datePublished" datetime="2020-05-11T08:05:00+08:00">2020-05-11</time>
+              <time title="Created: 2020-05-11 08:05:00 / Modified: 03:05:24" itemprop="dateCreated datePublished" datetime="2020-05-11T08:05:00+08:00">2020-05-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,13 +223,13 @@
 <p>Nick Trefethen <a href="http://people.maths.ox.ac.uk/trefethen/" target="_blank" rel="noopener">Homepage</a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这本书有四十个简短的MATLAB程序，这些程序可以在用于求解与流体力学、量子力学、振动、线性和非线性波、复分析等领域有关的各种常微分方程和偏微分方程( ODE 和 PDE )。书的前六章侧重于理论，第七章以后更侧重于编程应用。学习这本书，需要对数值分析，微分方程有一定的了解，并且熟悉 MATLAB。</p>
 <p>如果你喜欢计算和数字数学，你会喜欢阅读这本书，可以学到一些新的 MATLAB 技巧！</p>
+<a id="more"></a>
 <p>谱方法是数值求解 PDEs 的三大方法之一，它们大致在连续几十年的逐渐发展起来：</p>
 <ul>
 <li>20 世纪 50 年代：有限差分法</li>
 <li>20 世纪 60 年代：有限元法</li>
 <li>20 世纪 70 年代：谱方法</li>
 </ul>
-<a id="more"></a>
 <p>当然，每种方法的起源都可以追溯到更早的时候。 对于谱方法来说，一些思想和插值和函数展开一样古老，更具体地说，算法的发展最早是在1938年由Lanczos [Lan38, Lan56] 和 1960 年代的 Clenshaw，Elliott，Fox 等 [FoPa68] 提出的。 然后，在20世纪70年代，由 Orszag 等人在流体动力学和气象学问题上的工作引发了这一领域的变革，谱方法也因此而闻名。<br>早期现代谱方法文献的三个里程碑是：Gottlieb 和 Orszag的短书[GoOr77]，Gottlieb，Hussaini 和 Orszag 的研究 [CHO84] 和Canuto，Hussaini，Quarteroni 和 Zang 的专著 [ChQZ88]。 此后，Mercier [Mer89]，Boyd [Boy00]（1989年第一版），Funaro [Fun92]，Bernardi 和 Maday [BeMa92]，Fornberg [For96] 以及 Karniadakis 和 Sherwin [KaSh99] 也贡献了其他书籍。</p>
 <p>如果要在一个简单的区域上高精度地求解 ODE 或 PDE，并且如果定义该问题的函数是平滑的，那么谱方法通常是最好的工具。它们通常可以达到十位数的精度，而有限差分法或有限元法可以达到两三位数。在精度较低的情况下，它们需要的计算机内存比其他替代方案要小。</p>
 <p>这本短小的书介绍了谱方法的一些基本思想和技术。它的目标人群是学过数值分析课程，并熟悉基本的应用程序设计和偏微分方程。你会发现，在计算机的几秒钟内，用几行 MATLAB 代码就可以高精度地解决一系列显著的问题。把写程序的当成玩：让它们成为你自己的！</p>
