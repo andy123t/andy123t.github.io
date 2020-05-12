@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-12 08:00:00 / Modified: 15:52:59" itemprop="dateCreated datePublished" datetime="2020-05-12T08:00:00+08:00">2020-05-12</time>
+              <time title="Created: 2020-05-12 08:00:00 / Modified: 16:18:35" itemprop="dateCreated datePublished" datetime="2020-05-12T08:00:00+08:00">2020-05-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,32 +242,32 @@
 
       
           <h2 id="1-Differentiation-matrices-微分矩阵"><a href="#1-Differentiation-matrices-微分矩阵" class="headerlink" title="1. Differentiation matrices 微分矩阵"></a>1. Differentiation matrices 微分矩阵</h2><p>从一个基本问题出发。 给定一组网格节点 $x_i$ 和相应的函数值 $u(x_i)$，如何使这些数据逼近 $u$ 的导数？可能立即想到的方法是某种有限差分公式。 我们将从有限差分方法开始去学习谱方法。</p>
-<p>考虑等距剖分 ${x<em>{1}, \ldots, x</em>{N}}$, 对于每一个 $j$ 有 $x<em>{j+1}-x</em>{j}=h$，这组点对应的函数值 $\left{u<em>{1}, \ldots, u</em>{N}\right}$：</p>
+<p>考虑等距剖分 $\{ x_{1},\ldots,x_{N}\}$, 对于每一个 $j$ 有 $x_{j+1}-x_{j}=h$，这组点对应的函数值 $\left\{u_{1}, \ldots, u_{N}\right\}$：</p>
 <p><img src="https://i.loli.net/2020/05/12/dpvkm4lHQiFeaZw.png" alt="SMM0101.png"></p>
 <p>令 $w_i$ 表示 $u(i)$ 的近似，$u$ 标准二阶有限差分格式</p>
-<script type="math/tex; mode=display">w_{j}=\frac{u_{j+1}-u_{j-1}}{2 h},</script><p> 可以通过 $u(x<em>{j+1})$ 与 $u(x</em>{j+1})$ 的泰勒展开得到。<br>为了简单起见，假设问题是周期性的，取 $u<em>0=u_N$ 和 $u_1=u</em>{N+1}$。然后我们可以把离散微分过程表示为矩阵向量乘积</p>
+<script type="math/tex; mode=display">w_{j}=\frac{u_{j+1}-u_{j-1}}{2 h},</script><p> 可以通过 $u(x_{j+1})$ 与 $u(x_{j+1})$ 的泰勒展开得到。<br>为了简单起见，假设问题是周期性的，取 $u_0=u_N$ 和 $u_1=u_{N+1}$。然后我们可以把离散微分过程表示为矩阵向量乘积</p>
 <script type="math/tex; mode=display">\left(\begin{array}{c}w_{1} \\ \\ \vdots \\ \\ w_{N}\end{array}\right)=h^{-1} 
 \left(\begin{array}{ccccc}0 & \frac{1}{2} & & & -\frac{1}{2} \\ -\frac{1}{2} & 0 & \ddots & & \\ & & \ddots & & \\ & & \ddots & 0 & \frac{1}{2} \\ \frac{1}{2} & & & -\frac{1}{2} & 0\end{array}\right)
-\left(\begin{array}{c}u_{1} \\ \\ \vdots \\ \\ u_{N}\end{array}\right)</script><p>稀疏矩阵中的省略项为零。观察这个矩阵可知是 Toeplitz 矩阵，沿着对角线有相同的数，比如元素 $a<em>{ij}$ 的值只与 $i-j$ 有关。 实际上，它也是循环的，这意味着 $a</em>{ij}$ 仅依赖于 $(i-j)(\mathrm{mod}\ N)$。 这个矩阵对角线 “环绕” 的。</p>
+\left(\begin{array}{c}u_{1} \\ \\ \vdots \\ \\ u_{N}\end{array}\right)</script><p>稀疏矩阵中的省略项为零。观察这个矩阵可知是 Toeplitz 矩阵，沿着对角线有相同的数，比如元素 $a_{ij}$ 的值只与 $i-j$ 有关。 实际上，它也是循环的，这意味着 $a_{ij}$ 仅依赖于 $(i-j)(\mathrm{mod} N)$。 这个矩阵对角线 “环绕” 的。</p>
 <p>另一种推导以上两个方程的方法是通过以下的局部插值和微分过程:</p>
 <p>对于 $j=1,2, \ldots, N$，</p>
 <ul>
-<li>令 $p<em>j$ 是不大于 2 次的多项式，$p</em>{j}(x<em>{j-1})=u</em>{j-1}$, $p<em>{j}(x</em>{j})=u<em>{j}$, 与 $p</em>{j}(x<em>{j+1})=u</em>{j+1}$.</li>
-<li>设 $w<em>{j}=p</em>{j}^{\prime}(x_{j})$.</li>
+<li>令 $p_j$ 是不大于 2 次的多项式，$p_{j}(x_{j-1})=u_{j-1}$, $p_{j}(x_{j})=u_{j}$, 与 $p_{j}(x_{j+1})=u_{j+1}$.</li>
+<li>设 $w_{j}=p_{j}^{\prime}(x_{j})$.</li>
 </ul>
 <p>可以很容易地看出，对于固定的插值函数 $p_j$</p>
 <script type="math/tex; mode=display">p_{j}(x)=u_{j-1} a_{-1}(x)+u_{j} a_{0}(x)+u_{j+1} a_{1}(x),</script><p>其中 </p>
 <ul>
-<li>$a<em>{-1}(x)=\left(x-x</em>{j}\right)\left(x-x_{j+1}\right) / 2 h^{2}$， </li>
-<li>$a<em>{0}(x)=-\left(x-x</em>{j-1}\right)\left(x-x_{j+1}\right) / h^{2}$，</li>
-<li>$a<em>{1}(x)=\left(x-x</em>{j-1}\right)\left(x-x_{j}\right) / 2 h^{2}$</li>
+<li>$a_{-1}(x)=\left(x-x_{j}\right)\left(x-x_{j+1}\right) / 2 h^{2}$， </li>
+<li>$a_{0}(x)=-\left(x-x_{j-1}\right)\left(x-x_{j+1}\right) / h^{2}$，</li>
+<li>$a_{1}(x)=\left(x-x_{j-1}\right)\left(x-x_{j}\right) / 2 h^{2}$</li>
 </ul>
-<p>在 $x=x<em>j$ 时求微分并求值可以得到上式 $ w</em>{j}=\frac{u<em>{j+1}-u</em>{j-1}}{2 h}$。</p>
+<p>在 $x=x_j$ 时求微分并求值可以得到上式 $ w_{j}=\frac{u_{j+1}-u_{j-1}}{2 h}$。</p>
 <p>这种局部插值的推导表明能够推广到更高阶。下面是四阶推导：</p>
 <p>对于 $j=1,2, \ldots, N$，</p>
 <ul>
-<li>令 $p<em>j$ 是不大于 4 次的多项式，$p</em>{j}(x<em>{j \pm 2})=u</em>{j \pm 2}$, $p<em>{j}(x</em>{j \pm 1})=u<em>{j \pm 1}$, 与 $p</em>{j}(x<em>{j})=u</em>{j}$.</li>
-<li>设 $w<em>{j}=p</em>{j}^{\prime}(x_{j})$.</li>
+<li>令 $p_j$ 是不大于 4 次的多项式，$p_{j}(x_{j \pm 2})=u_{j \pm 2}$, $p_{j}(x_{j \pm 1})=u_{j \pm 1}$, 与 $p_{j}(x_{j})=u_{j}$.</li>
+<li>设 $w_{j}=p_{j}^{\prime}(x_{j})$.</li>
 </ul>
 <p>假设数据是周期的，可知方程组等价于矩阵向量乘积</p>
 <script type="math/tex; mode=display">\left(\begin{array}{c}w_{1} \\ \\ \\ \vdots \\ \\ \\ w_{N}\end{array}\right)=h^{-1}
@@ -284,7 +284,7 @@
 <p>以上两个矩阵的矩阵是微分矩阵的例子，它们的精度分别为2阶和4阶。对一个足够光滑的函数 $u$ 进行采样获得的 $u_j$，相应的离散逼近的收敛速率分别为 $O(h^{2})$ 与 $O(h^{4})$，通过泰勒展开可以验证这一点。</p>
 <p>第一个 MATLAB 程序，Program 1，演示了四阶差分方法的例子，选取 $u(x)=e^{\sin (x)}$ 在 $[-\pi, \pi]$ 上的周期数据。</p>
 <p><img src="https://i.loli.net/2020/05/12/JWUqT1iD4lvg3Rr.png" alt="SMM0102.png"></p>
-<p>该程序对不同 $N$ 时差分逼近 $w<em>j$ 与精确导数 $e^{\sin (x</em>{j})} \cos (x_{j})$ 进行了比较。 因为使用了 MATLAB 稀疏矩阵 sparse ，这个代码在电脑上运行几分之一秒就运行出来了，即使它矩阵维数大到 4096。 四阶精度是明显的。 这是我们第一个也是最后一个没有使用谱方法的例子。</p>
+<p>该程序对不同 $N$ 时差分逼近 $ w_j $ 与精确导数 $ e^{\sin (x_{j})} \cos (x_{j}) $ 进行了比较。 因为使用了 MATLAB 稀疏矩阵 sparse ，这个代码在电脑上运行几分之一秒就运行出来了，即使它矩阵维数大到 4096。 四阶精度是明显的。 这是我们第一个也是最后一个没有使用谱方法的例子。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% p1.m - convergence of fourth-order finite differences</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% For various N, set up grid in [-pi,pi] and function u(x):</span></span><br><span class="line">  Nvec = <span class="number">2.</span>^(<span class="number">3</span>:<span class="number">12</span>);</span><br><span class="line">  clf, subplot(<span class="string">'position'</span>,[<span class="number">.1</span> <span class="number">.4</span> <span class="number">.8</span> <span class="number">.5</span>])</span><br><span class="line">  <span class="keyword">for</span> N = Nvec</span><br><span class="line">    h = <span class="number">2</span>*<span class="built_in">pi</span>/N; x = -<span class="built_in">pi</span> + (<span class="number">1</span>:N)'*h;</span><br><span class="line">    u = <span class="built_in">exp</span>(<span class="built_in">sin</span>(x)); uprime = <span class="built_in">cos</span>(x).*u;</span><br><span class="line"></span><br><span class="line">    <span class="comment">% Construct sparse fourth-order differentiation matrix:</span></span><br><span class="line">    e = <span class="built_in">ones</span>(N,<span class="number">1</span>);</span><br><span class="line">    D =   sparse(<span class="number">1</span>:N,[<span class="number">2</span>:N <span class="number">1</span>],<span class="number">2</span>*e/<span class="number">3</span>,N,N)...</span><br><span class="line">        - sparse(<span class="number">1</span>:N,[<span class="number">3</span>:N <span class="number">1</span> <span class="number">2</span>],e/<span class="number">12</span>,N,N);</span><br><span class="line">    D = (D-D')/h;</span><br><span class="line"></span><br><span class="line">    <span class="comment">% Plot max(abs(D*u-uprime)):</span></span><br><span class="line">    error = norm(D*u-uprime,<span class="built_in">inf</span>);</span><br><span class="line">    loglog(N,error,<span class="string">'.'</span>,<span class="string">'markersize'</span>,<span class="number">15</span>), <span class="built_in">hold</span> on</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  grid on, xlabel N, ylabel error</span><br><span class="line">  title(<span class="string">'Convergence of fourth-order finite differences'</span>)</span><br><span class="line">  semilogy(Nvec,Nvec.^(<span class="number">-4</span>),<span class="string">'--'</span>) </span><br><span class="line">  text(<span class="number">105</span>,<span class="number">5e-8</span>,<span class="string">'N^&#123;-4&#125;'</span>,<span class="string">'fontsize'</span>,<span class="number">18</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.loli.net/2020/05/12/jRTquodzsnYXtgk.png" alt="SMM0103.png"></p>
 <p>我们研究了二阶和四阶有限差分。很明显，考虑六阶、八阶和更高阶的方法将导致带宽增加的循环矩阵。谱方法背后的思想是，将这一过程带到极限，并使用无穷阶和无限带宽的微分公式——比如一个稠密矩阵。在下一章中，我们将证明在这个极限下，对于一个无限等距网格，我们得到以下无限矩阵</p>
@@ -302,8 +302,8 @@
 \end{array}\right)</script><p>这是一个反对称（$D=-D$）两边无限的 Toeplitz 矩阵，也称为 Laurent 算子。除主对角线上的项外，它的所有项都不是零。</p>
 <p>当然。实际操作中一个矩阵不可能是无限的。对于有限网格，下面是谱配置方法的原理</p>
 <ul>
-<li>令 $p$ 是一个单独的函数（与 $j$ 无关），使得对所有的 $j$ 成立 $p(x<em>{j})=u</em>{j}$.</li>
-<li>设 $w<em>{j}=p^{\prime}(x</em>{j})$.</li>
+<li>令 $p$ 是一个单独的函数（与 $j$ 无关），使得对所有的 $j$ 成立 $p(x_{j})=u_{j}$.</li>
+<li>设 $w_{j}=p^{\prime}(x_{j})$.</li>
 </ul>
 <p>我们可以自由选择 $p$ 来解决问题。 对于一个周期性的区域，自然的选择是在一个等步长的网格上的三角多项式，由此产生的 “Fourier” 方法将在第4章和后面章节中提到。 对于非周期区域，不规则网格上的代数多项式是正确的选择，我们将从第5章和第6章开始介绍这种类型的 “Chebyshev” 方法。</p>
 <p>对于有限的 $N$，为了简单起见直接取 $N$，这是在第3章中为周期的规则网格导出 $N \times N$ 的稠密矩阵</p>
@@ -325,7 +325,7 @@
 <p>我们所描述的矩阵是循环的。循环矩阵的作用是卷积，我们将在第3章中看到，卷积可以通过离散傅里叶变换来计算。从历史上看，正是1965年快速傅里叶变换（FFT）的发现，导致了人们对谱方法的兴趣在1970年代激增。第8章 FFT 不仅适用于等距网格上的三角多项式，也适用于Chebyshev网格上的代数多项式。然而，即使没有 FFT 的情况下谱方法也是很强大的。在许多应用中，使用矩阵计算的结果是非常令人满意的。</p>
 <p><strong>关于舍入误差 Roundoff Error</strong></p>
 <blockquote>
-<p>关于舍入误差，标准IEEE双精度格式 (Double-precision floating-point format) $\epsilon<em>{\text{machine}}=2 ^ { - 53 } \approx 1.11 \times 10 ^ { - 16 }$, 这意味着每次加法, 乘法, 除法和减法都会产生完全正确的结果乘以某个因子 $1 + \delta$ with $|\delta| \leq \epsilon</em>{\text{machine}}$.</p>
+<p>关于舍入误差，标准IEEE双精度格式 (Double-precision floating-point format) $\epsilon_{\text{machine}}=2 ^ { - 53 } \approx 1.11 \times 10 ^ { - 16 }$, 这意味着每次加法, 乘法, 除法和减法都会产生完全正确的结果乘以某个因子 $1 + \delta$ with $|\delta| \leq \epsilon_{\text{machine}}$.</p>
 </blockquote>
 <p><strong>本章小结</strong></p>
 <p>谱配置法的基本原理是在网格上给定离散数据，对数据进行全局插值，然后计算插值在网格上的导数。 对于周期性问题，我们通常在等距点上使用三角插值，对于非周期性问题，我们通常在不等距点上使用多项式插值。</p>
