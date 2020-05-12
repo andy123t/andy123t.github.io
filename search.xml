@@ -52,6 +52,38 @@
       </tags>
   </entry>
   <entry>
+    <title>Google 科学上网</title>
+    <url>/2020/05/09/Google/</url>
+    <content><![CDATA[<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
+<li>不推荐安装 360、电脑管家等安全或杀毒类软件。</li>
+<li>Win10 系统自带的 <strong>Windows Defender</strong> 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 <strong>火绒安全</strong> 的软件，另外它的弹窗拦截挺好用的。</li>
+<li>如果经常使用搜索引擎，推荐使用 <strong>Google Chrome</strong> 浏览器，安装插件才能用，比如谷歌上网助手 <strong>Ghelper</strong>。</li>
+<li>养成良好的上网习惯，下载软件到软件的官方网站。</li>
+</ul>
+<a id="more"></a>
+<h3 id="Google-Chrome-下载和插件安装"><a href="#Google-Chrome-下载和插件安装" class="headerlink" title="Google Chrome 下载和插件安装"></a>Google Chrome 下载和插件安装</h3><p><strong>Google Chrome 浏览器下载</strong><br><img src="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png" alt="GoogleChrome.png"></p>
+<p><strong>谷歌上网助手下载</strong><br><img src="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png" alt="GhelperDownload.png"></p>
+<p><strong>安装 Ghelper 插件</strong><br><img src="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png" alt="GhelperInstall.png"></p>
+<h3 id="Google-使用"><a href="#Google-使用" class="headerlink" title="Google 使用"></a>Google 使用</h3><p>谷歌上网助手最好注册一下，免费的足够用，已经可以使用 Google Scholar，Gmail 等，有更多需求可以购买 VIP。</p>
+<p>建议注册一个 Google 账号，也就是 Gmail（电脑注册如果出现问题，可以用 qq 邮箱注册），它可以同步自己的个人信息和配置，包括以下内容：</p>
+<ul>
+<li>收藏网址书签，可以建立文件夹分类；</li>
+<li>保存很多的网站账号密码；</li>
+<li>登陆谷歌网上商店，下载扩展插件（插件是 Google 的灵魂）；</li>
+<li>登陆 Gmail 邮箱收发邮件；</li>
+<li>使用 Google Drive 云端硬盘（免费 15G ）；</li>
+<li>······</li>
+</ul>
+<p>这些内容全部由一个 Google 账号管理同步。如果你退出这个账号，浏览器就像刚安装时一样干净。如果你在另一台电脑登录 Google 账号，你的所有内容就立即恢复了（即使安装的插件也会同步，不需要重新安装）。</p>
+]]></content>
+      <categories>
+        <category>Computer Skills</category>
+      </categories>
+      <tags>
+        <tag>Google</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown 写作</title>
     <url>/2020/04/27/Markdown-Writing/</url>
     <content><![CDATA[<p>第一次接触 Markdown 是 2017 年用 Github 写 README.md 的时候，真正用它写东西是 2020 年初，当时买了一本书 《了不起的 Markdown》，挺不错的。Markdown 的最大特点是简单，可以用到很多场景。用 Markdown 可以写书、写幻灯片、写邮件、写日记、写便签、写笔记、写博客，可以说很流行。</p>
@@ -119,94 +151,6 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Google 科学上网</title>
-    <url>/2020/05/09/Google/</url>
-    <content><![CDATA[<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
-<li>不推荐安装 360、电脑管家等安全或杀毒类软件。</li>
-<li>Win10 系统自带的 <strong>Windows Defender</strong> 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 <strong>火绒安全</strong> 的软件，另外它的弹窗拦截挺好用的。</li>
-<li>如果经常使用搜索引擎，推荐使用 <strong>Google Chrome</strong> 浏览器，安装插件才能用，比如谷歌上网助手 <strong>Ghelper</strong>。</li>
-<li>养成良好的上网习惯，下载软件到软件的官方网站。</li>
-</ul>
-<a id="more"></a>
-<h3 id="Google-Chrome-下载和插件安装"><a href="#Google-Chrome-下载和插件安装" class="headerlink" title="Google Chrome 下载和插件安装"></a>Google Chrome 下载和插件安装</h3><p><strong>Google Chrome 浏览器下载</strong><br><img src="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png" alt="GoogleChrome.png"></p>
-<p><strong>谷歌上网助手下载</strong><br><img src="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png" alt="GhelperDownload.png"></p>
-<p><strong>安装 Ghelper 插件</strong><br><img src="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png" alt="GhelperInstall.png"></p>
-<h3 id="Google-使用"><a href="#Google-使用" class="headerlink" title="Google 使用"></a>Google 使用</h3><p>谷歌上网助手最好注册一下，免费的足够用，已经可以使用 Google Scholar，Gmail 等，有更多需求可以购买 VIP。</p>
-<p>建议注册一个 Google 账号，也就是 Gmail（电脑注册如果出现问题，可以用 qq 邮箱注册），它可以同步自己的个人信息和配置，包括以下内容：</p>
-<ul>
-<li>收藏网址书签，可以建立文件夹分类；</li>
-<li>保存很多的网站账号密码；</li>
-<li>登陆谷歌网上商店，下载扩展插件（插件是 Google 的灵魂）；</li>
-<li>登陆 Gmail 邮箱收发邮件；</li>
-<li>使用 Google Drive 云端硬盘（免费 15G ）；</li>
-<li>······</li>
-</ul>
-<p>这些内容全部由一个 Google 账号管理同步。如果你退出这个账号，浏览器就像刚安装时一样干净。如果你在另一台电脑登录 Google 账号，你的所有内容就立即恢复了（即使安装的插件也会同步，不需要重新安装）。</p>
-]]></content>
-      <categories>
-        <category>Computer Skills</category>
-      </categories>
-      <tags>
-        <tag>Google</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>谱方法概述</title>
-    <url>/2020/05/10/SMNote00/</url>
-    <content><![CDATA[<h3 id="谱方法简介"><a href="#谱方法简介" class="headerlink" title="谱方法简介"></a>谱方法简介</h3><p>谱方法是一种既古老又新兴的求解偏微分方程的数值方法。早在 1820 年, Navier 就运用双重三角级数求解弹性薄板问题。 但是，长期以来，由于它计算量大而一直没有被广泛使用，直到 1965 年快速 Fourier 变换的出现，才给谱方法带来了生机。 近几十多年来，谱方法得到了蓬勃的发展，不仅广泛地运用于物理、力学、大气、海洋等领域的数值计算，而且它的数值分析理论也不断地完善。 至今，谱方法已和有限差分法、有限元法一起成为偏微分方程数值求解的第三种基本方法。</p>
-<a id="more"></a>
-<p>谱方法起源于 Ritz-Galerkin 方法，它是以正交多项式（三角多项式、Chebyshev 多项式、Legendre多项式等，它们分别是正则和奇异 Sturm-Liouville 问题的谱函数）作为基函数的 Galerkin 方法、Tau 方法或 Collocation 方法。 它们分别称为谱方法、Tau方法或拟谱方法(配置法)，统称为谱方法。</p>
-<p>谱方法的最大魅力是它具有所谓“无穷阶”收敛性，即如果原方程的解无穷光滑，那么用适当的谱方法所求得的近似解将以 $N^{-1}$ 的任意幂次速度收敛于精确解，这里 $N$ 为所选取的基函数个数。 这一优点是有限差分法和有限元法无法比拟的，众多的实际应用和数值实例也证实了该方法的有效性。 因此，谱方法日益受到人们的重视。</p>
-<h3 id="谱方法与其他数值方法的区别"><a href="#谱方法与其他数值方法的区别" class="headerlink" title="谱方法与其他数值方法的区别"></a>谱方法与其他数值方法的区别</h3><p>偏微分方程的数值方法可分为局部和全局两大类。有限差分法和有限元方法是局部方法，而谱方法是全局方法。事实上，有限元方法特别适合于解决复杂几何区域的问题，而谱方法具有更高的精度，却以区域灵活性为代价。许多数值方法，如 $hp$ 有限元方法和谱元方法，它们结合了全局和局部方法的优点。传统的谱方法指的是全局谱方法。</p>
-<p>从微分方程数值格式的方面来说，谱方法属于加权余量法 (WRMs) 一类，传统上它被认为是许多数值方法的基础，例如有限元方法、谱方法、有限体积法、边界元法。WRMs 代表一类特殊的求解近似解的方法，其中误差以一定的方式最小化，这些特定的使最小化的方法，包括 Galerkin 方法、Petrov Galerkin 方法、Collocation 方法和 Tau 方法。</p>
-<p>有限元适合解决复杂区域的问题, 差分法和谱方法适合解决规则区域的问题</p>
-<p><strong>总结</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">有限差分 and/or 有限元</th>
-<th style="text-align:center">谱方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">基函数 (FEM, SM)</td>
-<td style="text-align:center">局部的</td>
-<td style="text-align:center">全局的</td>
-</tr>
-<tr>
-<td style="text-align:center">收敛阶</td>
-<td style="text-align:center">低阶</td>
-<td style="text-align:center">高阶</td>
-</tr>
-<tr>
-<td style="text-align:center">提高精度</td>
-<td style="text-align:center">精细网格</td>
-<td style="text-align:center">增加基函数个数</td>
-</tr>
-<tr>
-<td style="text-align:center">计算效率</td>
-<td style="text-align:center">稀疏矩阵</td>
-<td style="text-align:center">稀疏仅对特定 PDE</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h3><ul>
-<li>Spectral Methods: Algorithms, Analysis and Applications</li>
-<li>谱方法的数值分析</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Spectral Methods</category>
-      </categories>
-      <tags>
-        <tag>Spectral Method</tag>
       </tags>
   </entry>
   <entry>
@@ -412,6 +356,62 @@
       <tags>
         <tag>Spectral Method</tag>
         <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>谱方法概述</title>
+    <url>/2020/05/10/SMNote00/</url>
+    <content><![CDATA[<h3 id="谱方法简介"><a href="#谱方法简介" class="headerlink" title="谱方法简介"></a>谱方法简介</h3><p>谱方法是一种既古老又新兴的求解偏微分方程的数值方法。早在 1820 年, Navier 就运用双重三角级数求解弹性薄板问题。 但是，长期以来，由于它计算量大而一直没有被广泛使用，直到 1965 年快速 Fourier 变换的出现，才给谱方法带来了生机。 近几十多年来，谱方法得到了蓬勃的发展，不仅广泛地运用于物理、力学、大气、海洋等领域的数值计算，而且它的数值分析理论也不断地完善。 至今，谱方法已和有限差分法、有限元法一起成为偏微分方程数值求解的第三种基本方法。</p>
+<a id="more"></a>
+<p>谱方法起源于 Ritz-Galerkin 方法，它是以正交多项式（三角多项式、Chebyshev 多项式、Legendre多项式等，它们分别是正则和奇异 Sturm-Liouville 问题的谱函数）作为基函数的 Galerkin 方法、Tau 方法或 Collocation 方法。 它们分别称为谱方法、Tau方法或拟谱方法(配置法)，统称为谱方法。</p>
+<p>谱方法的最大魅力是它具有所谓“无穷阶”收敛性，即如果原方程的解无穷光滑，那么用适当的谱方法所求得的近似解将以 $N^{-1}$ 的任意幂次速度收敛于精确解，这里 $N$ 为所选取的基函数个数。 这一优点是有限差分法和有限元法无法比拟的，众多的实际应用和数值实例也证实了该方法的有效性。 因此，谱方法日益受到人们的重视。</p>
+<h3 id="谱方法与其他数值方法的区别"><a href="#谱方法与其他数值方法的区别" class="headerlink" title="谱方法与其他数值方法的区别"></a>谱方法与其他数值方法的区别</h3><p>偏微分方程的数值方法可分为局部和全局两大类。有限差分法和有限元方法是局部方法，而谱方法是全局方法。事实上，有限元方法特别适合于解决复杂几何区域的问题，而谱方法具有更高的精度，却以区域灵活性为代价。许多数值方法，如 $hp$ 有限元方法和谱元方法，它们结合了全局和局部方法的优点。传统的谱方法指的是全局谱方法。</p>
+<p>从微分方程数值格式的方面来说，谱方法属于加权余量法 (WRMs) 一类，传统上它被认为是许多数值方法的基础，例如有限元方法、谱方法、有限体积法、边界元法。WRMs 代表一类特殊的求解近似解的方法，其中误差以一定的方式最小化，这些特定的使最小化的方法，包括 Galerkin 方法、Petrov Galerkin 方法、Collocation 方法和 Tau 方法。</p>
+<p>有限元适合解决复杂区域的问题, 差分法和谱方法适合解决规则区域的问题</p>
+<p><strong>总结</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">有限差分 and/or 有限元</th>
+<th style="text-align:center">谱方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">基函数 (FEM, SM)</td>
+<td style="text-align:center">局部的</td>
+<td style="text-align:center">全局的</td>
+</tr>
+<tr>
+<td style="text-align:center">收敛阶</td>
+<td style="text-align:center">低阶</td>
+<td style="text-align:center">高阶</td>
+</tr>
+<tr>
+<td style="text-align:center">提高精度</td>
+<td style="text-align:center">精细网格</td>
+<td style="text-align:center">增加基函数个数</td>
+</tr>
+<tr>
+<td style="text-align:center">计算效率</td>
+<td style="text-align:center">稀疏矩阵</td>
+<td style="text-align:center">稀疏仅对特定 PDE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h3><ul>
+<li>Spectral Methods: Algorithms, Analysis and Applications</li>
+<li>谱方法的数值分析</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Spectral Methods</category>
+      </categories>
+      <tags>
+        <tag>Spectral Method</tag>
       </tags>
   </entry>
   <entry>
