@@ -34,24 +34,6 @@
       </tags>
   </entry>
   <entry>
-    <title>傍晚的美景</title>
-    <url>/2020/05/11/HomeScenery/</url>
-    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
-<p>走出村庄的路上</p>
-<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
-<a id="more"></a>
-<p>远处是风力发达机，还有漂亮的晚霞！</p>
-<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
-<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
-]]></content>
-      <categories>
-        <category>Life</category>
-      </categories>
-      <tags>
-        <tag>Scenery</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Google 科学上网</title>
     <url>/2020/05/09/Google/</url>
     <content><![CDATA[<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
@@ -81,76 +63,6 @@
       </categories>
       <tags>
         <tag>Google</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown 写作</title>
-    <url>/2020/04/27/Markdown-Writing/</url>
-    <content><![CDATA[<p>第一次接触 Markdown 是 2017 年用 Github 写 README.md 的时候，真正用它写东西是 2020 年初，当时买了一本书 《了不起的 Markdown》，挺不错的。Markdown 的最大特点是简单，可以用到很多场景。用 Markdown 可以写书、写幻灯片、写邮件、写日记、写便签、写笔记、写博客，可以说很流行。</p>
-<p>本博客用 Hexo 搭建，选择了 Next 主题，用 Markdown 写作就可以了，真的不懂 HTML 也没关系。</p>
-<a id="more"></a>
-<h3 id="Markdown-简介"><a href="#Markdown-简介" class="headerlink" title="Markdown 简介"></a>Markdown 简介</h3><p><strong>Markdown 是什么</strong></p>
-<ul>
-<li>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</li>
-<li>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</li>
-<li>Markdown 编写的文档后缀为 .md 。</li>
-</ul>
-<p><strong>Markdown 编辑器</strong></p>
-<ul>
-<li>Typora：轻量级 Markdown 本地编辑器，Typora 支持 MacOS 、Windows、Linux 平台，且包含多种主题，编辑后直接渲染出效果。</li>
-<li>VS Code：“宇宙第一编辑器” 来来写 Markdown 还是非常棒的，需要安装预览插件（推荐 MPE：Markdown Preview Enhanced）。</li>
-</ul>
-<h3 id="写作示例"><a href="#写作示例" class="headerlink" title="写作示例"></a>写作示例</h3><p><strong>爱好</strong></p>
-<ul>
-<li>看电影、听音乐、读书</li>
-<li><del>抽烟</del>、<del>喝酒</del></li>
-</ul>
-<p><strong>人生格言</strong></p>
-<blockquote>
-<p>机会总是留给与准备的人。</p>
-</blockquote>
-<p><strong>代码块</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"机会总是留给与准备的人。"</span>)  <span class="comment"># 人生格言!</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
-<p><strong>数学公式</strong></p>
-<p>Markdown 原生并不支持 LaTeX 公式，这里用了 Mathjax 插件渲染。</p>
-<p>行内公式 $a = b + c$.</p>
-<p>行间公式</p>
-<script type="math/tex; mode=display">e^{i\pi}+1=0.</script><p><strong>联系方式</strong></p>
-<ol>
-<li>个人博客：<a href="https://andy123t.github.io">https://andy123t.github.io</a></li>
-<li>Github：<a href="https://github.com/andy123t" target="_blank" rel="noopener">https://github.com/andy123t</a></li>
-</ol>
-<p><strong>修订记录</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">时间</th>
-<th style="text-align:center">内容</th>
-<th style="text-align:center">版本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">2020年4月27日</td>
-<td style="text-align:center">修订完毕</td>
-<td style="text-align:center">v0.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="学习链接"><a href="#学习链接" class="headerlink" title="学习链接"></a>学习链接</h3><ul>
-<li>菜鸟教程 <a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank" rel="noopener">Markdown 教程</a></li>
-<li>个人主页 <a href="http://xianbai.me/learn-md/" target="_blank" rel="noopener">http://xianbai.me/learn-md/</a></li>
-<li>英文教程 <a href="https://www.markdownguide.org/" target="_blank" rel="noopener">https://www.markdownguide.org/</a></li>
-<li>MPE主页 <a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/" target="_blank" rel="noopener">Markdown 教程</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Writing</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -225,6 +137,94 @@
       </tags>
   </entry>
   <entry>
+    <title>Markdown 写作</title>
+    <url>/2020/04/27/Markdown-Writing/</url>
+    <content><![CDATA[<p>第一次接触 Markdown 是 2017 年用 Github 写 README.md 的时候，真正用它写东西是 2020 年初，当时买了一本书 《了不起的 Markdown》，挺不错的。Markdown 的最大特点是简单，可以用到很多场景。用 Markdown 可以写书、写幻灯片、写邮件、写日记、写便签、写笔记、写博客，可以说很流行。</p>
+<p>本博客用 Hexo 搭建，选择了 Next 主题，用 Markdown 写作就可以了，真的不懂 HTML 也没关系。</p>
+<a id="more"></a>
+<h3 id="Markdown-简介"><a href="#Markdown-简介" class="headerlink" title="Markdown 简介"></a>Markdown 简介</h3><p><strong>Markdown 是什么</strong></p>
+<ul>
+<li>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</li>
+<li>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</li>
+<li>Markdown 编写的文档后缀为 .md 。</li>
+</ul>
+<p><strong>Markdown 编辑器</strong></p>
+<ul>
+<li>Typora：轻量级 Markdown 本地编辑器，Typora 支持 MacOS 、Windows、Linux 平台，且包含多种主题，编辑后直接渲染出效果。</li>
+<li>VS Code：“宇宙第一编辑器” 来来写 Markdown 还是非常棒的，需要安装预览插件（推荐 MPE：Markdown Preview Enhanced）。</li>
+</ul>
+<h3 id="写作示例"><a href="#写作示例" class="headerlink" title="写作示例"></a>写作示例</h3><p><strong>爱好</strong></p>
+<ul>
+<li>看电影、听音乐、读书</li>
+<li><del>抽烟</del>、<del>喝酒</del></li>
+</ul>
+<p><strong>人生格言</strong></p>
+<blockquote>
+<p>机会总是留给与准备的人。</p>
+</blockquote>
+<p><strong>代码块</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"机会总是留给与准备的人。"</span>)  <span class="comment"># 人生格言!</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
+<p><strong>数学公式</strong></p>
+<p>Markdown 原生并不支持 LaTeX 公式，这里用了 Mathjax 插件渲染。</p>
+<p>行内公式 $a = b + c$.</p>
+<p>行间公式</p>
+<script type="math/tex; mode=display">e^{i\pi}+1=0.</script><p><strong>联系方式</strong></p>
+<ol>
+<li>个人博客：<a href="https://andy123t.github.io">https://andy123t.github.io</a></li>
+<li>Github：<a href="https://github.com/andy123t" target="_blank" rel="noopener">https://github.com/andy123t</a></li>
+</ol>
+<p><strong>修订记录</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时间</th>
+<th style="text-align:center">内容</th>
+<th style="text-align:center">版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2020年4月27日</td>
+<td style="text-align:center">修订完毕</td>
+<td style="text-align:center">v0.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="学习链接"><a href="#学习链接" class="headerlink" title="学习链接"></a>学习链接</h3><ul>
+<li>菜鸟教程 <a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank" rel="noopener">Markdown 教程</a></li>
+<li>个人主页 <a href="http://xianbai.me/learn-md/" target="_blank" rel="noopener">http://xianbai.me/learn-md/</a></li>
+<li>英文教程 <a href="https://www.markdownguide.org/" target="_blank" rel="noopener">https://www.markdownguide.org/</a></li>
+<li>MPE主页 <a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/" target="_blank" rel="noopener">Markdown 教程</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Writing</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>傍晚的美景</title>
+    <url>/2020/05/11/HomeScenery/</url>
+    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
+<p>走出村庄的路上</p>
+<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
+<a id="more"></a>
+<p>远处是风力发达机，还有漂亮的晚霞！</p>
+<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
+<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Scenery</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spectral Methods in MATLAB 笔记（零）</title>
     <url>/2020/05/10/SMMNote00/</url>
     <content><![CDATA[<p>这是学习书籍 Spectral Method in MATLAB (Lloyd N. Trefethen) 的笔记，因为书是英文的，笔记就成了翻译。很多地方翻译的比较粗糙，能够理解并学到知识才是最重要的。后期会陆续更新。</p>
@@ -256,6 +256,25 @@
       <tags>
         <tag>Spectral Method</tag>
         <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第一篇博客文章</title>
+    <url>/2020/04/27/helloworld/</url>
+    <content><![CDATA[<p>这是我的第一篇博客文章，博客是用 Hexo 搭建的。</p>
+<p>开博客是为了记录一些东西，大致包括以下内容：</p>
+<ul>
+<li>学习技术的经验；</li>
+<li>专业学习的笔记；</li>
+<li>生活中的想法；</li>
+<li>读书的笔记或感想。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Writing</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
       </tags>
   </entry>
   <entry>
@@ -412,25 +431,6 @@
       </categories>
       <tags>
         <tag>Spectral Method</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第一篇博客文章</title>
-    <url>/2020/04/27/helloworld/</url>
-    <content><![CDATA[<p>这是我的第一篇博客文章，博客是用 Hexo 搭建的。</p>
-<p>开博客是为了记录一些东西，大致包括以下内容：</p>
-<ul>
-<li>学习技术的经验；</li>
-<li>专业学习的笔记；</li>
-<li>生活中的想法；</li>
-<li>读书的笔记或感想。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Writing</category>
-      </categories>
-      <tags>
-        <tag>Blog</tag>
       </tags>
   </entry>
 </search>
