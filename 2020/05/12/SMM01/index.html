@@ -20,26 +20,26 @@
     var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1. Differentiation matrices 微分矩阵从一个基本问题出发。 给定一组网格节点 $x_i$ 和相应的函数值 $u(x_i)$，如何使这些数据逼近 $u$ 的导数？可能立即想到的方法是某种有限差分公式。 我们将从有限差分方法开始去学习谱方法。 考虑等距剖分 $\{ x_{1},\ldots,x_{N}\}$, 对于每一个 $j$ 有 $x_{j+1}-x_{j}&#x3D;h$，这组点">
+  <meta name="description" content="本文是书籍 Spectral Method in MATLAB 第一章 Differentiation matrices 微分矩阵 笔记。 从一个基本问题出发。 给定一组网格节点 $x_i$ 和相应的函数值 $u(x_i)$，如何使这些数据逼近 $u$ 的导数？可能立即想到的方法是某种有限差分公式。 我们将从有限差分方法开始去学习谱方法。 二阶差分考虑等距剖分 $\{ x_{1},\ldots,x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spectral Methods in MATLAB 笔记（一）">
-<meta property="og:url" content="https://andy123t.github.io/2020/05/12/SMMNote01/index.html">
+<meta property="og:title" content="SMM01 微分矩阵">
+<meta property="og:url" content="https://andy123t.github.io/2020/05/12/SMM01/index.html">
 <meta property="og:site_name" content="Andy123t">
-<meta property="og:description" content="1. Differentiation matrices 微分矩阵从一个基本问题出发。 给定一组网格节点 $x_i$ 和相应的函数值 $u(x_i)$，如何使这些数据逼近 $u$ 的导数？可能立即想到的方法是某种有限差分公式。 我们将从有限差分方法开始去学习谱方法。 考虑等距剖分 $\{ x_{1},\ldots,x_{N}\}$, 对于每一个 $j$ 有 $x_{j+1}-x_{j}&#x3D;h$，这组点">
+<meta property="og:description" content="本文是书籍 Spectral Method in MATLAB 第一章 Differentiation matrices 微分矩阵 笔记。 从一个基本问题出发。 给定一组网格节点 $x_i$ 和相应的函数值 $u(x_i)$，如何使这些数据逼近 $u$ 的导数？可能立即想到的方法是某种有限差分公式。 我们将从有限差分方法开始去学习谱方法。 二阶差分考虑等距剖分 $\{ x_{1},\ldots,x">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2020/05/12/dpvkm4lHQiFeaZw.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/12/JWUqT1iD4lvg3Rr.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/12/jRTquodzsnYXtgk.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/12/vWJPEYgMZD2upRV.png">
 <meta property="article:published_time" content="2020-05-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-12T14:57:36.419Z">
+<meta property="article:modified_time" content="2020-05-12T15:34:53.690Z">
 <meta property="article:author" content="Andy Tian">
 <meta property="article:tag" content="Spectral Method">
 <meta property="article:tag" content="MATLAB">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/05/12/dpvkm4lHQiFeaZw.png">
 
-<link rel="canonical" href="https://andy123t.github.io/2020/05/12/SMMNote01/">
+<link rel="canonical" href="https://andy123t.github.io/2020/05/12/SMM01/">
 
 
 <script id="page-configurations">
@@ -52,7 +52,7 @@
   };
 </script>
 
-  <title>Spectral Methods in MATLAB 笔记（一） | Andy123t</title>
+  <title>SMM01 微分矩阵 | Andy123t</title>
   
 
 
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/12/SMMNote01/">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/12/SMM01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -218,7 +218,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Spectral Methods in MATLAB 笔记（一）
+          SMM01 微分矩阵
         </h1>
 
         <div class="post-meta">
@@ -229,7 +229,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-12 08:00:00 / Modified: 22:57:36" itemprop="dateCreated datePublished" datetime="2020-05-12T08:00:00+08:00">2020-05-12</time>
+              <time title="Created: 2020-05-12 08:00:00 / Modified: 23:34:53" itemprop="dateCreated datePublished" datetime="2020-05-12T08:00:00+08:00">2020-05-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,8 +259,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-Differentiation-matrices-微分矩阵"><a href="#1-Differentiation-matrices-微分矩阵" class="headerlink" title="1. Differentiation matrices 微分矩阵"></a>1. Differentiation matrices 微分矩阵</h2><p>从一个基本问题出发。 给定一组网格节点 $x_i$ 和相应的函数值 $u(x_i)$，如何使这些数据逼近 $u$ 的导数？可能立即想到的方法是某种有限差分公式。 我们将从有限差分方法开始去学习谱方法。</p>
-<p>考虑等距剖分 $\{ x_{1},\ldots,x_{N}\}$, 对于每一个 $j$ 有 $x_{j+1}-x_{j}=h$，这组点对应的函数值 $\left\{u_{1}, \ldots, u_{N}\right\}$：</p>
+        <p>本文是书籍 <strong>Spectral Method in MATLAB</strong> 第一章 <strong>Differentiation matrices 微分矩阵</strong> 笔记。</p>
+<p>从一个基本问题出发。 给定一组网格节点 $x_i$ 和相应的函数值 $u(x_i)$，如何使这些数据逼近 $u$ 的导数？可能立即想到的方法是某种有限差分公式。 我们将从有限差分方法开始去学习谱方法。</p>
+<h3 id="二阶差分"><a href="#二阶差分" class="headerlink" title="二阶差分"></a>二阶差分</h3><p>考虑等距剖分 $\{ x_{1},\ldots,x_{N}\}$, 对于每一个 $j$ 有 $x_{j+1}-x_{j}=h$，这组点对应的函数值 $\left\{u_{1}, \ldots, u_{N}\right\}$：</p>
 <p><img src="https://i.loli.net/2020/05/12/dpvkm4lHQiFeaZw.png" alt="SMM0101.png"></p>
 <p>令 $w_i$ 表示 $u’(x_i)$ 的逼近，$u’(x_i)$ 表示 $u$ 的导数在 $x_j$ 处的值。 标准二阶有限差分格式</p>
 <script type="math/tex; mode=display">w_{j}=\frac{u_{j+1}-u_{j-1}}{2 h}.</script><a id="more"></a>
@@ -282,7 +283,7 @@
 <li>$a_{1}(x)=\left(x-x_{j-1}\right)\left(x-x_{j}\right) / 2 h^{2}$</li>
 </ul>
 <p>在 $x=x_j$ 时求微分并求值可以得到上式 $ w_{j}=\frac{u_{j+1}-u_{j-1}}{2 h}$。</p>
-<p>这种局部插值的推导表明能够推广到更高阶。下面是四阶推导：</p>
+<h3 id="四阶差分"><a href="#四阶差分" class="headerlink" title="四阶差分"></a>四阶差分</h3><p>这种局部插值的推导表明能够推广到更高阶。下面是四阶差分格式推导：</p>
 <p>对于 $j=1,2, \ldots, N$，</p>
 <ul>
 <li>令 $p_j$ 是不大于 4 次的多项式，$p_{j}(x_{j \pm 2})=u_{j \pm 2}$, $p_{j}(x_{j \pm 1})=u_{j \pm 1}$, 与 $p_{j}(x_{j})=u_{j}$.</li>
@@ -301,7 +302,7 @@
 \end{array}\right)
 \left(\begin{array}{c}u_{1} \\ \\ \\ \vdots \\ \\ \\ u_{N}\end{array}\right)</script><p>这是一个五对角而不是三对角的循环矩阵。</p>
 <p>以上两个矩阵的矩阵是微分矩阵的例子，它们的精度分别为2阶和4阶。对一个足够光滑的函数 $u$ 进行采样获得的 $u_j$，相应的离散逼近的收敛速率分别为 $O(h^{2})$ 与 $O(h^{4})$，通过泰勒展开可以验证这一点。</p>
-<p>第一个 MATLAB 程序，Program 1，演示了四阶差分方法的例子，选取 $u(x)=e^{\sin (x)}$ 在 $[-\pi, \pi]$ 上的周期数据。</p>
+<h3 id="Program-1"><a href="#Program-1" class="headerlink" title="Program 1"></a>Program 1</h3><p>第一个 MATLAB 程序，Program 1，演示了四阶差分方法的例子，选取 $u(x)=e^{\sin (x)}$ 在 $[-\pi, \pi]$ 上的周期数据。</p>
 <p><img src="https://i.loli.net/2020/05/12/JWUqT1iD4lvg3Rr.png" alt="SMM0102.png"></p>
 <p>该程序对不同 $N$ 时差分逼近 $ w_j $ 与精确导数 $ e^{\sin (x_{j})} \cos (x_{j}) $ 进行了比较。 因为使用了 MATLAB 稀疏矩阵 sparse ，这个代码在电脑上运行几分之一秒就运行出来了，即使它矩阵维数大到 4096。 四阶精度是明显的。 这是我们第一个也是最后一个没有使用谱方法的例子。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% p1.m - convergence of fourth-order finite differences</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% For various N, set up grid in [-pi,pi] and function u(x):</span></span><br><span class="line">  Nvec = <span class="number">2.</span>^(<span class="number">3</span>:<span class="number">12</span>);</span><br><span class="line">  clf, subplot(<span class="string">'position'</span>,[<span class="number">.1</span> <span class="number">.4</span> <span class="number">.8</span> <span class="number">.5</span>])</span><br><span class="line">  <span class="keyword">for</span> N = Nvec</span><br><span class="line">    h = <span class="number">2</span>*<span class="built_in">pi</span>/N; x = -<span class="built_in">pi</span> + (<span class="number">1</span>:N)'*h;</span><br><span class="line">    u = <span class="built_in">exp</span>(<span class="built_in">sin</span>(x)); uprime = <span class="built_in">cos</span>(x).*u;</span><br><span class="line"></span><br><span class="line">    <span class="comment">% Construct sparse fourth-order differentiation matrix:</span></span><br><span class="line">    e = <span class="built_in">ones</span>(N,<span class="number">1</span>);</span><br><span class="line">    D =   sparse(<span class="number">1</span>:N,[<span class="number">2</span>:N <span class="number">1</span>],<span class="number">2</span>*e/<span class="number">3</span>,N,N)...</span><br><span class="line">        - sparse(<span class="number">1</span>:N,[<span class="number">3</span>:N <span class="number">1</span> <span class="number">2</span>],e/<span class="number">12</span>,N,N);</span><br><span class="line">    D = (D-D')/h;</span><br><span class="line"></span><br><span class="line">    <span class="comment">% Plot max(abs(D*u-uprime)):</span></span><br><span class="line">    error = norm(D*u-uprime,<span class="built_in">inf</span>);</span><br><span class="line">    loglog(N,error,<span class="string">'.'</span>,<span class="string">'markersize'</span>,<span class="number">15</span>), <span class="built_in">hold</span> on</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  grid on, xlabel N, ylabel error</span><br><span class="line">  title(<span class="string">'Convergence of fourth-order finite differences'</span>)</span><br><span class="line">  semilogy(Nvec,Nvec.^(<span class="number">-4</span>),<span class="string">'--'</span>) </span><br><span class="line">  text(<span class="number">105</span>,<span class="number">5e-8</span>,<span class="string">'N^&#123;-4&#125;'</span>,<span class="string">'fontsize'</span>,<span class="number">18</span>)</span><br></pre></td></tr></table></figure>
@@ -319,7 +320,7 @@
  &  &  &  & -\frac{1}{3} &  & \ddots & &  \\
  &  &  &  & \vdots &  &  &  & \\
 \end{array}\right)</script><p>这是一个反对称（$D=-D$）两边无限的 Toeplitz 矩阵，也称为 Laurent 算子。除主对角线上的项外，它的所有项都不是零。</p>
-<p>当然。实际操作中一个矩阵不可能是无限的。对于有限网格，下面是谱配置方法的原理</p>
+<h3 id="谱配置方法"><a href="#谱配置方法" class="headerlink" title="谱配置方法"></a>谱配置方法</h3><p>实际操作中一个矩阵不可能是无限的。对于有限网格，下面是谱配置方法</p>
 <ul>
 <li>令 $p$ 是一个单独的函数（与 $j$ 无关），使得对所有的 $j$ 成立 $p(x_{j})=u_{j}$.</li>
 <li>设 $w_{j}=p^{\prime}(x_{j})$.</li>
@@ -337,17 +338,15 @@
  &  &  &  & \frac{1}{2}\cot\frac{2h}{2} &  & \ddots &  & \\
  &  &  &  & -\frac{1}{2}\cot\frac{3h}{2} &  & \ddots & &  \\
  &  &  &  & \vdots &  &  &  & \\
-\end{array}\right)</script><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% p2.m - convergence of periodic spectral method (compare p1.m)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% For various N (even), set up grid as before:</span></span><br><span class="line">  clf, subplot(<span class="string">'position'</span>,[<span class="number">.1</span> <span class="number">.4</span> <span class="number">.8</span> <span class="number">.5</span>])</span><br><span class="line">  <span class="keyword">for</span> N = <span class="number">2</span>:<span class="number">2</span>:<span class="number">100</span>;</span><br><span class="line">    h = <span class="number">2</span>*<span class="built_in">pi</span>/N;</span><br><span class="line">    x = -<span class="built_in">pi</span> + (<span class="number">1</span>:N)'*h;</span><br><span class="line">    u = <span class="built_in">exp</span>(<span class="built_in">sin</span>(x)); uprime = <span class="built_in">cos</span>(x).*u;</span><br><span class="line"></span><br><span class="line">    <span class="comment">% Construct spectral differentiation matrix:</span></span><br><span class="line">    column = [<span class="number">0</span> <span class="number">.5</span>*(<span class="number">-1</span>).^(<span class="number">1</span>:N<span class="number">-1</span>).*<span class="built_in">cot</span>((<span class="number">1</span>:N<span class="number">-1</span>)*h/<span class="number">2</span>)];</span><br><span class="line">    D = <span class="built_in">toeplitz</span>(column,column([<span class="number">1</span> N:<span class="number">-1</span>:<span class="number">2</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="comment">% Plot max(abs(D*u-uprime)):</span></span><br><span class="line">    error = norm(D*u-uprime,<span class="built_in">inf</span>);</span><br><span class="line">    loglog(N,error,<span class="string">'.'</span>,<span class="string">'markersize'</span>,<span class="number">15</span>), <span class="built_in">hold</span> on</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  grid on, xlabel N, ylabel error</span><br><span class="line">  title(<span class="string">'Convergence of spectral differentiation'</span>)</span><br></pre></td></tr></table></figure>
+\end{array}\right)</script><h3 id="Program-2"><a href="#Program-2" class="headerlink" title="Program 2"></a>Program 2</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% p2.m - convergence of periodic spectral method (compare p1.m)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% For various N (even), set up grid as before:</span></span><br><span class="line">  clf, subplot(<span class="string">'position'</span>,[<span class="number">.1</span> <span class="number">.4</span> <span class="number">.8</span> <span class="number">.5</span>])</span><br><span class="line">  <span class="keyword">for</span> N = <span class="number">2</span>:<span class="number">2</span>:<span class="number">100</span>;</span><br><span class="line">    h = <span class="number">2</span>*<span class="built_in">pi</span>/N;</span><br><span class="line">    x = -<span class="built_in">pi</span> + (<span class="number">1</span>:N)'*h;</span><br><span class="line">    u = <span class="built_in">exp</span>(<span class="built_in">sin</span>(x)); uprime = <span class="built_in">cos</span>(x).*u;</span><br><span class="line"></span><br><span class="line">    <span class="comment">% Construct spectral differentiation matrix:</span></span><br><span class="line">    column = [<span class="number">0</span> <span class="number">.5</span>*(<span class="number">-1</span>).^(<span class="number">1</span>:N<span class="number">-1</span>).*<span class="built_in">cot</span>((<span class="number">1</span>:N<span class="number">-1</span>)*h/<span class="number">2</span>)];</span><br><span class="line">    D = <span class="built_in">toeplitz</span>(column,column([<span class="number">1</span> N:<span class="number">-1</span>:<span class="number">2</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="comment">% Plot max(abs(D*u-uprime)):</span></span><br><span class="line">    error = norm(D*u-uprime,<span class="built_in">inf</span>);</span><br><span class="line">    loglog(N,error,<span class="string">'.'</span>,<span class="string">'markersize'</span>,<span class="number">15</span>), <span class="built_in">hold</span> on</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  grid on, xlabel N, ylabel error</span><br><span class="line">  title(<span class="string">'Convergence of spectral differentiation'</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.loli.net/2020/05/12/vWJPEYgMZD2upRV.png" alt="SMM0104.png"><br>注：谱方法具有 “<strong>谱精度</strong>”，直到舍入误差超过 $10^{-14}$。这个矩阵是稠密的，但是 $N$ 的值比程序1小得多。</p>
 <p>观察余切函数，可以发现这个矩阵确实和 Toeplitz 矩阵一样是循环的。</p>
 <p>程序2与程序1相同，只是谱方法替换了差分方法，结果有什么不同！输出2中的误差下降得非常快，直到达到如此高的精度，以至于计算机上的舍入误差阻止了进一步的改进。这种显著的行为称为谱精度。我们将在第4章中给出这个短语的更精确的描述，但是现在，需要注意的是，它与有限差分法和有限元法的收敛速度有多大的不同。随着 $N$ 的增加，有限差分法或有限元法中的误差收敛速率 $O(N^{-m})$，常数 $m$ 取决于逼近阶数和解的光滑性。对于谱方法。如果解是无穷可微的，对于每一个 $m$ 的收敛速度为 $O(N^{-m})$，如果解是适当解析的，收敛速度甚至比 $O(c^N)$（$0 &lt; c &lt; 1$）的速度更快。</p>
 <p>我们所描述的矩阵是循环的。循环矩阵的作用是卷积，我们将在第3章中看到，卷积可以通过离散傅里叶变换来计算。从历史上看，正是1965年快速傅里叶变换（FFT）的发现，导致了人们对谱方法的兴趣在1970年代激增。第8章 FFT 不仅适用于等距网格上的三角多项式，也适用于Chebyshev网格上的代数多项式。然而，即使没有 FFT 的情况下谱方法也是很强大的。在许多应用中，使用矩阵计算的结果是非常令人满意的。</p>
-<p><strong>关于舍入误差 Roundoff Error</strong></p>
-<blockquote>
+<h3 id="舍入误差"><a href="#舍入误差" class="headerlink" title="舍入误差"></a>舍入误差</h3><blockquote>
 <p>关于舍入误差，标准IEEE双精度格式 (Double-precision floating-point format) $\epsilon_{\text{machine}}=2 ^ { - 53 } \approx 1.11 \times 10 ^ { - 16 }$, 这意味着每次加法, 乘法, 除法和减法都会产生完全正确的结果乘以某个因子 $1 + \delta$ with $|\delta| \leq \epsilon_{\text{machine}}$.</p>
 </blockquote>
-<p><strong>本章小结</strong></p>
-<p>谱配置法的基本原理是在网格上给定离散数据，对数据进行全局插值，然后计算插值在网格上的导数。 对于周期性问题，我们通常在等距点上使用三角插值，对于非周期性问题，我们通常在不等距点上使用多项式插值。</p>
+<h3 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h3><p>谱配置法的基本原理是在网格上给定离散数据，对数据进行全局插值，然后计算插值在网格上的导数。 对于周期性问题，我们通常在等距点上使用三角插值，对于非周期性问题，我们通常在不等距点上使用多项式插值。</p>
 
     </div>
 
@@ -429,7 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Differentiation-matrices-微分矩阵"><span class="nav-number">1.</span> <span class="nav-text">1. Differentiation matrices 微分矩阵</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#二阶差分"><span class="nav-number">1.</span> <span class="nav-text">二阶差分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四阶差分"><span class="nav-number">2.</span> <span class="nav-text">四阶差分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Program-1"><span class="nav-number">3.</span> <span class="nav-text">Program 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谱配置方法"><span class="nav-number">4.</span> <span class="nav-text">谱配置方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Program-2"><span class="nav-number">5.</span> <span class="nav-text">Program 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#舍入误差"><span class="nav-number">6.</span> <span class="nav-text">舍入误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本章小结"><span class="nav-number">7.</span> <span class="nav-text">本章小结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
