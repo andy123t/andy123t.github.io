@@ -358,7 +358,7 @@
 <ul>
 <li>$a_{-1}(x)=\left(x-x_{j}\right)\left(x-x_{j+1}\right) / 2 h^{2}$， </li>
 <li>$a_{0}(x)=-\left(x-x_{j-1}\right)\left(x-x_{j+1}\right) / h^{2}$，</li>
-<li>$a_{1}(x)=\left(x-x_{j-1}\right)\left(x-x_{j}\right) / 2 h^{2}$</li>
+<li>$a_{1}(x)=\left(x-x_{j-1}\right)\left(x-x_{j}\right) / 2 h^{2}$.</li>
 </ul>
 <p>在 $x=x_j$ 时求微分并求值可以得到上式 $ w_{j}=\frac{u_{j+1}-u_{j-1}}{2 h}$。</p>
 <h3 id="四阶差分"><a href="#四阶差分" class="headerlink" title="四阶差分"></a>四阶差分</h3><p>这种局部插值的推导表明能够推广到更高阶。下面是四阶差分格式推导：</p>
