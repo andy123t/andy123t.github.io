@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/05/12/jRTquodzsnYXtgk.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/12/vWJPEYgMZD2upRV.png">
 <meta property="article:published_time" content="2020-05-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-12T08:26:58.591Z">
+<meta property="article:modified_time" content="2020-05-12T14:57:36.419Z">
 <meta property="article:author" content="Andy Tian">
 <meta property="article:tag" content="Spectral Method">
 <meta property="article:tag" content="MATLAB">
@@ -229,7 +229,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-12 08:00:00 / Modified: 16:26:58" itemprop="dateCreated datePublished" datetime="2020-05-12T08:00:00+08:00">2020-05-12</time>
+              <time title="Created: 2020-05-12 08:00:00 / Modified: 22:57:36" itemprop="dateCreated datePublished" datetime="2020-05-12T08:00:00+08:00">2020-05-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,8 +262,9 @@
         <h2 id="1-Differentiation-matrices-微分矩阵"><a href="#1-Differentiation-matrices-微分矩阵" class="headerlink" title="1. Differentiation matrices 微分矩阵"></a>1. Differentiation matrices 微分矩阵</h2><p>从一个基本问题出发。 给定一组网格节点 $x_i$ 和相应的函数值 $u(x_i)$，如何使这些数据逼近 $u$ 的导数？可能立即想到的方法是某种有限差分公式。 我们将从有限差分方法开始去学习谱方法。</p>
 <p>考虑等距剖分 $\{ x_{1},\ldots,x_{N}\}$, 对于每一个 $j$ 有 $x_{j+1}-x_{j}=h$，这组点对应的函数值 $\left\{u_{1}, \ldots, u_{N}\right\}$：</p>
 <p><img src="https://i.loli.net/2020/05/12/dpvkm4lHQiFeaZw.png" alt="SMM0101.png"></p>
-<p>令 $w_i$ 表示 $u(i)$ 的近似，$u$ 标准二阶有限差分格式</p>
-<script type="math/tex; mode=display">w_{j}=\frac{u_{j+1}-u_{j-1}}{2 h},</script><p> 可以通过 $u(x_{j+1})$ 与 $u(x_{j+1})$ 的泰勒展开得到。<br>为了简单起见，假设问题是周期性的，取 $u_0=u_N$ 和 $u_1=u_{N+1}$。然后我们可以把离散微分过程表示为矩阵向量乘积</p>
+<p>令 $w_i$ 表示 $u’(x_i)$ 的逼近，$u’(x_i)$ 表示 $u$ 的导数在 $x_j$ 处的值。 标准二阶有限差分格式</p>
+<script type="math/tex; mode=display">w_{j}=\frac{u_{j+1}-u_{j-1}}{2 h}.</script><a id="more"></a>
+<p>可以通过 $u(x_{j+1})$ 与 $u(x_{j+1})$ 的泰勒展开得到。<br>为了简单起见，假设问题是周期性的，取 $u_0=u_N$ 和 $u_1=u_{N+1}$。然后我们可以把离散微分过程表示为矩阵向量乘积</p>
 <script type="math/tex; mode=display">\left(\begin{array}{c}w_{1} \\ \\ \vdots \\ \\ w_{N}\end{array}\right)=h^{-1} 
 \left(\begin{array}{ccccc}0 & \frac{1}{2} & & & -\frac{1}{2} \\ -\frac{1}{2} & 0 & \ddots & & \\ & & \ddots & & \\ & & \ddots & 0 & \frac{1}{2} \\ \frac{1}{2} & & & -\frac{1}{2} & 0\end{array}\right)
 \left(\begin{array}{c}u_{1} \\ \\ \vdots \\ \\ u_{N}\end{array}\right)</script><p>稀疏矩阵中的省略项为零。观察这个矩阵可知是 Toeplitz 矩阵，沿着对角线有相同的数，比如元素 $a_{ij}$ 的值只与 $i-j$ 有关。 实际上，它也是循环的，这意味着 $a_{ij}$ 仅依赖于 $(i-j)(\mathrm{mod} N)$。 这个矩阵对角线 “环绕” 的。</p>
