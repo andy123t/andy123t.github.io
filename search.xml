@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Google 科学上网</title>
+    <url>/2020/05/09/Google/</url>
+    <content><![CDATA[<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
+<li>不推荐安装 360、电脑管家等安全或杀毒类软件。</li>
+<li>Win10 系统自带的 <strong>Windows Defender</strong> 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 <strong>火绒安全</strong> 的软件，另外它的弹窗拦截挺好用的。</li>
+<li>如果经常使用搜索引擎，推荐使用 <strong>Google Chrome</strong> 浏览器，安装插件才能用，比如谷歌上网助手 <strong>Ghelper</strong>。</li>
+<li>养成良好的上网习惯，下载软件到软件的官方网站。</li>
+</ul>
+<a id="more"></a>
+<h3 id="Google-Chrome-下载和插件安装"><a href="#Google-Chrome-下载和插件安装" class="headerlink" title="Google Chrome 下载和插件安装"></a>Google Chrome 下载和插件安装</h3><p><strong>Google Chrome 浏览器下载</strong><br><img src="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png" alt="GoogleChrome.png"></p>
+<p><strong>谷歌上网助手下载</strong><br><img src="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png" alt="GhelperDownload.png"></p>
+<p><strong>安装 Ghelper 插件</strong><br><img src="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png" alt="GhelperInstall.png"></p>
+<h3 id="Google-使用"><a href="#Google-使用" class="headerlink" title="Google 使用"></a>Google 使用</h3><p>谷歌上网助手最好注册一下，免费的足够用，已经可以使用 Google Scholar，Gmail 等，有更多需求可以购买 VIP。</p>
+<p>建议注册一个 Google 账号，也就是 Gmail（电脑注册如果出现问题，可以用 qq 邮箱注册），它可以同步自己的个人信息和配置，包括以下内容：</p>
+<ul>
+<li>收藏网址书签，可以建立文件夹分类；</li>
+<li>保存很多的网站账号密码；</li>
+<li>登陆谷歌网上商店，下载扩展插件（插件是 Google 的灵魂）；</li>
+<li>登陆 Gmail 邮箱收发邮件；</li>
+<li>使用 Google Drive 云端硬盘（免费 15G ）；</li>
+<li>······</li>
+</ul>
+<p>这些内容全部由一个 Google 账号管理同步。如果你退出这个账号，浏览器就像刚安装时一样干净。如果你在另一台电脑登录 Google 账号，你的所有内容就立即恢复了（即使安装的插件也会同步，不需要重新安装）。</p>
+]]></content>
+      <categories>
+        <category>Computer Skills</category>
+      </categories>
+      <tags>
+        <tag>Google</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 入门</title>
+    <url>/2020/05/09/Git-Start/</url>
+    <content><![CDATA[<h3 id="Git-下载安装"><a href="#Git-下载安装" class="headerlink" title="Git 下载安装"></a>Git 下载安装</h3><p>Git 下载地址： <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
+<p>安装完成后，在开始菜单里找到 <strong>Git —&gt; Git Bash</strong>，点击后出现一个类似命令行窗口的东西，就说明 Git 安装成功。在电脑桌面或某个文件夹，鼠标右键可以启动 <strong>Git Bash</strong>。</p>
+<h3 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h3><p>可以保存 Git 用户名和电子邮件，这样就不必在以后的 Git 命令中再次输入它们。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"name"</span>  </span><br><span class="line">$ git config --global user.email <span class="string">"email@163.com"</span></span><br></pre></td></tr></table></figure>
+<p>已经注册 Github 可以用 Github 用户名和邮箱。</p>
+<a id="more"></a>
+<h3 id="Git-使用流程"><a href="#Git-使用流程" class="headerlink" title="Git 使用流程"></a>Git 使用流程</h3><h4 id="Git-初始化"><a href="#Git-初始化" class="headerlink" title="Git 初始化"></a>Git 初始化</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir demo     <span class="comment"># 创建文件夹</span></span><br><span class="line">$ <span class="built_in">pwd</span>            <span class="comment"># 命令用于显示工作目录</span></span><br><span class="line">$ <span class="built_in">cd</span> demo        <span class="comment"># 进入文件夹 demo 目录</span></span><br><span class="line">$ git init       <span class="comment"># 初始化 Git</span></span><br></pre></td></tr></table></figure>
+<h4 id="Git-工作区域"><a href="#Git-工作区域" class="headerlink" title="Git 工作区域"></a>Git 工作区域</h4><ol>
+<li>Git Repository（Git 仓库）：最终确定的文件保存到仓库，成为一个新的版本，并对他人可见</li>
+<li>暂存区：暂存已经修改的文件最后统一提交到 Git 仓库中</li>
+<li>工作区（Working Directory）：添加、编辑、修改文件等动作</li>
+</ol>
+<h4 id="Git-使用命令"><a href="#Git-使用命令" class="headerlink" title="Git 使用命令"></a>Git 使用命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status      <span class="comment"># 查看当前状态</span></span><br><span class="line">$ touch test.m    <span class="comment"># 创建空文件</span></span><br><span class="line">$ git add test.m  <span class="comment"># 添加到暂停区</span></span><br><span class="line">$ git add .       <span class="comment"># 添加所有更改文件到暂停区</span></span><br><span class="line">$ git commit -m <span class="string">'提交描述'</span></span><br></pre></td></tr></table></figure>
+<p>创建、编辑、拷贝、删除文件可以通过 Windows 基本操作，不一定非要用 Git 命令。</p>
+<h4 id="Github-远程备份"><a href="#Github-远程备份" class="headerlink" title="Github 远程备份"></a>Github 远程备份</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin \</span><br><span class="line">$ https://github.com/name/repo.git</span><br><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<h4 id="Git-克隆操作"><a href="#Git-克隆操作" class="headerlink" title="Git 克隆操作"></a>Git 克隆操作</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --list   <span class="comment"># 查看账户配置等信息</span></span><br><span class="line">$ git <span class="built_in">clone</span> 仓库地址 </span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/andy123t/TeXCode.git</span><br></pre></td></tr></table></figure>
+<p>因为网络原因 clone 可能会失败，下载最近一次的版本或许可以<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://github.com/repository.git --depth 1</span><br><span class="line">$ git fetch --unshallow  <span class="comment"># 获取完整历史信息</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Github-克隆修改并上传的流程-（总结）"><a href="#Github-克隆修改并上传的流程-（总结）" class="headerlink" title="Github 克隆修改并上传的流程 （总结）"></a>Github 克隆修改并上传的流程 （总结）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://github.com/.../repository.git  <span class="comment"># 或者</span></span><br><span class="line">$ git <span class="built_in">clone</span> http://github.com/.../repository.git --depth 1</span><br><span class="line"><span class="comment"># 添加编辑修改之后</span></span><br><span class="line">$ git status</span><br><span class="line">$ git add test.m  <span class="comment"># 或者</span></span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">'提交描述'</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li>编程大神廖雪峰 <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">Git 教程</a></li>
+<li>B 站视频 <a href="https://www.bilibili.com/video/BV1Xx411m7kn" target="_blank" rel="noopener">链接</a>，讲的有点慢，可以倍速，但是讲的很细。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Computer Skills</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>傍晚的美景</title>
+    <url>/2020/05/11/HomeScenery/</url>
+    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
+<p>走出村庄的路上</p>
+<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
+<a id="more"></a>
+<p>远处是风力发达机，还有漂亮的晚霞！</p>
+<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
+<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Scenery</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo-Next 个人博客搭建</title>
     <url>/2020/05/11/HexoNext/</url>
     <content><![CDATA[<p>本文介绍 Hexo 搭建个人博客，选择 Next 主题，最后托管到 GitHub 上。可以直接用 Markdown 写文章，然后生成静态网页上传，非常方便和实用。另外还可以使用 Mathjax 渲染，使文章支持 LaTeX 格式的数学公式。 </p>
@@ -72,21 +155,93 @@
       </tags>
   </entry>
   <entry>
-    <title>傍晚的美景</title>
-    <url>/2020/05/11/HomeScenery/</url>
-    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
-<p>走出村庄的路上</p>
-<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
+    <title>Spectral Methods in MATLAB 笔记（零）</title>
+    <url>/2020/05/10/SMMNote00/</url>
+    <content><![CDATA[<p>这是学习书籍 Spectral Method in MATLAB (Lloyd N. Trefethen) 的笔记，因为书是英文的，笔记就成了翻译。很多地方翻译的比较粗糙，能够理解并学到知识才是最重要的。后期会陆续更新。</p>
+<p>Nick Trefethen <a href="http://people.maths.ox.ac.uk/trefethen/" target="_blank" rel="noopener">Homepage</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这本书有四十个简短的MATLAB程序，这些程序可以在用于求解与流体力学、量子力学、振动、线性和非线性波、复分析等领域有关的各种常微分方程和偏微分方程( ODE 和 PDE )。书的前六章侧重于理论，第七章以后更侧重于编程应用。学习这本书，需要对数值分析，微分方程有一定的了解，并且熟悉 MATLAB。</p>
+<p>如果你喜欢计算和数字数学，你会喜欢阅读这本书，可以学到一些新的 MATLAB 技巧！</p>
 <a id="more"></a>
-<p>远处是风力发达机，还有漂亮的晚霞！</p>
-<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
-<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
+<p>谱方法是数值求解 PDEs 的三大方法之一，它们大致在连续几十年的逐渐发展起来：</p>
+<ul>
+<li>20 世纪 50 年代：有限差分法</li>
+<li>20 世纪 60 年代：有限元法</li>
+<li>20 世纪 70 年代：谱方法</li>
+</ul>
+<p>当然，每种方法的起源都可以追溯到更早的时候。 对于谱方法来说，一些思想和插值和函数展开一样古老，更具体地说，算法的发展最早是在1938年由Lanczos [Lan38, Lan56] 和 1960 年代的 Clenshaw，Elliott，Fox 等 [FoPa68] 提出的。 然后，在20世纪70年代，由 Orszag 等人在流体动力学和气象学问题上的工作引发了这一领域的变革，谱方法也因此而闻名。<br>早期现代谱方法文献的三个里程碑是：Gottlieb 和 Orszag的短书[GoOr77]，Gottlieb，Hussaini 和 Orszag 的研究 [CHO84] 和Canuto，Hussaini，Quarteroni 和 Zang 的专著 [ChQZ88]。 此后，Mercier [Mer89]，Boyd [Boy00]（1989年第一版），Funaro [Fun92]，Bernardi 和 Maday [BeMa92]，Fornberg [For96] 以及 Karniadakis 和 Sherwin [KaSh99] 也贡献了其他书籍。</p>
+<p>如果要在一个简单的区域上高精度地求解 ODE 或 PDE，并且如果定义该问题的函数是平滑的，那么谱方法通常是最好的工具。它们通常可以达到十位数的精度，而有限差分法或有限元法可以达到两三位数。在精度较低的情况下，它们需要的计算机内存比其他替代方案要小。</p>
+<p>这本短小的书介绍了谱方法的一些基本思想和技术。它的目标人群是学过数值分析课程，并熟悉基本的应用程序设计和偏微分方程。你会发现，在计算机的几秒钟内，用几行 MATLAB 代码就可以高精度地解决一系列显著的问题。<strong>写程序应当有一种玩的心态，最后让它们成为你自己的！</strong></p>
+<p>我想强调这里提出的三个数学主题，虽然专家们都知道，但通常在教科书中找不到。在第四章中，第一个是函数的光滑性与其傅里叶变换衰减之间的关系，后者决定了离散化引入的混叠误差的大小；这些关系解释了谱方法的精度如何取决于被逼近函数的光滑性。第二，在第五章中，多项式的根和平面上的点电荷之间的类比，这导致了一个关于非周期谱方法的网格为什么需要在边界处聚集的势理论的扩展。第三，在第八章中，$[-1,1]$上的切比雪夫级数 、$[\pi,\pi]$ 上的三角级数与单位圆上的洛朗级数这三种方法，构成了快速傅里叶变换计算切比雪夫谱导数技术的基础。这三个主题本身都是非常的数学研究主题，对任何应用数学家来说都是值得学习的。</p>
+<p>不可避免地，这本书只涉及谱方法的一部分。它强调在周期网格和切比雪夫网格上的配置（拟谱）方法，而对同样重要的 Galerkin 方法、勒让德网格和多项式几乎没有涉及。理论分析是非常有限的，强调简单几何的简单工具，而不是工业强度、谱元方法和 $hp$ 有限元，在后面给出了一些其他的主题和观点。</p>
+<p>MATLAB的发展开创了科学计算的新纪元。现在，人们可以以非常简洁的方式，完整详细地介绍高级数值算法和非平凡问题的解决方案，在几页中介绍更多的应用数学，几年前是不可想象的。MATLAB 语言有时（不总是！）与 Fortran 或 C 等低级语言相比，牺牲了机器效率这一个特定因素，但是提高了人的编程效率，即修改程序并应用于新的问题，再去尝试新的问题，这比以往更加容易。这本短书鼓励学生、科学家和工程师学会这种新的计算方法。</p>
+<h3 id="关于程序"><a href="#关于程序" class="headerlink" title="关于程序"></a>关于程序</h3><p>本书中的 MATLAB 程序很简洁。 每一个程序容纳在一页上，并且在几英寸的计算机代码中进行计算！程序非常简洁、紧凑，对紧凑性的痴迷有时会损害可读性。 例如，在单个程序行上集合了两个或三个简短的 MATLAB 命令。 </p>
+<p>本书中编程风格的另一个特点是结构扁平化，除了在其中定义的关键函数cheb之外，程序中几乎不使用函数（chebfft、clencurt和gauss这三个函数在第8章和第12章，但每一章都只是局部使用。这种风格的优点是强调可以实现的紧凑程度，但是作为一般规则，MATLAB程序员应该经常使用函数）。</p>
+<p>书中可能写了很多东西去解释程序的细节或技巧。为了使讨论集中在谱方法上，尽量不去提到 MATLAB 的细节，除非在极少数情况下不得不这么做。这意味着当你使用这本书时，你将不得不学习程序，而不仅仅是阅读它们。<strong>只有你花时间学习这些代码，并修改它们来解决你自己的问题之后，你才能真正理解这些问题的答案</strong>。我想这是使用这本书的乐趣之一，希望你能同意。</p>
+<p>本书的程序是用 MATLAB 5.3 编写运行的，随着以后几年中更高版本的发布，这些程序的运行可能会出现一些困难。 若要从头开始学习 MATLAB，或者作为参考，推荐 SIAM 的书籍 MATLAB Guide。</p>
+<p><strong>注：</strong> 我用的 MATLAB 版本是 MATLAB 2019a (v9.6)，画出的图和早期版本是有些不一样的，应该是更美观了吧。</p>
 ]]></content>
       <categories>
-        <category>Life</category>
+        <category>Spectral Methods</category>
       </categories>
       <tags>
-        <tag>Scenery</tag>
+        <tag>Spectral Method</tag>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>谱方法概述</title>
+    <url>/2020/05/10/SMNote00/</url>
+    <content><![CDATA[<h3 id="谱方法简介"><a href="#谱方法简介" class="headerlink" title="谱方法简介"></a>谱方法简介</h3><p>谱方法是一种既古老又新兴的求解偏微分方程的数值方法。早在 1820 年, Navier 就运用双重三角级数求解弹性薄板问题。 但是，长期以来，由于它计算量大而一直没有被广泛使用，直到 1965 年快速 Fourier 变换的出现，才给谱方法带来了生机。 近几十多年来，谱方法得到了蓬勃的发展，不仅广泛地运用于物理、力学、大气、海洋等领域的数值计算，而且它的数值分析理论也不断地完善。 至今，谱方法已和有限差分法、有限元法一起成为偏微分方程数值求解的第三种基本方法。</p>
+<a id="more"></a>
+<p>谱方法起源于 Ritz-Galerkin 方法，它是以正交多项式（三角多项式、Chebyshev 多项式、Legendre多项式等，它们分别是正则和奇异 Sturm-Liouville 问题的谱函数）作为基函数的 Galerkin 方法、Tau 方法或 Collocation 方法。 它们分别称为谱方法、Tau方法或拟谱方法(配置法)，统称为谱方法。</p>
+<p>谱方法的最大魅力是它具有所谓“无穷阶”收敛性，即如果原方程的解无穷光滑，那么用适当的谱方法所求得的近似解将以 $N^{-1}$ 的任意幂次速度收敛于精确解，这里 $N$ 为所选取的基函数个数。 这一优点是有限差分法和有限元法无法比拟的，众多的实际应用和数值实例也证实了该方法的有效性。 因此，谱方法日益受到人们的重视。</p>
+<h3 id="谱方法与其他数值方法的区别"><a href="#谱方法与其他数值方法的区别" class="headerlink" title="谱方法与其他数值方法的区别"></a>谱方法与其他数值方法的区别</h3><p>偏微分方程的数值方法可分为局部和全局两大类。有限差分法和有限元方法是局部方法，而谱方法是全局方法。事实上，有限元方法特别适合于解决复杂几何区域的问题，而谱方法具有更高的精度，却以区域灵活性为代价。许多数值方法，如 $hp$ 有限元方法和谱元方法，它们结合了全局和局部方法的优点。传统的谱方法指的是全局谱方法。</p>
+<p>从微分方程数值格式的方面来说，谱方法属于加权余量法 (WRMs) 一类，传统上它被认为是许多数值方法的基础，例如有限元方法、谱方法、有限体积法、边界元法。WRMs 代表一类特殊的求解近似解的方法，其中误差以一定的方式最小化，这些特定的使最小化的方法，包括 Galerkin 方法、Petrov Galerkin 方法、Collocation 方法和 Tau 方法。</p>
+<p>有限元适合解决复杂区域的问题, 差分法和谱方法适合解决规则区域的问题</p>
+<p><strong>总结</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">有限差分 and/or 有限元</th>
+<th style="text-align:center">谱方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">基函数 (FEM, SM)</td>
+<td style="text-align:center">局部的</td>
+<td style="text-align:center">全局的</td>
+</tr>
+<tr>
+<td style="text-align:center">收敛阶</td>
+<td style="text-align:center">低阶</td>
+<td style="text-align:center">高阶</td>
+</tr>
+<tr>
+<td style="text-align:center">提高精度</td>
+<td style="text-align:center">精细网格</td>
+<td style="text-align:center">增加基函数个数</td>
+</tr>
+<tr>
+<td style="text-align:center">计算效率</td>
+<td style="text-align:center">稀疏矩阵</td>
+<td style="text-align:center">稀疏仅对特定 PDE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h3><ul>
+<li>Spectral Methods: Algorithms, Analysis and Applications</li>
+<li>谱方法的数值分析</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Spectral Methods</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
       </tags>
   </entry>
   <entry>
@@ -176,127 +331,6 @@
       </categories>
       <tags>
         <tag>Blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>谱方法概述</title>
-    <url>/2020/05/10/SMNote00/</url>
-    <content><![CDATA[<h3 id="谱方法简介"><a href="#谱方法简介" class="headerlink" title="谱方法简介"></a>谱方法简介</h3><p>谱方法是一种既古老又新兴的求解偏微分方程的数值方法。早在 1820 年, Navier 就运用双重三角级数求解弹性薄板问题。 但是，长期以来，由于它计算量大而一直没有被广泛使用，直到 1965 年快速 Fourier 变换的出现，才给谱方法带来了生机。 近几十多年来，谱方法得到了蓬勃的发展，不仅广泛地运用于物理、力学、大气、海洋等领域的数值计算，而且它的数值分析理论也不断地完善。 至今，谱方法已和有限差分法、有限元法一起成为偏微分方程数值求解的第三种基本方法。</p>
-<a id="more"></a>
-<p>谱方法起源于 Ritz-Galerkin 方法，它是以正交多项式（三角多项式、Chebyshev 多项式、Legendre多项式等，它们分别是正则和奇异 Sturm-Liouville 问题的谱函数）作为基函数的 Galerkin 方法、Tau 方法或 Collocation 方法。 它们分别称为谱方法、Tau方法或拟谱方法(配置法)，统称为谱方法。</p>
-<p>谱方法的最大魅力是它具有所谓“无穷阶”收敛性，即如果原方程的解无穷光滑，那么用适当的谱方法所求得的近似解将以 $N^{-1}$ 的任意幂次速度收敛于精确解，这里 $N$ 为所选取的基函数个数。 这一优点是有限差分法和有限元法无法比拟的，众多的实际应用和数值实例也证实了该方法的有效性。 因此，谱方法日益受到人们的重视。</p>
-<h3 id="谱方法与其他数值方法的区别"><a href="#谱方法与其他数值方法的区别" class="headerlink" title="谱方法与其他数值方法的区别"></a>谱方法与其他数值方法的区别</h3><p>偏微分方程的数值方法可分为局部和全局两大类。有限差分法和有限元方法是局部方法，而谱方法是全局方法。事实上，有限元方法特别适合于解决复杂几何区域的问题，而谱方法具有更高的精度，却以区域灵活性为代价。许多数值方法，如 $hp$ 有限元方法和谱元方法，它们结合了全局和局部方法的优点。传统的谱方法指的是全局谱方法。</p>
-<p>从微分方程数值格式的方面来说，谱方法属于加权余量法 (WRMs) 一类，传统上它被认为是许多数值方法的基础，例如有限元方法、谱方法、有限体积法、边界元法。WRMs 代表一类特殊的求解近似解的方法，其中误差以一定的方式最小化，这些特定的使最小化的方法，包括 Galerkin 方法、Petrov Galerkin 方法、Collocation 方法和 Tau 方法。</p>
-<p>有限元适合解决复杂区域的问题, 差分法和谱方法适合解决规则区域的问题</p>
-<p><strong>总结</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">有限差分 and/or 有限元</th>
-<th style="text-align:center">谱方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">基函数 (FEM, SM)</td>
-<td style="text-align:center">局部的</td>
-<td style="text-align:center">全局的</td>
-</tr>
-<tr>
-<td style="text-align:center">收敛阶</td>
-<td style="text-align:center">低阶</td>
-<td style="text-align:center">高阶</td>
-</tr>
-<tr>
-<td style="text-align:center">提高精度</td>
-<td style="text-align:center">精细网格</td>
-<td style="text-align:center">增加基函数个数</td>
-</tr>
-<tr>
-<td style="text-align:center">计算效率</td>
-<td style="text-align:center">稀疏矩阵</td>
-<td style="text-align:center">稀疏仅对特定 PDE</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h3><ul>
-<li>Spectral Methods: Algorithms, Analysis and Applications</li>
-<li>谱方法的数值分析</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Spectral Methods</category>
-      </categories>
-      <tags>
-        <tag>MATLAB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Google 科学上网</title>
-    <url>/2020/05/09/Google/</url>
-    <content><![CDATA[<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
-<li>不推荐安装 360、电脑管家等安全或杀毒类软件。</li>
-<li>Win10 系统自带的 <strong>Windows Defender</strong> 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 <strong>火绒安全</strong> 的软件，另外它的弹窗拦截挺好用的。</li>
-<li>如果经常使用搜索引擎，推荐使用 <strong>Google Chrome</strong> 浏览器，安装插件才能用，比如谷歌上网助手 <strong>Ghelper</strong>。</li>
-<li>养成良好的上网习惯，下载软件到软件的官方网站。</li>
-</ul>
-<a id="more"></a>
-<h3 id="Google-Chrome-下载和插件安装"><a href="#Google-Chrome-下载和插件安装" class="headerlink" title="Google Chrome 下载和插件安装"></a>Google Chrome 下载和插件安装</h3><p><strong>Google Chrome 浏览器下载</strong><br><img src="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png" alt="GoogleChrome.png"></p>
-<p><strong>谷歌上网助手下载</strong><br><img src="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png" alt="GhelperDownload.png"></p>
-<p><strong>安装 Ghelper 插件</strong><br><img src="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png" alt="GhelperInstall.png"></p>
-<h3 id="Google-使用"><a href="#Google-使用" class="headerlink" title="Google 使用"></a>Google 使用</h3><p>谷歌上网助手最好注册一下，免费的足够用，已经可以使用 Google Scholar，Gmail 等，有更多需求可以购买 VIP。</p>
-<p>建议注册一个 Google 账号，也就是 Gmail（电脑注册如果出现问题，可以用 qq 邮箱注册），它可以同步自己的个人信息和配置，包括以下内容：</p>
-<ul>
-<li>收藏网址书签，可以建立文件夹分类；</li>
-<li>保存很多的网站账号密码；</li>
-<li>登陆谷歌网上商店，下载扩展插件（插件是 Google 的灵魂）；</li>
-<li>登陆 Gmail 邮箱收发邮件；</li>
-<li>使用 Google Drive 云端硬盘（免费 15G ）；</li>
-<li>······</li>
-</ul>
-<p>这些内容全部由一个 Google 账号管理同步。如果你退出这个账号，浏览器就像刚安装时一样干净。如果你在另一台电脑登录 Google 账号，你的所有内容就立即恢复了（即使安装的插件也会同步，不需要重新安装）。</p>
-]]></content>
-      <categories>
-        <category>Computer Skills</category>
-      </categories>
-      <tags>
-        <tag>Google</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 入门</title>
-    <url>/2020/05/09/Git-Start/</url>
-    <content><![CDATA[<h3 id="Git-下载安装"><a href="#Git-下载安装" class="headerlink" title="Git 下载安装"></a>Git 下载安装</h3><p>Git 下载地址： <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
-<p>安装完成后，在开始菜单里找到 <strong>Git —&gt; Git Bash</strong>，点击后出现一个类似命令行窗口的东西，就说明 Git 安装成功。在电脑桌面或某个文件夹，鼠标右键可以启动 <strong>Git Bash</strong>。</p>
-<h3 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h3><p>可以保存 Git 用户名和电子邮件，这样就不必在以后的 Git 命令中再次输入它们。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"name"</span>  </span><br><span class="line">$ git config --global user.email <span class="string">"email@163.com"</span></span><br></pre></td></tr></table></figure>
-<p>已经注册 Github 可以用 Github 用户名和邮箱。</p>
-<a id="more"></a>
-<h3 id="Git-使用流程"><a href="#Git-使用流程" class="headerlink" title="Git 使用流程"></a>Git 使用流程</h3><h4 id="Git-初始化"><a href="#Git-初始化" class="headerlink" title="Git 初始化"></a>Git 初始化</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir demo     <span class="comment"># 创建文件夹</span></span><br><span class="line">$ <span class="built_in">pwd</span>            <span class="comment"># 命令用于显示工作目录</span></span><br><span class="line">$ <span class="built_in">cd</span> demo        <span class="comment"># 进入文件夹 demo 目录</span></span><br><span class="line">$ git init       <span class="comment"># 初始化 Git</span></span><br></pre></td></tr></table></figure>
-<h4 id="Git-工作区域"><a href="#Git-工作区域" class="headerlink" title="Git 工作区域"></a>Git 工作区域</h4><ol>
-<li>Git Repository（Git 仓库）：最终确定的文件保存到仓库，成为一个新的版本，并对他人可见</li>
-<li>暂存区：暂存已经修改的文件最后统一提交到 Git 仓库中</li>
-<li>工作区（Working Directory）：添加、编辑、修改文件等动作</li>
-</ol>
-<h4 id="Git-使用命令"><a href="#Git-使用命令" class="headerlink" title="Git 使用命令"></a>Git 使用命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status      <span class="comment"># 查看当前状态</span></span><br><span class="line">$ touch test.m    <span class="comment"># 创建空文件</span></span><br><span class="line">$ git add test.m  <span class="comment"># 添加到暂停区</span></span><br><span class="line">$ git add .       <span class="comment"># 添加所有更改文件到暂停区</span></span><br><span class="line">$ git commit -m <span class="string">'提交描述'</span></span><br></pre></td></tr></table></figure>
-<p>创建、编辑、拷贝、删除文件可以通过 Windows 基本操作，不一定非要用 Git 命令。</p>
-<h4 id="Github-远程备份"><a href="#Github-远程备份" class="headerlink" title="Github 远程备份"></a>Github 远程备份</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin \</span><br><span class="line">$ https://github.com/name/repo.git</span><br><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="Git-克隆操作"><a href="#Git-克隆操作" class="headerlink" title="Git 克隆操作"></a>Git 克隆操作</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --list   <span class="comment"># 查看账户配置等信息</span></span><br><span class="line">$ git <span class="built_in">clone</span> 仓库地址 </span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/andy123t/TeXCode.git</span><br></pre></td></tr></table></figure>
-<p>因为网络原因 clone 可能会失败，下载最近一次的版本或许可以<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://github.com/repository.git --depth 1</span><br><span class="line">$ git fetch --unshallow  <span class="comment"># 获取完整历史信息</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="Github-克隆修改并上传的流程-（总结）"><a href="#Github-克隆修改并上传的流程-（总结）" class="headerlink" title="Github 克隆修改并上传的流程 （总结）"></a>Github 克隆修改并上传的流程 （总结）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://github.com/.../repository.git  <span class="comment"># 或者</span></span><br><span class="line">$ git <span class="built_in">clone</span> http://github.com/.../repository.git --depth 1</span><br><span class="line"><span class="comment"># 添加编辑修改之后</span></span><br><span class="line">$ git status</span><br><span class="line">$ git add test.m  <span class="comment"># 或者</span></span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">'提交描述'</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li>编程大神廖雪峰 <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">Git 教程</a></li>
-<li>B 站视频 <a href="https://www.bilibili.com/video/BV1Xx411m7kn" target="_blank" rel="noopener">链接</a>，讲的有点慢，可以倍速，但是讲的很细。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Computer Skills</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
 </search>
