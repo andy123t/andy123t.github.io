@@ -20,24 +20,25 @@
     var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="科学上网 不推荐安装 360、电脑管家等安全或杀毒类软件。 Win10 系统自带的 Windows Defender 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 火绒安全 的软件，另外它的弹窗拦截挺好用的。 如果经常使用搜索引擎，推荐使用 Google Chrome 浏览器，安装插件才能用，比如谷歌上网助手 Ghelper。 养成良好的上网习惯，下载软件到软件的官方网站。">
+  <meta name="description" content="本文是书籍 Spectral Method in MATLAB 第二章 Unbounded Grids: the Semidiscrete Fourier Transform 无界网格：半离散 Fourier 变换 笔记。 我们现在导出第一个谱方法，就是第一章的两边无限的矩阵。这种方法适用于离散的、无界的区域，因此不是一种实用的方法。但是，它确实介绍了推导和分析实用方法所需的数学思想。 半离散 F">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Google 科学上网">
-<meta property="og:url" content="https://andy123t.github.io/2020/05/09/Google/index.html">
+<meta property="og:title" content="SMM02 半离散 Fourier 变换">
+<meta property="og:url" content="https://andy123t.github.io/2020/05/15/SMM02/index.html">
 <meta property="og:site_name" content="Andy123t">
-<meta property="og:description" content="科学上网 不推荐安装 360、电脑管家等安全或杀毒类软件。 Win10 系统自带的 Windows Defender 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 火绒安全 的软件，另外它的弹窗拦截挺好用的。 如果经常使用搜索引擎，推荐使用 Google Chrome 浏览器，安装插件才能用，比如谷歌上网助手 Ghelper。 养成良好的上网习惯，下载软件到软件的官方网站。">
+<meta property="og:description" content="本文是书籍 Spectral Method in MATLAB 第二章 Unbounded Grids: the Semidiscrete Fourier Transform 无界网格：半离散 Fourier 变换 笔记。 我们现在导出第一个谱方法，就是第一章的两边无限的矩阵。这种方法适用于离散的、无界的区域，因此不是一种实用的方法。但是，它确实介绍了推导和分析实用方法所需的数学思想。 半离散 F">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png">
-<meta property="article:published_time" content="2020-05-09T07:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-09T09:22:47.194Z">
+<meta property="og:image" content="https://i.loli.net/2020/05/14/F7PDX9TAlfUtyKB.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/14/irhlk2dYyBaHSIQ.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/14/rGnFxeWLZK1fdP4.png">
+<meta property="article:published_time" content="2020-05-15T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-14T16:12:50.472Z">
 <meta property="article:author" content="Andy Tian">
-<meta property="article:tag" content="Google">
+<meta property="article:tag" content="Spectral Method">
+<meta property="article:tag" content="MATLAB">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/14/F7PDX9TAlfUtyKB.png">
 
-<link rel="canonical" href="https://andy123t.github.io/2020/05/09/Google/">
+<link rel="canonical" href="https://andy123t.github.io/2020/05/15/SMM02/">
 
 
 <script id="page-configurations">
@@ -50,7 +51,7 @@
   };
 </script>
 
-  <title>Google 科学上网 | Andy123t</title>
+  <title>SMM02 半离散 Fourier 变换 | Andy123t</title>
   
 
 
@@ -203,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/09/Google/">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/15/SMM02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -216,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Google 科学上网
+          SMM02 半离散 Fourier 变换
         </h1>
 
         <div class="post-meta">
@@ -227,7 +228,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-09 15:00:00 / Modified: 17:22:47" itemprop="dateCreated datePublished" datetime="2020-05-09T15:00:00+08:00">2020-05-09</time>
+              <time title="Created: 2020-05-15 08:00:00 / Modified: 00:12:50" itemprop="dateCreated datePublished" datetime="2020-05-15T08:00:00+08:00">2020-05-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,7 +236,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Skills/" itemprop="url" rel="index"><span itemprop="name">Computer Skills</span></a>
+                  <a href="/categories/Spectral-Methods/" itemprop="url" rel="index"><span itemprop="name">Spectral Methods</span></a>
                 </span>
             </span>
 
@@ -257,28 +258,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
-<li>不推荐安装 360、电脑管家等安全或杀毒类软件。</li>
-<li>Win10 系统自带的 <strong>Windows Defender</strong> 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 <strong>火绒安全</strong> 的软件，另外它的弹窗拦截挺好用的。</li>
-<li>如果经常使用搜索引擎，推荐使用 <strong>Google Chrome</strong> 浏览器，安装插件才能用，比如谷歌上网助手 <strong>Ghelper</strong>。</li>
-<li>养成良好的上网习惯，下载软件到软件的官方网站。</li>
-</ul>
-<a id="more"></a>
-<h3 id="Google-Chrome-下载和插件安装"><a href="#Google-Chrome-下载和插件安装" class="headerlink" title="Google Chrome 下载和插件安装"></a>Google Chrome 下载和插件安装</h3><p><strong>Google Chrome 浏览器下载</strong><br><img src="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png" alt="GoogleChrome.png"></p>
-<p><strong>谷歌上网助手下载</strong><br><img src="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png" alt="GhelperDownload.png"></p>
-<p><strong>安装 Ghelper 插件</strong><br><img src="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png" alt="GhelperInstall.png"></p>
-<h3 id="Google-使用"><a href="#Google-使用" class="headerlink" title="Google 使用"></a>Google 使用</h3><p>谷歌上网助手最好注册一下，免费的足够用，已经可以使用 Google Scholar，Gmail 等，有更多需求可以购买 VIP。</p>
-<p>建议注册一个 Google 账号，也就是 Gmail（电脑注册如果出现问题，可以用 qq 邮箱注册），它可以同步自己的个人信息和配置，包括以下内容：</p>
-<ul>
-<li>收藏网址书签，可以建立文件夹分类；</li>
-<li>保存很多的网站账号密码；</li>
-<li>登陆谷歌网上商店，下载扩展插件（插件是 Google 的灵魂）；</li>
-<li>登陆 Gmail 邮箱收发邮件；</li>
-<li>使用 Google Drive 云端硬盘（免费 15G ）；</li>
-<li>······</li>
-</ul>
-<p>这些内容全部由一个 Google 账号管理同步。如果你退出这个账号，浏览器就像刚安装时一样干净。如果你在另一台电脑登录 Google 账号，你的所有内容就立即恢复了（即使安装的插件也会同步，不需要重新安装）。</p>
-
+        <p>本文是书籍 <strong>Spectral Method in MATLAB</strong> 第二章 <strong>Unbounded Grids: the Semidiscrete Fourier Transform 无界网格：半离散 Fourier 变换</strong> 笔记。</p>
+<p>我们现在导出第一个谱方法，就是第一章的两边无限的矩阵。这种方法适用于离散的、无界的区域，因此不是一种实用的方法。但是，它确实介绍了推导和分析实用方法所需的数学思想。</p>
+<h3 id="半离散-Fourier-变换"><a href="#半离散-Fourier-变换" class="headerlink" title="半离散 Fourier 变换"></a>半离散 Fourier 变换</h3><p>无限网格用 $h \mathbb{Z}$表示，节点 $x_j-jh$，其中 $j \in \mathbb{Z}$ ，$\mathbb{Z}$ 是所有整数的集合。</p>
+<p><img src="https://i.loli.net/2020/05/14/F7PDX9TAlfUtyKB.png" alt="SMM0201.png"></p>
+<p>根据半离散傅里叶变换和有限带宽 $sinc$ 函数插值的基本思想去推导 书中(1.4) 两边无限矩阵。函数 $u(x)$ ($x \in \mathbb{R}$) 的 Fourier 变换后的函数 $\hat{u}(k)$ 定义为</p>
+<script type="math/tex; mode=display">\hat{u}(k)=\int_{-\infty}^{\infty} u(x) e^{-i k x} dx, \quad k \in \mathbb{R}.</script><a id="more"></a>
+<p>$\hat{u}(k)$ 可以解释为 $u$ 在波数 $k$ 时的振幅，将一个函数分解为其组成波的过程称为 Fourier 分析。相反地，我们可以从 $\hat{u}$ 通过 逆 Fourier 变换重构 $u$</p>
+<script type="math/tex; mode=display">u(x)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} e^{i k x} \hat{u}(k) d k, \quad x \in \mathbb{R}.</script><p>这是傅里叶合成。变量 $c$ 是物理变量，$k$ 是 Fourier 变量或波数。</p>
+<p>考虑 $x$ 在 $h\mathbb{z}$ 上的值而不是 $\mathbb{R}$。在这种情况下， Fourier 变换及其逆的精确模拟是存在的。关键点在于，由于空间域是离散的，波数 $k$ 将不覆盖R的所有范围。相反，适当的波数域是长度为 $2\pi/h$ 的有界区间，一个适当的选择是 $[-\pi/h,\pi/h]$。记住 $k$ 是有界的，因为 $x$ 是离散的：</p>
+<p><img src="https://i.loli.net/2020/05/14/irhlk2dYyBaHSIQ.png" alt="SMM0202.png"></p>
+<p>产生这些联系的原因是一种称为混叠的现象。</p>
+<p>当 $k_1 \neq k_2$，两个复指数函数 $f(x)=\exp (i k_{1} x)$ 与 $g(x)=\exp \left(i k_{2} x\right)$ 在 $\mathbb{R}$ 上是不相等的。如果我们限制 $f$ 和 $g$ 到 $h\mathbb{Z}$，取 $f_j = \exp (i k_{1} x_{j})$ 和 $g_{j}=\exp (i k_{2} x_{j})$，如果 $k_1-k_2$ 是 $2\pi/h$,对每一个 $j$有 $f_{j}=g_{j}$。因此，对于任何复指数 $exp(ikx)$ 在网格 $h\mathbb{Z}$ 上有无限多的其他复指数（$k$ 的“混叠” ）与之匹配。因此，在 $2\pi/h$ 长度的间隔内计算网格的波数就足够了，并且出于对称性的原因，我们选择了间隔 $[-\pi/h,\pi/h]$。</p>
+<p>下图说明了函数 $\sin(\pi x)$ 和 $\sin(9\pi x)$ 互为“混叠”。点表示对限制到了 $\frac{1}{4} \mathbb{Z}$，其中这两个函数是相同的。</p>
+<p><img src="https://i.loli.net/2020/05/14/rGnFxeWLZK1fdP4.png" alt="SMM0203.png"></p>
+<p>“混叠”也出现在非数学生活中，例如西方电影中的“马车轮效应”。如果说照相机的快门每秒发出 24 次咔哒声，货车车轮上的辐条每秒通过垂直方向 20 次，然后车轮看起来好像以每秒 -4 辐条的速度旋转，即向后旋转。同一现象的更高频率“混叠”是频闪显微镜科学的基础，而空间而非时间的混叠会导致云纹。</p>
+<p>对于函数 $v$ 定义在 $h\mathbb{Z}$ 上节点 $x_j$ 值为 $v_j$，半离散 Fourier 变换的定义如下</p>
+<script type="math/tex; mode=display">\hat{v}(k)=h \sum_{j=-\infty}^{\infty} e^{-i k x_{j}} v_{j}, \quad k \in[-\pi / h, \pi / h]</script><p>半离散 Fourier 逆变换为</p>
+<script type="math/tex; mode=display">v_{j}=\frac{1}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x_{j}} \hat{v}(k) d k, \quad j \in \mathbb{Z}</script><p> 半离散 Fourier 变换 (2.3) 通过梯形公式逼近  Fourier 变换 (2.1)，半离散 Fourier 逆变换 (2.4) 通过截断 $\mathbb(R)$ 到  $[-\pi /h, \pi /h]$ 离散 Fourier 变换。当 $h \rightarrow 0$，两对公式收敛。</p>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>
     </div>
 
     
@@ -287,7 +285,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Google/" rel="tag"># Google</a>
+              <a href="/tags/Spectral-Method/" rel="tag"># Spectral Method</a>
+              <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
           </div>
 
         
@@ -296,13 +295,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/09/Git-Start/" rel="prev" title="Git 入门">
-      <i class="fa fa-chevron-left"></i> Git 入门
+    <a href="/2020/05/14/XY10q/" rel="prev" title="西游十问">
+      <i class="fa fa-chevron-left"></i> 西游十问
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/10/SM00/" rel="next" title="谱方法概述">
-      谱方法概述 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -361,7 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#科学上网"><span class="nav-number">1.</span> <span class="nav-text">科学上网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Google-Chrome-下载和插件安装"><span class="nav-number">2.</span> <span class="nav-text">Google Chrome 下载和插件安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Google-使用"><span class="nav-number">3.</span> <span class="nav-text">Google 使用</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#半离散-Fourier-变换"><span class="nav-number">1.</span> <span class="nav-text">半离散 Fourier 变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未完待续"><span class="nav-number">2.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -489,7 +485,7 @@
 
 
   
-<script src="/js/local-search.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/local-search.js"></script>
 
 
 
@@ -506,6 +502,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
 
   
 
