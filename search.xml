@@ -435,7 +435,15 @@
 <p>为了找到高阶谱导数，我们可以多次对 $p(x)$ 微分。例如</p>
 <script type="math/tex; mode=display">S_{h}^{\prime \prime}\left(x_{j}\right)=\left\{\begin{array}{ll}-\frac{\pi^{2}}{3 h^{2}} & j=0, \\ 2 \frac{(-1)^{j+1}}{j^{2} h^{2}} & j \neq 0.\end{array}\right.</script><p>结果告诉我们对称双无穷 Toeplitz 矩阵 $D$ 的每一列的项对应的二阶导数是</p>
 <script type="math/tex; mode=display">D^{2} v=\frac{2}{h^{2}}
-\left(\begin{array}{cccc}\ddots & \vdots & & \\ \ddots & -\frac{1}{4} & & \\ \ddots & 1 & & \\ & -\frac{\pi^{2}}{6} & & \\ & 1 & \ddots & \\ & -\frac{1}{4} & \ddots & \\ & \vdots & \ddots & \end{array}\right) v.</script><h3 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h3><p>在 $h\mathbb{Z}$ 网格上的函数 $v$ 有一个唯一的插值 $p$，它的频带仅限于 $[-\pi/h,\pi/h]$ 区间内的波数。我们可以通过计算 $ik\hat{v}$ 的半离散 Fourier 逆变换来计算网格上的 $p$，或者作为 $sinc$ 函数平移的导数的线性组合。</p>
+\left(\begin{array}{cccc}
+& \ddots & & \vdots & & & \\
+& \ddots & & -\frac{1}{4} & & & \\
+&  \ddots & & 1 &  &   & \\
+&  & & -\frac{\pi^{2}}{6} & &  & \\
+&  &  & 1 & & \ddots & \\
+&  &   & -\frac{1}{4} & & \ddots & \\
+&   &  & \vdots & &  \ddots & 
+\end{array}\right) v.</script><h3 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h3><p>在 $h\mathbb{Z}$ 网格上的函数 $v$ 有一个唯一的插值 $p$，它的频带仅限于 $[-\pi/h,\pi/h]$ 区间内的波数。我们可以通过计算 $ik\hat{v}$ 的半离散 Fourier 逆变换来计算网格上的 $p$，或者作为 $sinc$ 函数平移的导数的线性组合。</p>
 ]]></content>
       <categories>
         <category>Spectral Methods</category>
