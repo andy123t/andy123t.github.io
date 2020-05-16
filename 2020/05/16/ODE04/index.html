@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-andy.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-andy.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-andy.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文用后退 Euler 方法求解非线性 ODE，需要用到牛顿迭代，然后用 MATLAB 编程，最后展示了输出结果。 后退 Euler 方法 u_{n+1}&#x3D;u_{n}+hf(t_{n+1},u_{n+1}).线性 ODE 例子（做对比）  \left\{\begin{aligned}   &amp;\frac{du}{dt}&#x3D;t^2+t-u ,\quad t \in [0,1], \\   &amp;u(0)&#x3D;0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后退 Euler 求解非线性 ODE">
+<meta property="og:url" content="https://andy123t.github.io/2020/05/16/ODE04/index.html">
+<meta property="og:site_name" content="Andy123t">
+<meta property="og:description" content="本文用后退 Euler 方法求解非线性 ODE，需要用到牛顿迭代，然后用 MATLAB 编程，最后展示了输出结果。 后退 Euler 方法 u_{n+1}&#x3D;u_{n}+hf(t_{n+1},u_{n+1}).线性 ODE 例子（做对比）  \left\{\begin{aligned}   &amp;\frac{du}{dt}&#x3D;t^2+t-u ,\quad t \in [0,1], \\   &amp;u(0)&#x3D;0">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/JwRqdYlWIb3hmQF.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/BSjUwEPfIY1Zkmy.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/oqlUhJOkQ5MKifD.png">
+<meta property="article:published_time" content="2020-05-16T12:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-16T14:49:50.595Z">
+<meta property="article:author" content="Andy Tian">
+<meta property="article:tag" content="MATLAB">
+<meta property="article:tag" content="Newton Iteration">
+<meta property="article:tag" content="Backward Euler">
+<meta property="article:tag" content="Nonlinear ODE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/16/JwRqdYlWIb3hmQF.png">
+
+<link rel="canonical" href="https://andy123t.github.io/2020/05/16/ODE04/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>后退 Euler 求解非线性 ODE | Andy123t</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Andy123t</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-notes">
+
+    <a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>Notes</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/16/ODE04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Andy Tian">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          后退 Euler 求解非线性 ODE
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-16 20:00:00 / Modified: 22:49:50" itemprop="dateCreated datePublished" datetime="2020-05-16T20:00:00+08:00">2020-05-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Numerical-ODEs/" itemprop="url" rel="index"><span itemprop="name">Numerical ODEs</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文用后退 Euler 方法求解非线性 ODE，需要用到牛顿迭代，然后用 MATLAB 编程，最后展示了输出结果。</p>
+<h3 id="后退-Euler-方法"><a href="#后退-Euler-方法" class="headerlink" title="后退 Euler 方法"></a>后退 Euler 方法</h3><script type="math/tex; mode=display">
+u_{n+1}=u_{n}+hf(t_{n+1},u_{n+1}).</script><p><strong>线性 ODE 例子</strong>（做对比）</p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}
+  &\frac{du}{dt}=t^2+t-u ,\quad t \in [0,1], \\
+  &u(0)=0.
+  \end{aligned} \right.</script><p>用后退Euler (隐式Euler) 格式离散</p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n+h(t_{n+1}^2+t_{n+1}-u_{n+1}). \\
+u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易编程。</p>
+<h3 id="非线性-ODE"><a href="#非线性-ODE" class="headerlink" title="非线性 ODE"></a>非线性 ODE</h3><script type="math/tex; mode=display">
+\left\{\begin{aligned}
+  &\frac{du}{dt}=u-\frac{2t}{u} ,\quad t \in [0,1], \\
+  &u(0)=1.
+  \end{aligned} \right.</script><p>方程的真解：$u(t)=\sqrt{2t+1}$.</p>
+<p>用后退Euler (隐式Euler) 格式离散</p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n+h(u_{n+1}-\frac{2t_{n+1}}{u_{n+1}}). \\
+u_{n+1}-u_n-hu_{n+1}+h\frac{2t_{n+1}}{u_{n+1}}=0.</script><p>每一步要解一个关于 $u_{n+1}$ 的非线性方程。</p>
+<h3 id="牛顿迭代"><a href="#牛顿迭代" class="headerlink" title="牛顿迭代"></a>牛顿迭代</h3><p>假设 $f(x)=0$ 有近似根 $x_k$ ($f^{\prime}\left(x_{k}\right) \neq 0$ )，求 $x_{k+1}$ 的方法</p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_{k}-\frac{f(x_{k})}{f^{\prime}(x_{k})}, \quad k=0,1, \cdots.</script><p>对于以上非线性微分方程的离散，记 $u_{n+1}=X$ (为了不混淆)</p>
+<script type="math/tex; mode=display">
+F(X)=X-u_n-hX+\frac{2ht_{n+1}}{X}, \\
+F^{\prime}(X)=1-h+\frac{2ht_{n+1}}{X^2}.</script><h3 id="数值格式"><a href="#数值格式" class="headerlink" title="数值格式"></a>数值格式</h3><script type="math/tex; mode=display">
+X_{k+1}=X_{k}-\frac{F(X_{k})}{F^{\prime}(X_{k})}, \quad k=0,1,\cdots,N-1，</script><script type="math/tex; mode=display">
+X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k^2}}, \quad k=0,1,\cdots,N-1.</script><p>然后就可以去算，直到 $|X_{k+1}-X_k|&lt;\delta$ ( 比如 $\delta =10^{-8}$)，最后算下误差。如果有真解的话，算下误差阶。</p>
+<p><strong>计算数值解</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% BackEuler.m</span></span><br><span class="line"><span class="comment">% Backward Euler Scheme for Nolinear ODE:</span></span><br><span class="line"><span class="comment">% u'(x)=u-2x/u in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1;</span></span><br><span class="line"><span class="comment">% Exact solution: u=sqrt(2*x+1)</span></span><br><span class="line">clear all</span><br><span class="line">h=<span class="number">0.05</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">1</span>;</span><br><span class="line">NI(N)=<span class="number">0</span>;           <span class="comment">% Record the number of iterations</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    <span class="comment">% Newton iteration</span></span><br><span class="line">    X(<span class="number">1</span>)=u(n); tol=<span class="number">1.0e-6</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">        X(k+<span class="number">1</span>)=X(k)-(X(k)-h*X(k)+<span class="number">2</span>*h*x(n+<span class="number">1</span>)/X(k)-u(n))./(<span class="number">1</span>-h<span class="number">-2</span>*h*x(n+<span class="number">1</span>)/(X(k)^<span class="number">2</span>));</span><br><span class="line">        NI(n)=NI(n)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(X(k+<span class="number">1</span>)-X(k))&lt;tol</span><br><span class="line">            u(n+<span class="number">1</span>)=X(k+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=<span class="built_in">sqrt</span>(<span class="number">2</span>*x+<span class="number">1</span>);    <span class="comment">% exact solution</span></span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact '</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'North'</span>)</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'t'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computing error</span></span><br><span class="line">error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue))</span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<p><img src="https://i.loli.net/2020/05/16/JwRqdYlWIb3hmQF.png" alt="BackEuler.png"></p>
+<p><strong>计算误差阶</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% BackEuler_error.m</span></span><br><span class="line"><span class="comment">% Backward Euler Method for Nolinear ODE:</span></span><br><span class="line"><span class="comment">% u'(x)=u-2x/u in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1;</span></span><br><span class="line"><span class="comment">% Exact solution: u=sqrt(2*x+1)</span></span><br><span class="line">clear all</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">20</span> <span class="number">100</span> <span class="number">200</span> <span class="number">1000</span>];</span><br><span class="line"><span class="comment">%hv=[0.1 0.05 0.01 0.005 0.001];</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">N=Nvec(k);</span><br><span class="line">h=<span class="number">1</span>/N;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    <span class="comment">% Newton iteration</span></span><br><span class="line">    X(<span class="number">1</span>)=u(n); tol=<span class="number">1.0e-10</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">        X(k+<span class="number">1</span>)=X(k)-(X(k)-h*X(k)+<span class="number">2</span>*h*x(n+<span class="number">1</span>)/X(k)-u(n))./(<span class="number">1</span>-h<span class="number">-2</span>*h*x(n+<span class="number">1</span>)/(X(k)^<span class="number">2</span>));</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(X(k+<span class="number">1</span>)-X(k))&lt;tol</span><br><span class="line">            u(n+<span class="number">1</span>)=X(k+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=<span class="built_in">sqrt</span>(<span class="number">2</span>*x+<span class="number">1</span>)</span><br><span class="line">error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-1</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Rate of Convergence','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>),ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span>     <span class="comment">% computating convergence order</span></span><br><span class="line">    order(n)=<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.0702    0.0322    0.0061    0.0030    0.0006</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    1.1238    1.0377    1.0103    1.0035</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/16/BSjUwEPfIY1Zkmy.png" alt="BackEuler_error.png"></p>
+<p><strong>另一个非线性 ODE 例子</strong> 也是可以算的。</p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}
+  &\frac{du}{dt}=-100u^3+\sin(u) ,\quad t \in [0,1], \\
+  &u(0)=1.
+  \end{aligned} \right.</script><p>方程没有真解。</p>
+<p><strong>计算数值解</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% BackEuler2.m</span></span><br><span class="line"><span class="comment">% Backward Euler Method for Nolinear ODE:</span></span><br><span class="line"><span class="comment">% u'(t)=-100*u^3+sin(u) in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1.</span></span><br><span class="line">clear all</span><br><span class="line">h=<span class="number">0.01</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">1</span>;</span><br><span class="line">NI(N)=<span class="number">0</span>;  <span class="comment">% 记录迭代次数</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    <span class="comment">% Newton iteration</span></span><br><span class="line">    X(<span class="number">1</span>)=u(n); tol=<span class="number">1.0e-8</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">        X(k+<span class="number">1</span>)=X(k)-(X(k)+<span class="number">100</span>*h*X(k)^<span class="number">3</span>-h*<span class="built_in">sin</span>(X(k))-u(n))./(<span class="number">1</span>+<span class="number">300</span>*h*X(k)^<span class="number">2</span>-h*<span class="built_in">cos</span>(X(k)));</span><br><span class="line">        NI(n)=NI(n)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(X(k+<span class="number">1</span>)-X(k))&lt;tol</span><br><span class="line">            u(n+<span class="number">1</span>)=X(k+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(x,u,<span class="string">'r-.'</span>, <span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'t'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  BackEuler2.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<p><img src="https://i.loli.net/2020/05/16/oqlUhJOkQ5MKifD.png" alt="BackEuler2.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
+              <a href="/tags/Newton-Iteration/" rel="tag"># Newton Iteration</a>
+              <a href="/tags/Backward-Euler/" rel="tag"># Backward Euler</a>
+              <a href="/tags/Nonlinear-ODE/" rel="tag"># Nonlinear ODE</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/16/ODE03/" rel="prev" title="经典四阶 Runge-Kutta 方法">
+      <i class="fa fa-chevron-left"></i> 经典四阶 Runge-Kutta 方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/16/ODE05/" rel="next" title="隐式 Runge-Kutta (Gauss 2s)">
+      隐式 Runge-Kutta (Gauss 2s) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#后退-Euler-方法"><span class="nav-number">1.</span> <span class="nav-text">后退 Euler 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非线性-ODE"><span class="nav-number">2.</span> <span class="nav-text">非线性 ODE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#牛顿迭代"><span class="nav-number">3.</span> <span class="nav-text">牛顿迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值格式"><span class="nav-number">4.</span> <span class="nav-text">数值格式</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Andy Tian"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Andy Tian</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/andy123t" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;andy123t" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:andy123t@163.com" title="E-Mail → mailto:andy123t@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Andy Tian</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>
