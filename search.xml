@@ -374,7 +374,7 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
     <url>/2020/05/16/ODE02/</url>
     <content><![CDATA[<p>本文介绍如何计算数值方法的收敛阶。以 Euler 方法、梯形公式、改进 Euler 方法为例，并用 MATLAB 编程，最后展示了输出结果。</p>
 <h3 id="误差阶"><a href="#误差阶" class="headerlink" title="误差阶"></a>误差阶</h3><p>数值解法的基本思想是，通过某种离散化手段将微分方程转化为差分方程，如单步法</p>
-<script type="math/tex; mode=display">y_{n+1}=y_{n}+h \varphi(x_{n}, u_{n}, h).</script><p>它在 $x_n$ 处的数值解为 $u_n$，而初值问题在 $x_n$ 处的精确解为 $u(x_n)$,记 $e_n=u(x_n)-u_n$ 称为整体截断误差。收敛性就是讨论当 $x=x_n$ 固定且 $h=\frac{x_{n}-x_{0}}{n} \rightarrow 0$ 时 $e_n \rightarrow 0$ 的问题。</p>
+<script type="math/tex; mode=display">y_{n+1}=y_{n}+h \varphi(x_{n}, u_{n}, h).</script><p>它在 $x_n$ 处的数值解为 $u_n$，而初值问题在 $x_n$ 处的精确解为 $u(x_n)$，记 $e_n=u(x_n)-u_n$ 称为整体截断误差。收敛性就是讨论当 $x=x_n$ 固定且 $h=\frac{x_{n}-x_{0}}{n} \rightarrow 0$ 时 $e_n \rightarrow 0$ 的问题。</p>
 <a id="more"></a>
 <p><strong>收敛性定义</strong>：若一种数值方法（如单步法对于固定的 $x=x_n+nh$，当 $h\rightarrow 0$ 时有 $u_n \rightarrow u(x_n)$，其中 $u(x)$ 是初值问题的准确解，则称该方法是<strong>收敛</strong>的。</p>
 <p><strong>收敛性定理</strong>：假设单步法具有 $p$ 阶精度，且増量函数 $\varphi(x_{n}, u_{n}, h)$ 关于 $u$ 满足 Lipschitz 条件</p>
