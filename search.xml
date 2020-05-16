@@ -334,8 +334,7 @@ p=-\frac{ln(Err_1/Err_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</st
     <title>经典四阶 Runge-Kutta 方法</title>
     <url>/2020/05/16/ODE03/</url>
     <content><![CDATA[<p>本文介绍如何计算经典四阶 Runge-Kutta 数值解及其收敛阶，并用 MATLAB 编程，最后展示了输出结果。</p>
-<h3 id="经典四阶-Runge-Kutta-方法"><a href="#经典四阶-Runge-Kutta-方法" class="headerlink" title="经典四阶 Runge-Kutta 方法"></a>经典四阶 Runge-Kutta 方法</h3><p>考虑四阶经典 Runge-Kutta 方法</p>
-<script type="math/tex; mode=display">
+<h3 id="经典四阶-Runge-Kutta-方法"><a href="#经典四阶-Runge-Kutta-方法" class="headerlink" title="经典四阶 Runge-Kutta 方法"></a>经典四阶 Runge-Kutta 方法</h3><script type="math/tex; mode=display">
 \left\{
   \begin{aligned}
   &u_{n+1}=u_{n}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right), \\
