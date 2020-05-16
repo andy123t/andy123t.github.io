@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Google 科学上网</title>
+    <url>/2020/05/09/Google/</url>
+    <content><![CDATA[<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
+<li>不推荐安装 360、电脑管家等安全或杀毒类软件。</li>
+<li>Win10 系统自带的 <strong>Windows Defender</strong> 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 <strong>火绒安全</strong> 的软件，另外它的弹窗拦截挺好用的。</li>
+<li>如果经常使用搜索引擎，推荐使用 <strong>Google Chrome</strong> 浏览器，安装插件才能用，比如谷歌上网助手 <strong>Ghelper</strong>。</li>
+<li>养成良好的上网习惯，下载软件到软件的官方网站。</li>
+</ul>
+<a id="more"></a>
+<h3 id="Google-Chrome-下载和插件安装"><a href="#Google-Chrome-下载和插件安装" class="headerlink" title="Google Chrome 下载和插件安装"></a>Google Chrome 下载和插件安装</h3><p><strong>Google Chrome 浏览器下载</strong><br><img src="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png" alt="GoogleChrome.png"></p>
+<p><strong>谷歌上网助手下载</strong><br><img src="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png" alt="GhelperDownload.png"></p>
+<p><strong>安装 Ghelper 插件</strong><br><img src="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png" alt="GhelperInstall.png"></p>
+<h3 id="Google-使用"><a href="#Google-使用" class="headerlink" title="Google 使用"></a>Google 使用</h3><p>谷歌上网助手最好注册一下，免费的足够用，已经可以使用 Google Scholar，Gmail 等，有更多需求可以购买 VIP。</p>
+<p>建议注册一个 Google 账号，也就是 Gmail（电脑注册如果出现问题，可以用 qq 邮箱注册），它可以同步自己的个人信息和配置，包括以下内容：</p>
+<ul>
+<li>收藏网址书签，可以建立文件夹分类；</li>
+<li>保存很多的网站账号密码；</li>
+<li>登陆谷歌网上商店，下载扩展插件（插件是 Google 的灵魂）；</li>
+<li>登陆 Gmail 邮箱收发邮件；</li>
+<li>使用 Google Drive 云端硬盘（免费 15G ）；</li>
+<li>······</li>
+</ul>
+<p>这些内容全部由一个 Google 账号管理同步。如果你退出这个账号，浏览器就像刚安装时一样干净。如果你在另一台电脑登录 Google 账号，你的所有内容就立即恢复了（即使安装的插件也会同步，不需要重新安装）。</p>
+]]></content>
+      <categories>
+        <category>Computer Skills</category>
+      </categories>
+      <tags>
+        <tag>Google</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git 入门</title>
     <url>/2020/05/09/Git-Start/</url>
     <content><![CDATA[<h3 id="Git-下载安装"><a href="#Git-下载安装" class="headerlink" title="Git 下载安装"></a>Git 下载安装</h3><p>Git 下载地址： <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
@@ -31,6 +63,95 @@
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo-Next 个人博客搭建</title>
+    <url>/2020/05/11/HexoNext/</url>
+    <content><![CDATA[<p>本文介绍 Hexo 搭建个人博客，选择 Next 主题，最后托管到 GitHub 上。可以直接用 Markdown 写文章，然后生成静态网页上传，非常方便和实用。另外还可以使用 Mathjax 渲染，使文章支持 LaTeX 格式的数学公式。 </p>
+<p>Hexo是一款基于 Node.js 的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在 GitHub 上。如果想要更加全面的了解Hexo，可以到其官网 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 了解更多的细节。</p>
+<p>部署博客之前需要用到的工具是 Git，可以参考 <a href="https://andy123t.github.io/2020/05/09/Git-Start/">Git 入门</a>。</p>
+<a id="more"></a>
+<h3 id="个人博客展示"><a href="#个人博客展示" class="headerlink" title="个人博客展示"></a>个人博客展示</h3><p>Hexo-Next Pisces 主题</p>
+<p><img src="https://i.loli.net/2020/05/11/GzEY9VrOipyovXd.png" alt="HexoPage.png"></p>
+<p>下面就开始搭建！</p>
+<h3 id="GitHub创建个人仓库"><a href="#GitHub创建个人仓库" class="headerlink" title="GitHub创建个人仓库"></a>GitHub创建个人仓库</h3><p>登录到 GitHub，如果没有 GitHub 帐号，使用你的邮箱注册 GitHub 帐号，点击 GitHub 中的 New repository 创建新仓库，仓库名应该为：usename.github.io 这个用户名 (usename) 使用你的 GitHub 帐号名称代替，这是固定写法。</p>
+<h3 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h3><p>假设你已经安装了 Git，现在安装 Node.js</p>
+<p>Node.js <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">下载地址</a>，安装Node.js 会包含环境变量及 npm 的安装，安装后，检测 Node.js 是否安装成功，在命令行中输入 <code>node -v</code>，检测npm是否安装成功，在命令行中输入<code>npm -v</code>。</p>
+<p>如果都安装好了，说明安装 Hexo 的环境已经全部搭建完成。</p>
+<h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>Hexo 是搭建个人博客的框架， 需要电脑创建一个文件夹，可以命名为Blog，Hexo 框架与以后你自己发布的网页都在这个文件夹中。创建好后，进入文件夹中，右键打开 <strong>Git Bash</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli  <span class="comment"># npm命令安装Hexo</span></span><br></pre></td></tr></table></figure>
+<p>安装完成后，初始化博客</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init blog</span><br></pre></td></tr></table></figure>
+<p>注意，这里的命令都是作用在刚刚创建的Blog文件夹中。</p>
+<p>为了测试是否搭建成功，分别按顺序输入以下三条命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">$ hexo g</span><br><span class="line"></span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+<p>这些命令在后面作介绍，完成后，打开浏览器输入地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;</span><br></pre></td></tr></table></figure>
+<h3 id="推送到-GitHub"><a href="#推送到-GitHub" class="headerlink" title="推送到 GitHub"></a>推送到 GitHub</h3><p>上面只是在本地预览，接下来要做的就是就是推送网站，也就是发布网站，让我们的网站可以被更多的人访问。在设置之前，需要解释一个概念，在 <strong>blog</strong> 根目录里的 <strong>_config.yml</strong> 文件称为站点配置文件。</p>
+<p>进入根目录 <strong>themes</strong> 下面 <strong>next</strong> 文件夹，里面也有个 <strong>_config.yml</strong> 文件，这个称为主题配置文件。</p>
+<p>下一步将我们的 Hexo 与 GitHub 关联起来，打开站点的配置文件 <strong>_config.yml</strong>，页面最后</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">''</span></span><br></pre></td></tr></table></figure>
+<p>修改为</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">repo:</span> <span class="string">https://github.com/usename/usename.github.io.git</span></span><br><span class="line"><span class="comment"># 上面 GitHub 上创建仓库的完整路径，</span></span><br><span class="line"><span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<p>保存站点配置文件。</p>
+<p>最后安装 Git 部署插件，输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>分别输入三条命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean </span><br><span class="line">$ hexo g </span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+<p>命令 <code>hexo d</code> 就是部署网站命令，d 是 deploy 的缩写。完成后，打开浏览器，在地址栏输入你的个人网站 <a href="http://usename.github.io" target="_blank" rel="noopener">http://usename.github.io</a> ，你就会发现你的个人博客已经上线了，可以在网络上被访问了。</p>
+<p>如果想购买个人域名，可以去阿里云或腾讯云购买，然后绑定个人域名。</p>
+<h3 id="安装-Next-主题"><a href="#安装-Next-主题" class="headerlink" title="安装 Next 主题"></a>安装 Next 主题</h3><p>首先打开 <strong>Git Bash</strong> 进入根目录 <strong>Blog</strong>，执行命令<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next.git themes&#x2F;next</span><br></pre></td></tr></table></figure><br>安装完成后，打开在 <strong>blog</strong> 根目录里站点配置文件 <strong>_config.yml</strong>。找到 theme 字段，并将其值更改为 next, 一定要保存。</p>
+<p>Next  还有主题可以设置</p>
+<ul>
+<li>Muse - 默认 Scheme，这是 NexT 最初的版本，黑白主调</li>
+<li>Mist - Muse 的紧凑版本，整洁有序的单栏外观</li>
+<li>Pisces - 双栏 Scheme，小家碧玉似的清新</li>
+</ul>
+<p>打开根目录 <strong>themes</strong> 下 <strong>next</strong>文件夹里面的主题配置文件 <strong>_config.yml</strong>，修改后保存</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment">#scheme: Muse</span></span><br><span class="line"><span class="comment">#scheme: Mist</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Pisces</span></span><br><span class="line"><span class="comment">#scheme: Gemini</span></span><br></pre></td></tr></table></figure>
+<h3 id="支持数学公式"><a href="#支持数学公式" class="headerlink" title="支持数学公式"></a>支持数学公式</h3><p>hexo 默认的渲染引擎是 marked，但是 marked 不支持 Mathjax。 kramed 是在 marked 的基础上进行修改。下面安装 kramed，按顺序输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
+<p>首先，如果你已经安装 hexo-math, 请卸载它</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm uninstall hexo-math --save</span><br></pre></td></tr></table></figure>
+<p>然后安装 hexo-renderer-mathjax 包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-renderer-mathjax --save</span><br></pre></td></tr></table></figure>
+<p>在主题 <strong>_config.yml</strong> 中开启 Mathjax， 找到 mathjax 字段添加如下代码：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>写博客中可以选择是否开启 Mathjax，添加以下内容</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Testing Mathjax with Hexo</span><br><span class="line">category: </span><br><span class="line">date: 2020/05/11</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h3 id="常用的几个命令"><a href="#常用的几个命令" class="headerlink" title="常用的几个命令"></a>常用的几个命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean </span><br><span class="line">$ hexo g </span><br><span class="line">$ hexo s</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li>知乎 <a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">GitHub+Hexo 搭建个人网站详细教程</a></li>
+<li>B 站 <a href="https://www.bilibili.com/video/BV16W411t7mq" target="_blank" rel="noopener">Hexo 博客，Next 主题优化</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Computer Skills</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Github</tag>
+        <tag>Next</tag>
+        <tag>Mathjax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>傍晚的美景</title>
+    <url>/2020/05/11/HomeScenery/</url>
+    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
+<p>走出村庄的路上</p>
+<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
+<a id="more"></a>
+<p>远处是风力发达机，还有漂亮的晚霞！</p>
+<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
+<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Scenery</tag>
       </tags>
   </entry>
   <entry>
@@ -101,38 +222,6 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Google 科学上网</title>
-    <url>/2020/05/09/Google/</url>
-    <content><![CDATA[<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
-<li>不推荐安装 360、电脑管家等安全或杀毒类软件。</li>
-<li>Win10 系统自带的 <strong>Windows Defender</strong> 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 <strong>火绒安全</strong> 的软件，另外它的弹窗拦截挺好用的。</li>
-<li>如果经常使用搜索引擎，推荐使用 <strong>Google Chrome</strong> 浏览器，安装插件才能用，比如谷歌上网助手 <strong>Ghelper</strong>。</li>
-<li>养成良好的上网习惯，下载软件到软件的官方网站。</li>
-</ul>
-<a id="more"></a>
-<h3 id="Google-Chrome-下载和插件安装"><a href="#Google-Chrome-下载和插件安装" class="headerlink" title="Google Chrome 下载和插件安装"></a>Google Chrome 下载和插件安装</h3><p><strong>Google Chrome 浏览器下载</strong><br><img src="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png" alt="GoogleChrome.png"></p>
-<p><strong>谷歌上网助手下载</strong><br><img src="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png" alt="GhelperDownload.png"></p>
-<p><strong>安装 Ghelper 插件</strong><br><img src="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png" alt="GhelperInstall.png"></p>
-<h3 id="Google-使用"><a href="#Google-使用" class="headerlink" title="Google 使用"></a>Google 使用</h3><p>谷歌上网助手最好注册一下，免费的足够用，已经可以使用 Google Scholar，Gmail 等，有更多需求可以购买 VIP。</p>
-<p>建议注册一个 Google 账号，也就是 Gmail（电脑注册如果出现问题，可以用 qq 邮箱注册），它可以同步自己的个人信息和配置，包括以下内容：</p>
-<ul>
-<li>收藏网址书签，可以建立文件夹分类；</li>
-<li>保存很多的网站账号密码；</li>
-<li>登陆谷歌网上商店，下载扩展插件（插件是 Google 的灵魂）；</li>
-<li>登陆 Gmail 邮箱收发邮件；</li>
-<li>使用 Google Drive 云端硬盘（免费 15G ）；</li>
-<li>······</li>
-</ul>
-<p>这些内容全部由一个 Google 账号管理同步。如果你退出这个账号，浏览器就像刚安装时一样干净。如果你在另一台电脑登录 Google 账号，你的所有内容就立即恢复了（即使安装的插件也会同步，不需要重新安装）。</p>
-]]></content>
-      <categories>
-        <category>Computer Skills</category>
-      </categories>
-      <tags>
-        <tag>Google</tag>
       </tags>
   </entry>
   <entry>
@@ -242,21 +331,65 @@ p=-\frac{ln(Err_1/Err_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</st
       </tags>
   </entry>
   <entry>
-    <title>傍晚的美景</title>
-    <url>/2020/05/11/HomeScenery/</url>
-    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
-<p>走出村庄的路上</p>
-<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
+    <title>后退 Euler 求解非线性 ODE</title>
+    <url>/2020/05/16/ODE04/</url>
+    <content><![CDATA[<p>本文用后退 Euler 方法求解非线性 ODE，需要用到牛顿迭代，然后用 MATLAB 编程，最后展示了输出结果。</p>
+<h3 id="后退-Euler-方法"><a href="#后退-Euler-方法" class="headerlink" title="后退 Euler 方法"></a>后退 Euler 方法</h3><script type="math/tex; mode=display">
+u_{n+1}=u_{n}+hf(t_{n+1},u_{n+1}).</script><p><strong>线性 ODE 例子</strong>（做对比）</p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}
+  &\frac{du}{dt}=t^2+t-u ,\quad t \in [0,1], \\
+  &u(0)=0.
+  \end{aligned} \right.</script><p>用后退 Euler (隐式 Euler) 格式离散</p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n+h(t_{n+1}^2+t_{n+1}-u_{n+1}). \\
+u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易编程。</p>
 <a id="more"></a>
-<p>远处是风力发达机，还有漂亮的晚霞！</p>
-<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
-<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
+<h3 id="非线性-ODE"><a href="#非线性-ODE" class="headerlink" title="非线性 ODE"></a>非线性 ODE</h3><script type="math/tex; mode=display">
+\left\{\begin{aligned}
+  &\frac{du}{dt}=u-\frac{2t}{u} ,\quad t \in [0,1], \\
+  &u(0)=1.
+  \end{aligned} \right.</script><p>方程的真解：$u(t)=\sqrt{2t+1}$.</p>
+<p>用后退Euler (隐式Euler) 格式离散</p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n+h(u_{n+1}-\frac{2t_{n+1}}{u_{n+1}}). \\
+u_{n+1}-u_n-hu_{n+1}+h\frac{2t_{n+1}}{u_{n+1}}=0.</script><p>每一步要解一个关于 $u_{n+1}$ 的非线性方程。</p>
+<h3 id="牛顿迭代"><a href="#牛顿迭代" class="headerlink" title="牛顿迭代"></a>牛顿迭代</h3><p>假设 $f(x)=0$ 有近似根 $x_k$ ($f^{\prime}\left(x_{k}\right) \neq 0$ )，求 $x_{k+1}$ 的方法</p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_{k}-\frac{f(x_{k})}{f^{\prime}(x_{k})}, \quad k=0,1, \cdots.</script><p>对于以上非线性微分方程的离散，记 $u_{n+1}=X$ (为了不混淆)</p>
+<script type="math/tex; mode=display">
+F(X)=X-u_n-hX+\frac{2ht_{n+1}}{X}, \\
+F^{\prime}(X)=1-h+\frac{2ht_{n+1}}{X^2}.</script><h3 id="数值格式"><a href="#数值格式" class="headerlink" title="数值格式"></a>数值格式</h3><script type="math/tex; mode=display">
+X_{k+1}=X_{k}-\frac{F(X_{k})}{F^{\prime}(X_{k})}, \quad k=0,1,\cdots,N-1，</script><script type="math/tex; mode=display">
+X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k^2}}, \quad k=0,1,\cdots,N-1.</script><p>然后就可以去算，直到 $|X_{k+1}-X_k|&lt;\delta$ ( 比如 $\delta =10^{-8}$)，最后算下误差。如果有真解的话，算下误差阶。</p>
+<p><strong>计算数值解</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% BackEuler.m</span></span><br><span class="line"><span class="comment">% Backward Euler Scheme for Nolinear ODE:</span></span><br><span class="line"><span class="comment">% u'(x)=u-2x/u in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1;</span></span><br><span class="line"><span class="comment">% Exact solution: u=sqrt(2*x+1)</span></span><br><span class="line">clear all</span><br><span class="line">h=<span class="number">0.05</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">1</span>;</span><br><span class="line">NI(N)=<span class="number">0</span>;           <span class="comment">% Record the number of iterations</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    <span class="comment">% Newton iteration</span></span><br><span class="line">    X(<span class="number">1</span>)=u(n); tol=<span class="number">1.0e-6</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">        X(k+<span class="number">1</span>)=X(k)-(X(k)-h*X(k)+<span class="number">2</span>*h*x(n+<span class="number">1</span>)/X(k)-u(n))./(<span class="number">1</span>-h<span class="number">-2</span>*h*x(n+<span class="number">1</span>)/(X(k)^<span class="number">2</span>));</span><br><span class="line">        NI(n)=NI(n)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(X(k+<span class="number">1</span>)-X(k))&lt;tol</span><br><span class="line">            u(n+<span class="number">1</span>)=X(k+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=<span class="built_in">sqrt</span>(<span class="number">2</span>*x+<span class="number">1</span>);    <span class="comment">% exact solution</span></span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact '</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'North'</span>)</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'t'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computing error</span></span><br><span class="line">error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue))</span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<p><img src="https://i.loli.net/2020/05/16/JwRqdYlWIb3hmQF.png" alt="BackEuler.png"></p>
+<p><strong>计算误差阶</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% BackEuler_error.m</span></span><br><span class="line"><span class="comment">% Backward Euler Method for Nolinear ODE:</span></span><br><span class="line"><span class="comment">% u'(x)=u-2x/u in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1;</span></span><br><span class="line"><span class="comment">% Exact solution: u=sqrt(2*x+1)</span></span><br><span class="line">clear all</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">20</span> <span class="number">100</span> <span class="number">200</span> <span class="number">1000</span>];</span><br><span class="line"><span class="comment">%hv=[0.1 0.05 0.01 0.005 0.001];</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">N=Nvec(k);</span><br><span class="line">h=<span class="number">1</span>/N;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    <span class="comment">% Newton iteration</span></span><br><span class="line">    X(<span class="number">1</span>)=u(n); tol=<span class="number">1.0e-10</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">        X(k+<span class="number">1</span>)=X(k)-(X(k)-h*X(k)+<span class="number">2</span>*h*x(n+<span class="number">1</span>)/X(k)-u(n))./(<span class="number">1</span>-h<span class="number">-2</span>*h*x(n+<span class="number">1</span>)/(X(k)^<span class="number">2</span>));</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(X(k+<span class="number">1</span>)-X(k))&lt;tol</span><br><span class="line">            u(n+<span class="number">1</span>)=X(k+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=<span class="built_in">sqrt</span>(<span class="number">2</span>*x+<span class="number">1</span>)</span><br><span class="line">error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-1</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Rate of Convergence','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>),ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span>     <span class="comment">% computating convergence order</span></span><br><span class="line">    order(n)=<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.0702    0.0322    0.0061    0.0030    0.0006</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    1.1238    1.0377    1.0103    1.0035</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/16/BSjUwEPfIY1Zkmy.png" alt="BackEuler_error.png"></p>
+<p><strong>另一个非线性 ODE 例子</strong> 也是可以算的。</p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}
+  &\frac{du}{dt}=-100u^3+\sin(u) ,\quad t \in [0,1], \\
+  &u(0)=1.
+  \end{aligned} \right.</script><p>方程没有真解。</p>
+<p><strong>计算数值解</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% BackEuler2.m</span></span><br><span class="line"><span class="comment">% Backward Euler Method for Nolinear ODE:</span></span><br><span class="line"><span class="comment">% u'(t)=-100*u^3+sin(u) in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1.</span></span><br><span class="line">clear all</span><br><span class="line">h=<span class="number">0.01</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">1</span>;</span><br><span class="line">NI(N)=<span class="number">0</span>;  <span class="comment">% 记录迭代次数</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    <span class="comment">% Newton iteration</span></span><br><span class="line">    X(<span class="number">1</span>)=u(n); tol=<span class="number">1.0e-8</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">        X(k+<span class="number">1</span>)=X(k)-(X(k)+<span class="number">100</span>*h*X(k)^<span class="number">3</span>-h*<span class="built_in">sin</span>(X(k))-u(n))./(<span class="number">1</span>+<span class="number">300</span>*h*X(k)^<span class="number">2</span>-h*<span class="built_in">cos</span>(X(k)));</span><br><span class="line">        NI(n)=NI(n)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(X(k+<span class="number">1</span>)-X(k))&lt;tol</span><br><span class="line">            u(n+<span class="number">1</span>)=X(k+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(x,u,<span class="string">'r-.'</span>, <span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'t'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  BackEuler2.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<p><img src="https://i.loli.net/2020/05/16/oqlUhJOkQ5MKifD.png" alt="BackEuler2.png"></p>
 ]]></content>
       <categories>
-        <category>Life</category>
+        <category>Numerical ODEs</category>
       </categories>
       <tags>
-        <tag>Scenery</tag>
+        <tag>MATLAB</tag>
+        <tag>Backward Euler</tag>
+        <tag>Nonlinear ODE</tag>
+        <tag>Newton Iteration</tag>
       </tags>
   </entry>
   <entry>
@@ -299,74 +432,38 @@ p=-\frac{ln(Err_1/Err_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</st
       </tags>
   </entry>
   <entry>
-    <title>Hexo-Next 个人博客搭建</title>
-    <url>/2020/05/11/HexoNext/</url>
-    <content><![CDATA[<p>本文介绍 Hexo 搭建个人博客，选择 Next 主题，最后托管到 GitHub 上。可以直接用 Markdown 写文章，然后生成静态网页上传，非常方便和实用。另外还可以使用 Mathjax 渲染，使文章支持 LaTeX 格式的数学公式。 </p>
-<p>Hexo是一款基于 Node.js 的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在 GitHub 上。如果想要更加全面的了解Hexo，可以到其官网 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 了解更多的细节。</p>
-<p>部署博客之前需要用到的工具是 Git，可以参考 <a href="https://andy123t.github.io/2020/05/09/Git-Start/">Git 入门</a>。</p>
+    <title>SMM00 谱方法笔记</title>
+    <url>/2020/05/10/SMM00/</url>
+    <content><![CDATA[<p>这是学习书籍 <strong>Spectral Method in MATLAB</strong> (Lloyd N. Trefethen) 的笔记，因为书是英文的，笔记就成了翻译。很多地方翻译的比较粗糙，能够理解并学到知识才是最重要的。</p>
+<p>Nick Trefethen <a href="http://people.maths.ox.ac.uk/trefethen/" target="_blank" rel="noopener">Homepage</a></p>
+<p>这只是一个开始，后期我会<strong>更新</strong>学习本书的笔记！</p>
+<h3 id="关于本书"><a href="#关于本书" class="headerlink" title="关于本书"></a>关于本书</h3><p>这本书有四十个简短的MATLAB程序，这些程序可以在用于求解与流体力学、量子力学、振动、线性和非线性波、复分析等领域有关的各种常微分方程和偏微分方程( ODE 和 PDE )。书的前六章侧重于理论，第七章以后更侧重于编程应用。学习这本书，需要对数值分析，微分方程有一定的了解，并且熟悉 MATLAB。</p>
+<p>如果你喜欢计算和数字数学，你会喜欢阅读这本书，可以学到一些新的 MATLAB 技巧！</p>
 <a id="more"></a>
-<h3 id="个人博客展示"><a href="#个人博客展示" class="headerlink" title="个人博客展示"></a>个人博客展示</h3><p>Hexo-Next Pisces 主题</p>
-<p><img src="https://i.loli.net/2020/05/11/GzEY9VrOipyovXd.png" alt="HexoPage.png"></p>
-<p>下面就开始搭建！</p>
-<h3 id="GitHub创建个人仓库"><a href="#GitHub创建个人仓库" class="headerlink" title="GitHub创建个人仓库"></a>GitHub创建个人仓库</h3><p>登录到 GitHub，如果没有 GitHub 帐号，使用你的邮箱注册 GitHub 帐号，点击 GitHub 中的 New repository 创建新仓库，仓库名应该为：usename.github.io 这个用户名 (usename) 使用你的 GitHub 帐号名称代替，这是固定写法。</p>
-<h3 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h3><p>假设你已经安装了 Git，现在安装 Node.js</p>
-<p>Node.js <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">下载地址</a>，安装Node.js 会包含环境变量及 npm 的安装，安装后，检测 Node.js 是否安装成功，在命令行中输入 <code>node -v</code>，检测npm是否安装成功，在命令行中输入<code>npm -v</code>。</p>
-<p>如果都安装好了，说明安装 Hexo 的环境已经全部搭建完成。</p>
-<h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>Hexo 是搭建个人博客的框架， 需要电脑创建一个文件夹，可以命名为Blog，Hexo 框架与以后你自己发布的网页都在这个文件夹中。创建好后，进入文件夹中，右键打开 <strong>Git Bash</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli  <span class="comment"># npm命令安装Hexo</span></span><br></pre></td></tr></table></figure>
-<p>安装完成后，初始化博客</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init blog</span><br></pre></td></tr></table></figure>
-<p>注意，这里的命令都是作用在刚刚创建的Blog文件夹中。</p>
-<p>为了测试是否搭建成功，分别按顺序输入以下三条命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">$ hexo g</span><br><span class="line"></span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<p>这些命令在后面作介绍，完成后，打开浏览器输入地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;</span><br></pre></td></tr></table></figure>
-<h3 id="推送到-GitHub"><a href="#推送到-GitHub" class="headerlink" title="推送到 GitHub"></a>推送到 GitHub</h3><p>上面只是在本地预览，接下来要做的就是就是推送网站，也就是发布网站，让我们的网站可以被更多的人访问。在设置之前，需要解释一个概念，在 <strong>blog</strong> 根目录里的 <strong>_config.yml</strong> 文件称为站点配置文件。</p>
-<p>进入根目录 <strong>themes</strong> 下面 <strong>next</strong> 文件夹，里面也有个 <strong>_config.yml</strong> 文件，这个称为主题配置文件。</p>
-<p>下一步将我们的 Hexo 与 GitHub 关联起来，打开站点的配置文件 <strong>_config.yml</strong>，页面最后</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">''</span></span><br></pre></td></tr></table></figure>
-<p>修改为</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">repo:</span> <span class="string">https://github.com/usename/usename.github.io.git</span></span><br><span class="line"><span class="comment"># 上面 GitHub 上创建仓库的完整路径，</span></span><br><span class="line"><span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<p>保存站点配置文件。</p>
-<p>最后安装 Git 部署插件，输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>分别输入三条命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean </span><br><span class="line">$ hexo g </span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<p>命令 <code>hexo d</code> 就是部署网站命令，d 是 deploy 的缩写。完成后，打开浏览器，在地址栏输入你的个人网站 <a href="http://usename.github.io" target="_blank" rel="noopener">http://usename.github.io</a> ，你就会发现你的个人博客已经上线了，可以在网络上被访问了。</p>
-<p>如果想购买个人域名，可以去阿里云或腾讯云购买，然后绑定个人域名。</p>
-<h3 id="安装-Next-主题"><a href="#安装-Next-主题" class="headerlink" title="安装 Next 主题"></a>安装 Next 主题</h3><p>首先打开 <strong>Git Bash</strong> 进入根目录 <strong>Blog</strong>，执行命令<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next.git themes&#x2F;next</span><br></pre></td></tr></table></figure><br>安装完成后，打开在 <strong>blog</strong> 根目录里站点配置文件 <strong>_config.yml</strong>。找到 theme 字段，并将其值更改为 next, 一定要保存。</p>
-<p>Next  还有主题可以设置</p>
+<p>谱方法是数值求解 PDEs 的三大方法之一，它们大致在连续几十年的逐渐发展起来：</p>
 <ul>
-<li>Muse - 默认 Scheme，这是 NexT 最初的版本，黑白主调</li>
-<li>Mist - Muse 的紧凑版本，整洁有序的单栏外观</li>
-<li>Pisces - 双栏 Scheme，小家碧玉似的清新</li>
+<li>20 世纪 50 年代：有限差分法</li>
+<li>20 世纪 60 年代：有限元法</li>
+<li>20 世纪 70 年代：谱方法</li>
 </ul>
-<p>打开根目录 <strong>themes</strong> 下 <strong>next</strong>文件夹里面的主题配置文件 <strong>_config.yml</strong>，修改后保存</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment">#scheme: Muse</span></span><br><span class="line"><span class="comment">#scheme: Mist</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Pisces</span></span><br><span class="line"><span class="comment">#scheme: Gemini</span></span><br></pre></td></tr></table></figure>
-<h3 id="支持数学公式"><a href="#支持数学公式" class="headerlink" title="支持数学公式"></a>支持数学公式</h3><p>hexo 默认的渲染引擎是 marked，但是 marked 不支持 Mathjax。 kramed 是在 marked 的基础上进行修改。下面安装 kramed，按顺序输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
-<p>首先，如果你已经安装 hexo-math, 请卸载它</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm uninstall hexo-math --save</span><br></pre></td></tr></table></figure>
-<p>然后安装 hexo-renderer-mathjax 包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-renderer-mathjax --save</span><br></pre></td></tr></table></figure>
-<p>在主题 <strong>_config.yml</strong> 中开启 Mathjax， 找到 mathjax 字段添加如下代码：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>写博客中可以选择是否开启 Mathjax，添加以下内容</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Testing Mathjax with Hexo</span><br><span class="line">category: </span><br><span class="line">date: 2020/05/11</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h3 id="常用的几个命令"><a href="#常用的几个命令" class="headerlink" title="常用的几个命令"></a>常用的几个命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean </span><br><span class="line">$ hexo g </span><br><span class="line">$ hexo s</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
-<li>知乎 <a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">GitHub+Hexo 搭建个人网站详细教程</a></li>
-<li>B 站 <a href="https://www.bilibili.com/video/BV16W411t7mq" target="_blank" rel="noopener">Hexo 博客，Next 主题优化</a></li>
-</ul>
+<p>当然，每种方法的起源都可以追溯到更早的时候。 对于谱方法来说，一些思想和插值和函数展开一样古老，更具体地说，算法的发展最早是在1938年由Lanczos [Lan38, Lan56] 和 1960 年代的 Clenshaw，Elliott，Fox 等 [FoPa68] 提出的。 然后，在20世纪70年代，由 Orszag 等人在流体动力学和气象学问题上的工作引发了这一领域的变革，谱方法也因此而闻名。<br>早期现代谱方法文献的三个里程碑是：Gottlieb 和 Orszag的短书[GoOr77]，Gottlieb，Hussaini 和 Orszag 的研究 [CHO84] 和Canuto，Hussaini，Quarteroni 和 Zang 的专著 [ChQZ88]。 此后，Mercier [Mer89]，Boyd [Boy00]（1989年第一版），Funaro [Fun92]，Bernardi 和 Maday [BeMa92]，Fornberg [For96] 以及 Karniadakis 和 Sherwin [KaSh99] 也贡献了其他书籍。</p>
+<p>如果要在一个简单的区域上高精度地求解 ODE 或 PDE，并且如果定义该问题的函数是平滑的，那么谱方法通常是最好的工具。它们通常可以达到十位数的精度，而有限差分法或有限元法可以达到两三位数。在精度较低的情况下，它们需要的计算机内存比其他替代方案要小。</p>
+<p>这本短小的书介绍了谱方法的一些基本思想和技术。它的目标人群是学过数值分析课程，并熟悉基本的应用程序设计和偏微分方程。你会发现，在计算机的几秒钟内，用几行 MATLAB 代码就可以高精度地解决一系列显著的问题。<strong>写程序应当有一种玩的心态，最后让它们成为你自己的！</strong></p>
+<p>我想强调这里提出的三个数学主题，虽然专家们都知道，但通常在教科书中找不到。在第四章中，第一个是函数的光滑性与其傅里叶变换衰减之间的关系，后者决定了离散化引入的混叠误差的大小；这些关系解释了谱方法的精度如何取决于被逼近函数的光滑性。第二，在第五章中，多项式的根和平面上的点电荷之间的类比，这导致了一个关于非周期谱方法的网格为什么需要在边界处聚集的势理论的扩展。第三，在第八章中，$[-1,1]$上的切比雪夫级数 、$[\pi,\pi]$ 上的三角级数与单位圆上的洛朗级数这三种方法，构成了快速傅里叶变换计算切比雪夫谱导数技术的基础。这三个主题本身都是非常的数学研究主题，对任何应用数学家来说都是值得学习的。</p>
+<p>不可避免地，这本书只涉及谱方法的一部分。它强调在周期网格和切比雪夫网格上的配置（拟谱）方法，而对同样重要的 Galerkin 方法、勒让德网格和多项式几乎没有涉及。理论分析是非常有限的，强调简单几何的简单工具，而不是工业强度、谱元方法和 $hp$ 有限元，在后面给出了一些其他的主题和观点。</p>
+<p>MATLAB的发展开创了科学计算的新纪元。现在，人们可以以非常简洁的方式，完整详细地介绍高级数值算法和非平凡问题的解决方案，在几页中介绍更多的应用数学，几年前是不可想象的。MATLAB 语言有时（不总是！）与 Fortran 或 C 等低级语言相比，牺牲了机器效率这一个特定因素，但是提高了人的编程效率，即修改程序并应用于新的问题，再去尝试新的问题，这比以往更加容易。这本短书鼓励学生、科学家和工程师学会这种新的计算方法。</p>
+<h3 id="关于程序"><a href="#关于程序" class="headerlink" title="关于程序"></a>关于程序</h3><p>本书中的 MATLAB 程序很简洁。 每一个程序容纳在一页上，并且在几英寸的计算机代码中进行计算！程序非常简洁、紧凑，对紧凑性的痴迷有时会损害可读性。 例如，在单个程序行上集合了两个或三个简短的 MATLAB 命令。 </p>
+<p>本书中编程风格的另一个特点是结构扁平化，除了在其中定义的关键函数cheb之外，程序中几乎不使用函数（chebfft、clencurt和gauss这三个函数在第8章和第12章，但每一章都只是局部使用。这种风格的优点是强调可以实现的紧凑程度，但是作为一般规则，MATLAB程序员应该经常使用函数）。</p>
+<p>书中可能写了很多东西去解释程序的细节或技巧。为了使讨论集中在谱方法上，尽量不去提到 MATLAB 的细节，除非在极少数情况下不得不这么做。这意味着当你使用这本书时，你将不得不学习程序，而不仅仅是阅读它们。<strong>只有你花时间学习这些代码，并修改它们来解决你自己的问题之后，你才能真正理解这些问题的答案</strong>。我想这是使用这本书的乐趣之一，希望你能同意。</p>
+<p>本书的程序是用 MATLAB 5.3 编写运行的，随着以后几年中更高版本的发布，这些程序的运行可能会出现一些困难。 若要从头开始学习 MATLAB，或者作为参考，推荐 SIAM 的书籍 MATLAB Guide。</p>
+<p><strong>注：</strong> 我用的 MATLAB 版本是 MATLAB 2019a (v9.6)，画出的图和早期版本是有些不一样的，应该是更美观了吧。</p>
 ]]></content>
       <categories>
-        <category>Computer Skills</category>
+        <category>Spectral Methods</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Github</tag>
-        <tag>Next</tag>
-        <tag>Mathjax</tag>
+        <tag>MATLAB</tag>
+        <tag>Spectral Method</tag>
       </tags>
   </entry>
   <entry>
@@ -424,70 +521,8 @@ p=-\frac{ln(Err_1/Err_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</st
       <tags>
         <tag>ODE</tag>
         <tag>MATLAB</tag>
+        <tag>Newton Iteration</tag>
         <tag>Implicit Runge Kutta</tag>
-        <tag>Newton Iteration</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>后退 Euler 求解非线性 ODE</title>
-    <url>/2020/05/16/ODE04/</url>
-    <content><![CDATA[<p>本文用后退 Euler 方法求解非线性 ODE，需要用到牛顿迭代，然后用 MATLAB 编程，最后展示了输出结果。</p>
-<h3 id="后退-Euler-方法"><a href="#后退-Euler-方法" class="headerlink" title="后退 Euler 方法"></a>后退 Euler 方法</h3><script type="math/tex; mode=display">
-u_{n+1}=u_{n}+hf(t_{n+1},u_{n+1}).</script><p><strong>线性 ODE 例子</strong>（做对比）</p>
-<script type="math/tex; mode=display">
-\left\{\begin{aligned}
-  &\frac{du}{dt}=t^2+t-u ,\quad t \in [0,1], \\
-  &u(0)=0.
-  \end{aligned} \right.</script><p>用后退 Euler (隐式 Euler) 格式离散</p>
-<script type="math/tex; mode=display">
-u_{n+1}=u_n+h(t_{n+1}^2+t_{n+1}-u_{n+1}). \\
-u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易编程。</p>
-<a id="more"></a>
-<h3 id="非线性-ODE"><a href="#非线性-ODE" class="headerlink" title="非线性 ODE"></a>非线性 ODE</h3><script type="math/tex; mode=display">
-\left\{\begin{aligned}
-  &\frac{du}{dt}=u-\frac{2t}{u} ,\quad t \in [0,1], \\
-  &u(0)=1.
-  \end{aligned} \right.</script><p>方程的真解：$u(t)=\sqrt{2t+1}$.</p>
-<p>用后退Euler (隐式Euler) 格式离散</p>
-<script type="math/tex; mode=display">
-u_{n+1}=u_n+h(u_{n+1}-\frac{2t_{n+1}}{u_{n+1}}). \\
-u_{n+1}-u_n-hu_{n+1}+h\frac{2t_{n+1}}{u_{n+1}}=0.</script><p>每一步要解一个关于 $u_{n+1}$ 的非线性方程。</p>
-<h3 id="牛顿迭代"><a href="#牛顿迭代" class="headerlink" title="牛顿迭代"></a>牛顿迭代</h3><p>假设 $f(x)=0$ 有近似根 $x_k$ ($f^{\prime}\left(x_{k}\right) \neq 0$ )，求 $x_{k+1}$ 的方法</p>
-<script type="math/tex; mode=display">
-x_{k+1}=x_{k}-\frac{f(x_{k})}{f^{\prime}(x_{k})}, \quad k=0,1, \cdots.</script><p>对于以上非线性微分方程的离散，记 $u_{n+1}=X$ (为了不混淆)</p>
-<script type="math/tex; mode=display">
-F(X)=X-u_n-hX+\frac{2ht_{n+1}}{X}, \\
-F^{\prime}(X)=1-h+\frac{2ht_{n+1}}{X^2}.</script><h3 id="数值格式"><a href="#数值格式" class="headerlink" title="数值格式"></a>数值格式</h3><script type="math/tex; mode=display">
-X_{k+1}=X_{k}-\frac{F(X_{k})}{F^{\prime}(X_{k})}, \quad k=0,1,\cdots,N-1，</script><script type="math/tex; mode=display">
-X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k^2}}, \quad k=0,1,\cdots,N-1.</script><p>然后就可以去算，直到 $|X_{k+1}-X_k|&lt;\delta$ ( 比如 $\delta =10^{-8}$)，最后算下误差。如果有真解的话，算下误差阶。</p>
-<p><strong>计算数值解</strong></p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% BackEuler.m</span></span><br><span class="line"><span class="comment">% Backward Euler Scheme for Nolinear ODE:</span></span><br><span class="line"><span class="comment">% u'(x)=u-2x/u in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1;</span></span><br><span class="line"><span class="comment">% Exact solution: u=sqrt(2*x+1)</span></span><br><span class="line">clear all</span><br><span class="line">h=<span class="number">0.05</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">1</span>;</span><br><span class="line">NI(N)=<span class="number">0</span>;           <span class="comment">% Record the number of iterations</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    <span class="comment">% Newton iteration</span></span><br><span class="line">    X(<span class="number">1</span>)=u(n); tol=<span class="number">1.0e-6</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">        X(k+<span class="number">1</span>)=X(k)-(X(k)-h*X(k)+<span class="number">2</span>*h*x(n+<span class="number">1</span>)/X(k)-u(n))./(<span class="number">1</span>-h<span class="number">-2</span>*h*x(n+<span class="number">1</span>)/(X(k)^<span class="number">2</span>));</span><br><span class="line">        NI(n)=NI(n)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(X(k+<span class="number">1</span>)-X(k))&lt;tol</span><br><span class="line">            u(n+<span class="number">1</span>)=X(k+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=<span class="built_in">sqrt</span>(<span class="number">2</span>*x+<span class="number">1</span>);    <span class="comment">% exact solution</span></span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact '</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'North'</span>)</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'t'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computing error</span></span><br><span class="line">error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue))</span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<p><img src="https://i.loli.net/2020/05/16/JwRqdYlWIb3hmQF.png" alt="BackEuler.png"></p>
-<p><strong>计算误差阶</strong></p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% BackEuler_error.m</span></span><br><span class="line"><span class="comment">% Backward Euler Method for Nolinear ODE:</span></span><br><span class="line"><span class="comment">% u'(x)=u-2x/u in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1;</span></span><br><span class="line"><span class="comment">% Exact solution: u=sqrt(2*x+1)</span></span><br><span class="line">clear all</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">20</span> <span class="number">100</span> <span class="number">200</span> <span class="number">1000</span>];</span><br><span class="line"><span class="comment">%hv=[0.1 0.05 0.01 0.005 0.001];</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">N=Nvec(k);</span><br><span class="line">h=<span class="number">1</span>/N;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    <span class="comment">% Newton iteration</span></span><br><span class="line">    X(<span class="number">1</span>)=u(n); tol=<span class="number">1.0e-10</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">        X(k+<span class="number">1</span>)=X(k)-(X(k)-h*X(k)+<span class="number">2</span>*h*x(n+<span class="number">1</span>)/X(k)-u(n))./(<span class="number">1</span>-h<span class="number">-2</span>*h*x(n+<span class="number">1</span>)/(X(k)^<span class="number">2</span>));</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(X(k+<span class="number">1</span>)-X(k))&lt;tol</span><br><span class="line">            u(n+<span class="number">1</span>)=X(k+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=<span class="built_in">sqrt</span>(<span class="number">2</span>*x+<span class="number">1</span>)</span><br><span class="line">error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-1</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Rate of Convergence','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>),ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span>     <span class="comment">% computating convergence order</span></span><br><span class="line">    order(n)=<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.0702    0.0322    0.0061    0.0030    0.0006</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    1.1238    1.0377    1.0103    1.0035</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2020/05/16/BSjUwEPfIY1Zkmy.png" alt="BackEuler_error.png"></p>
-<p><strong>另一个非线性 ODE 例子</strong> 也是可以算的。</p>
-<script type="math/tex; mode=display">
-\left\{\begin{aligned}
-  &\frac{du}{dt}=-100u^3+\sin(u) ,\quad t \in [0,1], \\
-  &u(0)=1.
-  \end{aligned} \right.</script><p>方程没有真解。</p>
-<p><strong>计算数值解</strong></p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% BackEuler2.m</span></span><br><span class="line"><span class="comment">% Backward Euler Method for Nolinear ODE:</span></span><br><span class="line"><span class="comment">% u'(t)=-100*u^3+sin(u) in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1.</span></span><br><span class="line">clear all</span><br><span class="line">h=<span class="number">0.01</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">1</span>;</span><br><span class="line">NI(N)=<span class="number">0</span>;  <span class="comment">% 记录迭代次数</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    <span class="comment">% Newton iteration</span></span><br><span class="line">    X(<span class="number">1</span>)=u(n); tol=<span class="number">1.0e-8</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">        X(k+<span class="number">1</span>)=X(k)-(X(k)+<span class="number">100</span>*h*X(k)^<span class="number">3</span>-h*<span class="built_in">sin</span>(X(k))-u(n))./(<span class="number">1</span>+<span class="number">300</span>*h*X(k)^<span class="number">2</span>-h*<span class="built_in">cos</span>(X(k)));</span><br><span class="line">        NI(n)=NI(n)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(X(k+<span class="number">1</span>)-X(k))&lt;tol</span><br><span class="line">            u(n+<span class="number">1</span>)=X(k+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(x,u,<span class="string">'r-.'</span>, <span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'t'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  BackEuler2.png</span></span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<p><img src="https://i.loli.net/2020/05/16/oqlUhJOkQ5MKifD.png" alt="BackEuler2.png"></p>
-]]></content>
-      <categories>
-        <category>Numerical ODEs</category>
-      </categories>
-      <tags>
-        <tag>MATLAB</tag>
-        <tag>Newton Iteration</tag>
-        <tag>Backward Euler</tag>
-        <tag>Nonlinear ODE</tag>
       </tags>
   </entry>
   <entry>
@@ -647,41 +682,6 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       </tags>
   </entry>
   <entry>
-    <title>SMM00 谱方法笔记</title>
-    <url>/2020/05/10/SMM00/</url>
-    <content><![CDATA[<p>这是学习书籍 <strong>Spectral Method in MATLAB</strong> (Lloyd N. Trefethen) 的笔记，因为书是英文的，笔记就成了翻译。很多地方翻译的比较粗糙，能够理解并学到知识才是最重要的。</p>
-<p>Nick Trefethen <a href="http://people.maths.ox.ac.uk/trefethen/" target="_blank" rel="noopener">Homepage</a></p>
-<p>这只是一个开始，后期我会<strong>更新</strong>学习本书的笔记！</p>
-<h3 id="关于本书"><a href="#关于本书" class="headerlink" title="关于本书"></a>关于本书</h3><p>这本书有四十个简短的MATLAB程序，这些程序可以在用于求解与流体力学、量子力学、振动、线性和非线性波、复分析等领域有关的各种常微分方程和偏微分方程( ODE 和 PDE )。书的前六章侧重于理论，第七章以后更侧重于编程应用。学习这本书，需要对数值分析，微分方程有一定的了解，并且熟悉 MATLAB。</p>
-<p>如果你喜欢计算和数字数学，你会喜欢阅读这本书，可以学到一些新的 MATLAB 技巧！</p>
-<a id="more"></a>
-<p>谱方法是数值求解 PDEs 的三大方法之一，它们大致在连续几十年的逐渐发展起来：</p>
-<ul>
-<li>20 世纪 50 年代：有限差分法</li>
-<li>20 世纪 60 年代：有限元法</li>
-<li>20 世纪 70 年代：谱方法</li>
-</ul>
-<p>当然，每种方法的起源都可以追溯到更早的时候。 对于谱方法来说，一些思想和插值和函数展开一样古老，更具体地说，算法的发展最早是在1938年由Lanczos [Lan38, Lan56] 和 1960 年代的 Clenshaw，Elliott，Fox 等 [FoPa68] 提出的。 然后，在20世纪70年代，由 Orszag 等人在流体动力学和气象学问题上的工作引发了这一领域的变革，谱方法也因此而闻名。<br>早期现代谱方法文献的三个里程碑是：Gottlieb 和 Orszag的短书[GoOr77]，Gottlieb，Hussaini 和 Orszag 的研究 [CHO84] 和Canuto，Hussaini，Quarteroni 和 Zang 的专著 [ChQZ88]。 此后，Mercier [Mer89]，Boyd [Boy00]（1989年第一版），Funaro [Fun92]，Bernardi 和 Maday [BeMa92]，Fornberg [For96] 以及 Karniadakis 和 Sherwin [KaSh99] 也贡献了其他书籍。</p>
-<p>如果要在一个简单的区域上高精度地求解 ODE 或 PDE，并且如果定义该问题的函数是平滑的，那么谱方法通常是最好的工具。它们通常可以达到十位数的精度，而有限差分法或有限元法可以达到两三位数。在精度较低的情况下，它们需要的计算机内存比其他替代方案要小。</p>
-<p>这本短小的书介绍了谱方法的一些基本思想和技术。它的目标人群是学过数值分析课程，并熟悉基本的应用程序设计和偏微分方程。你会发现，在计算机的几秒钟内，用几行 MATLAB 代码就可以高精度地解决一系列显著的问题。<strong>写程序应当有一种玩的心态，最后让它们成为你自己的！</strong></p>
-<p>我想强调这里提出的三个数学主题，虽然专家们都知道，但通常在教科书中找不到。在第四章中，第一个是函数的光滑性与其傅里叶变换衰减之间的关系，后者决定了离散化引入的混叠误差的大小；这些关系解释了谱方法的精度如何取决于被逼近函数的光滑性。第二，在第五章中，多项式的根和平面上的点电荷之间的类比，这导致了一个关于非周期谱方法的网格为什么需要在边界处聚集的势理论的扩展。第三，在第八章中，$[-1,1]$上的切比雪夫级数 、$[\pi,\pi]$ 上的三角级数与单位圆上的洛朗级数这三种方法，构成了快速傅里叶变换计算切比雪夫谱导数技术的基础。这三个主题本身都是非常的数学研究主题，对任何应用数学家来说都是值得学习的。</p>
-<p>不可避免地，这本书只涉及谱方法的一部分。它强调在周期网格和切比雪夫网格上的配置（拟谱）方法，而对同样重要的 Galerkin 方法、勒让德网格和多项式几乎没有涉及。理论分析是非常有限的，强调简单几何的简单工具，而不是工业强度、谱元方法和 $hp$ 有限元，在后面给出了一些其他的主题和观点。</p>
-<p>MATLAB的发展开创了科学计算的新纪元。现在，人们可以以非常简洁的方式，完整详细地介绍高级数值算法和非平凡问题的解决方案，在几页中介绍更多的应用数学，几年前是不可想象的。MATLAB 语言有时（不总是！）与 Fortran 或 C 等低级语言相比，牺牲了机器效率这一个特定因素，但是提高了人的编程效率，即修改程序并应用于新的问题，再去尝试新的问题，这比以往更加容易。这本短书鼓励学生、科学家和工程师学会这种新的计算方法。</p>
-<h3 id="关于程序"><a href="#关于程序" class="headerlink" title="关于程序"></a>关于程序</h3><p>本书中的 MATLAB 程序很简洁。 每一个程序容纳在一页上，并且在几英寸的计算机代码中进行计算！程序非常简洁、紧凑，对紧凑性的痴迷有时会损害可读性。 例如，在单个程序行上集合了两个或三个简短的 MATLAB 命令。 </p>
-<p>本书中编程风格的另一个特点是结构扁平化，除了在其中定义的关键函数cheb之外，程序中几乎不使用函数（chebfft、clencurt和gauss这三个函数在第8章和第12章，但每一章都只是局部使用。这种风格的优点是强调可以实现的紧凑程度，但是作为一般规则，MATLAB程序员应该经常使用函数）。</p>
-<p>书中可能写了很多东西去解释程序的细节或技巧。为了使讨论集中在谱方法上，尽量不去提到 MATLAB 的细节，除非在极少数情况下不得不这么做。这意味着当你使用这本书时，你将不得不学习程序，而不仅仅是阅读它们。<strong>只有你花时间学习这些代码，并修改它们来解决你自己的问题之后，你才能真正理解这些问题的答案</strong>。我想这是使用这本书的乐趣之一，希望你能同意。</p>
-<p>本书的程序是用 MATLAB 5.3 编写运行的，随着以后几年中更高版本的发布，这些程序的运行可能会出现一些困难。 若要从头开始学习 MATLAB，或者作为参考，推荐 SIAM 的书籍 MATLAB Guide。</p>
-<p><strong>注：</strong> 我用的 MATLAB 版本是 MATLAB 2019a (v9.6)，画出的图和早期版本是有些不一样的，应该是更美观了吧。</p>
-]]></content>
-      <categories>
-        <category>Spectral Methods</category>
-      </categories>
-      <tags>
-        <tag>MATLAB</tag>
-        <tag>Spectral Method</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>西游十问</title>
     <url>/2020/05/14/XY10q/</url>
     <content><![CDATA[<p>看过很多关于西游记的影视剧，但《西游记》书和影视剧有很大的不同，最直观的感受就是“真实”。在本科时期，讲明清小说的毛黎老师让我开始了解真实的西游记。虽然它是现实的，残酷的，我仍然愿意去了解它，因为现实就是残酷的。</p>
@@ -703,6 +703,25 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       </categories>
       <tags>
         <tag>Review</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第一篇博客文章</title>
+    <url>/2020/04/27/helloworld/</url>
+    <content><![CDATA[<p>这是我的第一篇博客文章，博客是用 Hexo 搭建的。</p>
+<p>开博客是为了记录一些东西，大致包括以下内容：</p>
+<ul>
+<li>学习技术的经验；</li>
+<li>专业学习的笔记；</li>
+<li>生活中的想法；</li>
+<li>读书的笔记或感想。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Writing</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
       </tags>
   </entry>
   <entry>
@@ -782,25 +801,6 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       <tags>
         <tag>MATLAB</tag>
         <tag>Spectral Method</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第一篇博客文章</title>
-    <url>/2020/04/27/helloworld/</url>
-    <content><![CDATA[<p>这是我的第一篇博客文章，博客是用 Hexo 搭建的。</p>
-<p>开博客是为了记录一些东西，大致包括以下内容：</p>
-<ul>
-<li>学习技术的经验；</li>
-<li>专业学习的笔记；</li>
-<li>生活中的想法；</li>
-<li>读书的笔记或感想。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Writing</category>
-      </categories>
-      <tags>
-        <tag>Blog</tag>
       </tags>
   </entry>
 </search>
