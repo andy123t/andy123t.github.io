@@ -390,7 +390,7 @@ p=-\frac{ln(Err_1/Err_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</st
 {c_{s 1}} & {a_{s 2}} & {a_{s 2}} & {\cdots} & {a_{s s}} \\
 \hline
  {} &  b_{1} & b_{2} & \cdots &  b_{s}\\
-\end{array}</script><script type="math/tex; mode=display">c=\left[c_{1}, c_{2}, \ldots, c_{s}\right]^{T}, \quad b=\left[b_{1}, b_{2}, \ldots, b_{s}\right]^{T}, \quad A=\left(a_{i j}\right)_{s}</script><script type="math/tex; mode=display">
+\end{array}</script><script type="math/tex; mode=display">c=\left[c_{1}, c_{2}, \ldots, c_{s}\right]^{T}, \quad b=\left[b_{1}, b_{2}, \ldots, b_{s}\right]^{T}, \quad A=\left(a_{i j}\right)_{s}.</script><script type="math/tex; mode=display">
 (\rm II)\left\{\begin{aligned}
 &y_{n+1}=y_{n}+h \sum_{i=1}^{s} b_{i} f\left(x_{n}+c_{i} h, Y_{i}\right), \\
 &Y_{i}=y_{n}+h \sum_{j=1}^{s} a_{i j} f\left(x_{n}+c_{j} h, Y_{j}\right), \quad i=1,2, \ldots, s.
