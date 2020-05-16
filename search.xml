@@ -157,12 +157,14 @@
   <entry>
     <title>简单的数值方法</title>
     <url>/2020/05/16/ODE01/</url>
-    <content><![CDATA[<h3 id="常微分方程初值问题"><a href="#常微分方程初值问题" class="headerlink" title="常微分方程初值问题"></a>常微分方程初值问题</h3><p>考虑 常微分方程初值问题，设 $f(t,u)$ 在区域 $\rm G$ : $0\leqslant t \leqslant T$, $|u|&lt; \infty$ 上连续，求 $u=u(t)$ 满足：</p>
+    <content><![CDATA[<p>本文列举了简单的数值方法：Euler方法、后退 Euler 方法、梯形公式、改进 Euler 方法，并用 MATLAB 求解，展示了相应结果。</p>
+<h3 id="常微分方程初值问题"><a href="#常微分方程初值问题" class="headerlink" title="常微分方程初值问题"></a>常微分方程初值问题</h3><p>考虑 常微分方程初值问题，设 $f(t,u)$ 在区域 $\rm G$ : $0\leqslant t \leqslant T$, $|u|&lt; \infty$ 上连续，求 $u=u(t)$ 满足：</p>
 <script type="math/tex; mode=display">
 \left\{\begin{aligned}
   &\frac{du}{dt}=f(t,u),\quad 0 < t \leqslant T, \\
   &u(0)=0.
   \end{aligned} \right.</script><p>通常 $f$ 满足 $\rm Lipschitz$ 条件： $|f(t,u_1)-f(t,u_2)|\leqslant L|u_1-u_2|$.</p>
+<a id="more"></a>
 <p><strong>线性 ODE 例子</strong></p>
 <script type="math/tex; mode=display">
 \left\{\begin{aligned}
@@ -432,7 +434,7 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
     <url>/2020/05/15/SMM02/</url>
     <content><![CDATA[<p>本文是书籍 <strong>Spectral Method in MATLAB</strong> 第二章 <strong>Unbounded Grids: the Semidiscrete Fourier Transform 无界网格：半离散 Fourier 变换</strong> 笔记。</p>
 <p>我们现在导出第一个谱方法，就是第一章的两边无限的矩阵。这种方法适用于离散的、无界的区域，因此不是一种实用的方法。但是，它确实介绍了推导和分析实用方法所需的数学思想。</p>
-<h3 id="半离散-Fourier-变换"><a href="#半离散-Fourier-变换" class="headerlink" title="半离散 Fourier 变换"></a>半离散 Fourier 变换</h3><p>无限网格用 $h \mathbb{Z}$表示，节点 $x_j-jh$，其中 $j \in \mathbb{Z}$ ，$\mathbb{Z}$ 是所有整数的集合。</p>
+<h3 id="半离散-Fourier-变换"><a href="#半离散-Fourier-变换" class="headerlink" title="半离散 Fourier 变换"></a>半离散 Fourier 变换</h3><p>无限网格用 $h \mathbb{Z}$表示，节点 $x_j=jh$，其中 $j \in \mathbb{Z}$ ，$\mathbb{Z}$ 是所有整数的集合。</p>
 <p><img src="https://i.loli.net/2020/05/14/F7PDX9TAlfUtyKB.png" alt="SMM0201.png"></p>
 <p>根据半离散傅里叶变换和有限带宽 $sinc$ 函数插值的基本思想去推导 (1.4) 两边无限的矩阵。函数 $u(x)$ ($x \in \mathbb{R}$) 的 Fourier 变换后的函数 $\hat{u}(k)$ 定义为</p>
 <script type="math/tex; mode=display">\hat{u}(k)=\int_{-\infty}^{\infty} u(x) e^{-i k x} dx, \quad \color{red}{k \in \mathbb{R}}.</script><a id="more"></a>
@@ -446,7 +448,7 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
 <p>“混叠”也出现在非数学生活中，例如西方电影中的“马车轮效应”。如果说照相机的快门每秒发出 24 次咔哒声，货车车轮上的辐条每秒通过垂直方向 20 次，然后车轮看起来好像以每秒 -4 辐条的速度旋转，即向后旋转。同一现象的更高频率“混叠”是频闪显微镜科学的基础，而空间而非时间的混叠会导致云纹。</p>
 <p>对于函数 $v$ 定义在 $h\mathbb{Z}$ 上节点 $x_j$ 值为 $v_j$，半离散 Fourier 变换的定义如下</p>
 <script type="math/tex; mode=display">\hat{v}(k)=h \sum_{j=-\infty}^{\infty} e^{-i k x_{j}} v_{j}, \quad \color{red}{k \in[-\pi / h, \pi / h]}.</script><p>半离散 Fourier 逆变换为</p>
-<script type="math/tex; mode=display">v_{j}=\frac{1}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x_{j}} \hat{v}(k) dk, \quad \color{red}{j \in \mathbb{Z}}.</script><p>半离散 Fourier 变换 (2.3) 通过梯形公式逼近  Fourier 变换 (2.1)，半离散 Fourier 逆变换 (2.4) 通过截断 $\mathbb{R}$ 到  $[-\pi /h, \pi /h]$ 离散 Fourier 变换。当 $h \rightarrow 0$，两对公式收敛。</p>
+<script type="math/tex; mode=display">v_{j}=\frac{1}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x_{j}} \hat{v}(k) dk, \quad \color{red}{j \in \mathbb{Z}}.</script><p>半离散 Fourier 变换 (2.3) 通过梯形公式逼近  Fourier 变换 (2.1)，半离散 Fourier 逆变换 (2.4)逼近 (2.2) 则是通过截断 $\mathbb{R}$ 到  $[-\pi /h, \pi /h]$。当 $h \rightarrow 0$，两对公式收敛。</p>
 <p>如果“半离散 Fourier 变换”这个表达式不熟悉，那可能是因为我们给一个旧概念取了一个新名字。Fourier 级数表示有界区间上的函数，它是离散波数上复指数的和，如 (2.3)。我们用半离散 Fourier 变换来强调我们在这里关心的是逆问题：空间变量是离散的，Fourier 变量是连续的，属于有界区间 。从数学上讲，这与 Fourier 级数理论没有区别，Fourier 级数在许多书中都有介绍，是数学中应用最广泛的分支之一。</p>
 <p>对于谱微分，我们需要一个插值函数，而反变换 上式 (2.4)  将给出一个插值函数。我们所要做的只是计算 $x \in \mathbb{R}$ 的相同公式，而不仅仅是 $x_j \in h\mathbb{Z}$。也就是说，在确定 $\hat{v}$ 之后，我们定义插值函数 $p$ </p>
 <script type="math/tex; mode=display">p(x)=\frac{1}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x} \hat{v}(k) d k, \quad x \in \mathbb{R}</script><p>这是一个关于 $x$ 的解析函数，并且对每个 $j$ 都有 $p(x_j)=v_j$。而且通过推导，Fourier 变换 $\hat{p}$ 通过 (2.1) 定义为</p>
@@ -461,11 +463,11 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
 <li>给定 $v$，通过 (2.5) 确定其带限插值 $p$，</li>
 <li>设 $w_{j}=p^{\prime}(x_{j})$.</li>
 </ul>
-<p>另一个是通过在 Fourier 空间中同样可以得到。如果可微函 $u$ 有 Fourier 变换 $\hat{u}$，则 $u’$ 的 Fourier 变换是 $ik\hat{u}(k)$：</p>
-<script type="math/tex; mode=display">\widehat{u}^{\prime}(k)=i k \hat{u}(k).</script><p>这个结果可以通过对 (2.2) 或 (2.5) 关于 $x$ 微分得到，因此我们有一个等价的谱微分过程：</p>
+<p>另一个在 Fourier 空间中同样可以得到。如果可微函 $u$ 有 Fourier 变换 $\hat{u}$，则 $u’$ 的 Fourier 变换是 $ik\hat{u}(k)$：</p>
+<script type="math/tex; mode=display">\widehat{u^{\prime}}(k)=i k \hat{u}(k).</script><p>这个结果可以通过对 (2.2) 或 (2.5) 关于 $x$ 微分得到，因此我们有一个等价的谱微分过程：</p>
 <ul>
 <li>给定 $v$，通过 (2.3) 计算其半离散 Fourier 变换.</li>
-<li>定义 $\hat{w}(k)=i k \hat{v}(k)$.</li>
+<li>定义 $\widehat{w}(k)=i k \hat{v}(k)$.</li>
 <li>利用 $\hat{w}$ 通过 (2.4) 计算 $w$.</li>
 </ul>
 <p>这两种谱微分的描述在数学上都是完整的，但是我们还没有导出矩阵 (1.4) 的系数，为此，我们可以使用傅里叶变换回代并对带限插值 $p(x)$ 有更全面的了解。令 $\delta$ 为克罗内克（Kronecker delta）函数，</p>
