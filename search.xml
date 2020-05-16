@@ -394,7 +394,7 @@ p=-\frac{ln(Err_1/Err_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</st
 (\rm II)\left\{\begin{aligned}
 &y_{n+1}=y_{n}+h \sum_{i=1}^{s} b_{i} f\left(x_{n}+c_{i} h, Y_{i}\right), \\
 &Y_{i}=y_{n}+h \sum_{j=1}^{s} a_{i j} f\left(x_{n}+c_{j} h, Y_{j}\right), \quad i=1,2, \ldots, s.
-\end{aligned}\right.</script><p>形式 (I) 与形式 (II) 等价，可以通过插值$ k_{i}=f\left(x_{n}+c_{i} h, Y_{i}\right), i=1,2, \dots, s$ 证明。</p>
+\end{aligned}\right.</script><p>形式 (I) 与形式 (II) 等价，可以通过插值 $ k_{i}=f\left(x_{n}+c_{i} h, Y_{i}\right), i=1,2, \dots, s$ 证明。</p>
 <h3 id="Gauss-Method-2-级-4-阶"><a href="#Gauss-Method-2-级-4-阶" class="headerlink" title="Gauss Method 2 级 4 阶"></a>Gauss Method 2 级 4 阶</h3><script type="math/tex; mode=display">
 \left\{
 \begin{aligned}
