@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="常微分方程数值解 简单的数值方法  谱方法 谱方法概述  Spectral Methods in MATLAB 笔记 SMM00 谱方法笔记 SMM01 微分矩阵 SMM02 半离散 Fourier 变换">
+  <meta name="description" content="常微分方程数值解 简单的数值方法 计算数值方法收敛阶  谱方法 谱方法概述  Spectral Methods in MATLAB 笔记 SMM00 谱方法笔记 SMM01 微分矩阵 SMM02 半离散 Fourier 变换  关于微分方程数值解 知乎: 微分方程数值方法与偏微分方程的区别   微分方程的数值方法，无论是ODE还是PDE，都是将连续的、无限未知数问题近似为离散的、有限未知数的问题求">
 <meta property="og:type" content="website">
 <meta property="og:title" content="学习笔记">
 <meta property="og:url" content="https://andy123t.github.io/notes/index.html">
 <meta property="og:site_name" content="Andy123t">
-<meta property="og:description" content="常微分方程数值解 简单的数值方法  谱方法 谱方法概述  Spectral Methods in MATLAB 笔记 SMM00 谱方法笔记 SMM01 微分矩阵 SMM02 半离散 Fourier 变换">
+<meta property="og:description" content="常微分方程数值解 简单的数值方法 计算数值方法收敛阶  谱方法 谱方法概述  Spectral Methods in MATLAB 笔记 SMM00 谱方法笔记 SMM01 微分矩阵 SMM02 半离散 Fourier 变换  关于微分方程数值解 知乎: 微分方程数值方法与偏微分方程的区别   微分方程的数值方法，无论是ODE还是PDE，都是将连续的、无限未知数问题近似为离散的、有限未知数的问题求">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-10T18:24:04.000Z">
-<meta property="article:modified_time" content="2020-05-16T09:14:20.218Z">
+<meta property="article:modified_time" content="2020-05-16T12:08:10.249Z">
 <meta property="article:author" content="Andy Tian">
 <meta name="twitter:card" content="summary">
 
@@ -219,6 +219,7 @@
       <div class="post-body">
           <h3 id="常微分方程数值解"><a href="#常微分方程数值解" class="headerlink" title="常微分方程数值解"></a>常微分方程数值解</h3><ul>
 <li><a href="https://andy123t.github.io/2020/05/16/ODE01">简单的数值方法</a></li>
+<li><a href="https://andy123t.github.io/2020/05/16/ODE02">计算数值方法收敛阶</a></li>
 </ul>
 <h3 id="谱方法"><a href="#谱方法" class="headerlink" title="谱方法"></a>谱方法</h3><ul>
 <li><a href="https://andy123t.github.io/2020/05/10/SM00">谱方法概述</a></li>
@@ -228,6 +229,12 @@
 <li><a href="https://andy123t.github.io/2020/05/12/SMM01/">SMM01 微分矩阵</a></li>
 <li><a href="https://andy123t.github.io/2020/05/15/SMM02/">SMM02 半离散 Fourier 变换</a></li>
 </ul>
+<h3 id="关于微分方程数值解"><a href="#关于微分方程数值解" class="headerlink" title="关于微分方程数值解"></a>关于微分方程数值解</h3><ul>
+<li><a href="https://www.zhihu.com/question/56820475/answer/154630733" target="_blank" rel="noopener">知乎: 微分方程数值方法与偏微分方程的区别</a></li>
+</ul>
+<blockquote>
+<p>微分方程的数值方法，无论是ODE还是PDE，都是将连续的、无限未知数问题近似为离散的、有限未知数的问题求解。从经典数值分析的角度，通常会关心下面一些问题：相容性、稳定性、收敛性、收敛阶、计算量等等。相容性是指格式在局部是不是做出了正确的近似；稳定性是说局部的近似误差会不会随着计算而积累放大；收敛性是说当离散尺度无穷小的时候数值解是否会趋向于真实解；收敛阶则刻画了收敛的速度，高阶的格式可以用较大的离散尺度获得较好的数值结果，但是代价通常是单步下稍多的计算量。因此数值方法的最终表现需要在误差和计算量之间找到一个平衡。</p>
+</blockquote>
 
       </div>
       
@@ -289,7 +296,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常微分方程数值解"><span class="nav-number">1.</span> <span class="nav-text">常微分方程数值解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谱方法"><span class="nav-number">2.</span> <span class="nav-text">谱方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spectral-Methods-in-MATLAB-笔记"><span class="nav-number">3.</span> <span class="nav-text">Spectral Methods in MATLAB 笔记</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常微分方程数值解"><span class="nav-number">1.</span> <span class="nav-text">常微分方程数值解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谱方法"><span class="nav-number">2.</span> <span class="nav-text">谱方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spectral-Methods-in-MATLAB-笔记"><span class="nav-number">3.</span> <span class="nav-text">Spectral Methods in MATLAB 笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于微分方程数值解"><span class="nav-number">4.</span> <span class="nav-text">关于微分方程数值解</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -305,7 +312,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -318,7 +325,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
