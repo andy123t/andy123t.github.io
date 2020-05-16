@@ -157,7 +157,7 @@
   <entry>
     <title>简单的数值方法</title>
     <url>/2020/05/16/ODE01/</url>
-    <content><![CDATA[<p>本文列举了简单的数值方法：Euler方法、后退 Euler 方法、梯形公式、改进 Euler 方法，并用 MATLAB 求解，展示了相应结果。</p>
+    <content><![CDATA[<p>本文列举了简单的数值方法：Euler方法、后退 Euler 方法、梯形公式、改进 Euler 方法，并用 MATLAB 求解线性 ODE，展示了结果。</p>
 <h3 id="常微分方程初值问题"><a href="#常微分方程初值问题" class="headerlink" title="常微分方程初值问题"></a>常微分方程初值问题</h3><p>考虑 常微分方程初值问题，设 $f(t,u)$ 在区域 $\rm G$ : $0\leqslant t \leqslant T$, $|u|&lt; \infty$ 上连续，求 $u=u(t)$ 满足：</p>
 <script type="math/tex; mode=display">
 \left\{\begin{aligned}
