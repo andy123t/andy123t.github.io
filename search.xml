@@ -401,7 +401,8 @@ p=-\frac{ln(Err_1/Err_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</st
 &y_{n+1}=y_{n}+h \sum_{i=1}^{2} b_{i} f\left(x_{n}+c_{i} h, Y_{i}\right), \\
 &Y_{1}=y_{n}+h \sum_{j=1}^{2} a_{1 j} f\left(x_{n}+c_{j} h, Y_{j}\right), \\
 &Y_{2}=y_{n}+h \sum_{j=1}^{2} a_{2 j} f\left(x_{n}+c_{j} h, Y_{j}\right),
-\end{aligned}\right.</script><script type="math/tex; mode=display">
+\end{aligned}\right.</script><p>对应的 Butcher 阵：</p>
+<script type="math/tex; mode=display">
 \begin{array}{c|cc}
 \frac{1}{2}-\frac{\sqrt{3}}{6} & \frac{1}{4} & \frac{1}{4}-\frac{\sqrt{3}}{6}  \\
 \frac{1}{2}+\frac{\sqrt{3}}{6} & \frac{1}{4}+\frac{\sqrt{3}}{6} & \frac{1}{4} \\
