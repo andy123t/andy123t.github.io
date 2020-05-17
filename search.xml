@@ -295,11 +295,11 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
 <script type="math/tex; mode=display">
 E=C h^{p}.</script><p>两边都取对数</p>
 <script type="math/tex; mode=display">
-ln(Err)=p*ln(h)+C.</script><p>$p$ 为 $ln(Err)$ 关于 $ln(h)$ 的斜率</p>
+ln(E)=p*ln(h)+C.</script><p>$p$ 为 $ln(E)$ 关于 $ln(h)$ 的斜率</p>
 <script type="math/tex; mode=display">
-p=\frac{\Delta Err}{\Delta h}=\frac{ln(Err_1)-(Err_2)}{ln(h_1)-ln(h_2)}=\frac{ln(Err_1/Err_2)}{ln(h_1/h_2)}.</script><p>如果函数区间为 $[a,b]$，等距剖分为 $N$ 等份，$h=\frac{b-a}{N}$，则</p>
+p=\frac{\Delta Err}{\Delta h}=\frac{ln(E_1)-(E_2)}{ln(h_1)-ln(h_2)}=\frac{ln(E_1/E_2)}{ln(h_1/h_2)}.</script><p>如果函数区间为 $[a,b]$，等距剖分为 $N$ 等份，$h=\frac{b-a}{N}$，则</p>
 <script type="math/tex; mode=display">
-p=-\frac{ln(Err_1/Err_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</strong></p>
+p=-\frac{ln(E_1/E_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</strong></p>
 <script type="math/tex; mode=display">
 \left\{\begin{aligned}
 &\frac{du}{dt}=t^2+t-u ,\quad t \in [0,1] , \\

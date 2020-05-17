@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/05/16/WHcZyb9K3oxLBiQ.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/16/PxO3U6Jfjzq4BdW.png">
 <meta property="article:published_time" content="2020-05-16T06:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-16T14:49:34.963Z">
+<meta property="article:modified_time" content="2020-05-17T02:45:25.943Z">
 <meta property="article:author" content="Andy Tian">
 <meta property="article:tag" content="ODE">
 <meta property="article:tag" content="MATLAB">
@@ -227,10 +227,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-05-16 14:00:00 / Modified: 22:49:34" itemprop="dateCreated datePublished" datetime="2020-05-16T14:00:00+08:00">2020-05-16</time>
+              <time title="Created: 2020-05-16 14:00:00" itemprop="dateCreated datePublished" datetime="2020-05-16T14:00:00+08:00">2020-05-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-17 10:45:25" itemprop="dateModified" datetime="2020-05-17T10:45:25+08:00">2020-05-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -273,11 +279,11 @@
 <script type="math/tex; mode=display">
 E=C h^{p}.</script><p>两边都取对数</p>
 <script type="math/tex; mode=display">
-ln(Err)=p*ln(h)+C.</script><p>$p$ 为 $ln(Err)$ 关于 $ln(h)$ 的斜率</p>
+ln(E)=p*ln(h)+C.</script><p>$p$ 为 $ln(E)$ 关于 $ln(h)$ 的斜率</p>
 <script type="math/tex; mode=display">
-p=\frac{\Delta Err}{\Delta h}=\frac{ln(Err_1)-(Err_2)}{ln(h_1)-ln(h_2)}=\frac{ln(Err_1/Err_2)}{ln(h_1/h_2)}.</script><p>如果函数区间为 $[a,b]$，等距剖分为 $N$ 等份，$h=\frac{b-a}{N}$，则</p>
+p=\frac{\Delta Err}{\Delta h}=\frac{ln(E_1)-(E_2)}{ln(h_1)-ln(h_2)}=\frac{ln(E_1/E_2)}{ln(h_1/h_2)}.</script><p>如果函数区间为 $[a,b]$，等距剖分为 $N$ 等份，$h=\frac{b-a}{N}$，则</p>
 <script type="math/tex; mode=display">
-p=-\frac{ln(Err_1/Err_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</strong></p>
+p=-\frac{ln(E_1/E_2)}{ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</strong></p>
 <script type="math/tex; mode=display">
 \left\{\begin{aligned}
 &\frac{du}{dt}=t^2+t-u ,\quad t \in [0,1] , \\
