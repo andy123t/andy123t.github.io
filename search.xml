@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>傍晚的美景</title>
-    <url>/2020/05/11/HomeScenery/</url>
-    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
-<p>走出村庄的路上</p>
-<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
+    <title>Git 入门</title>
+    <url>/2020/05/09/Git-Start/</url>
+    <content><![CDATA[<h3 id="Git-下载安装"><a href="#Git-下载安装" class="headerlink" title="Git 下载安装"></a>Git 下载安装</h3><p>Git 下载地址： <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
+<p>安装完成后，在开始菜单里找到 <strong>Git —&gt; Git Bash</strong>，点击后出现一个类似命令行窗口的东西，就说明 Git 安装成功。在电脑桌面或某个文件夹，鼠标右键可以启动 <strong>Git Bash</strong>。</p>
+<h3 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h3><p>可以保存 Git 用户名和电子邮件，这样就不必在以后的 Git 命令中再次输入它们。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"name"</span>  </span><br><span class="line">$ git config --global user.email <span class="string">"email@163.com"</span></span><br></pre></td></tr></table></figure>
+<p>已经注册 Github 可以用 Github 用户名和邮箱。</p>
 <a id="more"></a>
-<p>远处是风力发达机，还有漂亮的晚霞！</p>
-<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
-<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
+<h3 id="Git-使用流程"><a href="#Git-使用流程" class="headerlink" title="Git 使用流程"></a>Git 使用流程</h3><h4 id="Git-初始化"><a href="#Git-初始化" class="headerlink" title="Git 初始化"></a>Git 初始化</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir demo     <span class="comment"># 创建文件夹</span></span><br><span class="line">$ <span class="built_in">pwd</span>            <span class="comment"># 命令用于显示工作目录</span></span><br><span class="line">$ <span class="built_in">cd</span> demo        <span class="comment"># 进入文件夹 demo 目录</span></span><br><span class="line">$ git init       <span class="comment"># 初始化 Git</span></span><br></pre></td></tr></table></figure>
+<h4 id="Git-工作区域"><a href="#Git-工作区域" class="headerlink" title="Git 工作区域"></a>Git 工作区域</h4><ol>
+<li>Git Repository（Git 仓库）：最终确定的文件保存到仓库，成为一个新的版本，并对他人可见</li>
+<li>暂存区：暂存已经修改的文件最后统一提交到 Git 仓库中</li>
+<li>工作区（Working Directory）：添加、编辑、修改文件等动作</li>
+</ol>
+<h4 id="Git-使用命令"><a href="#Git-使用命令" class="headerlink" title="Git 使用命令"></a>Git 使用命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status      <span class="comment"># 查看当前状态</span></span><br><span class="line">$ touch test.m    <span class="comment"># 创建空文件</span></span><br><span class="line">$ git add test.m  <span class="comment"># 添加到暂停区</span></span><br><span class="line">$ git add .       <span class="comment"># 添加所有更改文件到暂停区</span></span><br><span class="line">$ git commit -m <span class="string">'提交描述'</span></span><br></pre></td></tr></table></figure>
+<p>创建、编辑、拷贝、删除文件可以通过 Windows 基本操作，不一定非要用 Git 命令。</p>
+<h4 id="Github-远程备份"><a href="#Github-远程备份" class="headerlink" title="Github 远程备份"></a>Github 远程备份</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin \</span><br><span class="line">$ https://github.com/name/repo.git</span><br><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<h4 id="Git-克隆操作"><a href="#Git-克隆操作" class="headerlink" title="Git 克隆操作"></a>Git 克隆操作</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --list   <span class="comment"># 查看账户配置等信息</span></span><br><span class="line">$ git <span class="built_in">clone</span> 仓库地址 </span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/andy123t/TeXCode.git</span><br></pre></td></tr></table></figure>
+<p>因为网络原因 clone 可能会失败，下载最近一次的版本或许可以<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://github.com/repository.git --depth 1</span><br><span class="line">$ git fetch --unshallow  <span class="comment"># 获取完整历史信息</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Github-克隆修改并上传的流程-（总结）"><a href="#Github-克隆修改并上传的流程-（总结）" class="headerlink" title="Github 克隆修改并上传的流程 （总结）"></a>Github 克隆修改并上传的流程 （总结）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://github.com/.../repository.git  <span class="comment"># 或者</span></span><br><span class="line">$ git <span class="built_in">clone</span> http://github.com/.../repository.git --depth 1</span><br><span class="line"><span class="comment"># 添加编辑修改之后</span></span><br><span class="line">$ git status</span><br><span class="line">$ git add test.m  <span class="comment"># 或者</span></span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">'提交描述'</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li>编程大神廖雪峰 <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">Git 教程</a></li>
+<li>B 站视频 <a href="https://www.bilibili.com/video/BV1Xx411m7kn" target="_blank" rel="noopener">链接</a>，讲的有点慢，可以倍速，但是讲的很细。</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Life</category>
+        <category>Computer Skills</category>
       </categories>
       <tags>
-        <tag>Scenery</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -51,36 +66,21 @@
       </tags>
   </entry>
   <entry>
-    <title>Git 入门</title>
-    <url>/2020/05/09/Git-Start/</url>
-    <content><![CDATA[<h3 id="Git-下载安装"><a href="#Git-下载安装" class="headerlink" title="Git 下载安装"></a>Git 下载安装</h3><p>Git 下载地址： <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
-<p>安装完成后，在开始菜单里找到 <strong>Git —&gt; Git Bash</strong>，点击后出现一个类似命令行窗口的东西，就说明 Git 安装成功。在电脑桌面或某个文件夹，鼠标右键可以启动 <strong>Git Bash</strong>。</p>
-<h3 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h3><p>可以保存 Git 用户名和电子邮件，这样就不必在以后的 Git 命令中再次输入它们。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"name"</span>  </span><br><span class="line">$ git config --global user.email <span class="string">"email@163.com"</span></span><br></pre></td></tr></table></figure>
-<p>已经注册 Github 可以用 Github 用户名和邮箱。</p>
+    <title>傍晚的美景</title>
+    <url>/2020/05/11/HomeScenery/</url>
+    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
+<p>走出村庄的路上</p>
+<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
 <a id="more"></a>
-<h3 id="Git-使用流程"><a href="#Git-使用流程" class="headerlink" title="Git 使用流程"></a>Git 使用流程</h3><h4 id="Git-初始化"><a href="#Git-初始化" class="headerlink" title="Git 初始化"></a>Git 初始化</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir demo     <span class="comment"># 创建文件夹</span></span><br><span class="line">$ <span class="built_in">pwd</span>            <span class="comment"># 命令用于显示工作目录</span></span><br><span class="line">$ <span class="built_in">cd</span> demo        <span class="comment"># 进入文件夹 demo 目录</span></span><br><span class="line">$ git init       <span class="comment"># 初始化 Git</span></span><br></pre></td></tr></table></figure>
-<h4 id="Git-工作区域"><a href="#Git-工作区域" class="headerlink" title="Git 工作区域"></a>Git 工作区域</h4><ol>
-<li>Git Repository（Git 仓库）：最终确定的文件保存到仓库，成为一个新的版本，并对他人可见</li>
-<li>暂存区：暂存已经修改的文件最后统一提交到 Git 仓库中</li>
-<li>工作区（Working Directory）：添加、编辑、修改文件等动作</li>
-</ol>
-<h4 id="Git-使用命令"><a href="#Git-使用命令" class="headerlink" title="Git 使用命令"></a>Git 使用命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status      <span class="comment"># 查看当前状态</span></span><br><span class="line">$ touch test.m    <span class="comment"># 创建空文件</span></span><br><span class="line">$ git add test.m  <span class="comment"># 添加到暂停区</span></span><br><span class="line">$ git add .       <span class="comment"># 添加所有更改文件到暂停区</span></span><br><span class="line">$ git commit -m <span class="string">'提交描述'</span></span><br></pre></td></tr></table></figure>
-<p>创建、编辑、拷贝、删除文件可以通过 Windows 基本操作，不一定非要用 Git 命令。</p>
-<h4 id="Github-远程备份"><a href="#Github-远程备份" class="headerlink" title="Github 远程备份"></a>Github 远程备份</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin \</span><br><span class="line">$ https://github.com/name/repo.git</span><br><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="Git-克隆操作"><a href="#Git-克隆操作" class="headerlink" title="Git 克隆操作"></a>Git 克隆操作</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --list   <span class="comment"># 查看账户配置等信息</span></span><br><span class="line">$ git <span class="built_in">clone</span> 仓库地址 </span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/andy123t/TeXCode.git</span><br></pre></td></tr></table></figure>
-<p>因为网络原因 clone 可能会失败，下载最近一次的版本或许可以<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://github.com/repository.git --depth 1</span><br><span class="line">$ git fetch --unshallow  <span class="comment"># 获取完整历史信息</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="Github-克隆修改并上传的流程-（总结）"><a href="#Github-克隆修改并上传的流程-（总结）" class="headerlink" title="Github 克隆修改并上传的流程 （总结）"></a>Github 克隆修改并上传的流程 （总结）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://github.com/.../repository.git  <span class="comment"># 或者</span></span><br><span class="line">$ git <span class="built_in">clone</span> http://github.com/.../repository.git --depth 1</span><br><span class="line"><span class="comment"># 添加编辑修改之后</span></span><br><span class="line">$ git status</span><br><span class="line">$ git add test.m  <span class="comment"># 或者</span></span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">'提交描述'</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li>编程大神廖雪峰 <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">Git 教程</a></li>
-<li>B 站视频 <a href="https://www.bilibili.com/video/BV1Xx411m7kn" target="_blank" rel="noopener">链接</a>，讲的有点慢，可以倍速，但是讲的很细。</li>
-</ul>
+<p>远处是风力发达机，还有漂亮的晚霞！</p>
+<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
+<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
 ]]></content>
       <categories>
-        <category>Computer Skills</category>
+        <category>Life</category>
       </categories>
       <tags>
-        <tag>Git</tag>
+        <tag>Scenery</tag>
       </tags>
   </entry>
   <entry>
@@ -286,45 +286,6 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
         <tag>Github</tag>
         <tag>Next</tag>
         <tag>Mathjax</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>经典四阶 Runge-Kutta 方法</title>
-    <url>/2020/05/16/ODE03/</url>
-    <content><![CDATA[<p>本文介绍如何计算经典四阶 Runge-Kutta 数值解及其收敛阶，并用 MATLAB 编程，最后展示了输出结果。</p>
-<h3 id="经典四阶-Runge-Kutta-方法"><a href="#经典四阶-Runge-Kutta-方法" class="headerlink" title="经典四阶 Runge-Kutta 方法"></a>经典四阶 Runge-Kutta 方法</h3><script type="math/tex; mode=display">
-\left\{
-  \begin{aligned}
-  &u_{n+1}=u_{n}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right), \\
-  &k_{1} =f\left(t_{n}, u_{n}\right), \\
-  &k_{2} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{1}\right), \\
-  &k_{3} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{2}\right), \\
-  &k_{4} =f\left(t_{n}+h, u_{n}+k_{3}\right).
-  \end{aligned}
-  \right.</script><a id="more"></a>
-<p><strong>线性 ODE 例子</strong></p>
-<script type="math/tex; mode=display">
-\left\{\begin{aligned}
-&\frac{du}{dt}=t^2+t-u ,\quad t \in [0,1] , \\
-&u(0)=0.
-\end{aligned} \right.</script><p>方程的真解：$u(x)=−e^{−t}+t^2−t+1$.</p>
-<h3 id="计算数值解"><a href="#计算数值解" class="headerlink" title="计算数值解"></a>计算数值解</h3><p><strong>MATLAB 程序</strong></p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% RungeKutta.m</span></span><br><span class="line"><span class="comment">% Runge-Kutta method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(x)=x^2+x-u, x in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(x)=-exp(-x)+x^2-x+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">h=<span class="number">0.1</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;                     <span class="comment">% function interval</span></span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">0</span>;                      <span class="comment">% initial value</span></span><br><span class="line">fun=@(x,u) x.^<span class="number">2</span>+x-u;         <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    k1=fun(x(n),u(n));</span><br><span class="line">    k2=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k1/<span class="number">2</span>);</span><br><span class="line">    k3=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k2/<span class="number">2</span>);</span><br><span class="line">    k4=fun(x(n)+h,u(n)+h.*k3);</span><br><span class="line">    u(n+<span class="number">1</span>)=u(n)+h.*(k1+<span class="number">2.</span>*k2+<span class="number">2.</span>*k3+k4)./<span class="number">6</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;        <span class="comment">% exact solution</span></span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact'</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'North'</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact '</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'North'</span>)</span><br><span class="line"><span class="comment">% title('Runge-Kutta Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'x'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  RungeKutta.png</span></span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<p><img src="https://i.loli.net/2020/05/16/Q2Ff14ljO8WAh6c.png" alt="RungeKutta.png"></p>
-<h3 id="计算误差阶"><a href="#计算误差阶" class="headerlink" title="计算误差阶"></a>计算误差阶</h3><p><strong>MATLAB 程序</strong></p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% RungeKutta_error.m</span></span><br><span class="line"><span class="comment">% Runge-Kutta method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(t)=t^2+t-u, t \in [0,2] </span></span><br><span class="line"><span class="comment">% Initial value : u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution : u(t)=-exp(-t)+t^2-t+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];        <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line">fun=@(t,u) t.^<span class="number">2</span>+t-u;              <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;                      <span class="comment">% function interval</span></span><br><span class="line">    u(<span class="number">1</span>)=<span class="number">0</span>;                       <span class="comment">% initial value</span></span><br><span class="line">    <span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">        k1=fun(x(n),u(n));</span><br><span class="line">        k2=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k1/<span class="number">2</span>);</span><br><span class="line">        k3=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k2/<span class="number">2</span>);</span><br><span class="line">        k4=fun(x(n)+h,u(n)+h.*k3);</span><br><span class="line">        u(n+<span class="number">1</span>)=u(n)+h.*(k1+<span class="number">2.</span>*k2+<span class="number">2.</span>*k3+k4)./<span class="number">6</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;         <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-4</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Convergence of Runge-Kutta Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  RungeKutta_error.png</span></span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    1.0e-05 *</span><br><span class="line">        0.1051    0.0002    0.0000    0.0000    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    4.0193    4.0057    4.0025    3.9532</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2020/05/16/XPF63lsINM5ephQ.png" alt="RungeKutta_error.png"></p>
-]]></content>
-      <categories>
-        <category>Numerical ODEs</category>
-      </categories>
-      <tags>
-        <tag>ODE</tag>
-        <tag>MATLAB</tag>
-        <tag>Runge-Kutta</tag>
       </tags>
   </entry>
   <entry>
@@ -557,6 +518,80 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       </tags>
   </entry>
   <entry>
+    <title>经典四阶 Runge-Kutta 方法</title>
+    <url>/2020/05/16/ODE03/</url>
+    <content><![CDATA[<p>本文介绍如何计算经典四阶 Runge-Kutta 数值解及其收敛阶，并用 MATLAB 编程，最后展示了输出结果。</p>
+<h3 id="经典四阶-Runge-Kutta-方法"><a href="#经典四阶-Runge-Kutta-方法" class="headerlink" title="经典四阶 Runge-Kutta 方法"></a>经典四阶 Runge-Kutta 方法</h3><script type="math/tex; mode=display">
+\left\{
+  \begin{aligned}
+  &u_{n+1}=u_{n}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right), \\
+  &k_{1} =f\left(t_{n}, u_{n}\right), \\
+  &k_{2} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{1}\right), \\
+  &k_{3} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{2}\right), \\
+  &k_{4} =f\left(t_{n}+h, u_{n}+k_{3}\right).
+  \end{aligned}
+  \right.</script><a id="more"></a>
+<p><strong>线性 ODE 例子</strong></p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}
+&\frac{du}{dt}=t^2+t-u ,\quad t \in [0,1] , \\
+&u(0)=0.
+\end{aligned} \right.</script><p>方程的真解：$u(x)=−e^{−t}+t^2−t+1$.</p>
+<h3 id="计算数值解"><a href="#计算数值解" class="headerlink" title="计算数值解"></a>计算数值解</h3><p><strong>MATLAB 程序</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% RungeKutta.m</span></span><br><span class="line"><span class="comment">% Runge-Kutta method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(x)=x^2+x-u, x in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(x)=-exp(-x)+x^2-x+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">h=<span class="number">0.1</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;                     <span class="comment">% function interval</span></span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">0</span>;                      <span class="comment">% initial value</span></span><br><span class="line">fun=@(x,u) x.^<span class="number">2</span>+x-u;         <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    k1=fun(x(n),u(n));</span><br><span class="line">    k2=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k1/<span class="number">2</span>);</span><br><span class="line">    k3=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k2/<span class="number">2</span>);</span><br><span class="line">    k4=fun(x(n)+h,u(n)+h.*k3);</span><br><span class="line">    u(n+<span class="number">1</span>)=u(n)+h.*(k1+<span class="number">2.</span>*k2+<span class="number">2.</span>*k3+k4)./<span class="number">6</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;        <span class="comment">% exact solution</span></span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact'</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'North'</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact '</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'North'</span>)</span><br><span class="line"><span class="comment">% title('Runge-Kutta Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'x'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  RungeKutta.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<p><img src="https://i.loli.net/2020/05/16/Q2Ff14ljO8WAh6c.png" alt="RungeKutta.png"></p>
+<h3 id="计算误差阶"><a href="#计算误差阶" class="headerlink" title="计算误差阶"></a>计算误差阶</h3><p><strong>MATLAB 程序</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% RungeKutta_error.m</span></span><br><span class="line"><span class="comment">% Runge-Kutta method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(t)=t^2+t-u, t \in [0,2] </span></span><br><span class="line"><span class="comment">% Initial value : u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution : u(t)=-exp(-t)+t^2-t+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];        <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line">fun=@(t,u) t.^<span class="number">2</span>+t-u;              <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;                      <span class="comment">% function interval</span></span><br><span class="line">    u(<span class="number">1</span>)=<span class="number">0</span>;                       <span class="comment">% initial value</span></span><br><span class="line">    <span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">        k1=fun(x(n),u(n));</span><br><span class="line">        k2=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k1/<span class="number">2</span>);</span><br><span class="line">        k3=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k2/<span class="number">2</span>);</span><br><span class="line">        k4=fun(x(n)+h,u(n)+h.*k3);</span><br><span class="line">        u(n+<span class="number">1</span>)=u(n)+h.*(k1+<span class="number">2.</span>*k2+<span class="number">2.</span>*k3+k4)./<span class="number">6</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;         <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-4</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Convergence of Runge-Kutta Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  RungeKutta_error.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    1.0e-05 *</span><br><span class="line">        0.1051    0.0002    0.0000    0.0000    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    4.0193    4.0057    4.0025    3.9532</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/16/XPF63lsINM5ephQ.png" alt="RungeKutta_error.png"></p>
+]]></content>
+      <categories>
+        <category>Numerical ODEs</category>
+      </categories>
+      <tags>
+        <tag>ODE</tag>
+        <tag>MATLAB</tag>
+        <tag>Runge-Kutta</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SMM00 谱方法笔记</title>
+    <url>/2020/05/10/SMM00/</url>
+    <content><![CDATA[<p>这是学习书籍 <strong>Spectral Method in MATLAB</strong> (Lloyd N. Trefethen) 的笔记，因为书是英文的，笔记就成了翻译。很多地方翻译的比较粗糙，能够理解并学到知识才是最重要的。</p>
+<p>Nick Trefethen <a href="http://people.maths.ox.ac.uk/trefethen/" target="_blank" rel="noopener">Homepage</a></p>
+<p>这只是一个开始，后期我会<strong>更新</strong>学习本书的笔记！</p>
+<h3 id="关于本书"><a href="#关于本书" class="headerlink" title="关于本书"></a>关于本书</h3><p>这本书有四十个简短的MATLAB程序，这些程序可以在用于求解与流体力学、量子力学、振动、线性和非线性波、复分析等领域有关的各种常微分方程和偏微分方程( ODE 和 PDE )。书的前六章侧重于理论，第七章以后更侧重于编程应用。学习这本书，需要对数值分析，微分方程有一定的了解，并且熟悉 MATLAB。</p>
+<p>如果你喜欢计算和数字数学，你会喜欢阅读这本书，可以学到一些新的 MATLAB 技巧！</p>
+<a id="more"></a>
+<p>谱方法是数值求解 PDEs 的三大方法之一，它们大致在连续几十年的逐渐发展起来：</p>
+<ul>
+<li>20 世纪 50 年代：有限差分法</li>
+<li>20 世纪 60 年代：有限元法</li>
+<li>20 世纪 70 年代：谱方法</li>
+</ul>
+<p>当然，每种方法的起源都可以追溯到更早的时候。 对于谱方法来说，一些思想和插值和函数展开一样古老，更具体地说，算法的发展最早是在1938年由Lanczos [Lan38, Lan56] 和 1960 年代的 Clenshaw，Elliott，Fox 等 [FoPa68] 提出的。 然后，在20世纪70年代，由 Orszag 等人在流体动力学和气象学问题上的工作引发了这一领域的变革，谱方法也因此而闻名。<br>早期现代谱方法文献的三个里程碑是：Gottlieb 和 Orszag的短书[GoOr77]，Gottlieb，Hussaini 和 Orszag 的研究 [CHO84] 和Canuto，Hussaini，Quarteroni 和 Zang 的专著 [ChQZ88]。 此后，Mercier [Mer89]，Boyd [Boy00]（1989年第一版），Funaro [Fun92]，Bernardi 和 Maday [BeMa92]，Fornberg [For96] 以及 Karniadakis 和 Sherwin [KaSh99] 也贡献了其他书籍。</p>
+<p>如果要在一个简单的区域上高精度地求解 ODE 或 PDE，并且如果定义该问题的函数是平滑的，那么谱方法通常是最好的工具。它们通常可以达到十位数的精度，而有限差分法或有限元法可以达到两三位数。在精度较低的情况下，它们需要的计算机内存比其他替代方案要小。</p>
+<p>这本短小的书介绍了谱方法的一些基本思想和技术。它的目标人群是学过数值分析课程，并熟悉基本的应用程序设计和偏微分方程。你会发现，在计算机的几秒钟内，用几行 MATLAB 代码就可以高精度地解决一系列显著的问题。<strong>写程序应当有一种玩的心态，最后让它们成为你自己的！</strong></p>
+<p>我想强调这里提出的三个数学主题，虽然专家们都知道，但通常在教科书中找不到。在第四章中，第一个是函数的光滑性与其傅里叶变换衰减之间的关系，后者决定了离散化引入的混叠误差的大小；这些关系解释了谱方法的精度如何取决于被逼近函数的光滑性。第二，在第五章中，多项式的根和平面上的点电荷之间的类比，这导致了一个关于非周期谱方法的网格为什么需要在边界处聚集的势理论的扩展。第三，在第八章中，$[-1,1]$上的切比雪夫级数 、$[\pi,\pi]$ 上的三角级数与单位圆上的洛朗级数这三种方法，构成了快速傅里叶变换计算切比雪夫谱导数技术的基础。这三个主题本身都是非常的数学研究主题，对任何应用数学家来说都是值得学习的。</p>
+<p>不可避免地，这本书只涉及谱方法的一部分。它强调在周期网格和切比雪夫网格上的配置（拟谱）方法，而对同样重要的 Galerkin 方法、勒让德网格和多项式几乎没有涉及。理论分析是非常有限的，强调简单几何的简单工具，而不是工业强度、谱元方法和 $hp$ 有限元，在后面给出了一些其他的主题和观点。</p>
+<p>MATLAB的发展开创了科学计算的新纪元。现在，人们可以以非常简洁的方式，完整详细地介绍高级数值算法和非平凡问题的解决方案，在几页中介绍更多的应用数学，几年前是不可想象的。MATLAB 语言有时（不总是！）与 Fortran 或 C 等低级语言相比，牺牲了机器效率这一个特定因素，但是提高了人的编程效率，即修改程序并应用于新的问题，再去尝试新的问题，这比以往更加容易。这本短书鼓励学生、科学家和工程师学会这种新的计算方法。</p>
+<h3 id="关于程序"><a href="#关于程序" class="headerlink" title="关于程序"></a>关于程序</h3><p>本书中的 MATLAB 程序很简洁。 每一个程序容纳在一页上，并且在几英寸的计算机代码中进行计算！程序非常简洁、紧凑，对紧凑性的痴迷有时会损害可读性。 例如，在单个程序行上集合了两个或三个简短的 MATLAB 命令。 </p>
+<p>本书中编程风格的另一个特点是结构扁平化，除了在其中定义的关键函数cheb之外，程序中几乎不使用函数（chebfft、clencurt和gauss这三个函数在第8章和第12章，但每一章都只是局部使用。这种风格的优点是强调可以实现的紧凑程度，但是作为一般规则，MATLAB程序员应该经常使用函数）。</p>
+<p>书中可能写了很多东西去解释程序的细节或技巧。为了使讨论集中在谱方法上，尽量不去提到 MATLAB 的细节，除非在极少数情况下不得不这么做。这意味着当你使用这本书时，你将不得不学习程序，而不仅仅是阅读它们。<strong>只有你花时间学习这些代码，并修改它们来解决你自己的问题之后，你才能真正理解这些问题的答案</strong>。我想这是使用这本书的乐趣之一，希望你能同意。</p>
+<p>本书的程序是用 MATLAB 5.3 编写运行的，随着以后几年中更高版本的发布，这些程序的运行可能会出现一些困难。 若要从头开始学习 MATLAB，或者作为参考，推荐 SIAM 的书籍 MATLAB Guide。</p>
+<p><strong>注：</strong> 我用的 MATLAB 版本是 MATLAB 2019a (v9.6)，画出的图和早期版本是有些不一样的，应该是更美观了吧。</p>
+]]></content>
+      <categories>
+        <category>Spectral Methods</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+        <tag>Spectral Method</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SMM02 半离散 Fourier 变换</title>
     <url>/2020/05/15/SMM02/</url>
     <content><![CDATA[<p>本文是书籍 <strong>Spectral Method in MATLAB</strong> 第二章 <strong>Unbounded Grids: the Semidiscrete Fourier Transform 无界网格：半离散 Fourier 变换</strong> 笔记。</p>
@@ -736,28 +771,34 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       </tags>
   </entry>
   <entry>
-    <title>第一篇博客文章</title>
-    <url>/2020/04/27/helloworld/</url>
-    <content><![CDATA[<p>这是我的第一篇博客文章，博客是用 Hexo 搭建的。</p>
-<p>开博客是为了记录一些东西，大致包括以下内容：</p>
-<ul>
-<li>学习技术的经验；</li>
-<li>专业学习的笔记；</li>
-<li>生活中的想法；</li>
-<li>读书的笔记或感想。</li>
-</ul>
+    <title>西游十问</title>
+    <url>/2020/05/14/XY10q/</url>
+    <content><![CDATA[<p>看过很多关于西游记的影视剧，但《西游记》书和影视剧有很大的不同，最直观的感受就是“真实”。在本科时期，讲明清小说的毛黎老师让我开始了解真实的西游记。虽然它是现实的，残酷的，我仍然愿意去了解它，因为现实就是残酷的。</p>
+<p>我以问题的形式梳理了我的所听所记所想！</p>
+<h3 id="一-《西游记》的主角是谁？"><a href="#一-《西游记》的主角是谁？" class="headerlink" title="一.《西游记》的主角是谁？"></a>一.《西游记》的主角是谁？</h3><p>孙悟空。有人认为是唐僧，比较一下两个人物就行了。小说的开头重笔墨演绎了猴王的出世和成长（出世、学艺、闹天宫、保唐僧），并且在唐僧取经的路上，所有故事中都已悟空历尽艰辛斩妖除魔的过程为主要情节。所以说唐僧取经只是故事的线索，小说要以唐僧取经始，并以唐僧取经收，但是真正的主人公是孙悟空。</p>
+<a id="more"></a>
+<h3 id="二-取经时孙悟空有多大？"><a href="#二-取经时孙悟空有多大？" class="headerlink" title="二. 取经时孙悟空有多大？"></a>二. 取经时孙悟空有多大？</h3><p>这要看怎么算，可以分为“虚岁”（神数）与“实岁”（人数）。所谓“天上一天，地下一年”。对于“虚岁”，花果山 342 年，弼马温 15 年，齐天大圣 184 年，八卦炉 49 年，五行山实际 630 年，西天取经 14 年，一共 1234 年，也就是孙悟空 1234 岁。对于“实岁”，取经前可以用章回计算，大闹天空 7 年，五行山下 7 年，取经 14 年，一共 28 年，也就说取经时孙悟空 28 岁。</p>
+<h3 id="三-菩提老祖到底是谁？"><a href="#三-菩提老祖到底是谁？" class="headerlink" title="三. 菩提老祖到底是谁？"></a>三. 菩提老祖到底是谁？</h3><p>菩提老祖就是如来佛祖。西牛贺洲可是如来的地界，怎么可能允许道教在这发展壮大。菩提老祖的住处为 “灵台方寸山，斜月三星洞。”这句话是有很深的含义的，“灵台方寸山”取这句话的首尾两字就是灵山；“斜月三星” 指的是天上之物，暗指“天空”，这句话合起来就是天上灵山。还有一点，菩提老祖和孙悟空的暗语“六耳”，如来怎么知道呢？只有一个解释，菩提祖师就是如来佛祖。</p>
+<h3 id="四-取经还是传经？"><a href="#四-取经还是传经？" class="headerlink" title="四. 取经还是传经？"></a>四. 取经还是传经？</h3><p>佛祖在灵山参悟了三藏真经，想传到东土。人就是这样，越是容易得到的东西越不知道珍惜。佛祖想如果把真经直接送到东土，东土之人必然不知其珍贵。于是如来佛祖便有个一个计划，让东土的人历经磨难取得真经，如来心中早就有了人选金蝉子。于是就有了后来的菩萨去东土找取经人，组成取经队伍。</p>
+<h3 id="五-后来孙悟空为什么不回花果山？"><a href="#五-后来孙悟空为什么不回花果山？" class="headerlink" title="五. 后来孙悟空为什么不回花果山？"></a>五. 后来孙悟空为什么不回花果山？</h3><p>破六贼时，炒唐僧，欲回却未回。从龙王那里明白取经是天大的好事，事关自己的前程和未来。打白骨精，被炒，无奈而回，回而复返。再到后来诛草寇，又被炒，走头无路也不回，过洞不入。此后再也没有回过花果山。回不回花果山不仅仅是回家的问题，更是人生的选择问题，是觉悟问题。</p>
+<h3 id="六-六耳猕猴与孙悟空什么关系？"><a href="#六-六耳猕猴与孙悟空什么关系？" class="headerlink" title="六. 六耳猕猴与孙悟空什么关系？"></a>六. 六耳猕猴与孙悟空什么关系？</h3><p>六耳猕猴就是孙悟空自己，假孙悟空是孙悟空幻化出来的。假孙悟空打了唐僧，抢了行李，想要组成新的取经队伍。真假悟空辨真假时，菩萨的咒语失效了，照妖镜失效了，地藏王菩萨有不敢说破。最后只能去找如来佛祖，悟空还没到西天，如来就对弟子说：“汝等俱是一心，且看二心竞斗而来也。”而后佛祖说假悟空是六耳猕猴，世间仅此一只，后来还被悟空打死了。孙悟空却不敢去找唐僧，因为他清楚唐僧知道打自己的是孙悟空，怎么也不会原谅他。后来如来好说歹说，有让菩萨亲自去送才重回取经队伍。为什么孙悟空要这样做呢，很明显，孙悟空是真的很想取经，即使你唐僧不要我，我自己拉一支队伍。</p>
+<h3 id="七-相比大闹天空，为什么取经路上孙悟空的武功变差了？"><a href="#七-相比大闹天空，为什么取经路上孙悟空的武功变差了？" class="headerlink" title="七. 相比大闹天空，为什么取经路上孙悟空的武功变差了？"></a>七. 相比大闹天空，为什么取经路上孙悟空的武功变差了？</h3><p>大闹天空时，孙悟空能以一挡十，十分厉害，玉帝妥协。而取经路上很多天庭下来的妖怪孙悟空都打不过，还要去搬救兵。原因就是在天庭时各位神仙没有卖力。在天庭时，各路神仙为公家办事，办好了是你的职业，办不好可能会丢掉性命，他们肯定不会卖力。而下界为妖时，都是个体户，肯定会拼尽全力争取自己的利益。其实孙悟空的武功比没有变，妖怪的真实实力显现出来了。</p>
+<h3 id="八-取经团队在西天的座次是怎么排的？"><a href="#八-取经团队在西天的座次是怎么排的？" class="headerlink" title="八. 取经团队在西天的座次是怎么排的？"></a>八. 取经团队在西天的座次是怎么排的？</h3><p>西游记最后写道：······南无才光佛。南无旃檀功德佛。南无斗战胜佛。南无观世音菩萨。南无大势至菩萨······南无净坛使者菩萨。南无八宝金身罗汉菩萨。南无八部天龙广力菩萨。<br>唐僧和孙悟空分别成就：南无旃檀功德佛、南无斗战胜佛，虽然是佛中最后两个座次，毕竟是佛，座次在观世音菩萨之前。猪八戒和沙僧分别成就：南无净坛使者菩萨、南无八宝金身罗汉菩萨，是菩萨中最后的两个座次。</p>
+<h3 id="九-沙僧的武功真的很差吗？"><a href="#九-沙僧的武功真的很差吗？" class="headerlink" title="九. 沙僧的武功真的很差吗？"></a>九. 沙僧的武功真的很差吗？</h3><p>当然不是。从“南天门里我为尊，凌霄殿前我称上”到“我也没甚手段，也不能降妖”是有原因的。沙僧认清了自己在团队中的位置，权衡利弊，从此跟定大师兄，但不争功；低调，做人更低调做事；目的是 “免罪”，安全最重要；以最少的投资获得最大的利益。当真假美猴王那回时，沙僧还不是一下子就把假沙僧打死了；孙悟空不在的那回，沙僧还不是跟妖怪打的不相上下。</p>
+<h3 id="十-觉悟《西游》到底在觉悟什么？"><a href="#十-觉悟《西游》到底在觉悟什么？" class="headerlink" title="十. 觉悟《西游》到底在觉悟什么？"></a>十. 觉悟《西游》到底在觉悟什么？</h3><p>千经万典，只为修心！<br>佛在灵山莫远求，<br>灵山就在汝心头。<br>人人有个灵山塔，<br>好向灵山塔下修。</p>
 ]]></content>
       <categories>
-        <category>Writing</category>
+        <category>Literature</category>
       </categories>
       <tags>
-        <tag>Blog</tag>
+        <tag>Review</tag>
       </tags>
   </entry>
   <entry>
     <title>Windows 软件推荐（一）</title>
     <url>/2020/05/18/Software01/</url>
     <content><![CDATA[<p>本文介绍一些 Windows 上比较好用的软件。一个好的软件不仅可以解决某一方面的问题，还可以提高工作的效率。我用软件的原则是：<strong>在经济允许的前提下（免费最好），尽量使用每个方面最好用的软件</strong>。</p>
+<p>推荐软件：火绒安全、Snipaste、Notepad++、Everything、GifCam、Bandicam、Quicklook、Bandizip。</p>
 <h3 id="辅助防病毒：火绒安全"><a href="#辅助防病毒：火绒安全" class="headerlink" title="辅助防病毒：火绒安全"></a>辅助防病毒：火绒安全</h3><p>不要安装 360、管家、毒霸等，即使 Win10 系统自带的 Windows Defender 也够用了。<strong>火绒安全</strong>一个轻量级的杀毒软件，日常使用杀毒绰绰有余，无广告弹窗，病毒库更新快，不拖慢电脑进程，比较省心的杀毒软件。火绒安全还自带了很多工具，可以有选择地添加其他工具，比如弹窗拦截、文件粉碎。</p>
 <p><img src="https://i.loli.net/2020/05/18/vNbrLERX8ZIPFhW.png" alt="Software0101.png"></p>
 <a id="more"></a>
@@ -796,62 +837,76 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       </tags>
   </entry>
   <entry>
-    <title>西游十问</title>
-    <url>/2020/05/14/XY10q/</url>
-    <content><![CDATA[<p>看过很多关于西游记的影视剧，但《西游记》书和影视剧有很大的不同，最直观的感受就是“真实”。在本科时期，讲明清小说的毛黎老师让我开始了解真实的西游记。虽然它是现实的，残酷的，我仍然愿意去了解它，因为现实就是残酷的。</p>
-<p>我以问题的形式梳理了我的所听所记所想！</p>
-<h3 id="一-《西游记》的主角是谁？"><a href="#一-《西游记》的主角是谁？" class="headerlink" title="一.《西游记》的主角是谁？"></a>一.《西游记》的主角是谁？</h3><p>孙悟空。有人认为是唐僧，比较一下两个人物就行了。小说的开头重笔墨演绎了猴王的出世和成长（出世、学艺、闹天宫、保唐僧），并且在唐僧取经的路上，所有故事中都已悟空历尽艰辛斩妖除魔的过程为主要情节。所以说唐僧取经只是故事的线索，小说要以唐僧取经始，并以唐僧取经收，但是真正的主人公是孙悟空。</p>
+    <title>Windows 软件推荐（二）</title>
+    <url>/2020/05/20/Software02/</url>
+    <content><![CDATA[<p>本文继续推荐软件，包括 Typora、CCleaner、IDM、Adobe Acrobat Pro DC、Potplayer、foobar2000。</p>
+<h3 id="Markdown-编辑器：Typora"><a href="#Markdown-编辑器：Typora" class="headerlink" title="Markdown 编辑器：Typora"></a>Markdown 编辑器：Typora</h3><p><strong>Typora</strong> 界面只有菜单栏若干几个选项和一个空白的输入区域，但这个简约的软件所支持的功能特别多。</p>
+<ul>
+<li>支持实时预览 Markdown 格式效果，同时还保留了「源代码模式」，快捷键 <code>Ctrl + /</code> 随时切换源码与预览（它的 Markdown 输入手感真是一流！）；</li>
+<li>配合 <strong>Pandoc</strong> 你可以轻松地将文件导出为 PDF、HTML、Word、移动端长图，以及许多学术相关的文件格式；</li>
+<li>支持 LaTeX 等公式符号、表格、代码、图片外链。基本你能想到的文稿内容它都支持并可以实时预览。</li>
+</ul>
 <a id="more"></a>
-<h3 id="二-取经时孙悟空有多大？"><a href="#二-取经时孙悟空有多大？" class="headerlink" title="二. 取经时孙悟空有多大？"></a>二. 取经时孙悟空有多大？</h3><p>这要看怎么算，可以分为“虚岁”（神数）与“实岁”（人数）。所谓“天上一天，地下一年”。对于“虚岁”，花果山 342 年，弼马温 15 年，齐天大圣 184 年，八卦炉 49 年，五行山实际 630 年，西天取经 14 年，一共 1234 年，也就是孙悟空 1234 岁。对于“实岁”，取经前可以用章回计算，大闹天空 7 年，五行山下 7 年，取经 14 年，一共 28 年，也就说取经时孙悟空 28 岁。</p>
-<h3 id="三-菩提老祖到底是谁？"><a href="#三-菩提老祖到底是谁？" class="headerlink" title="三. 菩提老祖到底是谁？"></a>三. 菩提老祖到底是谁？</h3><p>菩提老祖就是如来佛祖。西牛贺洲可是如来的地界，怎么可能允许道教在这发展壮大。菩提老祖的住处为 “灵台方寸山，斜月三星洞。”这句话是有很深的含义的，“灵台方寸山”取这句话的首尾两字就是灵山；“斜月三星” 指的是天上之物，暗指“天空”，这句话合起来就是天上灵山。还有一点，菩提老祖和孙悟空的暗语“六耳”，如来怎么知道呢？只有一个解释，菩提祖师就是如来佛祖。</p>
-<h3 id="四-取经还是传经？"><a href="#四-取经还是传经？" class="headerlink" title="四. 取经还是传经？"></a>四. 取经还是传经？</h3><p>佛祖在灵山参悟了三藏真经，想传到东土。人就是这样，越是容易得到的东西越不知道珍惜。佛祖想如果把真经直接送到东土，东土之人必然不知其珍贵。于是如来佛祖便有个一个计划，让东土的人历经磨难取得真经，如来心中早就有了人选金蝉子。于是就有了后来的菩萨去东土找取经人，组成取经队伍。</p>
-<h3 id="五-后来孙悟空为什么不回花果山？"><a href="#五-后来孙悟空为什么不回花果山？" class="headerlink" title="五. 后来孙悟空为什么不回花果山？"></a>五. 后来孙悟空为什么不回花果山？</h3><p>破六贼时，炒唐僧，欲回却未回。从龙王那里明白取经是天大的好事，事关自己的前程和未来。打白骨精，被炒，无奈而回，回而复返。再到后来诛草寇，又被炒，走头无路也不回，过洞不入。此后再也没有回过花果山。回不回花果山不仅仅是回家的问题，更是人生的选择问题，是觉悟问题。</p>
-<h3 id="六-六耳猕猴与孙悟空什么关系？"><a href="#六-六耳猕猴与孙悟空什么关系？" class="headerlink" title="六. 六耳猕猴与孙悟空什么关系？"></a>六. 六耳猕猴与孙悟空什么关系？</h3><p>六耳猕猴就是孙悟空自己，假孙悟空是孙悟空幻化出来的。假孙悟空打了唐僧，抢了行李，想要组成新的取经队伍。真假悟空辨真假时，菩萨的咒语失效了，照妖镜失效了，地藏王菩萨有不敢说破。最后只能去找如来佛祖，悟空还没到西天，如来就对弟子说：“汝等俱是一心，且看二心竞斗而来也。”而后佛祖说假悟空是六耳猕猴，世间仅此一只，后来还被悟空打死了。孙悟空却不敢去找唐僧，因为他清楚唐僧知道打自己的是孙悟空，怎么也不会原谅他。后来如来好说歹说，有让菩萨亲自去送才重回取经队伍。为什么孙悟空要这样做呢，很明显，孙悟空是真的很想取经，即使你唐僧不要我，我自己拉一支队伍。</p>
-<h3 id="七-相比大闹天空，为什么取经路上孙悟空的武功变差了？"><a href="#七-相比大闹天空，为什么取经路上孙悟空的武功变差了？" class="headerlink" title="七. 相比大闹天空，为什么取经路上孙悟空的武功变差了？"></a>七. 相比大闹天空，为什么取经路上孙悟空的武功变差了？</h3><p>大闹天空时，孙悟空能以一挡十，十分厉害，玉帝妥协。而取经路上很多天庭下来的妖怪孙悟空都打不过，还要去搬救兵。原因就是在天庭时各位神仙没有卖力。在天庭时，各路神仙为公家办事，办好了是你的职业，办不好可能会丢掉性命，他们肯定不会卖力。而下界为妖时，都是个体户，肯定会拼尽全力争取自己的利益。其实孙悟空的武功比没有变，妖怪的真实实力显现出来了。</p>
-<h3 id="八-取经团队在西天的座次是怎么排的？"><a href="#八-取经团队在西天的座次是怎么排的？" class="headerlink" title="八. 取经团队在西天的座次是怎么排的？"></a>八. 取经团队在西天的座次是怎么排的？</h3><p>西游记最后写道：······南无才光佛。南无旃檀功德佛。南无斗战胜佛。南无观世音菩萨。南无大势至菩萨······南无净坛使者菩萨。南无八宝金身罗汉菩萨。南无八部天龙广力菩萨。<br>唐僧和孙悟空分别成就：南无旃檀功德佛、南无斗战胜佛，虽然是佛中最后两个座次，毕竟是佛，座次在观世音菩萨之前。猪八戒和沙僧分别成就：南无净坛使者菩萨、南无八宝金身罗汉菩萨，是菩萨中最后的两个座次。</p>
-<h3 id="九-沙僧的武功真的很差吗？"><a href="#九-沙僧的武功真的很差吗？" class="headerlink" title="九. 沙僧的武功真的很差吗？"></a>九. 沙僧的武功真的很差吗？</h3><p>当然不是。从“南天门里我为尊，凌霄殿前我称上”到“我也没甚手段，也不能降妖”是有原因的。沙僧认清了自己在团队中的位置，权衡利弊，从此跟定大师兄，但不争功；低调，做人更低调做事；目的是 “免罪”，安全最重要；以最少的投资获得最大的利益。当真假美猴王那回时，沙僧还不是一下子就把假沙僧打死了；孙悟空不在的那回，沙僧还不是跟妖怪打的不相上下。</p>
-<h3 id="十-觉悟《西游》到底在觉悟什么？"><a href="#十-觉悟《西游》到底在觉悟什么？" class="headerlink" title="十. 觉悟《西游》到底在觉悟什么？"></a>十. 觉悟《西游》到底在觉悟什么？</h3><p>千经万典，只为修心！<br>佛在灵山莫远求，<br>灵山就在汝心头。<br>人人有个灵山塔，<br>好向灵山塔下修。</p>
+<blockquote>
+<p><a href="https://sspai.com/post/54122" target="_blank" rel="noopener">少数派:</a> 我想开门见山地直言，<strong>Typora</strong> 是我在桌面端最喜爱的生产力应用。它的<strong>功能之强大</strong>、<strong>设计之冷静</strong>、<strong>体验之美妙</strong>、理念之先进，我认为值得所有笔记应用厂商学习。</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/05/21/1eZBapGD9z5uhPw.png" alt="Software0201.png"></p>
+<h3 id="清理注册表：CCleaner"><a href="#清理注册表：CCleaner" class="headerlink" title="清理注册表：CCleaner"></a>清理注册表：CCleaner</h3><p><strong>CCleaner</strong> 可用于清理系统注册表、优化和隐私保护工具，可用于 Windows 电脑清理。比较专业，无广告，不流氓！</p>
+<p><img src="https://i.loli.net/2020/05/21/MkoZEGTnirK3pwx.png" alt="Software0202.png"></p>
+<h3 id="下载工具：IDM"><a href="#下载工具：IDM" class="headerlink" title="下载工具：IDM"></a>下载工具：IDM</h3><p>Internet Download Manager (<strong>IDM</strong>) 是一款老牌下载器，功能强大，它还提供了许多贴心功能。它支持自动捕获链接、静默下载、批量下载、站点抓取等功能。</p>
+<p><img src="https://i.loli.net/2020/05/21/UcYeTSFQVKMLA16.png" alt="Software0203.png"></p>
+<h3 id="PDF-阅读编辑：Adobe-Acrobat-Pro-DC"><a href="#PDF-阅读编辑：Adobe-Acrobat-Pro-DC" class="headerlink" title="PDF 阅读编辑：Adobe Acrobat Pro DC"></a>PDF 阅读编辑：Adobe Acrobat Pro DC</h3><p>众所周知， Adobe 创建 PDF 这个电子文档格式，是为了让用户可以不因操作系统的语言、字体和显示设备的不同而改变文件原貌。正是因为 PDF 格式的这种其他格式文件无可比拟的特性，才使得 PDF 如此受欢迎。</p>
+<p>Adobe Acrobat Pro DC 算是最为全面的 PDF 软件了，好用自不必说，就是有点大。</p>
+<h3 id="本地视频播放器：PotPlayer"><a href="#本地视频播放器：PotPlayer" class="headerlink" title="本地视频播放器：PotPlayer"></a>本地视频播放器：PotPlayer</h3><p><strong>PotPlayer</strong> 可以说是当今 Windows 平台上功能最强大的多媒体播放器（没有之一），无广告，不流氓，界面简洁，纯粹为播放而生。它既可以完美胜任普通用户的一般播放用途，也可以满足高级用户的特别需求与定制。</p>
+<ul>
+<li>功能强大，设置齐全（甚至多到有点复杂）；</li>
+<li>纯粹的本地播放器，体验好，没广告，不流氓；</li>
+<li>性能强劲，播放效果一流（还可配合插件增强）支持视频/音频格式全面；</li>
+<li>自定义选项丰富，可按喜好自由设置皮肤丰富，界面精美；</li>
+<li>快捷键非常方便<ul>
+<li>播放/晢停：空格</li>
+<li>音量：鼠标滚轮，上/下方向键前进/后退：左/右方向键</li>
+<li>全屏/还原： Enter</li>
+<li>倍速：C-加速，X-减速，Z-复位</li>
+<li>上/下一帧：D/F</li>
+<li>Ctrl+E：截图并保存，存储位置可在选项中选择</li>
+<li>At+C：视频、GIF录制</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>曾经用过本地视频播放器 MPC-BE，QQ 影音，直到播放十几个 G 大小的电影时才认识到 PotPlayer 的强大。在其他播放器卡的不能播放时，PotPlayer 依然很流畅。</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/05/21/c3vDqKPGzUZsd7T.png" alt="Software0204.png"></p>
+<h3 id="音乐播放器：foobar2000"><a href="#音乐播放器：foobar2000" class="headerlink" title="音乐播放器：foobar2000"></a>音乐播放器：foobar2000</h3><p><strong>foobar2000</strong> 是一款免费软件，是 Windows 平台下的高级音频播放器。它不注重外表的修饰，更在乎音质与实用功能上的完美追求。foobar2000 功能的发挥需要几个插件 <a href="https://www.zhihu.com/question/21995054/answer/121007694" target="_blank" rel="noopener">参考</a>。</p>
+<p>foobar2000 主要用来听本地无损音乐（包括 wav、flac、ape 等格式），我主要用它来听古典音乐。</p>
+<p><img src="https://i.loli.net/2020/05/21/ZjgCMQbd8V6fHie.png" alt="Software0205.png"></p>
 ]]></content>
       <categories>
-        <category>Literature</category>
+        <category>Computer Skills</category>
       </categories>
       <tags>
-        <tag>Review</tag>
+        <tag>Windows</tag>
+        <tag>Software</tag>
       </tags>
   </entry>
   <entry>
-    <title>SMM00 谱方法笔记</title>
-    <url>/2020/05/10/SMM00/</url>
-    <content><![CDATA[<p>这是学习书籍 <strong>Spectral Method in MATLAB</strong> (Lloyd N. Trefethen) 的笔记，因为书是英文的，笔记就成了翻译。很多地方翻译的比较粗糙，能够理解并学到知识才是最重要的。</p>
-<p>Nick Trefethen <a href="http://people.maths.ox.ac.uk/trefethen/" target="_blank" rel="noopener">Homepage</a></p>
-<p>这只是一个开始，后期我会<strong>更新</strong>学习本书的笔记！</p>
-<h3 id="关于本书"><a href="#关于本书" class="headerlink" title="关于本书"></a>关于本书</h3><p>这本书有四十个简短的MATLAB程序，这些程序可以在用于求解与流体力学、量子力学、振动、线性和非线性波、复分析等领域有关的各种常微分方程和偏微分方程( ODE 和 PDE )。书的前六章侧重于理论，第七章以后更侧重于编程应用。学习这本书，需要对数值分析，微分方程有一定的了解，并且熟悉 MATLAB。</p>
-<p>如果你喜欢计算和数字数学，你会喜欢阅读这本书，可以学到一些新的 MATLAB 技巧！</p>
-<a id="more"></a>
-<p>谱方法是数值求解 PDEs 的三大方法之一，它们大致在连续几十年的逐渐发展起来：</p>
+    <title>第一篇博客文章</title>
+    <url>/2020/04/27/helloworld/</url>
+    <content><![CDATA[<p>这是我的第一篇博客文章，博客是用 Hexo 搭建的。</p>
+<p>开博客是为了记录一些东西，大致包括以下内容：</p>
 <ul>
-<li>20 世纪 50 年代：有限差分法</li>
-<li>20 世纪 60 年代：有限元法</li>
-<li>20 世纪 70 年代：谱方法</li>
+<li>学习技术的经验；</li>
+<li>专业学习的笔记；</li>
+<li>生活中的想法；</li>
+<li>读书的笔记或感想。</li>
 </ul>
-<p>当然，每种方法的起源都可以追溯到更早的时候。 对于谱方法来说，一些思想和插值和函数展开一样古老，更具体地说，算法的发展最早是在1938年由Lanczos [Lan38, Lan56] 和 1960 年代的 Clenshaw，Elliott，Fox 等 [FoPa68] 提出的。 然后，在20世纪70年代，由 Orszag 等人在流体动力学和气象学问题上的工作引发了这一领域的变革，谱方法也因此而闻名。<br>早期现代谱方法文献的三个里程碑是：Gottlieb 和 Orszag的短书[GoOr77]，Gottlieb，Hussaini 和 Orszag 的研究 [CHO84] 和Canuto，Hussaini，Quarteroni 和 Zang 的专著 [ChQZ88]。 此后，Mercier [Mer89]，Boyd [Boy00]（1989年第一版），Funaro [Fun92]，Bernardi 和 Maday [BeMa92]，Fornberg [For96] 以及 Karniadakis 和 Sherwin [KaSh99] 也贡献了其他书籍。</p>
-<p>如果要在一个简单的区域上高精度地求解 ODE 或 PDE，并且如果定义该问题的函数是平滑的，那么谱方法通常是最好的工具。它们通常可以达到十位数的精度，而有限差分法或有限元法可以达到两三位数。在精度较低的情况下，它们需要的计算机内存比其他替代方案要小。</p>
-<p>这本短小的书介绍了谱方法的一些基本思想和技术。它的目标人群是学过数值分析课程，并熟悉基本的应用程序设计和偏微分方程。你会发现，在计算机的几秒钟内，用几行 MATLAB 代码就可以高精度地解决一系列显著的问题。<strong>写程序应当有一种玩的心态，最后让它们成为你自己的！</strong></p>
-<p>我想强调这里提出的三个数学主题，虽然专家们都知道，但通常在教科书中找不到。在第四章中，第一个是函数的光滑性与其傅里叶变换衰减之间的关系，后者决定了离散化引入的混叠误差的大小；这些关系解释了谱方法的精度如何取决于被逼近函数的光滑性。第二，在第五章中，多项式的根和平面上的点电荷之间的类比，这导致了一个关于非周期谱方法的网格为什么需要在边界处聚集的势理论的扩展。第三，在第八章中，$[-1,1]$上的切比雪夫级数 、$[\pi,\pi]$ 上的三角级数与单位圆上的洛朗级数这三种方法，构成了快速傅里叶变换计算切比雪夫谱导数技术的基础。这三个主题本身都是非常的数学研究主题，对任何应用数学家来说都是值得学习的。</p>
-<p>不可避免地，这本书只涉及谱方法的一部分。它强调在周期网格和切比雪夫网格上的配置（拟谱）方法，而对同样重要的 Galerkin 方法、勒让德网格和多项式几乎没有涉及。理论分析是非常有限的，强调简单几何的简单工具，而不是工业强度、谱元方法和 $hp$ 有限元，在后面给出了一些其他的主题和观点。</p>
-<p>MATLAB的发展开创了科学计算的新纪元。现在，人们可以以非常简洁的方式，完整详细地介绍高级数值算法和非平凡问题的解决方案，在几页中介绍更多的应用数学，几年前是不可想象的。MATLAB 语言有时（不总是！）与 Fortran 或 C 等低级语言相比，牺牲了机器效率这一个特定因素，但是提高了人的编程效率，即修改程序并应用于新的问题，再去尝试新的问题，这比以往更加容易。这本短书鼓励学生、科学家和工程师学会这种新的计算方法。</p>
-<h3 id="关于程序"><a href="#关于程序" class="headerlink" title="关于程序"></a>关于程序</h3><p>本书中的 MATLAB 程序很简洁。 每一个程序容纳在一页上，并且在几英寸的计算机代码中进行计算！程序非常简洁、紧凑，对紧凑性的痴迷有时会损害可读性。 例如，在单个程序行上集合了两个或三个简短的 MATLAB 命令。 </p>
-<p>本书中编程风格的另一个特点是结构扁平化，除了在其中定义的关键函数cheb之外，程序中几乎不使用函数（chebfft、clencurt和gauss这三个函数在第8章和第12章，但每一章都只是局部使用。这种风格的优点是强调可以实现的紧凑程度，但是作为一般规则，MATLAB程序员应该经常使用函数）。</p>
-<p>书中可能写了很多东西去解释程序的细节或技巧。为了使讨论集中在谱方法上，尽量不去提到 MATLAB 的细节，除非在极少数情况下不得不这么做。这意味着当你使用这本书时，你将不得不学习程序，而不仅仅是阅读它们。<strong>只有你花时间学习这些代码，并修改它们来解决你自己的问题之后，你才能真正理解这些问题的答案</strong>。我想这是使用这本书的乐趣之一，希望你能同意。</p>
-<p>本书的程序是用 MATLAB 5.3 编写运行的，随着以后几年中更高版本的发布，这些程序的运行可能会出现一些困难。 若要从头开始学习 MATLAB，或者作为参考，推荐 SIAM 的书籍 MATLAB Guide。</p>
-<p><strong>注：</strong> 我用的 MATLAB 版本是 MATLAB 2019a (v9.6)，画出的图和早期版本是有些不一样的，应该是更美观了吧。</p>
 ]]></content>
       <categories>
-        <category>Spectral Methods</category>
+        <category>Writing</category>
       </categories>
       <tags>
-        <tag>MATLAB</tag>
-        <tag>Spectral Method</tag>
+        <tag>Blog</tag>
       </tags>
   </entry>
 </search>
