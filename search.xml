@@ -773,7 +773,7 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
   <entry>
     <title>Windows 软件推荐（二）</title>
     <url>/2020/05/20/Software02/</url>
-    <content><![CDATA[<p>本文继续推荐软件，包括 Typora、CCleaner、IDM、Adobe Acrobat Pro DC、Potplayer、foobar2000。</p>
+    <content><![CDATA[<p>本文继续推荐软件，包括 Typora、CCleaner、IDM、Adobe Acrobat Pro DC、PotPlayer、foobar2000。</p>
 <h3 id="Markdown-编辑器：Typora"><a href="#Markdown-编辑器：Typora" class="headerlink" title="Markdown 编辑器：Typora"></a>Markdown 编辑器：Typora</h3><p><strong>Typora</strong> 界面只有菜单栏若干几个选项和一个空白的输入区域，但这个简约的软件所支持的功能特别多。</p>
 <ul>
 <li>支持实时预览 Markdown 格式效果，同时还保留了「源代码模式」，快捷键 <code>Ctrl + /</code> 随时切换源码与预览（它的 Markdown 输入手感真是一流！）；</li>
@@ -782,7 +782,7 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
 </ul>
 <a id="more"></a>
 <blockquote>
-<p><a href="https://sspai.com/post/54122" target="_blank" rel="noopener">少数派:</a> 我想开门见山地直言，<strong>Typora</strong> 是我在桌面端最喜爱的生产力应用。它的<strong>功能之强大</strong>、<strong>设计之冷静</strong>、<strong>体验之美妙</strong>、理念之先进，我认为值得所有笔记应用厂商学习。</p>
+<p><a href="https://sspai.com/post/54122" target="_blank" rel="noopener">少数派:</a> 我想开门见山地直言，<strong>Typora</strong> 是我在桌面端最喜爱的生产力应用。它的<strong>功能之强大</strong>、<strong>设计之冷静</strong>、<strong>体验之美妙</strong>、<strong>理念之先进</strong>，我认为值得所有笔记应用厂商学习。</p>
 </blockquote>
 <p><img src="https://i.loli.net/2020/05/21/1eZBapGD9z5uhPw.png" alt="Software0201.png"></p>
 <h3 id="清理注册表：CCleaner"><a href="#清理注册表：CCleaner" class="headerlink" title="清理注册表：CCleaner"></a>清理注册表：CCleaner</h3><p><strong>CCleaner</strong> 可用于清理系统注册表、优化和隐私保护工具，可用于 Windows 电脑清理。比较专业，无广告，不流氓！</p>
