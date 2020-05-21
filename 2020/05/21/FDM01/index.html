@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/05/21/H98DjFkAYRhpJQC.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/21/yofGu5XiA34F1SW.png">
 <meta property="article:published_time" content="2020-05-21T04:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-21T11:43:12.380Z">
+<meta property="article:modified_time" content="2020-05-21T11:46:32.292Z">
 <meta property="article:author" content="Andy Tian">
 <meta property="article:tag" content="Finite Difference">
 <meta property="article:tag" content="PDE">
@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-21 12:00:00 / Modified: 19:43:12" itemprop="dateCreated datePublished" datetime="2020-05-21T12:00:00+08:00">2020-05-21</time>
+              <time title="Created: 2020-05-21 12:00:00 / Modified: 19:46:32" itemprop="dateCreated datePublished" datetime="2020-05-21T12:00:00+08:00">2020-05-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,7 +263,7 @@
         <p>在偏微分方程的数值解法中，<strong>有限差分法</strong>数学概念直观，推导自然，是发展较早且比较成熟的数值方法。由于计算机只能存储有限个数据和做有限次运算，所以任何一种用计算机解题的方法，都必须把连续问题（微分方程的边值问題、初值问题等）离散化，最终化成有限形式的线性代数方程组。</p>
 <p>用差分法和有限元法将连续问题离散化的步骤是，首先对求解区域做网格剖分，用有限个网格节点代替连续区域，然后将微分算子离散化，从而把微分方程的定解问题化为线性代数方程组的求解问题。差分法和有限元法的主要区别是离散化的第二步。前者从定解问题的微分形式或积分形式出发，用数值微商或数值积分公式导出相应的线性代数方程组后者从定解问题的变分形式出发，用 Ritz-Galerkin 法导出相应的线性代数方程组，但基函数按特定方式选取。</p>
 <p>学习有限差分方法，差分解的存在唯一性、收敛性及稳定性等理论知识请参考书籍《<strong>微分方程数值解法</strong>》（李荣华）。</p>
-<p>这里重点介绍问题差分格式的 MATLAB 编程实现。</p>
+<p>这里重点介绍问题差分格式的 <strong>MATLAB 编程实现</strong>。</p>
 <a id="more"></a>
 <h3 id="两点边值问题（常系数）"><a href="#两点边值问题（常系数）" class="headerlink" title="两点边值问题（常系数）"></a>两点边值问题（常系数）</h3><p>考虑二阶常微分方程边值问题（常系数）：</p>
 <script type="math/tex; mode=display">\begin{aligned}
