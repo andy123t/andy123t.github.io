@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/05/21/H98DjFkAYRhpJQC.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/21/yofGu5XiA34F1SW.png">
 <meta property="article:published_time" content="2020-05-21T04:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-21T11:46:32.292Z">
+<meta property="article:modified_time" content="2020-05-21T11:50:43.336Z">
 <meta property="article:author" content="Andy Tian">
 <meta property="article:tag" content="Finite Difference">
 <meta property="article:tag" content="PDE">
@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-21 12:00:00 / Modified: 19:46:32" itemprop="dateCreated datePublished" datetime="2020-05-21T12:00:00+08:00">2020-05-21</time>
+              <time title="Created: 2020-05-21 12:00:00 / Modified: 19:50:43" itemprop="dateCreated datePublished" datetime="2020-05-21T12:00:00+08:00">2020-05-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,7 +274,7 @@
 <script type="math/tex; mode=display">x_{i}=a+i h \quad i=0,1, \cdots, N,</script><p>$h=(b-a) / N$。于是我们得到区间 $I=[a,b]$ 的一个网格剖分。$x_i$ 称为网格的<strong>节点</strong>，$h$ 称为<strong>步长</strong>。</p>
 <p>差分方程：</p>
 <script type="math/tex; mode=display">L_{h} u_{i}=-\frac{u_{i+1}-2 u_{i}+u_{i-1}}{h^{2}}+\frac{u_{i+1}-u_{i-1}}{h}+q_{i} u_{i}=f_{i},\quad 1 \leqslant j \leqslant N-1.</script><p>其中  $q_{i}=q(x_{i}), f_{i}=f(x_{i})$。</p>
-<p>以上差分方程对于 $i=1,2, \cdots, N-1$ 都成立，加上边值条件 $u_{0}=\alpha, u_{N}=\beta$，就得到关于 $u_i$ 的线性代数方程组</p>
+<p>以上差分方程对于 $i=1,2, \cdots, N-1$ 都成立，加上边值条件 $u_{0}=\alpha, u_{N}=\beta$，就得到关于 $u_i$ 的线性代数方程组：</p>
 <script type="math/tex; mode=display">\begin{aligned}
 & L_{h} u_{i}=-\frac{u_{i+1}-2 u_{i}+u_{i-1}}{h^{2}}+\frac{u_{i+1}-u_{i-1}}{2h}+q_{i} u_{i}=f_{i}, \quad i=1,2, \cdots, N-1, \\ 
 & u_{0}=\alpha, \quad u_{N}=\beta.
