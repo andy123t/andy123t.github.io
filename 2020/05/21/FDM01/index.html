@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-andy.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-andy.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-andy.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在偏微分方程的数值解法中，有限差分法数学概念直观，推导自然，是发展较早且比较成熟的数值方法。由于计算机只能存储有限个数据和做有限次运算，所以任何一种用计算机解题的方法，都必须把连续问题（微分方程的边值问題、初值问题等）离散化，最终化成有限形式的线性代数方程组。 用差分法和有限元法将连续问题离散化的步骤是，首先对求解区域做网格剖分，用有限个网格节点代替连续区域，然后将微分算子离散化，从而把微分方程的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一维差分格式">
+<meta property="og:url" content="https://andy123t.github.io/2020/05/21/FDM01/index.html">
+<meta property="og:site_name" content="Andy123t">
+<meta property="og:description" content="在偏微分方程的数值解法中，有限差分法数学概念直观，推导自然，是发展较早且比较成熟的数值方法。由于计算机只能存储有限个数据和做有限次运算，所以任何一种用计算机解题的方法，都必须把连续问题（微分方程的边值问題、初值问题等）离散化，最终化成有限形式的线性代数方程组。 用差分法和有限元法将连续问题离散化的步骤是，首先对求解区域做网格剖分，用有限个网格节点代替连续区域，然后将微分算子离散化，从而把微分方程的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/05/21/CRMWVFKOedubAhs.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/21/CARpDQ4BWoUuzjl.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/21/H98DjFkAYRhpJQC.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/21/yofGu5XiA34F1SW.png">
+<meta property="article:published_time" content="2020-05-21T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-21T11:43:12.380Z">
+<meta property="article:author" content="Andy Tian">
+<meta property="article:tag" content="Finite Difference">
+<meta property="article:tag" content="PDE">
+<meta property="article:tag" content="MATLAB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/21/CRMWVFKOedubAhs.png">
+
+<link rel="canonical" href="https://andy123t.github.io/2020/05/21/FDM01/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>一维差分格式 | Andy123t</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Andy123t</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-notes">
+
+    <a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>Notes</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/21/FDM01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Andy Tian">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一维差分格式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-21 12:00:00 / Modified: 19:43:12" itemprop="dateCreated datePublished" datetime="2020-05-21T12:00:00+08:00">2020-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Numerical-PDEs/" itemprop="url" rel="index"><span itemprop="name">Numerical PDEs</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在偏微分方程的数值解法中，<strong>有限差分法</strong>数学概念直观，推导自然，是发展较早且比较成熟的数值方法。由于计算机只能存储有限个数据和做有限次运算，所以任何一种用计算机解题的方法，都必须把连续问题（微分方程的边值问題、初值问题等）离散化，最终化成有限形式的线性代数方程组。</p>
+<p>用差分法和有限元法将连续问题离散化的步骤是，首先对求解区域做网格剖分，用有限个网格节点代替连续区域，然后将微分算子离散化，从而把微分方程的定解问题化为线性代数方程组的求解问题。差分法和有限元法的主要区别是离散化的第二步。前者从定解问题的微分形式或积分形式出发，用数值微商或数值积分公式导出相应的线性代数方程组后者从定解问题的变分形式出发，用 Ritz-Galerkin 法导出相应的线性代数方程组，但基函数按特定方式选取。</p>
+<p>学习有限差分方法，差分解的存在唯一性、收敛性及稳定性等理论知识请参考书籍《<strong>微分方程数值解法</strong>》（李荣华）。</p>
+<p>这里重点介绍问题差分格式的 MATLAB 编程实现。</p>
+<a id="more"></a>
+<h3 id="两点边值问题（常系数）"><a href="#两点边值问题（常系数）" class="headerlink" title="两点边值问题（常系数）"></a>两点边值问题（常系数）</h3><p>考虑二阶常微分方程边值问题（常系数）：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+& L u=-\frac{\mathrm{d}^{2} u}{\mathrm{d} x^{2}}+\frac{\mathrm{d} u}{\mathrm{d} x}+q u=f, \quad a < x < b, \\
+&u(a)=\alpha, \quad u(b)=\beta.
+\end{aligned}</script><p>其中 $q, f$ 为 $[a,b]$ 上的连续函数，$q \geqslant 0$；$\alpha, \beta$ 为给定常数。这是最简单的椭圆方程第一边值问题。</p>
+<p>将区间 $[a,b]$ 分成 $N$ 等分，分点为</p>
+<script type="math/tex; mode=display">x_{i}=a+i h \quad i=0,1, \cdots, N,</script><p>$h=(b-a) / N$。于是我们得到区间 $I=[a,b]$ 的一个网格剖分。$x_i$ 称为网格的<strong>节点</strong>，$h$ 称为<strong>步长</strong>。</p>
+<p>差分方程：</p>
+<script type="math/tex; mode=display">L_{h} u_{i}=-\frac{u_{i+1}-2 u_{i}+u_{i-1}}{h^{2}}+\frac{u_{i+1}-u_{i-1}}{h}+q_{i} u_{i}=f_{i},\quad 1 \leqslant j \leqslant N-1.</script><p>其中  $q_{i}=q(x_{i}), f_{i}=f(x_{i})$。</p>
+<p>以上差分方程对于 $i=1,2, \cdots, N-1$ 都成立，加上边值条件 $u_{0}=\alpha, u_{N}=\beta$，就得到关于 $u_i$ 的线性代数方程组</p>
+<script type="math/tex; mode=display">\begin{aligned}
+& L_{h} u_{i}=-\frac{u_{i+1}-2 u_{i}+u_{i-1}}{h^{2}}+\frac{u_{i+1}-u_{i-1}}{2h}+q_{i} u_{i}=f_{i}, \quad i=1,2, \cdots, N-1, \\ 
+& u_{0}=\alpha, \quad u_{N}=\beta.
+\end{aligned}</script><p>他的解 $u_i$ 是 $u(x)$ 在 $x=x_i$ 处的差分解。</p>
+<script type="math/tex; mode=display">\boldsymbol{A}=\left[\begin{array}{cccccc}
+\displaystyle \frac{2}{h^{2}}+q_{1} & \displaystyle\frac{1}{2h}-\frac{1}{h^{2}} &   &  &  \\[8pt]
+ \displaystyle-\frac{1}{2h}-\frac{1}{h^{2}} & \displaystyle \frac{2}{h^{2}}+q_{2} & \displaystyle\frac{1}{2h}-\frac{1}{h^{2}}  & &  \\[8pt]
+  &  &  &  &    \\
+   &  \ddots  & \ddots  &   \ddots  &    \\[8pt]
+   &  &  &  &    \\
+  &   & \displaystyle-\frac{1}{2h}-\frac{1}{h^{2}} & \displaystyle\frac{2}{h^{2}}+q_{N-2}& \displaystyle\frac{1}{2h}-\frac{1}{h^{2}} \\[8pt]
+  &  &  & \displaystyle-\frac{1}{2h}-\frac{1}{h^{2}} & \displaystyle \frac{2}{h^{2}}+q_{N-1}
+\end{array}\right],</script><script type="math/tex; mode=display">\boldsymbol{f}=(f_1+\frac{\alpha}{h^2}+\frac{\alpha}{2h}, f_2, \cdots, f_{N-1}+\frac{\beta}{h^2}-\frac{\beta}{2h})^{\mathrm{T}},</script><script type="math/tex; mode=display">\boldsymbol{u}=(u_{1}, u_{2}, \cdots, u_{N-1})^{\mathrm{T}}.</script><p>以上线性方程组可写为</p>
+<script type="math/tex; mode=display">\boldsymbol{A}\boldsymbol{u}=\boldsymbol{f}.</script><p><strong>数值例子</strong></p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}
+  &-\frac{\mathrm{d}^{2} u}{\mathrm{d} x^{2}}+\frac{\mathrm{d} u}{\mathrm{d} x}=\pi^{2} \sin (\pi x)+\pi \cos (\pi x),\quad x \in [0,1], \\
+  &u(0)=0,\quad u(1)=0.
+\end{aligned} \right.</script><p>方程的真解：$u(x)=\sin (\pi x)$.</p>
+<p><strong>MATLAB 程序</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% fdm1d1.m</span></span><br><span class="line"><span class="comment">% finite difference method for 1D problem</span></span><br><span class="line"><span class="comment">% -u''+u'=pi^2*sin(pi*x)+pi*cos(pi*x) in [0,1]</span></span><br><span class="line"><span class="comment">% u(0)=0, u(1)=0 ;</span></span><br><span class="line"><span class="comment">% exact solution: u=sin(pi*x)</span></span><br><span class="line">clear all;  clf</span><br><span class="line">h=<span class="number">0.05</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">A=<span class="built_in">diag</span>((<span class="number">2</span>/h^<span class="number">2</span>)*<span class="built_in">ones</span>(N<span class="number">-1</span>,<span class="number">1</span>))...</span><br><span class="line">    +<span class="built_in">diag</span>((<span class="number">1</span>/(<span class="number">2</span>*h)<span class="number">-1</span>/h^<span class="number">2</span>)*<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">1</span>)...</span><br><span class="line">    +<span class="built_in">diag</span>((<span class="number">-1</span>/(<span class="number">2</span>*h)<span class="number">-1</span>/h^<span class="number">2</span>)*<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">-1</span>);</span><br><span class="line">b=<span class="built_in">pi</span>^<span class="number">2</span>*<span class="built_in">sin</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N))+<span class="built_in">pi</span>*<span class="built_in">cos</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N));</span><br><span class="line">u=A\b';</span><br><span class="line">u=[<span class="number">0</span>;u;<span class="number">0</span>];</span><br><span class="line">ue=<span class="built_in">sin</span>(<span class="built_in">pi</span>*x)';</span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">Error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue))</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact '</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'NorthEast'</span>)</span><br><span class="line"><span class="comment">%title('Finite Difference Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'x'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm1d1.png</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/21/CRMWVFKOedubAhs.png" alt="fdm1d1.png"></p>
+<p><strong>计算收敛阶</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% fdm1d1_error.m</span></span><br><span class="line"><span class="comment">% finite difference method for 1D problem</span></span><br><span class="line"><span class="comment">% -u''+u'=pi^2*sin(pi*x)+pi*cos(pi*x)  in [0,1]</span></span><br><span class="line"><span class="comment">% u(0)=0, u(1)=0 ;</span></span><br><span class="line"><span class="comment">% exact solution : u=sin(pi*x)</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];    <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">    N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">    A=<span class="built_in">diag</span>((<span class="number">2</span>/h^<span class="number">2</span>)*<span class="built_in">ones</span>(N<span class="number">-1</span>,<span class="number">1</span>))...</span><br><span class="line">        +<span class="built_in">diag</span>((<span class="number">1</span>/(<span class="number">2</span>*h)<span class="number">-1</span>/h^<span class="number">2</span>)*<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">1</span>)...</span><br><span class="line">        +<span class="built_in">diag</span>((<span class="number">-1</span>/(<span class="number">2</span>*h)<span class="number">-1</span>/h^<span class="number">2</span>)*<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">-1</span>);</span><br><span class="line">    b=<span class="built_in">pi</span>^<span class="number">2</span>*<span class="built_in">sin</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N))+<span class="built_in">pi</span>*<span class="built_in">cos</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N));</span><br><span class="line">    u=A\b';</span><br><span class="line">    u=[<span class="number">0</span>;u;<span class="number">0</span>];</span><br><span class="line">    ue=<span class="built_in">sin</span>(<span class="built_in">pi</span>*x');</span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Convergence of Finite Difference Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>),</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.55</span> <span class="number">0.52</span>];</span><br><span class="line">ay = [<span class="number">0.67</span> <span class="number">0.62</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -2 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(<span class="built_in">i</span>)=-<span class="built_in">log</span>(Error(<span class="built_in">i</span>)/Error(<span class="built_in">i</span>+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(<span class="built_in">i</span>)/Nvec(<span class="built_in">i</span>+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error   </span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm1d1_error.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.0084    0.0003    0.0001    0.0000    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    1.9990    2.0001    2.0000    2.0000</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/21/CARpDQ4BWoUuzjl.png" alt="fdm1d1_error.png"></p>
+<h3 id="两点边值问题（变系数）"><a href="#两点边值问题（变系数）" class="headerlink" title="两点边值问题（变系数）"></a>两点边值问题（变系数）</h3><p>考虑二阶常微分方程边值问题（变系数）：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+& L u=-\frac{\mathrm{d}}{\mathrm{d} x}\left(p \frac{\mathrm{d} u}{\mathrm{d} x}\right)+r \frac{\mathrm{d} u}{\mathrm{d} x}+q u=f, \quad a < x < b, \\
+&u(a)=\alpha, \quad u(b)=\beta.
+\end{aligned}</script><p>假定 $p \in C^{1}[a, b]$，$p(x) \geqslant p_{\min }&gt;0$，$r, q, f \in C[a, b]$，$\alpha, \beta$ 是给定的常数。</p>
+<p>首先取 $N+1$ 个节点：</p>
+<script type="math/tex; mode=display">a=x_{0}<x_{1}<\cdots<x_{i}<\cdots<x_{N}=b</script><p>将区间 $I=[a,b]$ 分成 $N$ 个小区间：</p>
+<script type="math/tex; mode=display">I_{i}: x_{i-1} \leqslant x \leqslant x_{i}, \quad i=1,2, \cdots, N.</script><p>记 $h_{i}=x_{i}-x_{i-1}$，称 $h=\max _{i} h_{i}$ 为最大网格步长。</p>
+<p>取相邻节点 $x_{i-1},x_i$ 的中点 $x_{i-\frac{1}{2}}=\frac{1}{2}\left(x_{i-1}+x_{i}\right)$ $(i=1,2, \cdots, N)$ 称为半整数点，则由节点，</p>
+<script type="math/tex; mode=display">a=x_{0}<x_{\frac{1}{2}}<x_{\frac{3}{2}}<\cdots<x_{i-\frac{1}{2}}<\cdots<x_{N-\frac{1}{2}}<x_{N}=b.</script><p>又构成 $[a,b]$ 的一个剖分，称为<strong>对偶剖分</strong>。</p>
+<p>差分方程：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+1}-u_{i}}{h_{i+1}}-p_{i-\frac{1}{2}} \frac{u_{i}-u_{i-1}}{h_{i}}\right] +\\
+& \frac{r_{i}}{h_{i}+h_{i+1}}\left(u_{i+1}-u_{i-1}\right)+q_{i} u_{i}=f_{i}, \quad i=1, \cdots, N-1 \\ 
+& u_{0}=\alpha, \quad u_{N}=\beta.
+\end{aligned}</script><p>当网格均匀，即 $h=h_i (i=1,2, \cdots, N)$ 时，差分格式：</p>
+<script type="math/tex; mode=display">\begin{aligned} L_{h} u_{i}=&-\frac{1}{h^{2}}\left[p_{i+\frac{1}{2}} u_{i+1}-\left(p_{i+\frac{1}{2}}+p_{i-\frac{1}{2}}\right) u_{i}+p_{i-\frac{1}{2}} u_{i-1}\right]+\\ & r_{i} \frac{u_{i+1}-u_{i-1}}{2 h}+q_{i} u_{i}=f_{i},\quad i=1, \cdots, N-1 \\ 
+& u_{0}=\alpha, \quad u_{N}=\beta.
+\end{aligned}</script><p><strong>数值例子</strong></p>
+<script type="math/tex; mode=display">
+\left\{ \begin{aligned}
+  &-\frac{\mathrm{d}}{\mathrm{d} x}\left(x \frac{\mathrm{d} u}{\mathrm{d} x}\right)+x \frac{\mathrm{d} u}{\mathrm{d} x}=\pi^{2}x \sin(\pi x)+\pi(x-1) \cos(\pi x),x \in [0,1],   \\
+  &u(0)=0,\quad u(1)=0.
+\end{aligned}\right.</script><p>方程的真解：$u(x)=\sin (\pi x)$.</p>
+<p><strong>MATLAB 程序</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% fdm1d2.m</span></span><br><span class="line"><span class="comment">% finite difference method for 1D problem</span></span><br><span class="line"><span class="comment">% -(xu')'+x*u'=pi^2*x*sin(pi*x)-pi*cos(pi*x)+pi*x*cos(pi*x) in [0,1]</span></span><br><span class="line"><span class="comment">% u(0)=0, u(1)=0 ;</span></span><br><span class="line"><span class="comment">% exact solution : u=sin(pi*x)</span></span><br><span class="line">clear all;  clf</span><br><span class="line">h=<span class="number">0.05</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">A=<span class="built_in">diag</span>(<span class="number">2</span>*x(<span class="number">2</span>:N)./h^<span class="number">2</span>)+<span class="built_in">diag</span>(x(<span class="number">2</span>:N<span class="number">-1</span>)./(<span class="number">2</span>*h)-(x(<span class="number">2</span>:N<span class="number">-1</span>)+<span class="number">0.5</span>*h)./h^<span class="number">2</span>,<span class="number">1</span>)...</span><br><span class="line">    +<span class="built_in">diag</span>(-x(<span class="number">3</span>:N)./(<span class="number">2</span>*h)-(x(<span class="number">3</span>:N)<span class="number">-0.5</span>*h)./h^<span class="number">2</span>,<span class="number">-1</span>);</span><br><span class="line">b=<span class="built_in">pi</span>^<span class="number">2</span>*x(<span class="number">2</span>:N).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N))+<span class="built_in">pi</span>*(x(<span class="number">2</span>:N)<span class="number">-1</span>).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N));</span><br><span class="line">u=A\b';</span><br><span class="line">u=[<span class="number">0</span>;u;<span class="number">0</span>];</span><br><span class="line">ue=<span class="built_in">sin</span>(<span class="built_in">pi</span>*x');</span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">Error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue))</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact '</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'NorthEast'</span>)</span><br><span class="line"><span class="comment">%title('Finite Difference Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'x'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm1d2.png</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/21/H98DjFkAYRhpJQC.png" alt="fdm1d2.png"></p>
+<p><strong>计算收敛阶</strong><br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% fdm1d2_error.m</span></span><br><span class="line"><span class="comment">% finite difference method for 1D problem</span></span><br><span class="line"><span class="comment">% -(xu')'+x*u'=pi^2*x*sin(pi*x)-pi*cos(pi*x)+pi*x*cos(pi*x) in [0,1]</span></span><br><span class="line"><span class="comment">% u(0)=0, u(1)=0 ;</span></span><br><span class="line"><span class="comment">% exact solution : u=sin(pi*x)</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">20</span> <span class="number">50</span> <span class="number">100</span> <span class="number">200</span> <span class="number">500</span> <span class="number">1000</span>];    <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">    N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">    A=<span class="built_in">diag</span>(<span class="number">2</span>*x(<span class="number">2</span>:N)./h^<span class="number">2</span>)+<span class="built_in">diag</span>(x(<span class="number">2</span>:N<span class="number">-1</span>)./(<span class="number">2</span>*h)-(x(<span class="number">2</span>:N<span class="number">-1</span>)+<span class="number">0.5</span>*h)./h^<span class="number">2</span>,<span class="number">1</span>)...</span><br><span class="line">        +<span class="built_in">diag</span>(-x(<span class="number">3</span>:N)./(<span class="number">2</span>*h)-(x(<span class="number">3</span>:N)<span class="number">-0.5</span>*h)./h^<span class="number">2</span>,<span class="number">-1</span>);</span><br><span class="line">    b=<span class="built_in">pi</span>^<span class="number">2</span>*x(<span class="number">2</span>:N).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N))+<span class="built_in">pi</span>*(x(<span class="number">2</span>:N)<span class="number">-1</span>).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N));</span><br><span class="line">    u=A\b';</span><br><span class="line">    u=[<span class="number">0</span>;u;<span class="number">0</span>];</span><br><span class="line">    ue=<span class="built_in">sin</span>(<span class="built_in">pi</span>*x');</span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Convergence of Finite Difference Method','fontsize',14)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>),</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -2 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(<span class="built_in">i</span>)=-<span class="built_in">log</span>(Error(<span class="built_in">i</span>)/Error(<span class="built_in">i</span>+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(<span class="built_in">i</span>)/Nvec(<span class="built_in">i</span>+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm1d2_error.png</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.0059    0.0013    0.0002    0.0001    0.0000    0.0000    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    2.1277    2.0216    1.7479    1.8159    1.8623    1.8930</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/21/yofGu5XiA34F1SW.png" alt="fdm1d2_error.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Finite-Difference/" rel="tag"># Finite Difference</a>
+              <a href="/tags/PDE/" rel="tag"># PDE</a>
+              <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/20/Software02/" rel="prev" title="Windows 软件推荐（二）">
+      <i class="fa fa-chevron-left"></i> Windows 软件推荐（二）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#两点边值问题（常系数）"><span class="nav-number">1.</span> <span class="nav-text">两点边值问题（常系数）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两点边值问题（变系数）"><span class="nav-number">2.</span> <span class="nav-text">两点边值问题（变系数）</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Andy Tian"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Andy Tian</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/andy123t" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;andy123t" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:andy123t@163.com" title="E-Mail → mailto:andy123t@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Andy Tian</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>

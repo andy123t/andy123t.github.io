@@ -31,11 +31,11 @@
 <meta property="og:image" content="https://i.loli.net/2020/05/16/LG3xBt5wKlfrOaq.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/16/MWYnHbZvpBqk4yh.png">
 <meta property="article:published_time" content="2020-05-16T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-16T12:09:56.278Z">
+<meta property="article:modified_time" content="2020-05-21T10:49:32.208Z">
 <meta property="article:author" content="Andy Tian">
+<meta property="article:tag" content="MATLAB">
 <meta property="article:tag" content="Euler Method">
 <meta property="article:tag" content="ODE">
-<meta property="article:tag" content="MATLAB">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/05/16/n9iTBrXz2AxvUZO.png">
 
@@ -227,10 +227,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-05-16 08:00:00 / Modified: 20:09:56" itemprop="dateCreated datePublished" datetime="2020-05-16T08:00:00+08:00">2020-05-16</time>
+              <time title="Created: 2020-05-16 08:00:00" itemprop="dateCreated datePublished" datetime="2020-05-16T08:00:00+08:00">2020-05-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-21 18:49:32" itemprop="dateModified" datetime="2020-05-21T18:49:32+08:00">2020-05-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -263,14 +269,14 @@
 <h3 id="常微分方程初值问题"><a href="#常微分方程初值问题" class="headerlink" title="常微分方程初值问题"></a>常微分方程初值问题</h3><p>考虑 常微分方程初值问题，设 $f(t,u)$ 在区域 $\rm G$ : $0\leqslant t \leqslant T$, $|u|&lt; \infty$ 上连续，求 $u=u(t)$ 满足：</p>
 <script type="math/tex; mode=display">
 \left\{\begin{aligned}
-  &\frac{du}{dt}=f(t,u),\quad 0 < t \leqslant T, \\
+  &\frac{\mathrm{d}u}{\mathrm{d}t}=f(t,u),\quad 0 < t \leqslant T, \\
   &u(0)=0.
   \end{aligned} \right.</script><p>通常 $f$ 满足 Lipschitz 条件： $|f(t,u_1)-f(t,u_2)|\leqslant L|u_1-u_2|$.</p>
 <a id="more"></a>
 <p><strong>线性 ODE 例子</strong></p>
 <script type="math/tex; mode=display">
 \left\{\begin{aligned}
-&\frac{du}{dt}=t^2+t-u ,\quad t \in [0,1] , \\
+&\frac{\mathrm{d}u}{\mathrm{d}t}=t^2+t-u ,\quad t \in [0,1] , \\
 &u(0)=0.
 \end{aligned} \right.</script><p>方程的真解：$u(x)=−e^{−t}+t^2−t+1$.</p>
 <h3 id="Euler-方法"><a href="#Euler-方法" class="headerlink" title="Euler 方法"></a>Euler 方法</h3><script type="math/tex; mode=display">
@@ -309,9 +315,9 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
               <a href="/tags/Euler-Method/" rel="tag"># Euler Method</a>
               <a href="/tags/ODE/" rel="tag"># ODE</a>
-              <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
           </div>
 
         
@@ -401,20 +407,20 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
