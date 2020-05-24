@@ -1,21 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>傍晚的美景</title>
-    <url>/2020/05/11/HomeScenery/</url>
-    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
-<p>走出村庄的路上</p>
-<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
+    <title>矩形网的差分格式</title>
+    <url>/2020/05/24/FDM02/</url>
+    <content><![CDATA[<p>二维 Possion 方程<strong>五点差分格式</strong>的 <strong>MATLAB 编程实现</strong>。</p>
+<h3 id="二维-Possion-方程"><a href="#二维-Possion-方程" class="headerlink" title="二维 Possion 方程"></a>二维 Possion 方程</h3><p>考虑二维 Possion 方程:</p>
+<script type="math/tex; mode=display">
+\left\{ \begin{aligned}
+&-\Delta u=f(x,y),\quad (x,y)\in \Omega, \\
+&u|_{\partial \Omega}=\phi(x,y),\quad (x, y) \in \partial \Omega ,
+\end{aligned}\right.</script><p>其中 $\partial \Omega$ 为区域 $\Omega$ 的边界，$f(x,y)$ 和 $\phi(x)$ 为已知函数，$u|_{\partial \Omega}=\phi(x,y)$ 为边界条件。</p>
 <a id="more"></a>
-<p>远处是风力发达机，还有漂亮的晚霞！</p>
-<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
-<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
+<h3 id="五点差分格式"><a href="#五点差分格式" class="headerlink" title="五点差分格式"></a>五点差分格式</h3><p>考虑 $\Omega$ 为矩形的情况，即 $a&lt;x&lt;b$，$c&lt;x&lt;d$. 取定沿 $x$ 轴和 $y$ 轴的步长 $h_1$ 和 $h_2$，$h_{1}=(b-a) / N, h_{2}=(d-c) / M$. 则</p>
+<script type="math/tex; mode=display">x_{i}=a+i h_{1}, \quad 0 \leqslant i \leqslant N,</script><script type="math/tex; mode=display">y_{j}=c+j h_{2}, \quad 0 \leqslant j \leqslant M.</script><p>$(x_{i}, y_{j})$ 称为<strong>网格节点</strong>。</p>
+<p>二维 Possion 方程的五点差分格式：</p>
+<script type="math/tex; mode=display">
+-\frac{1}{h_{2}^{2}} u_{i, j-1}-\frac{1}{h_{1}^{2}} u_{i-1,j} +2\left(\frac{1}{h_{1}^{2}}+\frac{1}{h_{2}^{2}}\right) u_{i, j}
+-\frac{1}{h_{1}^{2}} u_{i+1, j}-\frac{1}{h_{2}^{2}} u_{i, j+1}=f\left(x_{i}, y_{j}\right),</script><script type="math/tex; mode=display">
+1 \leqslant i \leqslant N-1,\quad 1 \leqslant j \leqslant M-1.</script><p>先定义向量 $\boldsymbol{u}_{j}$：</p>
+<script type="math/tex; mode=display">\boldsymbol{u}_{j}=\left(u_{1 j}, u_{2 j}, \ldots, u_{N-1, j}\right)^{\mathrm{T}}, \quad 0 \leqslant j \leqslant M.</script><p>差分格式可以写为矩阵形式：</p>
+<script type="math/tex; mode=display">\boldsymbol{D} \boldsymbol{u}_{j-1}+\boldsymbol{C u}_{j}+\boldsymbol{D} \boldsymbol{u}_{j+1}=\boldsymbol{f}_{j}, \quad 1 \leqslant j \leqslant M-1.</script><p>其中矩阵 $\boldsymbol{C}$、$\boldsymbol{D}$、向量 $\boldsymbol{f}_j$ 的定义如下，注意向量 $\boldsymbol{f}_j$ 的首尾元素已包含了 $x=a$ 和 $x=b$ 处的边界条件。</p>
+<p>[ \boldsymbol{C} = \left(<br>\begin{array}{ccccc}<br>\displaystyle 2\left(\frac{1}{h_1^2}+\frac{1}{h_2^2}\right) &amp; \displaystyle -\frac{1}{h_1^2} &amp;      &amp;      &amp;     \\<br> \displaystyle -\frac{1}{h_1^2} &amp; \displaystyle 2\left(\frac{1}{h_1^2}+\frac{1}{h_2^2}\right) &amp; \displaystyle -\frac{1}{h_1^2}  &amp;      &amp;   \\<br>   &amp;    &amp;   &amp;    &amp;   \\<br>  &amp; \ddots &amp; \ddots &amp; \ddots   &amp;       \\<br>  &amp;    &amp;   &amp;    &amp;   \\<br>  &amp;   &amp;\displaystyle -\frac{1}{h_1^2}  &amp;\displaystyle 2\left(\frac{1}{h_1^2}+\frac{1}{h_2^2}\right) &amp; \displaystyle-\frac{1}{h_1^2} \\<br>  &amp;     &amp;    &amp; \displaystyle -\frac{1}{h_1^2} &amp; \displaystyle 2\left(\frac{1}{h_1^2}+\frac{1}{h_2^2}\right) \\<br>\end{array} \right) ]</p>
+<script type="math/tex; mode=display">\boldsymbol{D} = \left(
+\begin{array}{ccccc}
+\displaystyle-\frac{1}{h_2^2} &    &    &    &   \\
+    & \displaystyle-\frac{1}{h_2^2}&    &    &   \\
+    &     &  \ddots  &    &    \\
+    &     &    &  \displaystyle-\frac{1}{h_2^2}&  \\
+    &     &    &      & \displaystyle-\frac{1}{h_2^2} \\
+\end{array} \right),\quad
+\boldsymbol{f}_{j} = \left(
+\begin{array}{c}
+\displaystyle f(x_{1},y_{j})+\frac{1}{h_1^2}\phi(x_{0},y_{j}) \\
+\displaystyle f(x_{2},y_{j})  \\
+\vdots  \\
+\displaystyle f(x_{N-2},y_{j}) \\
+\displaystyle f(x_{N-1},y_{j})+\frac{1}{h_1^2}\phi(x_{N},y_{j}) \\
+\end{array} \right)</script><p>以上矩阵形式的差分格式还可以进一步写为如下的矩阵形式，注意等号右边向量的首尾元素加入了 $y=c$ 和 $y=d$ 处的边界条件。</p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{ccccc}
+\boldsymbol{C} & \boldsymbol{D} &    &    &       \\
+\boldsymbol{D}  & \boldsymbol{C}& \boldsymbol{D} &    &       \\
+    &  \ddots  &  \ddots   &  \ddots  &    \\
+    &     & \boldsymbol{D} & \boldsymbol{C}& \boldsymbol{D}  \\
+    &     &    & \boldsymbol{D} & \boldsymbol{C} \\
+\end{array} \right)
+\left(\begin{array}{c}
+\boldsymbol{u}_{1} \\
+\boldsymbol{u}_{2} \\
+\vdots \\
+\boldsymbol{u}_{M-2} \\
+\boldsymbol{u}_{M-1} \\
+\end{array} \right)
+=\left(\begin{array}{c}
+\boldsymbol{f}_{1}-D\boldsymbol{u}_{0} \\
+\boldsymbol{f}_{2} \\
+\vdots \\
+\boldsymbol{f}_{M-2} \\
+\boldsymbol{f}_{M-1}-D\boldsymbol{u}_{M} \\
+\end{array} \right)</script><h3 id="数值例子-1"><a href="#数值例子-1" class="headerlink" title="数值例子 1"></a>数值例子 1</h3><script type="math/tex; mode=display">
+\left\{ \begin{aligned}
+  &-\Delta u=f(x,y),\quad (x,y)\in \Omega=(0,1)\times (0,1), \\
+  &u=0,\quad (x, y) \in \partial \Omega .
+  \end{aligned}\right.</script><p>其中 $f(x,y)=-2 \pi^{2} e^{\pi(x+y)}(\sin \pi x \cos \pi y+\cos \pi x \sin \pi y).$</p>
+<p>方程的真解：</p>
+<script type="math/tex; mode=display">u(x, y)=e^{\pi(x+y)} \sin (\pi x) \sin(\pi y), \quad (x,y)\in \Omega=(0,1)\times (0,1).</script><p><strong>计算数值解</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% fdm2d1.m</span></span><br><span class="line"><span class="comment">% finite difference method for 2D problem</span></span><br><span class="line"><span class="comment">% -d^2u/dx^2-d^2u/dy^2=f(x,y)</span></span><br><span class="line"><span class="comment">% f(x,y)=-2*pi^2*exp(pi*(x+y))*(sin(pi*x)*cos(pi*y)+cos(pi*x)*sin(pi*y))</span></span><br><span class="line"><span class="comment">% exact solution: ue=exp(pi*x+pi*y)*sin(pi*x)*sin(pi*y)</span></span><br><span class="line">clear all;  clf</span><br><span class="line"><span class="comment">% generate coordinates on the grid</span></span><br><span class="line">h=<span class="number">0.02</span>;</span><br><span class="line">x=[<span class="number">0</span>:h:<span class="number">1</span>]';</span><br><span class="line">y=[<span class="number">0</span>:h:<span class="number">1</span>]';</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">M=<span class="built_in">length</span>(y)<span class="number">-1</span>;</span><br><span class="line">[X,Y]=<span class="built_in">meshgrid</span>(x,y);</span><br><span class="line">X=X(<span class="number">2</span>:M,<span class="number">2</span>:N);</span><br><span class="line">Y=Y(<span class="number">2</span>:M,<span class="number">2</span>:N);</span><br><span class="line"><span class="comment">% generate the matrix of RHS</span></span><br><span class="line">f=<span class="number">-2</span>*<span class="built_in">pi</span>^<span class="number">2</span>*<span class="built_in">exp</span>(<span class="built_in">pi</span>*X+<span class="built_in">pi</span>*Y).*(<span class="built_in">sin</span>(<span class="built_in">pi</span>*X).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*Y)+<span class="built_in">cos</span>(<span class="built_in">pi</span>*X).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*Y));</span><br><span class="line"><span class="comment">% constructing the coefficient matrix</span></span><br><span class="line">C=<span class="number">4</span>/h^<span class="number">2</span>*<span class="built_in">eye</span>(N<span class="number">-1</span>)<span class="number">-1</span>/h^<span class="number">2</span>*<span class="built_in">diag</span>(<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">1</span>)<span class="number">-1</span>/h^<span class="number">2</span>*<span class="built_in">diag</span>(<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">-1</span>);</span><br><span class="line">D=<span class="number">-1</span>/h^<span class="number">2</span>*<span class="built_in">eye</span>(N<span class="number">-1</span>);</span><br><span class="line">A=kron(<span class="built_in">eye</span>(M<span class="number">-1</span>),C)+kron(<span class="built_in">diag</span>(<span class="built_in">ones</span>(M<span class="number">-2</span>,<span class="number">1</span>),<span class="number">1</span>)+<span class="built_in">diag</span>(<span class="built_in">ones</span>(M<span class="number">-2</span>,<span class="number">1</span>),<span class="number">-1</span>),D);</span><br><span class="line"><span class="comment">% solving the linear system</span></span><br><span class="line">f=f';</span><br><span class="line">u=<span class="built_in">zeros</span>(M+<span class="number">1</span>,N+<span class="number">1</span>);</span><br><span class="line">u(<span class="number">2</span>:M,<span class="number">2</span>:N)=<span class="built_in">reshape</span>(A\f(:),N<span class="number">-1</span>,M<span class="number">-1</span>)';</span><br><span class="line">u(:,<span class="number">1</span>)=<span class="number">0</span>;</span><br><span class="line">u(:,<span class="keyword">end</span>)=<span class="number">0</span>;</span><br><span class="line">ue=<span class="built_in">zeros</span>(M+<span class="number">1</span>,N+<span class="number">1</span>);</span><br><span class="line">ue(<span class="number">2</span>:M,<span class="number">2</span>:N)=<span class="built_in">exp</span>(<span class="built_in">pi</span>*X+<span class="built_in">pi</span>*Y).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*X).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*Y);</span><br><span class="line"><span class="comment">% compute maximum error</span></span><br><span class="line">Error=<span class="built_in">max</span>(<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue)))</span><br><span class="line">mesh(x,y,u)</span><br><span class="line"><span class="comment">%title('Finite Difference Method','fontsize',14)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'x'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>)</span><br><span class="line">ylabel(<span class="string">'y'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line">zlabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm2d1.png</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/25/YF5HuRyeW9XNaOE.png" alt="fdm2d1.png"></p>
+<p><strong>计算收敛阶</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% fdm2d1_error.m </span></span><br><span class="line"><span class="comment">% finite difference method for 2D problem</span></span><br><span class="line"><span class="comment">% -d^2u/dx^2-d^2u/dy^2=f(x,y)</span></span><br><span class="line"><span class="comment">% f(x,y)=-2*pi^2*exp(pi*(x+y))*(sin(pi*x)*cos(pi*y)+cos(pi*x)*sin(pi*y))</span></span><br><span class="line"><span class="comment">% exact solution: ue=exp(pi*x+pi*y)*sin(pi*x)*sin(pi*y)</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=<span class="number">2.</span>^[<span class="number">4</span>:<span class="number">10</span>];</span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> n=Nvec</span><br><span class="line">   h=<span class="number">1</span>/n;</span><br><span class="line">   x=[<span class="number">0</span>:h:<span class="number">1</span>]';</span><br><span class="line">   y=[<span class="number">0</span>:h:<span class="number">1</span>]';</span><br><span class="line">   N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">   M=<span class="built_in">length</span>(y)<span class="number">-1</span>;</span><br><span class="line">   [X,Y]=<span class="built_in">meshgrid</span>(x,y);</span><br><span class="line">   X=X(<span class="number">2</span>:M,<span class="number">2</span>:N);</span><br><span class="line">   Y=Y(<span class="number">2</span>:M,<span class="number">2</span>:N);</span><br><span class="line">   <span class="comment">% generate the matrix of RHS</span></span><br><span class="line">   f=<span class="number">-2</span>*<span class="built_in">pi</span>^<span class="number">2</span>*<span class="built_in">exp</span>(<span class="built_in">pi</span>*X+<span class="built_in">pi</span>*Y).*(<span class="built_in">sin</span>(<span class="built_in">pi</span>*X).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*Y)+<span class="built_in">cos</span>(<span class="built_in">pi</span>*X).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*Y));</span><br><span class="line">   <span class="comment">% constructing the coefficient matrix</span></span><br><span class="line">   e=<span class="built_in">ones</span>(N<span class="number">-1</span>,<span class="number">1</span>);</span><br><span class="line">   C=<span class="number">1</span>/h^<span class="number">2</span>*spdiags([-e <span class="number">4</span>*e -e],[<span class="number">-1</span> <span class="number">0</span> <span class="number">1</span>],N<span class="number">-1</span>,N<span class="number">-1</span>);</span><br><span class="line">   D=<span class="number">-1</span>/h^<span class="number">2</span>*<span class="built_in">eye</span>(N<span class="number">-1</span>);</span><br><span class="line">   e=<span class="built_in">ones</span>(M<span class="number">-1</span>,<span class="number">1</span>);</span><br><span class="line">   A=kron(<span class="built_in">eye</span>(M<span class="number">-1</span>),C)+kron(spdiags([e e],[<span class="number">-1</span> <span class="number">1</span>],M<span class="number">-1</span>,M<span class="number">-1</span>),D);</span><br><span class="line">   <span class="comment">% solving the linear system</span></span><br><span class="line">   f=f';</span><br><span class="line">   u=<span class="built_in">zeros</span>(M+<span class="number">1</span>,N+<span class="number">1</span>);</span><br><span class="line">   u(<span class="number">2</span>:M,<span class="number">2</span>:N)=<span class="built_in">reshape</span>(A\f(:),N<span class="number">-1</span>,M<span class="number">-1</span>)';</span><br><span class="line">   u(:,<span class="number">1</span>)=<span class="number">0</span>;</span><br><span class="line">   u(:,<span class="keyword">end</span>)=<span class="number">0</span>;</span><br><span class="line">   ue=<span class="built_in">zeros</span>(M+<span class="number">1</span>,N+<span class="number">1</span>);</span><br><span class="line">   <span class="comment">% numerical solution</span></span><br><span class="line">   ue(<span class="number">2</span>:M,<span class="number">2</span>:N)=<span class="built_in">exp</span>(<span class="built_in">pi</span>*X+<span class="built_in">pi</span>*Y).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*X).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*Y);</span><br><span class="line">   error=<span class="built_in">max</span>(<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue)));     <span class="comment">% maximum error</span></span><br><span class="line">   Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Convergence of Finite Difference Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>),</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.46</span> <span class="number">0.50</span>];</span><br><span class="line">ay = [<span class="number">0.41</span> <span class="number">0.46</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -2 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">   order(<span class="built_in">i</span>)=-<span class="built_in">log</span>(Error(<span class="built_in">i</span>)/Error(<span class="built_in">i</span>+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(<span class="built_in">i</span>)/Nvec(<span class="built_in">i</span>+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm2d1_error.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.4587    0.1145    0.0286    0.0072    0.0018    0.0004    0.0001</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    2.0026    2.0002    1.9994    2.0000    2.0000    2.0000</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/25/nh4TW5swQcUq2B3.png" alt="fdm2d1_error.png"></p>
+<h3 id="数值例子-2"><a href="#数值例子-2" class="headerlink" title="数值例子 2"></a>数值例子 2</h3><script type="math/tex; mode=display">\left\{ \begin{aligned}
+&-\Delta u=\cos 3 x \sin \pi y, && (x, y) \in G=(0, \pi) \times(0,1), \\
+&u(x, 0)=u(x, 1)=0, && 0 \leqslant x \leqslant 1, \\ 
+&u_{x}(0, y)=u_{x}(\pi, y)=0, && 0 \leqslant y \leqslant 1.
+\end{aligned}\right.</script><p>方程的真解：$u=(9+\pi^{2})^{-1} \cos(3 x) \sin(\pi y).$</p>
+<p>差分格式:</p>
+<script type="math/tex; mode=display">-\left(\frac{u_{i+1, j}-2 u_{i j}+u_{i-1, j}}{h_{1}^{2}}+\frac{u_{i, j+1}-2 u_{i j}+u_{i, j-1}}{h_{2} 2}\right)=\cos(3 x_{i}) \sin(\pi y_{j}).</script><script type="math/tex; mode=display">i, j=1,2, \cdots, N-1.</script><p>边界条件为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&u_{i 0}=u_{i N}=0,\quad i=0, \cdots, N \\ 
+&u_{0 j}=u_{1 j},\quad j=1, \cdots, N-1 \\ 
+&u_{N j}=u_{N-1, j},\quad j=1, \cdots, N-1
+\end{aligned}</script><p><strong>计算收敛阶</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% fdm2d2_error.m </span></span><br><span class="line"><span class="comment">% finite difference method for 2D problem</span></span><br><span class="line"><span class="comment">% -\Delta u=cos(3*x)*sin(pi*y)  in (0,pi)x(0,1)</span></span><br><span class="line"><span class="comment">% u(x,0)=u(x,1)=0  in [0,pi]</span></span><br><span class="line"><span class="comment">% u_x(0,y)=u_x(pi,y)=0 in [0,1]</span></span><br><span class="line"><span class="comment">% exact solution: ue=(9+pi^2)^(-1)*cos(3*x)*sin(pi*y)</span></span><br><span class="line">clear all; close all; clf</span><br><span class="line">Nvec=<span class="number">2.</span>^[<span class="number">2</span>:<span class="number">7</span>];</span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> N=Nvec</span><br><span class="line">    <span class="comment">% coordinates on the grid</span></span><br><span class="line">    h1=<span class="built_in">pi</span>/N;  h2=<span class="number">1</span>/N;</span><br><span class="line">    x=[<span class="number">0</span>:h1:<span class="built_in">pi</span>]'; </span><br><span class="line">    y=[<span class="number">0</span>:h2:<span class="number">1</span>]';</span><br><span class="line">    [X,Y]=<span class="built_in">meshgrid</span>(x,y);</span><br><span class="line">    X1=X(<span class="number">2</span>:N,<span class="number">2</span>:N);</span><br><span class="line">    Y1=Y(<span class="number">2</span>:N,<span class="number">2</span>:N);</span><br><span class="line">    <span class="comment">% generate the matrix of RHS</span></span><br><span class="line">    f=<span class="built_in">cos</span>(<span class="number">3</span>*X1).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*Y1);</span><br><span class="line">    <span class="comment">% constructing the coefficient matrix</span></span><br><span class="line">    e=<span class="built_in">ones</span>(N<span class="number">-1</span>,<span class="number">1</span>);</span><br><span class="line">    C=<span class="built_in">diag</span>([<span class="number">1</span>/h1^<span class="number">2</span>+<span class="number">2</span>/h2^<span class="number">2</span>, (<span class="number">2</span>/h1^<span class="number">2</span>+<span class="number">2</span>/h2^<span class="number">2</span>)*<span class="built_in">ones</span>(<span class="number">1</span>,N<span class="number">-3</span>), <span class="number">1</span>/h1^<span class="number">2</span>+<span class="number">2</span>/h2^<span class="number">2</span>])...</span><br><span class="line">        <span class="number">-1</span>/h1^<span class="number">2</span>*<span class="built_in">diag</span>(<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">1</span>)<span class="number">-1</span>/h1^<span class="number">2</span>*<span class="built_in">diag</span>(<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">-1</span>);</span><br><span class="line">    D=<span class="number">-1</span>/h2^<span class="number">2</span>*<span class="built_in">eye</span>(N<span class="number">-1</span>);</span><br><span class="line">    <span class="comment">%A=kron(eye(N-1),C)+kron(diag(ones(N-2,1),1)+diag(ones(N-2,1),-1),D);</span></span><br><span class="line">    A=kron(<span class="built_in">eye</span>(N<span class="number">-1</span>),C)+kron(spdiags([e e],[<span class="number">-1</span> <span class="number">1</span>],N<span class="number">-1</span>,N<span class="number">-1</span>),D);</span><br><span class="line">    <span class="comment">% solving the linear system</span></span><br><span class="line">    f=f'; </span><br><span class="line">    u=<span class="built_in">zeros</span>(N+<span class="number">1</span>,N+<span class="number">1</span>);</span><br><span class="line">    u(<span class="number">2</span>:N,<span class="number">2</span>:N)=<span class="built_in">reshape</span>(A\f(:),N<span class="number">-1</span>,N<span class="number">-1</span>)';</span><br><span class="line">    <span class="comment">% Neumann boundary condition</span></span><br><span class="line">    u(:,<span class="number">1</span>)=u(:,<span class="number">2</span>); </span><br><span class="line">    u(:,<span class="keyword">end</span>)=u(:,<span class="keyword">end</span><span class="number">-1</span>);</span><br><span class="line">    ue=<span class="number">1</span>/(<span class="number">9</span>+<span class="built_in">pi</span>^<span class="number">2</span>)*(<span class="built_in">cos</span>(<span class="number">3</span>*X)).*(<span class="built_in">sin</span>(<span class="built_in">pi</span>*Y));</span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue)));   <span class="comment">%maximum error</span></span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on,</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-1</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on,</span><br><span class="line"><span class="comment">%title('Convergence of Finite Difference Method','fontsize',14)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>),</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.64</span> <span class="number">0.60</span>];</span><br><span class="line">ay = [<span class="number">0.69</span> <span class="number">0.64</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(<span class="built_in">i</span>)=<span class="built_in">log</span>(Error(<span class="built_in">i</span>)/Error(<span class="built_in">i</span>+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(<span class="built_in">i</span>)/Nvec(<span class="built_in">i</span>+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm2d2_error.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.1173    0.0473    0.0191    0.0085    0.0040    0.0019</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">   -1.3104   -1.3070   -1.1767   -1.0911   -1.0458</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/25/ZNisKQoFrISXgpv.png" alt="fdm2d2_error.png"></p>
 ]]></content>
       <categories>
-        <category>Life</category>
+        <category>Numerical PDEs</category>
       </categories>
       <tags>
-        <tag>Scenery</tag>
+        <tag>Finite Difference</tag>
+        <tag>PDE</tag>
+        <tag>MATLAB</tag>
       </tags>
   </entry>
   <entry>
@@ -34,11 +115,14 @@
 <script type="math/tex; mode=display">x_{i}=a+i h \quad i=0,1, \cdots, N,</script><p>$h=(b-a) / N$。于是我们得到区间 $I=[a,b]$ 的一个网格剖分。$x_i$ 称为网格的<strong>节点</strong>，$h$ 称为<strong>步长</strong>。</p>
 <p>差分方程：</p>
 <script type="math/tex; mode=display">L_{h} u_{i}=-\frac{u_{i+1}-2 u_{i}+u_{i-1}}{h^{2}}+\frac{u_{i+1}-u_{i-1}}{h}+q_{i} u_{i}=f_{i},\quad 1 \leqslant j \leqslant N-1.</script><p>其中  $q_{i}=q(x_{i}), f_{i}=f(x_{i})$。</p>
-<p>以上差分方程对于 $i=1,2, \cdots, N-1$ 都成立，加上边值条件 $u_{0}=\alpha, u_{N}=\beta$，就得到关于 $u_i$ 的线性代数方程组：</p>
+<p>以上差分方程对于 $i=1,2, \cdots, N-1$ 都成立，加上边值条件 $u_{0}=\alpha, u_{N}=\beta$，就得到关于 $u_i$ 的差分格式：</p>
 <script type="math/tex; mode=display">\begin{aligned}
 & L_{h} u_{i}=-\frac{u_{i+1}-2 u_{i}+u_{i-1}}{h^{2}}+\frac{u_{i+1}-u_{i-1}}{2h}+q_{i} u_{i}=f_{i}, \quad i=1,2, \cdots, N-1, \\ 
 & u_{0}=\alpha, \quad u_{N}=\beta.
 \end{aligned}</script><p>它的解 $u_i$ 是 $u(x)$ 在 $x=x_i$ 处的差分解。</p>
+<p>先定义向量 $\boldsymbol{u}$：</p>
+<script type="math/tex; mode=display">\boldsymbol{u}=(u_{1}, u_{2}, \cdots, u_{N-1})^{\mathrm{T}}.</script><p>差分格式可以写为矩阵形式：</p>
+<script type="math/tex; mode=display">\boldsymbol{A}\boldsymbol{u}=\boldsymbol{f}.</script><p>其中矩阵 $\boldsymbol{A}$、向量 $\boldsymbol{f}$ 的定义如下，注意向量 $\boldsymbol{f}$ 的首尾元素已包含了 $x=a$ 和 $x=b$ 处的边界条件。</p>
 <script type="math/tex; mode=display">\boldsymbol{A}=\left[\begin{array}{cccccc}
 \displaystyle \frac{2}{h^{2}}+q_{1} & \displaystyle\frac{1}{2h}-\frac{1}{h^{2}} &   &  &  \\[8pt]
  \displaystyle-\frac{1}{2h}-\frac{1}{h^{2}} & \displaystyle \frac{2}{h^{2}}+q_{2} & \displaystyle\frac{1}{2h}-\frac{1}{h^{2}}  & &  \\[8pt]
@@ -47,14 +131,12 @@
    &  &  &  &    \\
   &   & \displaystyle-\frac{1}{2h}-\frac{1}{h^{2}} & \displaystyle\frac{2}{h^{2}}+q_{N-2}& \displaystyle\frac{1}{2h}-\frac{1}{h^{2}} \\[8pt]
   &  &  & \displaystyle-\frac{1}{2h}-\frac{1}{h^{2}} & \displaystyle \frac{2}{h^{2}}+q_{N-1}
-\end{array}\right],</script><script type="math/tex; mode=display">\boldsymbol{f}=(f_1+\frac{\alpha}{h^2}+\frac{\alpha}{2h}, f_2, \cdots, f_{N-1}+\frac{\beta}{h^2}-\frac{\beta}{2h})^{\mathrm{T}},</script><script type="math/tex; mode=display">\boldsymbol{u}=(u_{1}, u_{2}, \cdots, u_{N-1})^{\mathrm{T}}.</script><p>以上线性方程组可写为</p>
-<script type="math/tex; mode=display">\boldsymbol{A}\boldsymbol{u}=\boldsymbol{f}.</script><p><strong>数值例子</strong></p>
-<script type="math/tex; mode=display">
+\end{array}\right],</script><script type="math/tex; mode=display">\boldsymbol{f}=(f_1+\frac{\alpha}{h^2}+\frac{\alpha}{2h}, f_2, \cdots, f_{N-1}+\frac{\beta}{h^2}-\frac{\beta}{2h})^{\mathrm{T}},</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
 \left\{\begin{aligned}
   &-\frac{\mathrm{d}^{2} u}{\mathrm{d} x^{2}}+\frac{\mathrm{d} u}{\mathrm{d} x}=\pi^{2} \sin (\pi x)+\pi \cos (\pi x),\quad x \in [0,1], \\
   &u(0)=0,\quad u(1)=0.
 \end{aligned} \right.</script><p>方程的真解：$u(x)=\sin (\pi x)$.</p>
-<p><strong>MATLAB 程序</strong></p>
+<p><strong>计算数值解</strong></p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% fdm1d1.m</span></span><br><span class="line"><span class="comment">% finite difference method for 1D problem</span></span><br><span class="line"><span class="comment">% -u''+u'=pi^2*sin(pi*x)+pi*cos(pi*x) in [0,1]</span></span><br><span class="line"><span class="comment">% u(0)=0, u(1)=0 ;</span></span><br><span class="line"><span class="comment">% exact solution: u=sin(pi*x)</span></span><br><span class="line">clear all;  clf</span><br><span class="line">h=<span class="number">0.05</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">A=<span class="built_in">diag</span>((<span class="number">2</span>/h^<span class="number">2</span>)*<span class="built_in">ones</span>(N<span class="number">-1</span>,<span class="number">1</span>))...</span><br><span class="line">    +<span class="built_in">diag</span>((<span class="number">1</span>/(<span class="number">2</span>*h)<span class="number">-1</span>/h^<span class="number">2</span>)*<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">1</span>)...</span><br><span class="line">    +<span class="built_in">diag</span>((<span class="number">-1</span>/(<span class="number">2</span>*h)<span class="number">-1</span>/h^<span class="number">2</span>)*<span class="built_in">ones</span>(N<span class="number">-2</span>,<span class="number">1</span>),<span class="number">-1</span>);</span><br><span class="line">b=<span class="built_in">pi</span>^<span class="number">2</span>*<span class="built_in">sin</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N))+<span class="built_in">pi</span>*<span class="built_in">cos</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N));</span><br><span class="line">u=A\b';</span><br><span class="line">u=[<span class="number">0</span>;u;<span class="number">0</span>];</span><br><span class="line">ue=<span class="built_in">sin</span>(<span class="built_in">pi</span>*x)';</span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">Error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue))</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact '</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'NorthEast'</span>)</span><br><span class="line"><span class="comment">%title('Finite Difference Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'x'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm1d1.png</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://i.loli.net/2020/05/21/CRMWVFKOedubAhs.png" alt="fdm1d1.png"></p>
 <p><strong>计算收敛阶</strong></p>
@@ -80,13 +162,12 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 \end{aligned}</script><p>当网格均匀，即 $h=h_i (i=1,2, \cdots, N)$ 时，差分格式：</p>
 <script type="math/tex; mode=display">\begin{aligned} L_{h} u_{i}=&-\frac{1}{h^{2}}\left[p_{i+\frac{1}{2}} u_{i+1}-\left(p_{i+\frac{1}{2}}+p_{i-\frac{1}{2}}\right) u_{i}+p_{i-\frac{1}{2}} u_{i-1}\right]+\\ & r_{i} \frac{u_{i+1}-u_{i-1}}{2 h}+q_{i} u_{i}=f_{i},\quad i=1, \cdots, N-1 \\ 
 & u_{0}=\alpha, \quad u_{N}=\beta.
-\end{aligned}</script><p><strong>数值例子</strong></p>
-<script type="math/tex; mode=display">
+\end{aligned}</script><h3 id="数值例子-1"><a href="#数值例子-1" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
 \left\{ \begin{aligned}
   &-\frac{\mathrm{d}}{\mathrm{d} x}\left(x \frac{\mathrm{d} u}{\mathrm{d} x}\right)+x \frac{\mathrm{d} u}{\mathrm{d} x}=\pi^{2}x \sin(\pi x)+\pi(x-1) \cos(\pi x),x \in [0,1],   \\
   &u(0)=0,\quad u(1)=0.
 \end{aligned}\right.</script><p>方程的真解：$u(x)=\sin (\pi x)$.</p>
-<p><strong>MATLAB 程序</strong></p>
+<p><strong>计算数值解</strong></p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% fdm1d2.m</span></span><br><span class="line"><span class="comment">% finite difference method for 1D problem</span></span><br><span class="line"><span class="comment">% -(xu')'+x*u'=pi^2*x*sin(pi*x)-pi*cos(pi*x)+pi*x*cos(pi*x) in [0,1]</span></span><br><span class="line"><span class="comment">% u(0)=0, u(1)=0 ;</span></span><br><span class="line"><span class="comment">% exact solution : u=sin(pi*x)</span></span><br><span class="line">clear all;  clf</span><br><span class="line">h=<span class="number">0.05</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">A=<span class="built_in">diag</span>(<span class="number">2</span>*x(<span class="number">2</span>:N)./h^<span class="number">2</span>)+<span class="built_in">diag</span>(x(<span class="number">2</span>:N<span class="number">-1</span>)./(<span class="number">2</span>*h)-(x(<span class="number">2</span>:N<span class="number">-1</span>)+<span class="number">0.5</span>*h)./h^<span class="number">2</span>,<span class="number">1</span>)...</span><br><span class="line">    +<span class="built_in">diag</span>(-x(<span class="number">3</span>:N)./(<span class="number">2</span>*h)-(x(<span class="number">3</span>:N)<span class="number">-0.5</span>*h)./h^<span class="number">2</span>,<span class="number">-1</span>);</span><br><span class="line">b=<span class="built_in">pi</span>^<span class="number">2</span>*x(<span class="number">2</span>:N).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N))+<span class="built_in">pi</span>*(x(<span class="number">2</span>:N)<span class="number">-1</span>).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N));</span><br><span class="line">u=A\b';</span><br><span class="line">u=[<span class="number">0</span>;u;<span class="number">0</span>];</span><br><span class="line">ue=<span class="built_in">sin</span>(<span class="built_in">pi</span>*x');</span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">Error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue))</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact '</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'NorthEast'</span>)</span><br><span class="line"><span class="comment">%title('Finite Difference Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'x'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm1d2.png</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://i.loli.net/2020/05/21/H98DjFkAYRhpJQC.png" alt="fdm1d2.png"></p>
 <p><strong>计算收敛阶</strong><br><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% fdm1d2_error.m</span></span><br><span class="line"><span class="comment">% finite difference method for 1D problem</span></span><br><span class="line"><span class="comment">% -(xu')'+x*u'=pi^2*x*sin(pi*x)-pi*cos(pi*x)+pi*x*cos(pi*x) in [0,1]</span></span><br><span class="line"><span class="comment">% u(0)=0, u(1)=0 ;</span></span><br><span class="line"><span class="comment">% exact solution : u=sin(pi*x)</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">20</span> <span class="number">50</span> <span class="number">100</span> <span class="number">200</span> <span class="number">500</span> <span class="number">1000</span>];    <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">    N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">    A=<span class="built_in">diag</span>(<span class="number">2</span>*x(<span class="number">2</span>:N)./h^<span class="number">2</span>)+<span class="built_in">diag</span>(x(<span class="number">2</span>:N<span class="number">-1</span>)./(<span class="number">2</span>*h)-(x(<span class="number">2</span>:N<span class="number">-1</span>)+<span class="number">0.5</span>*h)./h^<span class="number">2</span>,<span class="number">1</span>)...</span><br><span class="line">        +<span class="built_in">diag</span>(-x(<span class="number">3</span>:N)./(<span class="number">2</span>*h)-(x(<span class="number">3</span>:N)<span class="number">-0.5</span>*h)./h^<span class="number">2</span>,<span class="number">-1</span>);</span><br><span class="line">    b=<span class="built_in">pi</span>^<span class="number">2</span>*x(<span class="number">2</span>:N).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N))+<span class="built_in">pi</span>*(x(<span class="number">2</span>:N)<span class="number">-1</span>).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*x(<span class="number">2</span>:N));</span><br><span class="line">    u=A\b';</span><br><span class="line">    u=[<span class="number">0</span>;u;<span class="number">0</span>];</span><br><span class="line">    ue=<span class="built_in">sin</span>(<span class="built_in">pi</span>*x');</span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Convergence of Finite Difference Method','fontsize',14)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>),</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -2 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(<span class="built_in">i</span>)=-<span class="built_in">log</span>(Error(<span class="built_in">i</span>)/Error(<span class="built_in">i</span>+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(<span class="built_in">i</span>)/Nvec(<span class="built_in">i</span>+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm1d2_error.png</span></span><br></pre></td></tr></table></figure></p>
@@ -101,6 +182,24 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
         <tag>Finite Difference</tag>
         <tag>PDE</tag>
         <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>傍晚的美景</title>
+    <url>/2020/05/11/HomeScenery/</url>
+    <content><![CDATA[<p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
+<p>走出村庄的路上</p>
+<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
+<a id="more"></a>
+<p>远处是风力发达机，还有漂亮的晚霞！</p>
+<p><img src="https://i.loli.net/2020/05/11/P6bsWqxpNrKgoZl.jpg" alt="2020051102.JPG"></p>
+<p><img src="https://i.loli.net/2020/05/11/spVKWaonmRYULc4.jpg" alt="2020051103.JPG"></p>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Scenery</tag>
       </tags>
   </entry>
   <entry>
@@ -134,108 +233,6 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
       </categories>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown 写作</title>
-    <url>/2020/04/27/MarkdownWriting/</url>
-    <content><![CDATA[<p>第一次接触 Markdown 是 2017 年用 Github 写 README.md 的时候，真正用它写东西是 2020 年初，当时买了一本书 《了不起的 Markdown》，挺不错的。Markdown 的最大特点是简单，可以用到很多场景。用 Markdown 可以写书、写幻灯片、写邮件、写日记、写便签、写笔记、写博客，可以说很流行。</p>
-<p>本博客用 Hexo 搭建，选择了 Next 主题，用 Markdown 写作就可以了，真的不懂 HTML 也没关系。</p>
-<a id="more"></a>
-<h3 id="Markdown-简介"><a href="#Markdown-简介" class="headerlink" title="Markdown 简介"></a>Markdown 简介</h3><p><strong>Markdown 是什么</strong></p>
-<ul>
-<li>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</li>
-<li>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</li>
-<li>Markdown 编写的文档后缀为 .md 。</li>
-</ul>
-<p><strong>Markdown 编辑器</strong></p>
-<ul>
-<li>Typora：轻量级 Markdown 本地编辑器，Typora 支持 MacOS 、Windows、Linux 平台，且包含多种主题，编辑后直接渲染出效果。</li>
-<li>VS Code：“宇宙第一编辑器” 来来写 Markdown 还是非常棒的，需要安装预览插件（推荐 MPE：Markdown Preview Enhanced）。</li>
-</ul>
-<h3 id="写作示例"><a href="#写作示例" class="headerlink" title="写作示例"></a>写作示例</h3><p><strong>爱好</strong></p>
-<ul>
-<li>看电影、听音乐、读书</li>
-<li><del>抽烟</del>、<del>喝酒</del></li>
-</ul>
-<p><strong>人生格言</strong></p>
-<blockquote>
-<p>机会总是留给与准备的人。</p>
-</blockquote>
-<p><strong>代码块</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"机会总是留给与准备的人。"</span>)  <span class="comment"># 人生格言!</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
-<p><strong>数学公式</strong></p>
-<p>Markdown 原生并不支持 LaTeX 公式，这里用了 Mathjax 插件渲染。</p>
-<p>行内公式 $a = b + c$.</p>
-<p>行间公式</p>
-<script type="math/tex; mode=display">e^{i\pi}+1=0.</script><p><strong>联系方式</strong></p>
-<ol>
-<li>个人博客：<a href="https://andy123t.github.io">https://andy123t.github.io</a></li>
-<li>Github：<a href="https://github.com/andy123t" target="_blank" rel="noopener">https://github.com/andy123t</a></li>
-</ol>
-<p><strong>修订记录</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">时间</th>
-<th style="text-align:center">内容</th>
-<th style="text-align:center">版本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">2020年4月27日</td>
-<td style="text-align:center">修订完毕</td>
-<td style="text-align:center">v0.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="学习链接"><a href="#学习链接" class="headerlink" title="学习链接"></a>学习链接</h3><ul>
-<li>菜鸟教程 <a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank" rel="noopener">Markdown 教程</a></li>
-<li>个人主页 <a href="http://xianbai.me/learn-md/" target="_blank" rel="noopener">http://xianbai.me/learn-md/</a></li>
-<li>英文教程 <a href="https://www.markdownguide.org/" target="_blank" rel="noopener">https://www.markdownguide.org/</a></li>
-<li>MPE主页 <a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/" target="_blank" rel="noopener">Markdown 教程</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Writing</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Google 科学上网</title>
-    <url>/2020/05/09/Google/</url>
-    <content><![CDATA[<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
-<li>不推荐安装 360、电脑管家等安全或杀毒类软件。</li>
-<li>Win10 系统自带的 <strong>Windows Defender</strong> 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 <strong>火绒安全</strong> 的软件，另外它的弹窗拦截挺好用的。</li>
-<li>如果经常使用搜索引擎，推荐使用 <strong>Google Chrome</strong> 浏览器，安装插件才能用，比如谷歌上网助手 <strong>Ghelper</strong>。</li>
-<li>养成良好的上网习惯，下载软件到软件的官方网站。</li>
-</ul>
-<a id="more"></a>
-<h3 id="Google-Chrome-下载和插件安装"><a href="#Google-Chrome-下载和插件安装" class="headerlink" title="Google Chrome 下载和插件安装"></a>Google Chrome 下载和插件安装</h3><p><strong>Google Chrome 浏览器下载</strong><br><img src="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png" alt="GoogleChrome.png"></p>
-<p><strong>谷歌上网助手下载</strong><br><img src="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png" alt="GhelperDownload.png"></p>
-<p><strong>安装 Ghelper 插件</strong><br><img src="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png" alt="GhelperInstall.png"></p>
-<h3 id="Google-使用"><a href="#Google-使用" class="headerlink" title="Google 使用"></a>Google 使用</h3><p>谷歌上网助手最好注册一下，免费的足够用，已经可以使用 Google Scholar，Gmail 等，有更多需求可以购买 VIP。</p>
-<p>建议注册一个 <strong>Google 账号</strong>，也就是 <strong>Gmail</strong>（电脑注册如果出现问题，可以用 qq 邮箱注册），它可以同步自己的个人信息和配置，包括以下内容：</p>
-<ul>
-<li>收藏网址书签，可以建立文件夹分类；</li>
-<li>保存很多的网站账号密码；</li>
-<li>登陆谷歌网上商店，下载扩展插件（插件是 Google 的灵魂）；</li>
-<li>登陆 Gmail 邮箱收发邮件；</li>
-<li>使用 Google Drive 云端硬盘（免费 15G ）；</li>
-<li>······</li>
-</ul>
-<p>这些内容全部由一个 Google 账号管理同步。如果你退出这个账号，浏览器就像刚安装时一样干净。如果你在另一台电脑登录 Google 账号，你的所有内容就立即恢复了（即使安装的插件也会同步，不需要重新安装）。</p>
-]]></content>
-      <categories>
-        <category>Computer Skills</category>
-      </categories>
-      <tags>
-        <tag>Google</tag>
       </tags>
   </entry>
   <entry>
@@ -320,55 +317,105 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
       </tags>
   </entry>
   <entry>
-    <title>计算数值方法收敛阶</title>
-    <url>/2020/05/16/ODE02/</url>
-    <content><![CDATA[<p>本文介绍如何计算数值方法的收敛阶。以 Euler 方法、梯形公式、改进 Euler 方法为例，并用 MATLAB 编程，最后展示了输出结果。</p>
-<h3 id="误差阶"><a href="#误差阶" class="headerlink" title="误差阶"></a>误差阶</h3><p>数值解法的基本思想是，通过某种离散化手段将微分方程转化为差分方程，如单步法</p>
-<script type="math/tex; mode=display">y_{n+1}=y_{n}+h \varphi(x_{n}, u_{n}, h).</script><p>它在 $x_n$ 处的数值解为 $u_n$，而初值问题在 $x_n$ 处的精确解为 $u(x_n)$，记 $e_n=u(x_n)-u_n$ 称为整体截断误差。收敛性就是讨论当 $x=x_n$ 固定且 $h=\frac{x_{n}-x_{0}}{n} \rightarrow 0$ 时 $e_n \rightarrow 0$ 的问题。</p>
+    <title>Google 科学上网</title>
+    <url>/2020/05/09/Google/</url>
+    <content><![CDATA[<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><ul>
+<li>不推荐安装 360、电脑管家等安全或杀毒类软件。</li>
+<li>Win10 系统自带的 <strong>Windows Defender</strong> 已经可以满足大多数的安全需求。如果还是不放心，可以安装一个叫 <strong>火绒安全</strong> 的软件，另外它的弹窗拦截挺好用的。</li>
+<li>如果经常使用搜索引擎，推荐使用 <strong>Google Chrome</strong> 浏览器，安装插件才能用，比如谷歌上网助手 <strong>Ghelper</strong>。</li>
+<li>养成良好的上网习惯，下载软件到软件的官方网站。</li>
+</ul>
 <a id="more"></a>
-<p><strong>收敛性定义</strong>：若一种数值方法（如单步法对于固定的 $x=x_n+nh$，当 $h\rightarrow 0$ 时有 $u_n \rightarrow u(x_n)$，其中 $u(x)$ 是初值问题的准确解，则称该方法是<strong>收敛</strong>的。</p>
-<p><strong>收敛性定理</strong>：假设单步法具有 $p$ 阶精度，且増量函数 $\varphi(x_{n}, u_{n}, h)$ 关于 $u$ 满足 Lipschitz 条件</p>
-<script type="math/tex; mode=display">|\varphi(x, u, h)-\varphi(x, \bar{u}, h)| \leqslant L_{\varphi}|u-\bar{u}|</script><p>又设初值 $u_0$ 是准确的，即 $y_{0}=y(x_{0})$，则其<strong>整体截断误差</strong></p>
-<script type="math/tex; mode=display">u(x_{n})-u_{n}=O(h^{p})</script><p><strong>数值方法误差阶的计算</strong></p>
-<p>设数值方法的误差阶</p>
-<script type="math/tex; mode=display">
-\left\|u\left(x_{n}\right)-u_{n}\right\|_*=C h^{p}+O\left(h^{p+1}\right).</script><p>省略 $h^p$ 的高阶无穷小，记误差</p>
-<script type="math/tex; mode=display">
-E=C h^{p}.</script><p>两边都取对数</p>
-<script type="math/tex; mode=display">
-\ln(E)=p*\ln(h)+C.</script><p>$p$ 为 $\ln (E)$ 关于 $\ln(h)$ 的斜率</p>
-<script type="math/tex; mode=display">
-p=\frac{\Delta E}{\Delta h}=\frac{\ln(E_1)-\ln(E_2)}{\ln(h_1)-\ln(h_2)}=\frac{\ln(E_1/E_2)}{\ln(h_1/h_2)}.</script><p>如果函数区间为 $[a,b]$，等距剖分为 $N$ 等份，$h=\frac{b-a}{N}$，则</p>
-<script type="math/tex; mode=display">
-p=-\frac{\ln(E_1/E_2)}{\ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</strong></p>
-<script type="math/tex; mode=display">
-\left\{\begin{aligned}
-&\frac{\mathrm{d}u}{\mathrm{d}t}=t^2+t-u ,\quad t \in [0,1] , \\
-&u(0)=0.
-\end{aligned} \right.</script><p>方程的真解：$u(x)=−e^{−t}+t^2−t+1$.</p>
-<h3 id="Euler-方法"><a href="#Euler-方法" class="headerlink" title="Euler 方法"></a>Euler 方法</h3><p><strong>MATLAB 程序</strong></p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% Euler1_error.m</span></span><br><span class="line"><span class="comment">% Euler method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(x)=x^2+x-u, x in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(x)=-exp(-x)+x^2-x+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];        <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line">fun=@(x,u) x.^<span class="number">2</span>+x-u;              <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;                      <span class="comment">% function interval</span></span><br><span class="line">    u(<span class="number">1</span>)=<span class="number">0</span>;                       <span class="comment">% initial value</span></span><br><span class="line">    <span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">        u(n+<span class="number">1</span>)=u(n)+h.*fun(x(n),u(n));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;         <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-1</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  Euler1_error.png</span></span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;  </span><br><span class="line">    0.0459    0.0090    0.0045    0.0009    0.0004</span><br><span class="line"></span><br><span class="line">order &#x3D;  </span><br><span class="line">    1.0123    1.0035    1.0012    1.0003</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2020/05/16/H1lDngsFYMjbXd9.png" alt="Euler1_error.png"></p>
-<h3 id="梯形公式"><a href="#梯形公式" class="headerlink" title="梯形公式"></a>梯形公式</h3><p><strong>MATLAB 程序</strong></p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% Trapezoidal_error.m</span></span><br><span class="line"><span class="comment">% Trapezoidal rule for the ODE model</span></span><br><span class="line"><span class="comment">% u'(x)=x^2+x-u, x in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(x)=-exp(-x)+x^2-x+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];     <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;                       <span class="comment">% function interval</span></span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">0</span>;                        <span class="comment">% initial value</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    u(n+<span class="number">1</span>)=(<span class="number">2</span>-h)/(<span class="number">2</span>+h).*u(n)+h/(<span class="number">2</span>+h).*(x(n)^<span class="number">2</span>+x(n)+x(n+<span class="number">1</span>)^<span class="number">2</span>+x(n+<span class="number">1</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;         <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.63</span> <span class="number">0.58</span>];</span><br><span class="line">ay = [<span class="number">0.70</span> <span class="number">0.65</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    1.0e-03 *</span><br><span class="line">        0.3069    0.0123    0.0031    0.0001    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    2.0006    2.0000    2.0000    2.0000</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2020/05/16/WHcZyb9K3oxLBiQ.png" alt="Trapezoidal_error.png"></p>
-<h3 id="改进的-Euler-方法"><a href="#改进的-Euler-方法" class="headerlink" title="改进的 Euler 方法"></a>改进的 Euler 方法</h3><p><strong>MATLAB 程序</strong></p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% EulerPro_error.m</span></span><br><span class="line"><span class="comment">% Modified Euler method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(x)=x^2+x-u, x in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(x)=-exp(-x)+x^2-x+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];        <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line">fun=@(x,u) x.^<span class="number">2</span>+x-u;              <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;                      <span class="comment">% function interval</span></span><br><span class="line">    u(<span class="number">1</span>)=<span class="number">0</span>;                       <span class="comment">% initial value</span></span><br><span class="line">    <span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">        k1=fun(x(n),u(n));</span><br><span class="line">        k2=fun(x(n+<span class="number">1</span>),u(n)+h*k1);</span><br><span class="line">        u(n+<span class="number">1</span>)=u(n)+(h/<span class="number">2</span>)*(k1+k2);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;         <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.58</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -2 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  EulerPro_error.png</span></span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.0027    0.0001    0.0000    0.0000    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    2.0218    2.0063    2.0022    2.0006</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2020/05/16/PxO3U6Jfjzq4BdW.png" alt="EulerPro_error.png"></p>
+<h3 id="Google-Chrome-下载和插件安装"><a href="#Google-Chrome-下载和插件安装" class="headerlink" title="Google Chrome 下载和插件安装"></a>Google Chrome 下载和插件安装</h3><p><strong>Google Chrome 浏览器下载</strong><br><img src="https://i.loli.net/2020/05/09/4mzTECSWjJiD7lU.png" alt="GoogleChrome.png"></p>
+<p><strong>谷歌上网助手下载</strong><br><img src="https://i.loli.net/2020/05/09/j9fIBwJXAKxscy6.png" alt="GhelperDownload.png"></p>
+<p><strong>安装 Ghelper 插件</strong><br><img src="https://i.loli.net/2020/05/09/eLyYBSlknMgbWTZ.png" alt="GhelperInstall.png"></p>
+<h3 id="Google-使用"><a href="#Google-使用" class="headerlink" title="Google 使用"></a>Google 使用</h3><p>谷歌上网助手最好注册一下，免费的足够用，已经可以使用 Google Scholar，Gmail 等，有更多需求可以购买 VIP。</p>
+<p>建议注册一个 <strong>Google 账号</strong>，也就是 <strong>Gmail</strong>（电脑注册如果出现问题，可以用 qq 邮箱注册），它可以同步自己的个人信息和配置，包括以下内容：</p>
+<ul>
+<li>收藏网址书签，可以建立文件夹分类；</li>
+<li>保存很多的网站账号密码；</li>
+<li>登陆谷歌网上商店，下载扩展插件（插件是 Google 的灵魂）；</li>
+<li>登陆 Gmail 邮箱收发邮件；</li>
+<li>使用 Google Drive 云端硬盘（免费 15G ）；</li>
+<li>······</li>
+</ul>
+<p>这些内容全部由一个 Google 账号管理同步。如果你退出这个账号，浏览器就像刚安装时一样干净。如果你在另一台电脑登录 Google 账号，你的所有内容就立即恢复了（即使安装的插件也会同步，不需要重新安装）。</p>
 ]]></content>
       <categories>
-        <category>Numerical ODEs</category>
+        <category>Computer Skills</category>
       </categories>
       <tags>
-        <tag>MATLAB</tag>
-        <tag>Convergence Order</tag>
-        <tag>ODE</tag>
+        <tag>Google</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown 写作</title>
+    <url>/2020/04/27/MarkdownWriting/</url>
+    <content><![CDATA[<p>第一次接触 Markdown 是 2017 年用 Github 写 README.md 的时候，真正用它写东西是 2020 年初，当时买了一本书 《了不起的 Markdown》，挺不错的。Markdown 的最大特点是简单，可以用到很多场景。用 Markdown 可以写书、写幻灯片、写邮件、写日记、写便签、写笔记、写博客，可以说很流行。</p>
+<p>本博客用 Hexo 搭建，选择了 Next 主题，用 Markdown 写作就可以了，真的不懂 HTML 也没关系。</p>
+<a id="more"></a>
+<h3 id="Markdown-简介"><a href="#Markdown-简介" class="headerlink" title="Markdown 简介"></a>Markdown 简介</h3><p><strong>Markdown 是什么</strong></p>
+<ul>
+<li>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</li>
+<li>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</li>
+<li>Markdown 编写的文档后缀为 .md 。</li>
+</ul>
+<p><strong>Markdown 编辑器</strong></p>
+<ul>
+<li>Typora：轻量级 Markdown 本地编辑器，Typora 支持 MacOS 、Windows、Linux 平台，且包含多种主题，编辑后直接渲染出效果。</li>
+<li>VS Code：“宇宙第一编辑器” 来来写 Markdown 还是非常棒的，需要安装预览插件（推荐 MPE：Markdown Preview Enhanced）。</li>
+</ul>
+<h3 id="写作示例"><a href="#写作示例" class="headerlink" title="写作示例"></a>写作示例</h3><p><strong>爱好</strong></p>
+<ul>
+<li>看电影、听音乐、读书</li>
+<li><del>抽烟</del>、<del>喝酒</del></li>
+</ul>
+<p><strong>人生格言</strong></p>
+<blockquote>
+<p>机会总是留给与准备的人。</p>
+</blockquote>
+<p><strong>代码块</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"机会总是留给与准备的人。"</span>)  <span class="comment"># 人生格言!</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
+<p><strong>数学公式</strong></p>
+<p>Markdown 原生并不支持 LaTeX 公式，这里用了 Mathjax 插件渲染。</p>
+<p>行内公式 $a = b + c$.</p>
+<p>行间公式</p>
+<script type="math/tex; mode=display">e^{i\pi}+1=0.</script><p><strong>联系方式</strong></p>
+<ol>
+<li>个人博客：<a href="https://andy123t.github.io">https://andy123t.github.io</a></li>
+<li>Github：<a href="https://github.com/andy123t" target="_blank" rel="noopener">https://github.com/andy123t</a></li>
+</ol>
+<p><strong>修订记录</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时间</th>
+<th style="text-align:center">内容</th>
+<th style="text-align:center">版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2020年4月27日</td>
+<td style="text-align:center">修订完毕</td>
+<td style="text-align:center">v0.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="学习链接"><a href="#学习链接" class="headerlink" title="学习链接"></a>学习链接</h3><ul>
+<li>菜鸟教程 <a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank" rel="noopener">Markdown 教程</a></li>
+<li>个人主页 <a href="http://xianbai.me/learn-md/" target="_blank" rel="noopener">http://xianbai.me/learn-md/</a></li>
+<li>英文教程 <a href="https://www.markdownguide.org/" target="_blank" rel="noopener">https://www.markdownguide.org/</a></li>
+<li>MPE主页 <a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/" target="_blank" rel="noopener">Markdown 教程</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Writing</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -406,8 +453,8 @@ p=-\frac{\ln(E_1/E_2)}{\ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</stro
       </categories>
       <tags>
         <tag>MATLAB</tag>
-        <tag>ODE</tag>
         <tag>Runge-Kutta</tag>
+        <tag>ODE</tag>
       </tags>
   </entry>
   <entry>
@@ -528,6 +575,58 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       </tags>
   </entry>
   <entry>
+    <title>计算数值方法收敛阶</title>
+    <url>/2020/05/16/ODE02/</url>
+    <content><![CDATA[<p>本文介绍如何计算数值方法的收敛阶。以 Euler 方法、梯形公式、改进 Euler 方法为例，并用 MATLAB 编程，最后展示了输出结果。</p>
+<h3 id="误差阶"><a href="#误差阶" class="headerlink" title="误差阶"></a>误差阶</h3><p>数值解法的基本思想是，通过某种离散化手段将微分方程转化为差分方程，如单步法</p>
+<script type="math/tex; mode=display">y_{n+1}=y_{n}+h \varphi(x_{n}, u_{n}, h).</script><p>它在 $x_n$ 处的数值解为 $u_n$，而初值问题在 $x_n$ 处的精确解为 $u(x_n)$，记 $e_n=u(x_n)-u_n$ 称为整体截断误差。收敛性就是讨论当 $x=x_n$ 固定且 $h=\frac{x_{n}-x_{0}}{n} \rightarrow 0$ 时 $e_n \rightarrow 0$ 的问题。</p>
+<a id="more"></a>
+<p><strong>收敛性定义</strong>：若一种数值方法（如单步法对于固定的 $x=x_n+nh$，当 $h\rightarrow 0$ 时有 $u_n \rightarrow u(x_n)$，其中 $u(x)$ 是初值问题的准确解，则称该方法是<strong>收敛</strong>的。</p>
+<p><strong>收敛性定理</strong>：假设单步法具有 $p$ 阶精度，且増量函数 $\varphi(x_{n}, u_{n}, h)$ 关于 $u$ 满足 Lipschitz 条件</p>
+<script type="math/tex; mode=display">|\varphi(x, u, h)-\varphi(x, \bar{u}, h)| \leqslant L_{\varphi}|u-\bar{u}|</script><p>又设初值 $u_0$ 是准确的，即 $y_{0}=y(x_{0})$，则其<strong>整体截断误差</strong></p>
+<script type="math/tex; mode=display">u(x_{n})-u_{n}=O(h^{p})</script><p><strong>数值方法误差阶的计算</strong></p>
+<p>设数值方法的误差阶</p>
+<script type="math/tex; mode=display">
+\left\|u\left(x_{n}\right)-u_{n}\right\|_*=C h^{p}+O\left(h^{p+1}\right).</script><p>省略 $h^p$ 的高阶无穷小，记误差</p>
+<script type="math/tex; mode=display">
+E=C h^{p}.</script><p>两边都取对数</p>
+<script type="math/tex; mode=display">
+\ln(E)=p*\ln(h)+C.</script><p>$p$ 为 $\ln (E)$ 关于 $\ln(h)$ 的斜率</p>
+<script type="math/tex; mode=display">
+p=\frac{\Delta E}{\Delta h}=\frac{\ln(E_1)-\ln(E_2)}{\ln(h_1)-\ln(h_2)}=\frac{\ln(E_1/E_2)}{\ln(h_1/h_2)}.</script><p>如果函数区间为 $[a,b]$，等距剖分为 $N$ 等份，$h=\frac{b-a}{N}$，则</p>
+<script type="math/tex; mode=display">
+p=-\frac{\ln(E_1/E_2)}{\ln(N_1/N_2)}.</script><p><strong>线性 ODE 例子</strong></p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}
+&\frac{\mathrm{d}u}{\mathrm{d}t}=t^2+t-u ,\quad t \in [0,1] , \\
+&u(0)=0.
+\end{aligned} \right.</script><p>方程的真解：$u(x)=−e^{−t}+t^2−t+1$.</p>
+<h3 id="Euler-方法"><a href="#Euler-方法" class="headerlink" title="Euler 方法"></a>Euler 方法</h3><p><strong>MATLAB 程序</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% Euler1_error.m</span></span><br><span class="line"><span class="comment">% Euler method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(x)=x^2+x-u, x in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(x)=-exp(-x)+x^2-x+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];        <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line">fun=@(x,u) x.^<span class="number">2</span>+x-u;              <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;                      <span class="comment">% function interval</span></span><br><span class="line">    u(<span class="number">1</span>)=<span class="number">0</span>;                       <span class="comment">% initial value</span></span><br><span class="line">    <span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">        u(n+<span class="number">1</span>)=u(n)+h.*fun(x(n),u(n));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;         <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-1</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  Euler1_error.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;  </span><br><span class="line">    0.0459    0.0090    0.0045    0.0009    0.0004</span><br><span class="line"></span><br><span class="line">order &#x3D;  </span><br><span class="line">    1.0123    1.0035    1.0012    1.0003</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/16/H1lDngsFYMjbXd9.png" alt="Euler1_error.png"></p>
+<h3 id="梯形公式"><a href="#梯形公式" class="headerlink" title="梯形公式"></a>梯形公式</h3><p><strong>MATLAB 程序</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% Trapezoidal_error.m</span></span><br><span class="line"><span class="comment">% Trapezoidal rule for the ODE model</span></span><br><span class="line"><span class="comment">% u'(x)=x^2+x-u, x in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(x)=-exp(-x)+x^2-x+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];     <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;                       <span class="comment">% function interval</span></span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">0</span>;                        <span class="comment">% initial value</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    u(n+<span class="number">1</span>)=(<span class="number">2</span>-h)/(<span class="number">2</span>+h).*u(n)+h/(<span class="number">2</span>+h).*(x(n)^<span class="number">2</span>+x(n)+x(n+<span class="number">1</span>)^<span class="number">2</span>+x(n+<span class="number">1</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;         <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.63</span> <span class="number">0.58</span>];</span><br><span class="line">ay = [<span class="number">0.70</span> <span class="number">0.65</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    1.0e-03 *</span><br><span class="line">        0.3069    0.0123    0.0031    0.0001    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    2.0006    2.0000    2.0000    2.0000</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/16/WHcZyb9K3oxLBiQ.png" alt="Trapezoidal_error.png"></p>
+<h3 id="改进的-Euler-方法"><a href="#改进的-Euler-方法" class="headerlink" title="改进的 Euler 方法"></a>改进的 Euler 方法</h3><p><strong>MATLAB 程序</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% EulerPro_error.m</span></span><br><span class="line"><span class="comment">% Modified Euler method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(x)=x^2+x-u, x in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(x)=-exp(-x)+x^2-x+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];        <span class="comment">% Number of splits</span></span><br><span class="line">Error=[];</span><br><span class="line">fun=@(x,u) x.^<span class="number">2</span>+x-u;              <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;                      <span class="comment">% function interval</span></span><br><span class="line">    u(<span class="number">1</span>)=<span class="number">0</span>;                       <span class="comment">% initial value</span></span><br><span class="line">    <span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">        k1=fun(x(n),u(n));</span><br><span class="line">        k2=fun(x(n+<span class="number">1</span>),u(n)+h*k1);</span><br><span class="line">        u(n+<span class="number">1</span>)=u(n)+(h/<span class="number">2</span>)*(k1+k2);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;         <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.58</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -2 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  EulerPro_error.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.0027    0.0001    0.0000    0.0000    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    2.0218    2.0063    2.0022    2.0006</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/16/PxO3U6Jfjzq4BdW.png" alt="EulerPro_error.png"></p>
+]]></content>
+      <categories>
+        <category>Numerical ODEs</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+        <tag>ODE</tag>
+        <tag>Convergence Order</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>谱方法概述</title>
     <url>/2020/05/10/SM00/</url>
     <content><![CDATA[<h3 id="谱方法简介"><a href="#谱方法简介" class="headerlink" title="谱方法简介"></a>谱方法简介</h3><p>谱方法是一种既古老又新兴的求解偏微分方程的数值方法。早在 1820 年, Navier 就运用双重三角级数求解弹性薄板问题。 但是，长期以来，由于它计算量大而一直没有被广泛使用，直到 1965 年快速 Fourier 变换的出现，才给谱方法带来了生机。 近几十多年来，谱方法得到了蓬勃的发展，不仅广泛地运用于物理、力学、大气、海洋等领域的数值计算，而且它的数值分析理论也不断地完善。 至今，谱方法已和有限差分法、有限元法一起成为偏微分方程数值求解的第三种基本方法。</p>
@@ -644,6 +743,120 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       </tags>
   </entry>
   <entry>
+    <title>SMM00 谱方法笔记</title>
+    <url>/2020/05/10/SMM00/</url>
+    <content><![CDATA[<p>这是学习书籍 <strong>Spectral Method in MATLAB</strong> (Lloyd N. Trefethen) 的笔记，因为书是英文的，笔记就成了翻译。很多地方翻译的比较粗糙，能够理解并学到知识才是最重要的。</p>
+<p>Nick Trefethen <a href="http://people.maths.ox.ac.uk/trefethen/" target="_blank" rel="noopener">Homepage</a></p>
+<p>这只是一个开始，后期我会<strong>更新</strong>学习本书的笔记！</p>
+<h3 id="关于本书"><a href="#关于本书" class="headerlink" title="关于本书"></a>关于本书</h3><p>这本书有四十个简短的MATLAB程序，这些程序可以在用于求解与流体力学、量子力学、振动、线性和非线性波、复分析等领域有关的各种常微分方程和偏微分方程( ODE 和 PDE )。书的前六章侧重于理论，第七章以后更侧重于编程应用。学习这本书，需要对数值分析，微分方程有一定的了解，并且熟悉 MATLAB。</p>
+<p>如果你喜欢计算和数字数学，你会喜欢阅读这本书，可以学到一些新的 MATLAB 技巧！</p>
+<a id="more"></a>
+<p>谱方法是数值求解 PDEs 的三大方法之一，它们大致在连续几十年的逐渐发展起来：</p>
+<ul>
+<li>20 世纪 50 年代：有限差分法</li>
+<li>20 世纪 60 年代：有限元法</li>
+<li>20 世纪 70 年代：谱方法</li>
+</ul>
+<p>当然，每种方法的起源都可以追溯到更早的时候。 对于谱方法来说，一些思想和插值和函数展开一样古老，更具体地说，算法的发展最早是在1938年由Lanczos [Lan38, Lan56] 和 1960 年代的 Clenshaw，Elliott，Fox 等 [FoPa68] 提出的。 然后，在20世纪70年代，由 Orszag 等人在流体动力学和气象学问题上的工作引发了这一领域的变革，谱方法也因此而闻名。<br>早期现代谱方法文献的三个里程碑是：Gottlieb 和 Orszag的短书[GoOr77]，Gottlieb，Hussaini 和 Orszag 的研究 [CHO84] 和Canuto，Hussaini，Quarteroni 和 Zang 的专著 [ChQZ88]。 此后，Mercier [Mer89]，Boyd [Boy00]（1989年第一版），Funaro [Fun92]，Bernardi 和 Maday [BeMa92]，Fornberg [For96] 以及 Karniadakis 和 Sherwin [KaSh99] 也贡献了其他书籍。</p>
+<p>如果要在一个简单的区域上高精度地求解 ODE 或 PDE，并且如果定义该问题的函数是平滑的，那么谱方法通常是最好的工具。它们通常可以达到十位数的精度，而有限差分法或有限元法可以达到两三位数。在精度较低的情况下，它们需要的计算机内存比其他替代方案要小。</p>
+<p>这本短小的书介绍了谱方法的一些基本思想和技术。它的目标人群是学过数值分析课程，并熟悉基本的应用程序设计和偏微分方程。你会发现，在计算机的几秒钟内，用几行 MATLAB 代码就可以高精度地解决一系列显著的问题。<strong>写程序应当有一种玩的心态，最后让它们成为你自己的！</strong></p>
+<p>我想强调这里提出的三个数学主题，虽然专家们都知道，但通常在教科书中找不到。在第四章中，第一个是函数的光滑性与其傅里叶变换衰减之间的关系，后者决定了离散化引入的混叠误差的大小；这些关系解释了谱方法的精度如何取决于被逼近函数的光滑性。第二，在第五章中，多项式的根和平面上的点电荷之间的类比，这导致了一个关于非周期谱方法的网格为什么需要在边界处聚集的势理论的扩展。第三，在第八章中，$[-1,1]$上的切比雪夫级数 、$[\pi,\pi]$ 上的三角级数与单位圆上的洛朗级数这三种方法，构成了快速傅里叶变换计算切比雪夫谱导数技术的基础。这三个主题本身都是非常的数学研究主题，对任何应用数学家来说都是值得学习的。</p>
+<p>不可避免地，这本书只涉及谱方法的一部分。它强调在周期网格和切比雪夫网格上的配置（拟谱）方法，而对同样重要的 Galerkin 方法、勒让德网格和多项式几乎没有涉及。理论分析是非常有限的，强调简单几何的简单工具，而不是工业强度、谱元方法和 $hp$ 有限元，在后面给出了一些其他的主题和观点。</p>
+<p>MATLAB的发展开创了科学计算的新纪元。现在，人们可以以非常简洁的方式，完整详细地介绍高级数值算法和非平凡问题的解决方案，在几页中介绍更多的应用数学，几年前是不可想象的。MATLAB 语言有时（不总是！）与 Fortran 或 C 等低级语言相比，牺牲了机器效率这一个特定因素，但是提高了人的编程效率，即修改程序并应用于新的问题，再去尝试新的问题，这比以往更加容易。这本短书鼓励学生、科学家和工程师学会这种新的计算方法。</p>
+<h3 id="关于程序"><a href="#关于程序" class="headerlink" title="关于程序"></a>关于程序</h3><p>本书中的 MATLAB 程序很简洁。 每一个程序容纳在一页上，并且在几英寸的计算机代码中进行计算！程序非常简洁、紧凑，对紧凑性的痴迷有时会损害可读性。 例如，在单个程序行上集合了两个或三个简短的 MATLAB 命令。 </p>
+<p>本书中编程风格的另一个特点是结构扁平化，除了在其中定义的关键函数cheb之外，程序中几乎不使用函数（chebfft、clencurt和gauss这三个函数在第8章和第12章，但每一章都只是局部使用。这种风格的优点是强调可以实现的紧凑程度，但是作为一般规则，MATLAB程序员应该经常使用函数）。</p>
+<p>书中可能写了很多东西去解释程序的细节或技巧。为了使讨论集中在谱方法上，尽量不去提到 MATLAB 的细节，除非在极少数情况下不得不这么做。这意味着当你使用这本书时，你将不得不学习程序，而不仅仅是阅读它们。<strong>只有你花时间学习这些代码，并修改它们来解决你自己的问题之后，你才能真正理解这些问题的答案</strong>。我想这是使用这本书的乐趣之一，希望你能同意。</p>
+<p>本书的程序是用 MATLAB 5.3 编写运行的，随着以后几年中更高版本的发布，这些程序的运行可能会出现一些困难。 若要从头开始学习 MATLAB，或者作为参考，推荐 SIAM 的书籍 MATLAB Guide。</p>
+<p><strong>注：</strong> 我用的 MATLAB 版本是 MATLAB 2019a (v9.6)，画出的图和早期版本是有些不一样的，应该是更美观了吧。</p>
+]]></content>
+      <categories>
+        <category>Spectral Methods</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+        <tag>Spectral Method</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SMM02 半离散 Fourier 变换</title>
+    <url>/2020/05/15/SMM02/</url>
+    <content><![CDATA[<p>本文是书籍 <strong>Spectral Method in MATLAB</strong> 第二章 <strong>Unbounded Grids: the Semidiscrete Fourier Transform 无界网格：半离散 Fourier 变换</strong> 笔记。</p>
+<p>我们现在导出第一个谱方法，就是第一章的两边无限的矩阵。这种方法适用于离散的、无界的区域，因此不是一种实用的方法。但是，它确实介绍了推导和分析实用方法所需的数学思想。</p>
+<h3 id="半离散-Fourier-变换"><a href="#半离散-Fourier-变换" class="headerlink" title="半离散 Fourier 变换"></a>半离散 Fourier 变换</h3><p>无限网格用 $h \mathbb{Z}$表示，节点 $x_j=jh$，其中 $j \in \mathbb{Z}$ ，$\mathbb{Z}$ 是所有整数的集合。</p>
+<p><img src="https://i.loli.net/2020/05/14/F7PDX9TAlfUtyKB.png" alt="SMM0201.png"></p>
+<p>根据半离散傅里叶变换和有限带宽 $sinc$ 函数插值的基本思想去推导 (1.4) 两边无限的矩阵。函数 $u(x)$ ($x \in \mathbb{R}$) 的 Fourier 变换后的函数 $\hat{u}(k)$ 定义为</p>
+<script type="math/tex; mode=display">\hat{u}(k)=\int_{-\infty}^{\infty} u(x) e^{-i k x} dx, \quad \color{red}{k \in \mathbb{R}}.</script><a id="more"></a>
+<p>$\hat{u}(k)$ 可以解释为 $u$ 在波数 $k$ 时的振幅，将一个函数分解为其组成波的过程称为 Fourier 分析。相反地，我们可以从 $\hat{u}$ 通过 逆 Fourier 变换重构 $u$：</p>
+<script type="math/tex; mode=display">u(x)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \hat{u}(k) e^{i kx} d k, \quad \color{red}{x \in \mathbb{R}}.</script><p>这是傅里叶合成。变量 $x$ 是物理变量，$k$ 是 Fourier 变量或波数。</p>
+<p>现在考虑 $x$ 在 $h\mathbb{Z}$ 上的值而不是 $\mathbb{R}$。在这种情况下， Fourier 变换及其逆的精确变换是存在的。关键点在于，由于空间域是离散的，波数 $k$ 将不覆盖R的所有范围。相反，波数域是长度为 $2\pi/h$ 的有界区间，一个适当的选择是 $[-\pi/h,\pi/h]$。记住 $k$ 是有界的，因为 $x$ 是离散的：</p>
+<p><img src="https://i.loli.net/2020/05/15/xAybS4retF1CTh9.png" alt="SMM0202.png"></p>
+<p>产生这些联系的原因是一种称为混叠的现象。当 $k_1 \neq k_2$，两个复指数函数 $f(x)=\exp (i k_{1} x)$ 与 $g(x)=\exp (i k_{2} x)$ 在 $\mathbb{R}$ 上是不相等的。如果我们限制 $f$ 和 $g$ 到 $h\mathbb{Z}$，取 $f_j = \exp (i k_{1} x_{j})$ 和 $g_{j}=\exp (i k_{2} x_{j})$，如果 $k_1-k_2$ 是 $2\pi/h$的整数倍，对每一个 $j$ 有 $f_{j}=g_{j}$。因此，对于任何复指数 $\exp (ikx)$ 在网格 $h\mathbb{Z}$ 上有无限多的其他复指数（$k$ 的“混叠” ）与之匹配。因此，在 $2\pi/h$ 长度的间隔内计算网格的波数就足够了，并且出于对称性的原因，我们选择了间隔 $[-\pi/h,\pi/h]$。</p>
+<p>下图说明了函数 $\sin(\pi x)$ 和 $\sin(9\pi x)$ 相互“混叠”。网格节点的表示限制到了 $\frac{1}{4} \mathbb{Z}$，其中这两个函数是相同的。</p>
+<p><img src="https://i.loli.net/2020/05/14/rGnFxeWLZK1fdP4.png" alt="SMM0203.png"></p>
+<p>“混叠”也出现在非数学生活中，例如西方电影中的“马车轮效应”。如果说照相机的快门每秒发出 24 次咔哒声，货车车轮上的辐条每秒通过垂直方向 20 次，然后车轮看起来好像以每秒 -4 辐条的速度旋转，即向后旋转。同一现象的更高频率“混叠”是频闪显微镜科学的基础，而空间而非时间的混叠会导致云纹。</p>
+<p>对于函数 $v$ 定义在 $h\mathbb{Z}$ 上节点 $x_j$ 值为 $v_j$，半离散 Fourier 变换的定义如下</p>
+<script type="math/tex; mode=display">\hat{v}(k)=h \sum_{j=-\infty}^{\infty} e^{-i k x_{j}} v_{j}, \quad \color{red}{k \in[-\pi / h, \pi / h]}.</script><p>半离散 Fourier 逆变换为</p>
+<script type="math/tex; mode=display">v_{j}=\frac{1}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x_{j}} \hat{v}(k) dk, \quad \color{red}{j \in \mathbb{Z}}.</script><p>半离散 Fourier 变换 (2.3) 通过梯形公式逼近  Fourier 变换 (2.1)，半离散 Fourier 逆变换 (2.4)逼近 (2.2) 则是通过截断 $\mathbb{R}$ 到  $[-\pi /h, \pi /h]$。当 $h \rightarrow 0$，两对公式收敛。</p>
+<p>如果“半离散 Fourier 变换”这个表达式不熟悉，那可能是因为我们给一个旧概念取了一个新名字。Fourier 级数表示有界区间上的函数，它是离散波数上复指数的和，如 (2.3)。我们用半离散 Fourier 变换来强调我们在这里关心的是逆问题：空间变量是离散的，Fourier 变量是连续的，属于有界区间 。从数学上讲，这与 Fourier 级数理论没有区别，Fourier 级数在许多书中都有介绍，是数学中应用最广泛的分支之一。</p>
+<p>对于谱微分，我们需要一个插值函数，而反变换 上式 (2.4)  将给出一个插值函数。我们所要做的只是计算 $x \in \mathbb{R}$ 的相同公式，而不仅仅是 $x_j \in h\mathbb{Z}$。也就是说，在确定 $\hat{v}$ 之后，我们定义插值函数 $p$ </p>
+<script type="math/tex; mode=display">p(x)=\frac{1}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x} \hat{v}(k) d k, \quad x \in \mathbb{R}</script><p>这是一个关于 $x$ 的解析函数，并且对每个 $j$ 都有 $p(x_j)=v_j$。而且通过推导，Fourier 变换 $\hat{p}$ 通过 (2.1) 定义为</p>
+<script type="math/tex; mode=display">\hat{p}(k)=\left\{\begin{aligned}
+ &\hat{v}(k) && k \in[-\pi / h, \pi / h], \\ 
+ & 0 && \text{ otherwise}.\end{aligned}\right.</script><blockquote>
+<p>关于解析：函数 $f$ 在点 $z \in \mathbb{C}$ 处是解析的，如果它在 $z$ 附近的复数意义上是可微的，或者如果它的 Taylor 级数收敛到 $f$。</p>
+</blockquote>
+<p>因此，p在 $[-\pi /h,\pi/h]$ 具有紧支集。我们说 $p$ 是 $v$ 的带限插值，这并不意味着 $\hat{p}$ 有紧支集，但该支集包含在特定区间 $[-\pi/h，\pi/h]$ 中。虽然对于任何网格函数都有一定数量的可能插值，但在这个意义上只有一个带限插值。这个结果被称为抽样定理，与Whittaker、Shannon 和 Nyquist 的名字有关。</p>
+<p>我们准备给出在 $h\mathbb{Z}$ 上定义的函数 $v$ 的谱微分的前两个描述。下面是一个</p>
+<ul>
+<li>给定 $v$，通过 (2.5) 确定其带限插值 $p$，</li>
+<li>设 $w_{j}=p^{\prime}(x_{j})$.</li>
+</ul>
+<p>另一个在 Fourier 空间中同样可以得到。如果可微函 $u$ 有 Fourier 变换 $\hat{u}$，则 $u’$ 的 Fourier 变换是 $ik\hat{u}(k)$：</p>
+<script type="math/tex; mode=display">\widehat{u^{\prime}}(k)=i k \hat{u}(k).</script><p>这个结果可以通过对 (2.2) 或 (2.5) 关于 $x$ 微分得到，因此我们有一个等价的谱微分过程：</p>
+<ul>
+<li>给定 $v$，通过 (2.3) 计算其半离散 Fourier 变换.</li>
+<li>定义 $\widehat{w}(k)=i k \hat{v}(k)$.</li>
+<li>利用 $\hat{w}$ 通过 (2.4) 计算 $w$.</li>
+</ul>
+<p>这两种谱微分的描述在数学上都是完整的，但是我们还没有导出矩阵 (1.4) 的系数，为此，我们可以使用傅里叶变换回代并对带限插值 $p(x)$ 有更全面的了解。令 $\delta$ 为克罗内克（Kronecker delta）函数，</p>
+<script type="math/tex; mode=display">\delta_{j}=\left\{\begin{aligned}
+&1 && j=0, \\ 
+&0 && j \neq 0. 
+\end{aligned}\right.</script><p>通过 (2.3)，$\delta$ 的半离散 Fourier 变换是一个常数：$\hat{\delta}(k)=h$ 对于所有的 $k \in[-\pi / h, \pi / h]$。通过 (2.5)，$\delta$ 的带限插值是</p>
+<script type="math/tex; mode=display">p(x)=\frac{h}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x} d k=\frac{\sin (\pi x / h)}{\pi x / h}.</script><p>（$x=0$ 处的值为 1）。这个著名又漂亮的函数称为 $sinc$ 函数，</p>
+<script type="math/tex; mode=display">S_{h}(x)=\frac{\sin (\pi x / h)}{\pi x / h}.</script><p>Sir Edmund Whittaker 称 $S_1$ “···尊贵血统在整个家族中的一种函数，其独特的属性使其与资产阶级的兄弟分离。</p>
+<p>既然我们知道如何插值 $\delta$ 函数，我们可以插值任何函数。对于任意 $m$，带限插值是一个平移不变的过程，$\delta_{j-m}$ 的带限插值是 $S_{h}(x-x_{m})$。一般网格函数 $v$ 可以写成</p>
+<script type="math/tex; mode=display">v_{j}=\sum_{m=-\infty}^{\infty} v_{m} \delta_{j-m}</script><p>因此，根据半离散 Fourier 变换的线性性质，$v$ 的带限插值是转换 $sinc$ 函数的线性组合：</p>
+<script type="math/tex; mode=display">p(x)=\sum_{m=-\infty}^{\infty} v_{m} S_{h}(x-x_{m}).</script><p>相应的导数</p>
+<script type="math/tex; mode=display">w_{j}=p^{\prime}(x_{j})=\sum_{m=-\infty}^{\infty} v_{m} S_{h}^{\prime}(x_{j}-x_{m}).</script><p>现在让我们导出 (1.4) 两边无限 Toeplitz 矩阵 $D$ 的元素。上式(2.11) 可以导出 (1.5) 的矩阵方程，我们可以看出向量 $S’_h(x_j)$  是矩阵 $D$ 的列 $m=0$ ，其他列通过适当地上下移动该列而获得。公式 (1.4) 的项是由微分练习 (2.8) 决定的</p>
+<script type="math/tex; mode=display">S_{h}^{\prime}(x_{j})=\left\{\begin{aligned}
+&0 && j=0, \\ &\frac{(-1)^{j}}{j h} && j \neq 0. 
+\end{aligned}\right.</script><h3 id="Program-3"><a href="#Program-3" class="headerlink" title="Program 3"></a>Program 3</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% p3.m - band-limited interpolation</span></span><br><span class="line"></span><br><span class="line">  h = <span class="number">1</span>; xmax = <span class="number">10</span>; clf</span><br><span class="line">  x = -xmax:h:xmax;                     <span class="comment">% computational grid</span></span><br><span class="line">  xx = -xmax-h/<span class="number">20</span>:h/<span class="number">10</span>:xmax+h/<span class="number">20</span>;       <span class="comment">% plotting grid</span></span><br><span class="line">  <span class="keyword">for</span> plt = <span class="number">1</span>:<span class="number">3</span></span><br><span class="line">    subplot(<span class="number">4</span>,<span class="number">1</span>,plt)</span><br><span class="line">    <span class="keyword">switch</span> plt</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>, v = (x==<span class="number">0</span>);               <span class="comment">% delta function</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>, v = (<span class="built_in">abs</span>(x)&lt;=<span class="number">3</span>);          <span class="comment">% square wave</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>, v = <span class="built_in">max</span>(<span class="number">0</span>,<span class="number">1</span>-<span class="built_in">abs</span>(x)/<span class="number">3</span>);    <span class="comment">% hat function</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">plot</span>(x,v,<span class="string">'.'</span>,<span class="string">'markersize'</span>,<span class="number">14</span>), grid on</span><br><span class="line">    p = <span class="built_in">zeros</span>(<span class="built_in">size</span>(xx));</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(x),</span><br><span class="line">      p = p + v(<span class="built_in">i</span>)*<span class="built_in">sin</span>(<span class="built_in">pi</span>*(xx-x(<span class="built_in">i</span>))/h)./(<span class="built_in">pi</span>*(xx-x(<span class="built_in">i</span>))/h);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    line(xx,p), axis([-xmax xmax <span class="number">-.5</span> <span class="number">1.5</span>])</span><br><span class="line">    set(gca,<span class="string">'xtick'</span>,[]), set(gca,<span class="string">'ytick'</span>,[<span class="number">0</span> <span class="number">1</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/05/15/p65toOBebPDsZqJ.png" alt="SMM0204.png"></p>
+<p>类似的模式适用于所有的谱配置方法。谱微分矩阵的第 $m$ 列包含值 $p^{\prime}(x_{j})$，其中 $p(x)$ 是通过在 $x_m$ 的离散 $\delta$ 函数的全局插值。</p>
+<p>Program 3 通过绘制定义在 $\mathbb{Z}$（即 $h=1$）上的三个离散函数及其带限插值。从输出结果的三个图中的第一个图可以清楚地看出，$sinc$ 函数是平滑的。第二个图描绘了离散方波的插值，显示了 $sinc$ 插值对于逼近非光滑函数不是特别好。当 $h \rightarrow 0$ 时，不连续处附近的振荡幅度不会减小，甚至在空间上也没有很好的局部化。这种在间断附近产生的振荡称为<strong>吉布斯现象</strong>。第三幅图显示了离散三角波或“hat函数”及其插值。这里的插值比较好，但仍然不令人印象深刻。实际上，正如我们将在第4章中详细解释的那样，插值的精度取决于 $u$ 的光滑性，并且这些例子不是很平滑。每一个 $u$ 的导数都提高了 1 阶精度。</p>
+<p>为了找到高阶谱导数，我们可以多次对 $p(x)$ 微分。例如</p>
+<script type="math/tex; mode=display">S_{h}^{\prime \prime}\left(x_{j}\right)=\left\{\begin{array}{ll}-\frac{\pi^{2}}{3 h^{2}} & j=0, \\ 2 \frac{(-1)^{j+1}}{j^{2} h^{2}} & j \neq 0.\end{array}\right.</script><p>结果告诉我们对称双无穷 Toeplitz 矩阵 $D$ 的每一列的项对应的二阶导数是</p>
+<script type="math/tex; mode=display">D^{2} v=\frac{2}{h^{2}}
+\left(\begin{array}{cccc}
+& \ddots & & \vdots & & & \\
+& \ddots & & -\frac{1}{4} & & & \\
+&  \ddots & & 1 &  &   & \\
+&  & & -\frac{\pi^{2}}{6} & &  & \\
+&  &  & 1 & & \ddots & \\
+&  &   & -\frac{1}{4} & & \ddots & \\
+&   &  & \vdots & &  \ddots & 
+\end{array}\right) v.</script><h3 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h3><p>在 $h\mathbb{Z}$ 网格上的函数 $v$ 有一个唯一的插值 $p$，它的频带仅限于 $[-\pi/h,\pi/h]$ 区间内的波数。我们可以通过计算 $ik\hat{v}$ 的半离散 Fourier 逆变换来计算网格上的 $p$，或者作为 $sinc$ 函数平移的导数的线性组合。</p>
+]]></content>
+      <categories>
+        <category>Spectral Methods</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+        <tag>Spectral Method</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SMM01 微分矩阵</title>
     <url>/2020/05/12/SMM01/</url>
     <content><![CDATA[<p>本文是书籍 <strong>Spectral Method in MATLAB</strong> 第一章 <strong>Differentiation matrices 微分矩阵</strong> 笔记。</p>
@@ -744,144 +957,6 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       </tags>
   </entry>
   <entry>
-    <title>SMM00 谱方法笔记</title>
-    <url>/2020/05/10/SMM00/</url>
-    <content><![CDATA[<p>这是学习书籍 <strong>Spectral Method in MATLAB</strong> (Lloyd N. Trefethen) 的笔记，因为书是英文的，笔记就成了翻译。很多地方翻译的比较粗糙，能够理解并学到知识才是最重要的。</p>
-<p>Nick Trefethen <a href="http://people.maths.ox.ac.uk/trefethen/" target="_blank" rel="noopener">Homepage</a></p>
-<p>这只是一个开始，后期我会<strong>更新</strong>学习本书的笔记！</p>
-<h3 id="关于本书"><a href="#关于本书" class="headerlink" title="关于本书"></a>关于本书</h3><p>这本书有四十个简短的MATLAB程序，这些程序可以在用于求解与流体力学、量子力学、振动、线性和非线性波、复分析等领域有关的各种常微分方程和偏微分方程( ODE 和 PDE )。书的前六章侧重于理论，第七章以后更侧重于编程应用。学习这本书，需要对数值分析，微分方程有一定的了解，并且熟悉 MATLAB。</p>
-<p>如果你喜欢计算和数字数学，你会喜欢阅读这本书，可以学到一些新的 MATLAB 技巧！</p>
-<a id="more"></a>
-<p>谱方法是数值求解 PDEs 的三大方法之一，它们大致在连续几十年的逐渐发展起来：</p>
-<ul>
-<li>20 世纪 50 年代：有限差分法</li>
-<li>20 世纪 60 年代：有限元法</li>
-<li>20 世纪 70 年代：谱方法</li>
-</ul>
-<p>当然，每种方法的起源都可以追溯到更早的时候。 对于谱方法来说，一些思想和插值和函数展开一样古老，更具体地说，算法的发展最早是在1938年由Lanczos [Lan38, Lan56] 和 1960 年代的 Clenshaw，Elliott，Fox 等 [FoPa68] 提出的。 然后，在20世纪70年代，由 Orszag 等人在流体动力学和气象学问题上的工作引发了这一领域的变革，谱方法也因此而闻名。<br>早期现代谱方法文献的三个里程碑是：Gottlieb 和 Orszag的短书[GoOr77]，Gottlieb，Hussaini 和 Orszag 的研究 [CHO84] 和Canuto，Hussaini，Quarteroni 和 Zang 的专著 [ChQZ88]。 此后，Mercier [Mer89]，Boyd [Boy00]（1989年第一版），Funaro [Fun92]，Bernardi 和 Maday [BeMa92]，Fornberg [For96] 以及 Karniadakis 和 Sherwin [KaSh99] 也贡献了其他书籍。</p>
-<p>如果要在一个简单的区域上高精度地求解 ODE 或 PDE，并且如果定义该问题的函数是平滑的，那么谱方法通常是最好的工具。它们通常可以达到十位数的精度，而有限差分法或有限元法可以达到两三位数。在精度较低的情况下，它们需要的计算机内存比其他替代方案要小。</p>
-<p>这本短小的书介绍了谱方法的一些基本思想和技术。它的目标人群是学过数值分析课程，并熟悉基本的应用程序设计和偏微分方程。你会发现，在计算机的几秒钟内，用几行 MATLAB 代码就可以高精度地解决一系列显著的问题。<strong>写程序应当有一种玩的心态，最后让它们成为你自己的！</strong></p>
-<p>我想强调这里提出的三个数学主题，虽然专家们都知道，但通常在教科书中找不到。在第四章中，第一个是函数的光滑性与其傅里叶变换衰减之间的关系，后者决定了离散化引入的混叠误差的大小；这些关系解释了谱方法的精度如何取决于被逼近函数的光滑性。第二，在第五章中，多项式的根和平面上的点电荷之间的类比，这导致了一个关于非周期谱方法的网格为什么需要在边界处聚集的势理论的扩展。第三，在第八章中，$[-1,1]$上的切比雪夫级数 、$[\pi,\pi]$ 上的三角级数与单位圆上的洛朗级数这三种方法，构成了快速傅里叶变换计算切比雪夫谱导数技术的基础。这三个主题本身都是非常的数学研究主题，对任何应用数学家来说都是值得学习的。</p>
-<p>不可避免地，这本书只涉及谱方法的一部分。它强调在周期网格和切比雪夫网格上的配置（拟谱）方法，而对同样重要的 Galerkin 方法、勒让德网格和多项式几乎没有涉及。理论分析是非常有限的，强调简单几何的简单工具，而不是工业强度、谱元方法和 $hp$ 有限元，在后面给出了一些其他的主题和观点。</p>
-<p>MATLAB的发展开创了科学计算的新纪元。现在，人们可以以非常简洁的方式，完整详细地介绍高级数值算法和非平凡问题的解决方案，在几页中介绍更多的应用数学，几年前是不可想象的。MATLAB 语言有时（不总是！）与 Fortran 或 C 等低级语言相比，牺牲了机器效率这一个特定因素，但是提高了人的编程效率，即修改程序并应用于新的问题，再去尝试新的问题，这比以往更加容易。这本短书鼓励学生、科学家和工程师学会这种新的计算方法。</p>
-<h3 id="关于程序"><a href="#关于程序" class="headerlink" title="关于程序"></a>关于程序</h3><p>本书中的 MATLAB 程序很简洁。 每一个程序容纳在一页上，并且在几英寸的计算机代码中进行计算！程序非常简洁、紧凑，对紧凑性的痴迷有时会损害可读性。 例如，在单个程序行上集合了两个或三个简短的 MATLAB 命令。 </p>
-<p>本书中编程风格的另一个特点是结构扁平化，除了在其中定义的关键函数cheb之外，程序中几乎不使用函数（chebfft、clencurt和gauss这三个函数在第8章和第12章，但每一章都只是局部使用。这种风格的优点是强调可以实现的紧凑程度，但是作为一般规则，MATLAB程序员应该经常使用函数）。</p>
-<p>书中可能写了很多东西去解释程序的细节或技巧。为了使讨论集中在谱方法上，尽量不去提到 MATLAB 的细节，除非在极少数情况下不得不这么做。这意味着当你使用这本书时，你将不得不学习程序，而不仅仅是阅读它们。<strong>只有你花时间学习这些代码，并修改它们来解决你自己的问题之后，你才能真正理解这些问题的答案</strong>。我想这是使用这本书的乐趣之一，希望你能同意。</p>
-<p>本书的程序是用 MATLAB 5.3 编写运行的，随着以后几年中更高版本的发布，这些程序的运行可能会出现一些困难。 若要从头开始学习 MATLAB，或者作为参考，推荐 SIAM 的书籍 MATLAB Guide。</p>
-<p><strong>注：</strong> 我用的 MATLAB 版本是 MATLAB 2019a (v9.6)，画出的图和早期版本是有些不一样的，应该是更美观了吧。</p>
-]]></content>
-      <categories>
-        <category>Spectral Methods</category>
-      </categories>
-      <tags>
-        <tag>MATLAB</tag>
-        <tag>Spectral Method</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>西游十问</title>
-    <url>/2020/05/14/XY10q/</url>
-    <content><![CDATA[<p>看过很多关于西游记的影视剧，但《西游记》书和影视剧有很大的不同，最直观的感受就是“真实”。在本科时期，讲明清小说的毛黎老师让我开始了解真实的西游记。虽然它是现实的，残酷的，我仍然愿意去了解它，因为现实就是残酷的。</p>
-<p>我以问题的形式梳理了我的所听所记所想！</p>
-<h3 id="一-《西游记》的主角是谁？"><a href="#一-《西游记》的主角是谁？" class="headerlink" title="一.《西游记》的主角是谁？"></a>一.《西游记》的主角是谁？</h3><p>孙悟空。有人认为是唐僧，比较一下两个人物就行了。小说的开头重笔墨演绎了猴王的出世和成长（出世、学艺、闹天宫、保唐僧），并且在唐僧取经的路上，所有故事中都已悟空历尽艰辛斩妖除魔的过程为主要情节。所以说唐僧取经只是故事的线索，小说要以唐僧取经始，并以唐僧取经收，但是真正的主人公是孙悟空。</p>
-<a id="more"></a>
-<h3 id="二-取经时孙悟空有多大？"><a href="#二-取经时孙悟空有多大？" class="headerlink" title="二. 取经时孙悟空有多大？"></a>二. 取经时孙悟空有多大？</h3><p>这要看怎么算，可以分为“虚岁”（神数）与“实岁”（人数）。所谓“天上一天，地下一年”。对于“虚岁”，花果山 342 年，弼马温 15 年，齐天大圣 184 年，八卦炉 49 年，五行山实际 630 年，西天取经 14 年，一共 1234 年，也就是孙悟空 1234 岁。对于“实岁”，取经前可以用章回计算，大闹天空 7 年，五行山下 7 年，取经 14 年，一共 28 年，也就说取经时孙悟空 28 岁。</p>
-<h3 id="三-菩提老祖到底是谁？"><a href="#三-菩提老祖到底是谁？" class="headerlink" title="三. 菩提老祖到底是谁？"></a>三. 菩提老祖到底是谁？</h3><p>菩提老祖就是如来佛祖。西牛贺洲可是如来的地界，怎么可能允许道教在这发展壮大。菩提老祖的住处为 “灵台方寸山，斜月三星洞。”这句话是有很深的含义的，“灵台方寸山”取这句话的首尾两字就是灵山；“斜月三星” 指的是天上之物，暗指“天空”，这句话合起来就是天上灵山。还有一点，菩提老祖和孙悟空的暗语“六耳”，如来怎么知道呢？只有一个解释，菩提祖师就是如来佛祖。</p>
-<h3 id="四-取经还是传经？"><a href="#四-取经还是传经？" class="headerlink" title="四. 取经还是传经？"></a>四. 取经还是传经？</h3><p>佛祖在灵山参悟了三藏真经，想传到东土。人就是这样，越是容易得到的东西越不知道珍惜。佛祖想如果把真经直接送到东土，东土之人必然不知其珍贵。于是如来佛祖便有个一个计划，让东土的人历经磨难取得真经，如来心中早就有了人选金蝉子。于是就有了后来的菩萨去东土找取经人，组成取经队伍。</p>
-<h3 id="五-后来孙悟空为什么不回花果山？"><a href="#五-后来孙悟空为什么不回花果山？" class="headerlink" title="五. 后来孙悟空为什么不回花果山？"></a>五. 后来孙悟空为什么不回花果山？</h3><p>破六贼时，炒唐僧，欲回却未回。从龙王那里明白取经是天大的好事，事关自己的前程和未来。打白骨精，被炒，无奈而回，回而复返。再到后来诛草寇，又被炒，走头无路也不回，过洞不入。此后再也没有回过花果山。回不回花果山不仅仅是回家的问题，更是人生的选择问题，是觉悟问题。</p>
-<h3 id="六-六耳猕猴与孙悟空什么关系？"><a href="#六-六耳猕猴与孙悟空什么关系？" class="headerlink" title="六. 六耳猕猴与孙悟空什么关系？"></a>六. 六耳猕猴与孙悟空什么关系？</h3><p>六耳猕猴就是孙悟空自己，假孙悟空是孙悟空幻化出来的。假孙悟空打了唐僧，抢了行李，想要组成新的取经队伍。真假悟空辨真假时，菩萨的咒语失效了，照妖镜失效了，地藏王菩萨有不敢说破。最后只能去找如来佛祖，悟空还没到西天，如来就对弟子说：“汝等俱是一心，且看二心竞斗而来也。”而后佛祖说假悟空是六耳猕猴，世间仅此一只，后来还被悟空打死了。孙悟空却不敢去找唐僧，因为他清楚唐僧知道打自己的是孙悟空，怎么也不会原谅他。后来如来好说歹说，有让菩萨亲自去送才重回取经队伍。为什么孙悟空要这样做呢，很明显，孙悟空是真的很想取经，即使你唐僧不要我，我自己拉一支队伍。</p>
-<h3 id="七-相比大闹天空，为什么取经路上孙悟空的武功变差了？"><a href="#七-相比大闹天空，为什么取经路上孙悟空的武功变差了？" class="headerlink" title="七. 相比大闹天空，为什么取经路上孙悟空的武功变差了？"></a>七. 相比大闹天空，为什么取经路上孙悟空的武功变差了？</h3><p>大闹天空时，孙悟空能以一挡十，十分厉害，玉帝妥协。而取经路上很多天庭下来的妖怪孙悟空都打不过，还要去搬救兵。原因就是在天庭时各位神仙没有卖力。在天庭时，各路神仙为公家办事，办好了是你的职业，办不好可能会丢掉性命，他们肯定不会卖力。而下界为妖时，都是个体户，肯定会拼尽全力争取自己的利益。其实孙悟空的武功比没有变，妖怪的真实实力显现出来了。</p>
-<h3 id="八-取经团队在西天的座次是怎么排的？"><a href="#八-取经团队在西天的座次是怎么排的？" class="headerlink" title="八. 取经团队在西天的座次是怎么排的？"></a>八. 取经团队在西天的座次是怎么排的？</h3><p>西游记最后写道：······南无才光佛。南无旃檀功德佛。南无斗战胜佛。南无观世音菩萨。南无大势至菩萨······南无净坛使者菩萨。南无八宝金身罗汉菩萨。南无八部天龙广力菩萨。<br>唐僧和孙悟空分别成就：南无旃檀功德佛、南无斗战胜佛，虽然是佛中最后两个座次，毕竟是佛，座次在观世音菩萨之前。猪八戒和沙僧分别成就：南无净坛使者菩萨、南无八宝金身罗汉菩萨，是菩萨中最后的两个座次。</p>
-<h3 id="九-沙僧的武功真的很差吗？"><a href="#九-沙僧的武功真的很差吗？" class="headerlink" title="九. 沙僧的武功真的很差吗？"></a>九. 沙僧的武功真的很差吗？</h3><p>当然不是。从“南天门里我为尊，凌霄殿前我称上”到“我也没甚手段，也不能降妖”是有原因的。沙僧认清了自己在团队中的位置，权衡利弊，从此跟定大师兄，但不争功；低调，做人更低调做事；目的是 “免罪”，安全最重要；以最少的投资获得最大的利益。当真假美猴王那回时，沙僧还不是一下子就把假沙僧打死了；孙悟空不在的那回，沙僧还不是跟妖怪打的不相上下。</p>
-<h3 id="十-觉悟《西游》到底在觉悟什么？"><a href="#十-觉悟《西游》到底在觉悟什么？" class="headerlink" title="十. 觉悟《西游》到底在觉悟什么？"></a>十. 觉悟《西游》到底在觉悟什么？</h3><p>千经万典，只为修心！<br>佛在灵山莫远求，<br>灵山就在汝心头。<br>人人有个灵山塔，<br>好向灵山塔下修。</p>
-]]></content>
-      <categories>
-        <category>Literature</category>
-      </categories>
-      <tags>
-        <tag>Review</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SMM02 半离散 Fourier 变换</title>
-    <url>/2020/05/15/SMM02/</url>
-    <content><![CDATA[<p>本文是书籍 <strong>Spectral Method in MATLAB</strong> 第二章 <strong>Unbounded Grids: the Semidiscrete Fourier Transform 无界网格：半离散 Fourier 变换</strong> 笔记。</p>
-<p>我们现在导出第一个谱方法，就是第一章的两边无限的矩阵。这种方法适用于离散的、无界的区域，因此不是一种实用的方法。但是，它确实介绍了推导和分析实用方法所需的数学思想。</p>
-<h3 id="半离散-Fourier-变换"><a href="#半离散-Fourier-变换" class="headerlink" title="半离散 Fourier 变换"></a>半离散 Fourier 变换</h3><p>无限网格用 $h \mathbb{Z}$表示，节点 $x_j=jh$，其中 $j \in \mathbb{Z}$ ，$\mathbb{Z}$ 是所有整数的集合。</p>
-<p><img src="https://i.loli.net/2020/05/14/F7PDX9TAlfUtyKB.png" alt="SMM0201.png"></p>
-<p>根据半离散傅里叶变换和有限带宽 $sinc$ 函数插值的基本思想去推导 (1.4) 两边无限的矩阵。函数 $u(x)$ ($x \in \mathbb{R}$) 的 Fourier 变换后的函数 $\hat{u}(k)$ 定义为</p>
-<script type="math/tex; mode=display">\hat{u}(k)=\int_{-\infty}^{\infty} u(x) e^{-i k x} dx, \quad \color{red}{k \in \mathbb{R}}.</script><a id="more"></a>
-<p>$\hat{u}(k)$ 可以解释为 $u$ 在波数 $k$ 时的振幅，将一个函数分解为其组成波的过程称为 Fourier 分析。相反地，我们可以从 $\hat{u}$ 通过 逆 Fourier 变换重构 $u$：</p>
-<script type="math/tex; mode=display">u(x)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \hat{u}(k) e^{i kx} d k, \quad \color{red}{x \in \mathbb{R}}.</script><p>这是傅里叶合成。变量 $x$ 是物理变量，$k$ 是 Fourier 变量或波数。</p>
-<p>现在考虑 $x$ 在 $h\mathbb{Z}$ 上的值而不是 $\mathbb{R}$。在这种情况下， Fourier 变换及其逆的精确变换是存在的。关键点在于，由于空间域是离散的，波数 $k$ 将不覆盖R的所有范围。相反，波数域是长度为 $2\pi/h$ 的有界区间，一个适当的选择是 $[-\pi/h,\pi/h]$。记住 $k$ 是有界的，因为 $x$ 是离散的：</p>
-<p><img src="https://i.loli.net/2020/05/15/xAybS4retF1CTh9.png" alt="SMM0202.png"></p>
-<p>产生这些联系的原因是一种称为混叠的现象。当 $k_1 \neq k_2$，两个复指数函数 $f(x)=\exp (i k_{1} x)$ 与 $g(x)=\exp (i k_{2} x)$ 在 $\mathbb{R}$ 上是不相等的。如果我们限制 $f$ 和 $g$ 到 $h\mathbb{Z}$，取 $f_j = \exp (i k_{1} x_{j})$ 和 $g_{j}=\exp (i k_{2} x_{j})$，如果 $k_1-k_2$ 是 $2\pi/h$的整数倍，对每一个 $j$ 有 $f_{j}=g_{j}$。因此，对于任何复指数 $\exp (ikx)$ 在网格 $h\mathbb{Z}$ 上有无限多的其他复指数（$k$ 的“混叠” ）与之匹配。因此，在 $2\pi/h$ 长度的间隔内计算网格的波数就足够了，并且出于对称性的原因，我们选择了间隔 $[-\pi/h,\pi/h]$。</p>
-<p>下图说明了函数 $\sin(\pi x)$ 和 $\sin(9\pi x)$ 相互“混叠”。网格节点的表示限制到了 $\frac{1}{4} \mathbb{Z}$，其中这两个函数是相同的。</p>
-<p><img src="https://i.loli.net/2020/05/14/rGnFxeWLZK1fdP4.png" alt="SMM0203.png"></p>
-<p>“混叠”也出现在非数学生活中，例如西方电影中的“马车轮效应”。如果说照相机的快门每秒发出 24 次咔哒声，货车车轮上的辐条每秒通过垂直方向 20 次，然后车轮看起来好像以每秒 -4 辐条的速度旋转，即向后旋转。同一现象的更高频率“混叠”是频闪显微镜科学的基础，而空间而非时间的混叠会导致云纹。</p>
-<p>对于函数 $v$ 定义在 $h\mathbb{Z}$ 上节点 $x_j$ 值为 $v_j$，半离散 Fourier 变换的定义如下</p>
-<script type="math/tex; mode=display">\hat{v}(k)=h \sum_{j=-\infty}^{\infty} e^{-i k x_{j}} v_{j}, \quad \color{red}{k \in[-\pi / h, \pi / h]}.</script><p>半离散 Fourier 逆变换为</p>
-<script type="math/tex; mode=display">v_{j}=\frac{1}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x_{j}} \hat{v}(k) dk, \quad \color{red}{j \in \mathbb{Z}}.</script><p>半离散 Fourier 变换 (2.3) 通过梯形公式逼近  Fourier 变换 (2.1)，半离散 Fourier 逆变换 (2.4)逼近 (2.2) 则是通过截断 $\mathbb{R}$ 到  $[-\pi /h, \pi /h]$。当 $h \rightarrow 0$，两对公式收敛。</p>
-<p>如果“半离散 Fourier 变换”这个表达式不熟悉，那可能是因为我们给一个旧概念取了一个新名字。Fourier 级数表示有界区间上的函数，它是离散波数上复指数的和，如 (2.3)。我们用半离散 Fourier 变换来强调我们在这里关心的是逆问题：空间变量是离散的，Fourier 变量是连续的，属于有界区间 。从数学上讲，这与 Fourier 级数理论没有区别，Fourier 级数在许多书中都有介绍，是数学中应用最广泛的分支之一。</p>
-<p>对于谱微分，我们需要一个插值函数，而反变换 上式 (2.4)  将给出一个插值函数。我们所要做的只是计算 $x \in \mathbb{R}$ 的相同公式，而不仅仅是 $x_j \in h\mathbb{Z}$。也就是说，在确定 $\hat{v}$ 之后，我们定义插值函数 $p$ </p>
-<script type="math/tex; mode=display">p(x)=\frac{1}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x} \hat{v}(k) d k, \quad x \in \mathbb{R}</script><p>这是一个关于 $x$ 的解析函数，并且对每个 $j$ 都有 $p(x_j)=v_j$。而且通过推导，Fourier 变换 $\hat{p}$ 通过 (2.1) 定义为</p>
-<script type="math/tex; mode=display">\hat{p}(k)=\left\{\begin{aligned}
- &\hat{v}(k) && k \in[-\pi / h, \pi / h], \\ 
- & 0 && \text{ otherwise}.\end{aligned}\right.</script><blockquote>
-<p>关于解析：函数 $f$ 在点 $z \in \mathbb{C}$ 处是解析的，如果它在 $z$ 附近的复数意义上是可微的，或者如果它的 Taylor 级数收敛到 $f$。</p>
-</blockquote>
-<p>因此，p在 $[-\pi /h,\pi/h]$ 具有紧支集。我们说 $p$ 是 $v$ 的带限插值，这并不意味着 $\hat{p}$ 有紧支集，但该支集包含在特定区间 $[-\pi/h，\pi/h]$ 中。虽然对于任何网格函数都有一定数量的可能插值，但在这个意义上只有一个带限插值。这个结果被称为抽样定理，与Whittaker、Shannon 和 Nyquist 的名字有关。</p>
-<p>我们准备给出在 $h\mathbb{Z}$ 上定义的函数 $v$ 的谱微分的前两个描述。下面是一个</p>
-<ul>
-<li>给定 $v$，通过 (2.5) 确定其带限插值 $p$，</li>
-<li>设 $w_{j}=p^{\prime}(x_{j})$.</li>
-</ul>
-<p>另一个在 Fourier 空间中同样可以得到。如果可微函 $u$ 有 Fourier 变换 $\hat{u}$，则 $u’$ 的 Fourier 变换是 $ik\hat{u}(k)$：</p>
-<script type="math/tex; mode=display">\widehat{u^{\prime}}(k)=i k \hat{u}(k).</script><p>这个结果可以通过对 (2.2) 或 (2.5) 关于 $x$ 微分得到，因此我们有一个等价的谱微分过程：</p>
-<ul>
-<li>给定 $v$，通过 (2.3) 计算其半离散 Fourier 变换.</li>
-<li>定义 $\widehat{w}(k)=i k \hat{v}(k)$.</li>
-<li>利用 $\hat{w}$ 通过 (2.4) 计算 $w$.</li>
-</ul>
-<p>这两种谱微分的描述在数学上都是完整的，但是我们还没有导出矩阵 (1.4) 的系数，为此，我们可以使用傅里叶变换回代并对带限插值 $p(x)$ 有更全面的了解。令 $\delta$ 为克罗内克（Kronecker delta）函数，</p>
-<script type="math/tex; mode=display">\delta_{j}=\left\{\begin{aligned}
-&1 && j=0, \\ 
-&0 && j \neq 0. 
-\end{aligned}\right.</script><p>通过 (2.3)，$\delta$ 的半离散 Fourier 变换是一个常数：$\hat{\delta}(k)=h$ 对于所有的 $k \in[-\pi / h, \pi / h]$。通过 (2.5)，$\delta$ 的带限插值是</p>
-<script type="math/tex; mode=display">p(x)=\frac{h}{2 \pi} \int_{-\pi / h}^{\pi / h} e^{i k x} d k=\frac{\sin (\pi x / h)}{\pi x / h}.</script><p>（$x=0$ 处的值为 1）。这个著名又漂亮的函数称为 $sinc$ 函数，</p>
-<script type="math/tex; mode=display">S_{h}(x)=\frac{\sin (\pi x / h)}{\pi x / h}.</script><p>Sir Edmund Whittaker 称 $S_1$ “···尊贵血统在整个家族中的一种函数，其独特的属性使其与资产阶级的兄弟分离。</p>
-<p>既然我们知道如何插值 $\delta$ 函数，我们可以插值任何函数。对于任意 $m$，带限插值是一个平移不变的过程，$\delta_{j-m}$ 的带限插值是 $S_{h}(x-x_{m})$。一般网格函数 $v$ 可以写成</p>
-<script type="math/tex; mode=display">v_{j}=\sum_{m=-\infty}^{\infty} v_{m} \delta_{j-m}</script><p>因此，根据半离散 Fourier 变换的线性性质，$v$ 的带限插值是转换 $sinc$ 函数的线性组合：</p>
-<script type="math/tex; mode=display">p(x)=\sum_{m=-\infty}^{\infty} v_{m} S_{h}(x-x_{m}).</script><p>相应的导数</p>
-<script type="math/tex; mode=display">w_{j}=p^{\prime}(x_{j})=\sum_{m=-\infty}^{\infty} v_{m} S_{h}^{\prime}(x_{j}-x_{m}).</script><p>现在让我们导出 (1.4) 两边无限 Toeplitz 矩阵 $D$ 的元素。上式(2.11) 可以导出 (1.5) 的矩阵方程，我们可以看出向量 $S’_h(x_j)$  是矩阵 $D$ 的列 $m=0$ ，其他列通过适当地上下移动该列而获得。公式 (1.4) 的项是由微分练习 (2.8) 决定的</p>
-<script type="math/tex; mode=display">S_{h}^{\prime}(x_{j})=\left\{\begin{aligned}
-&0 && j=0, \\ &\frac{(-1)^{j}}{j h} && j \neq 0. 
-\end{aligned}\right.</script><h3 id="Program-3"><a href="#Program-3" class="headerlink" title="Program 3"></a>Program 3</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% p3.m - band-limited interpolation</span></span><br><span class="line"></span><br><span class="line">  h = <span class="number">1</span>; xmax = <span class="number">10</span>; clf</span><br><span class="line">  x = -xmax:h:xmax;                     <span class="comment">% computational grid</span></span><br><span class="line">  xx = -xmax-h/<span class="number">20</span>:h/<span class="number">10</span>:xmax+h/<span class="number">20</span>;       <span class="comment">% plotting grid</span></span><br><span class="line">  <span class="keyword">for</span> plt = <span class="number">1</span>:<span class="number">3</span></span><br><span class="line">    subplot(<span class="number">4</span>,<span class="number">1</span>,plt)</span><br><span class="line">    <span class="keyword">switch</span> plt</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>, v = (x==<span class="number">0</span>);               <span class="comment">% delta function</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>, v = (<span class="built_in">abs</span>(x)&lt;=<span class="number">3</span>);          <span class="comment">% square wave</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>, v = <span class="built_in">max</span>(<span class="number">0</span>,<span class="number">1</span>-<span class="built_in">abs</span>(x)/<span class="number">3</span>);    <span class="comment">% hat function</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">plot</span>(x,v,<span class="string">'.'</span>,<span class="string">'markersize'</span>,<span class="number">14</span>), grid on</span><br><span class="line">    p = <span class="built_in">zeros</span>(<span class="built_in">size</span>(xx));</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(x),</span><br><span class="line">      p = p + v(<span class="built_in">i</span>)*<span class="built_in">sin</span>(<span class="built_in">pi</span>*(xx-x(<span class="built_in">i</span>))/h)./(<span class="built_in">pi</span>*(xx-x(<span class="built_in">i</span>))/h);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    line(xx,p), axis([-xmax xmax <span class="number">-.5</span> <span class="number">1.5</span>])</span><br><span class="line">    set(gca,<span class="string">'xtick'</span>,[]), set(gca,<span class="string">'ytick'</span>,[<span class="number">0</span> <span class="number">1</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2020/05/15/p65toOBebPDsZqJ.png" alt="SMM0204.png"></p>
-<p>类似的模式适用于所有的谱配置方法。谱微分矩阵的第 $m$ 列包含值 $p^{\prime}(x_{j})$，其中 $p(x)$ 是通过在 $x_m$ 的离散 $\delta$ 函数的全局插值。</p>
-<p>Program 3 通过绘制定义在 $\mathbb{Z}$（即 $h=1$）上的三个离散函数及其带限插值。从输出结果的三个图中的第一个图可以清楚地看出，$sinc$ 函数是平滑的。第二个图描绘了离散方波的插值，显示了 $sinc$ 插值对于逼近非光滑函数不是特别好。当 $h \rightarrow 0$ 时，不连续处附近的振荡幅度不会减小，甚至在空间上也没有很好的局部化。这种在间断附近产生的振荡称为<strong>吉布斯现象</strong>。第三幅图显示了离散三角波或“hat函数”及其插值。这里的插值比较好，但仍然不令人印象深刻。实际上，正如我们将在第4章中详细解释的那样，插值的精度取决于 $u$ 的光滑性，并且这些例子不是很平滑。每一个 $u$ 的导数都提高了 1 阶精度。</p>
-<p>为了找到高阶谱导数，我们可以多次对 $p(x)$ 微分。例如</p>
-<script type="math/tex; mode=display">S_{h}^{\prime \prime}\left(x_{j}\right)=\left\{\begin{array}{ll}-\frac{\pi^{2}}{3 h^{2}} & j=0, \\ 2 \frac{(-1)^{j+1}}{j^{2} h^{2}} & j \neq 0.\end{array}\right.</script><p>结果告诉我们对称双无穷 Toeplitz 矩阵 $D$ 的每一列的项对应的二阶导数是</p>
-<script type="math/tex; mode=display">D^{2} v=\frac{2}{h^{2}}
-\left(\begin{array}{cccc}
-& \ddots & & \vdots & & & \\
-& \ddots & & -\frac{1}{4} & & & \\
-&  \ddots & & 1 &  &   & \\
-&  & & -\frac{\pi^{2}}{6} & &  & \\
-&  &  & 1 & & \ddots & \\
-&  &   & -\frac{1}{4} & & \ddots & \\
-&   &  & \vdots & &  \ddots & 
-\end{array}\right) v.</script><h3 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h3><p>在 $h\mathbb{Z}$ 网格上的函数 $v$ 有一个唯一的插值 $p$，它的频带仅限于 $[-\pi/h,\pi/h]$ 区间内的波数。我们可以通过计算 $ik\hat{v}$ 的半离散 Fourier 逆变换来计算网格上的 $p$，或者作为 $sinc$ 函数平移的导数的线性组合。</p>
-]]></content>
-      <categories>
-        <category>Spectral Methods</category>
-      </categories>
-      <tags>
-        <tag>MATLAB</tag>
-        <tag>Spectral Method</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows 软件推荐（一）</title>
     <url>/2020/05/18/Software01/</url>
     <content><![CDATA[<p>本文介绍一些 Windows 上比较好用的软件。一个好的软件不仅可以解决某一方面的问题，还可以提高工作的效率。我用软件的原则是：<strong>在经济允许的前提下（免费最好），尽量使用每个方面最好用的软件</strong>。</p>
@@ -921,6 +996,30 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
       <tags>
         <tag>Windows</tag>
         <tag>Software</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>西游十问</title>
+    <url>/2020/05/14/XY10q/</url>
+    <content><![CDATA[<p>看过很多关于西游记的影视剧，但《西游记》书和影视剧有很大的不同，最直观的感受就是“真实”。在本科时期，讲明清小说的毛黎老师让我开始了解真实的西游记。虽然它是现实的，残酷的，我仍然愿意去了解它，因为现实就是残酷的。</p>
+<p>我以问题的形式梳理了我的所听所记所想！</p>
+<h3 id="一-《西游记》的主角是谁？"><a href="#一-《西游记》的主角是谁？" class="headerlink" title="一.《西游记》的主角是谁？"></a>一.《西游记》的主角是谁？</h3><p>孙悟空。有人认为是唐僧，比较一下两个人物就行了。小说的开头重笔墨演绎了猴王的出世和成长（出世、学艺、闹天宫、保唐僧），并且在唐僧取经的路上，所有故事中都已悟空历尽艰辛斩妖除魔的过程为主要情节。所以说唐僧取经只是故事的线索，小说要以唐僧取经始，并以唐僧取经收，但是真正的主人公是孙悟空。</p>
+<a id="more"></a>
+<h3 id="二-取经时孙悟空有多大？"><a href="#二-取经时孙悟空有多大？" class="headerlink" title="二. 取经时孙悟空有多大？"></a>二. 取经时孙悟空有多大？</h3><p>这要看怎么算，可以分为“虚岁”（神数）与“实岁”（人数）。所谓“天上一天，地下一年”。对于“虚岁”，花果山 342 年，弼马温 15 年，齐天大圣 184 年，八卦炉 49 年，五行山实际 630 年，西天取经 14 年，一共 1234 年，也就是孙悟空 1234 岁。对于“实岁”，取经前可以用章回计算，大闹天空 7 年，五行山下 7 年，取经 14 年，一共 28 年，也就说取经时孙悟空 28 岁。</p>
+<h3 id="三-菩提老祖到底是谁？"><a href="#三-菩提老祖到底是谁？" class="headerlink" title="三. 菩提老祖到底是谁？"></a>三. 菩提老祖到底是谁？</h3><p>菩提老祖就是如来佛祖。西牛贺洲可是如来的地界，怎么可能允许道教在这发展壮大。菩提老祖的住处为 “灵台方寸山，斜月三星洞。”这句话是有很深的含义的，“灵台方寸山”取这句话的首尾两字就是灵山；“斜月三星” 指的是天上之物，暗指“天空”，这句话合起来就是天上灵山。还有一点，菩提老祖和孙悟空的暗语“六耳”，如来怎么知道呢？只有一个解释，菩提祖师就是如来佛祖。</p>
+<h3 id="四-取经还是传经？"><a href="#四-取经还是传经？" class="headerlink" title="四. 取经还是传经？"></a>四. 取经还是传经？</h3><p>佛祖在灵山参悟了三藏真经，想传到东土。人就是这样，越是容易得到的东西越不知道珍惜。佛祖想如果把真经直接送到东土，东土之人必然不知其珍贵。于是如来佛祖便有个一个计划，让东土的人历经磨难取得真经，如来心中早就有了人选金蝉子。于是就有了后来的菩萨去东土找取经人，组成取经队伍。</p>
+<h3 id="五-后来孙悟空为什么不回花果山？"><a href="#五-后来孙悟空为什么不回花果山？" class="headerlink" title="五. 后来孙悟空为什么不回花果山？"></a>五. 后来孙悟空为什么不回花果山？</h3><p>破六贼时，炒唐僧，欲回却未回。从龙王那里明白取经是天大的好事，事关自己的前程和未来。打白骨精，被炒，无奈而回，回而复返。再到后来诛草寇，又被炒，走头无路也不回，过洞不入。此后再也没有回过花果山。回不回花果山不仅仅是回家的问题，更是人生的选择问题，是觉悟问题。</p>
+<h3 id="六-六耳猕猴与孙悟空什么关系？"><a href="#六-六耳猕猴与孙悟空什么关系？" class="headerlink" title="六. 六耳猕猴与孙悟空什么关系？"></a>六. 六耳猕猴与孙悟空什么关系？</h3><p>六耳猕猴就是孙悟空自己，假孙悟空是孙悟空幻化出来的。假孙悟空打了唐僧，抢了行李，想要组成新的取经队伍。真假悟空辨真假时，菩萨的咒语失效了，照妖镜失效了，地藏王菩萨有不敢说破。最后只能去找如来佛祖，悟空还没到西天，如来就对弟子说：“汝等俱是一心，且看二心竞斗而来也。”而后佛祖说假悟空是六耳猕猴，世间仅此一只，后来还被悟空打死了。孙悟空却不敢去找唐僧，因为他清楚唐僧知道打自己的是孙悟空，怎么也不会原谅他。后来如来好说歹说，有让菩萨亲自去送才重回取经队伍。为什么孙悟空要这样做呢，很明显，孙悟空是真的很想取经，即使你唐僧不要我，我自己拉一支队伍。</p>
+<h3 id="七-相比大闹天空，为什么取经路上孙悟空的武功变差了？"><a href="#七-相比大闹天空，为什么取经路上孙悟空的武功变差了？" class="headerlink" title="七. 相比大闹天空，为什么取经路上孙悟空的武功变差了？"></a>七. 相比大闹天空，为什么取经路上孙悟空的武功变差了？</h3><p>大闹天空时，孙悟空能以一挡十，十分厉害，玉帝妥协。而取经路上很多天庭下来的妖怪孙悟空都打不过，还要去搬救兵。原因就是在天庭时各位神仙没有卖力。在天庭时，各路神仙为公家办事，办好了是你的职业，办不好可能会丢掉性命，他们肯定不会卖力。而下界为妖时，都是个体户，肯定会拼尽全力争取自己的利益。其实孙悟空的武功比没有变，妖怪的真实实力显现出来了。</p>
+<h3 id="八-取经团队在西天的座次是怎么排的？"><a href="#八-取经团队在西天的座次是怎么排的？" class="headerlink" title="八. 取经团队在西天的座次是怎么排的？"></a>八. 取经团队在西天的座次是怎么排的？</h3><p>西游记最后写道：······南无才光佛。南无旃檀功德佛。南无斗战胜佛。南无观世音菩萨。南无大势至菩萨······南无净坛使者菩萨。南无八宝金身罗汉菩萨。南无八部天龙广力菩萨。<br>唐僧和孙悟空分别成就：南无旃檀功德佛、南无斗战胜佛，虽然是佛中最后两个座次，毕竟是佛，座次在观世音菩萨之前。猪八戒和沙僧分别成就：南无净坛使者菩萨、南无八宝金身罗汉菩萨，是菩萨中最后的两个座次。</p>
+<h3 id="九-沙僧的武功真的很差吗？"><a href="#九-沙僧的武功真的很差吗？" class="headerlink" title="九. 沙僧的武功真的很差吗？"></a>九. 沙僧的武功真的很差吗？</h3><p>当然不是。从“南天门里我为尊，凌霄殿前我称上”到“我也没甚手段，也不能降妖”是有原因的。沙僧认清了自己在团队中的位置，权衡利弊，从此跟定大师兄，但不争功；低调，做人更低调做事；目的是 “免罪”，安全最重要；以最少的投资获得最大的利益。当真假美猴王那回时，沙僧还不是一下子就把假沙僧打死了；孙悟空不在的那回，沙僧还不是跟妖怪打的不相上下。</p>
+<h3 id="十-觉悟《西游》到底在觉悟什么？"><a href="#十-觉悟《西游》到底在觉悟什么？" class="headerlink" title="十. 觉悟《西游》到底在觉悟什么？"></a>十. 觉悟《西游》到底在觉悟什么？</h3><p>千经万典，只为修心！<br>佛在灵山莫远求，<br>灵山就在汝心头。<br>人人有个灵山塔，<br>好向灵山塔下修。</p>
+]]></content>
+      <categories>
+        <category>Literature</category>
+      </categories>
+      <tags>
+        <tag>Review</tag>
       </tags>
   </entry>
   <entry>
