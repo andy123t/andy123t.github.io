@@ -302,6 +302,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <p><strong>输出结果</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    0.1173    0.0473    0.0191    0.0085    0.0040    0.0019</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">   -1.3104   -1.3070   -1.1767   -1.0911   -1.0458</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.loli.net/2020/05/25/ZNisKQoFrISXgpv.png" alt="fdm2d2_error.png"></p>
+<p><strong>思考</strong>：五点差分格式的收敛阶应该 2 阶，为什么结果是 1 阶，思考之后发现是因为边界条件。</p>
 ]]></content>
       <categories>
         <category>Numerical PDEs</category>
