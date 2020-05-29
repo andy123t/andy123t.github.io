@@ -32,7 +32,7 @@
    &  &  &  &    \\
   &   & \displaystyle-\frac{1}{2h}-\frac{1}{h^{2}} & \displaystyle\frac{2}{h^{2}}+q_{N-2}& \displaystyle\frac{1}{2h}-\frac{1}{h^{2}} \\[8pt]
   &  &  & \displaystyle-\frac{1}{2h}-\frac{1}{h^{2}} & \displaystyle \frac{2}{h^{2}}+q_{N-1}
-\end{array}\right],</script><script type="math/tex; mode=display">\boldsymbol{f}=(f_1+\frac{\alpha}{h^2}+\frac{\alpha}{2h}, f_2, \cdots, f_{N-1}+\frac{\beta}{h^2}-\frac{\beta}{2h})^{\mathrm{T}},</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
+\end{array}\right],</script><script type="math/tex; mode=display">\boldsymbol{f}=(f_1+\frac{\alpha}{h^2}+\frac{\alpha}{2h}, f_2, \cdots, f_{N-1}+\frac{\beta}{h^2}-\frac{\beta}{2h})^{\mathrm{T}}.</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
 \left\{\begin{aligned}
   &-\frac{\mathrm{d}^{2} u}{\mathrm{d} x^{2}}+\frac{\mathrm{d} u}{\mathrm{d} x}=\pi^{2} \sin (\pi x)+\pi \cos (\pi x),\quad x \in [0,1], \\
   &u(0)=0,\quad u(1)=0.
@@ -105,8 +105,8 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <script type="math/tex; mode=display">\boldsymbol{u}^{n+1}=\boldsymbol{A}\boldsymbol{u}^{n}+\boldsymbol{f}^n, \quad 0 \leqslant n \leqslant N-1.</script><p>其中矩阵 $\boldsymbol{A}$、向量 $\boldsymbol{f}^n$ 的定义如下，注意向量 $\boldsymbol{f}^n$ 的首尾元素已包含了边界条件。</p>
 <script type="math/tex; mode=display">
 \boldsymbol{A}=\left(\begin{array}{ccccc}1-2 r & r & & & \\ r & 1-2 r & r & & \\ & \ddots & \ddots & \ddots & \\ & & r & 1-2 r & r \\ & & & r & 1-2 r
-\end{array}\right)</script><script type="math/tex; mode=display">
-\boldsymbol{f}^n=\left(\begin{array}{c}\tau f\left(x_{1}, t_{n}\right)+r u_{0}^{n} \\ \tau f\left(x_{2}, t_{n}\right) \\ \vdots \\ \tau f\left(x_{M-2}, t_{n}\right) \\ \tau f\left(x_{M-1}, t_{n}\right)+r u_{M}^{n}\end{array}\right)</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
+\end{array}\right),</script><script type="math/tex; mode=display">
+\boldsymbol{f}^n=\left(\begin{array}{c}\tau f\left(x_{1}, t_{n}\right)+r u_{0}^{n} \\ \tau f\left(x_{2}, t_{n}\right) \\ \vdots \\ \tau f\left(x_{M-2}, t_{n}\right) \\ \tau f\left(x_{M-1}, t_{n}\right)+r u_{M}^{n}\end{array}\right).</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
 \left\{\begin{aligned}
 &\frac{\partial u}{\partial t}=\frac{\partial^{2} u}{\partial x^{2}}, \quad 0<x<1, \quad 0 <t \leqslant 1, \\
 &u(x, 0)=\mathrm{e}^{x}, \quad 0 \leqslant x \leqslant 1, \\
@@ -163,7 +163,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
   &    &   &    &   \\
   &   &\displaystyle -\frac{1}{h_1^2}  &\displaystyle 2\left(\frac{1}{h_1^2}+\frac{1}{h_2^2}\right) & \displaystyle-\frac{1}{h_1^2} \\
   &     &    & \displaystyle -\frac{1}{h_1^2} & \displaystyle 2\left(\frac{1}{h_1^2}+\frac{1}{h_2^2}\right) \\
-\end{array} \right)</script><script type="math/tex; mode=display">\boldsymbol{D} = \left(
+\end{array} \right),</script><script type="math/tex; mode=display">\boldsymbol{D} = \left(
 \begin{array}{ccccc}
 \displaystyle-\frac{1}{h_2^2} &    &    &    &   \\
     & \displaystyle-\frac{1}{h_2^2}&    &    &   \\
@@ -178,7 +178,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 \vdots  \\
 \displaystyle f(x_{N-2},y_{j}) \\
 \displaystyle f(x_{N-1},y_{j})+\frac{1}{h_1^2}\phi(x_{N},y_{j}) \\
-\end{array} \right)</script><p>以上矩阵形式的差分格式还可以进一步写为如下的矩阵形式，注意等号右边向量的首尾元素加入了 $y=c$ 和 $y=d$ 处的边界条件。</p>
+\end{array} \right).</script><p>以上矩阵形式的差分格式还可以进一步写为如下的矩阵形式，注意等号右边向量的首尾元素加入了 $y=c$ 和 $y=d$ 处的边界条件。</p>
 <script type="math/tex; mode=display">
 \left(\begin{array}{ccccc}
 \boldsymbol{C} & \boldsymbol{D} &    &    &       \\
@@ -200,7 +200,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 \vdots \\
 \boldsymbol{f}_{M-2} \\
 \boldsymbol{f}_{M-1}-D\boldsymbol{u}_{M} \\
-\end{array} \right)</script><h3 id="数值例子-1"><a href="#数值例子-1" class="headerlink" title="数值例子 1"></a>数值例子 1</h3><script type="math/tex; mode=display">
+\end{array} \right).</script><h3 id="数值例子-1"><a href="#数值例子-1" class="headerlink" title="数值例子 1"></a>数值例子 1</h3><script type="math/tex; mode=display">
 \left\{ \begin{aligned}
   &-\Delta u=f(x,y),\quad (x,y)\in \Omega=(0,1)\times (0,1), \\
   &u=0,\quad (x, y) \in \partial \Omega .
@@ -1173,15 +1173,15 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
 <script type="math/tex; mode=display">x_{i}=j h, \quad 0 \leqslant j \leqslant M,</script><script type="math/tex; mode=display">t_{n}=n \tau, \quad 0 \leqslant n \leqslant N.</script><p>一维热传导方程的<strong>六点对称格式</strong>（<strong>Crank- Nicolson格式</strong>）</p>
 <script type="math/tex; mode=display">\frac{u_{j}^{n+1}-u_{j}^{n}}{\tau}=\frac{a}{2}\left[\frac{u_{j+1}^{n+1}-2 u_{j}^{n+1}+u_{j-1}^{n+1}}{h^{2}}+\frac{u_{j+1}^{n}-2 u_{j}^{n}+u_{j-1}^{n}}{h^{2}}\right]+\frac{f(x_j,t_{n+1})+f(x_j,t_n)}{2},</script><script type="math/tex; mode=display">u_{j}^{0}=\phi_{j}=\phi(x_{j}), \quad u_{0}^{n}=u_{M}^{n}=0.</script><p>以上格式可改写为</p>
 <script type="math/tex; mode=display">-\frac{r}{2} u_{j+1}^{n+1}+(1+r) u_{j}^{n+1}-\frac{r}{2} u_{j-1}^{n+1}=\frac{r}{2} u_{j+1}^{n}+(1-r) u_{j}^{n}+\frac{r}{2} u_{j-1}^{n}+\frac{\tau}{2}\left[f(x_j,t_{n+1})+f(x_j,t_n)\right].</script><script type="math/tex; mode=display">1 \leqslant j \leqslant M-1,\ 0 \leqslant n \leqslant N-1.</script><p>即</p>
-<script type="math/tex; mode=display">-r u_{j+1}^{n+1}+(2+2r) u_{j}^{n+1}-r u_{j-1}^{n+1}=r u_{j+1}^{n}+(2-2r) u_{j}^{n}+r u_{j-1}^{n}+\tau f(x_j,t_{n+1})+ \tau f(x_j,t_n).</script><script type="math/tex; mode=display">1 \leqslant j \leqslant M-1,\ 0 \leqslant n \leqslant N-1.</script><p>利用 $u_{j}^{0}$ 和边值便可逐层求到 $u$。六点对称格式是隐格式，由第 $n$ 层计算第（$n+1$）层时，需解线性代数方程组（因系数矩阵严格对角占优，方程组可唯一求解）。</p>
+<script type="math/tex; mode=display">-r u_{j+1}^{n+1}+(2+2r) u_{j}^{n+1}-r u_{j-1}^{n+1}=r u_{j+1}^{n}+(2-2r) u_{j}^{n}+r u_{j-1}^{n}+\tau f(x_j,t_{n+1})+ \tau f(x_j,t_n).</script><script type="math/tex; mode=display">1 \leqslant j \leqslant M-1,\ 0 \leqslant n \leqslant N-1.</script><p>利用 $u_{j}^{0}$ 和边值便可逐层求到 $u$。六点对称格式是隐格式，由第 $n$ 层计算第 $n+1$ 层时，需解线性代数方程组（因系数矩阵严格对角占优，方程组可唯一求解）。</p>
 <p>设 $\boldsymbol{u}^{n}=(u_{1}^{n}, u_{2}^{n}, \cdots, u_{M-2}^{n}, u_{M-1}^{n})^{\mathrm{T}}, \quad 0 \leqslant n \leqslant N.$</p>
 <p>差分格式可以写为矩阵形式：</p>
 <script type="math/tex; mode=display">\boldsymbol{A} \boldsymbol{u}^{n+1}=\boldsymbol{B}\boldsymbol{u}^{n}+\boldsymbol{f}^n, \quad 0 \leqslant n \leqslant N-1.</script><p>其中矩阵 $\boldsymbol{A}$、$\boldsymbol{B}$、向量 $\boldsymbol{f}^n$ 的定义如下，注意向量 $\boldsymbol{f}^n$ 的首尾元素已包含了边界条件。</p>
 <script type="math/tex; mode=display">
 \boldsymbol{A}=\left(\begin{array}{ccccc}2+2 r & -r & & & \\ -r & 2+2 r & -r & & \\ & \ddots & \ddots & \ddots & \\ & & -r & 2+2 r & -r \\ & & & -r & 2+2 r
-\end{array}\right)</script><script type="math/tex; mode=display">
+\end{array}\right),</script><script type="math/tex; mode=display">
 \boldsymbol{B}=\left(\begin{array}{ccccc} 2-2 r & r & & & \\ r & 2-2 r & r & & \\ & \ddots & \ddots & \ddots & \\ & & r & 2-2 r & r \\ & & & r & 2-2 r
-\end{array}\right)</script><script type="math/tex; mode=display">
+\end{array}\right),</script><script type="math/tex; mode=display">
 \boldsymbol{f}^n=
 \left(
 \begin{array}{c}
@@ -1190,7 +1190,7 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
 \vdots  \\
 \tau f(x_{M-2},t_{n})+\tau f(x_{M-2},t_{n+1}) \\
 \tau f(x_{M-1},t_{n})+\tau f(x_{M-1},t_{n+1})+ru_M^{n}+ ru_M^{n} \\
-\end{array} \right)</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
+\end{array} \right).</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
 \left\{\begin{aligned}
 &\frac{\partial u}{\partial t}=\frac{\partial^{2} u}{\partial x^{2}}+f(x,t), \quad 0<x<1, \quad 0 <t \leqslant 1, \\
 &u(x, 0)=\sin (x), \quad 0 \leqslant x \leqslant 1, \\
@@ -1233,7 +1233,7 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
 <script type="math/tex; mode=display">\boldsymbol{u}^{n+1}=\boldsymbol{A}\boldsymbol{u}^{n}-\boldsymbol{u}^{n-1}+\boldsymbol{f}^n, \quad 1 \leqslant n \leqslant N-1.</script><p>其中矩阵 $\boldsymbol{A}$、$\boldsymbol{B}$、向量 $\boldsymbol{f}^n$ 的定义如下，注意向量 $\boldsymbol{f}^n$ 的首尾元素已包含了边界条件。</p>
 <script type="math/tex; mode=display">
 \boldsymbol{A}=\left(\begin{array}{ccccc}2(1-r^{2}) & r^2 & & & \\ r^2 & 2(1-r^{2}) & r^2 & & \\ & \ddots & \ddots & \ddots & \\ & & r^2 & 2(1-r^{2}) & r^2 \\ & & & r^2 & 2(1-r^{2})
-\end{array}\right)</script><script type="math/tex; mode=display">
+\end{array}\right),</script><script type="math/tex; mode=display">
 \boldsymbol{f}^n=
 \left(\begin{array}{c}
 \tau^{2} f(x_{1}, t_{n})+r^{2} u_{0}^{n} \\
@@ -1241,7 +1241,7 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
 \vdots \\
 \tau^{2} f(x_{M-2}, t_{n}) \\
 \tau^{2} f(x_{M-1}, t_{n})+r^{2} u_{M}^{n}
-\end{array}\right)</script><p><strong>注意：</strong> 计算最开始时需要两个已知向量 $\boldsymbol{u}^0$ 和 $\boldsymbol{u}^1$，第一个向量可直接通过初始条件得到，即 $u_{j}^{0}=\phi(x_{j})$ ，第二个向量通常选用 Euler 法来近似估算，即 $u_{j}^{1}=\phi(x_{j})+\tau \psi(x_{j})$.</p>
+\end{array}\right).</script><p><strong>注意：</strong> 计算最开始时需要两个已知向量 $\boldsymbol{u}^0$ 和 $\boldsymbol{u}^1$，第一个向量可直接通过初始条件得到，即 $u_{j}^{0}=\phi(x_{j})$ ，第二个向量通常选用 Euler 法来近似估算，即 $u_{j}^{1}=\phi(x_{j})+\tau \psi(x_{j})$.</p>
 <h3 id="数值例子-1"><a href="#数值例子-1" class="headerlink" title="数值例子 1"></a>数值例子 1</h3><script type="math/tex; mode=display">
 \left\{\begin{aligned}
 &\frac{\partial^{2} u}{\partial t^{2}}=\frac{\partial^{2} u}{\partial x^{2}}+(t^{2}-x^{2}) \sin (x t), \quad 0<x<1, \ 0 < t \leqslant 1, \\

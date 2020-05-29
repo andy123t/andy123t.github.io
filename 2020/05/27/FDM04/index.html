@@ -28,7 +28,7 @@
 <meta property="og:description" content="一维热传导方程 Crank-Nicolson 格式的 MATLAB 编程实现。 一维热传导方程\left\{\begin{aligned} &amp;\frac{\partial u}{\partial t}&#x3D;a \frac{\partial^{2} u}{\partial x^{2}}+f(x, t), &amp;&amp; 0">
 <meta property="og:image" content="https://i.loli.net/2020/05/28/EuHiAzvCPa8BqZN.png">
 <meta property="article:published_time" content="2020-05-27T14:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-28T07:37:32.220Z">
+<meta property="article:modified_time" content="2020-05-29T04:36:16.271Z">
 <meta property="article:author" content="Liutao Tian">
 <meta property="article:tag" content="Finite Difference">
 <meta property="article:tag" content="PDE">
@@ -238,7 +238,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-28 15:37:32" itemprop="dateModified" datetime="2020-05-28T15:37:32+08:00">2020-05-28</time>
+                <time title="修改时间：2020-05-29 12:36:16" itemprop="dateModified" datetime="2020-05-29T12:36:16+08:00">2020-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,15 +281,15 @@
 <script type="math/tex; mode=display">x_{i}=j h, \quad 0 \leqslant j \leqslant M,</script><script type="math/tex; mode=display">t_{n}=n \tau, \quad 0 \leqslant n \leqslant N.</script><p>一维热传导方程的<strong>六点对称格式</strong>（<strong>Crank- Nicolson格式</strong>）</p>
 <script type="math/tex; mode=display">\frac{u_{j}^{n+1}-u_{j}^{n}}{\tau}=\frac{a}{2}\left[\frac{u_{j+1}^{n+1}-2 u_{j}^{n+1}+u_{j-1}^{n+1}}{h^{2}}+\frac{u_{j+1}^{n}-2 u_{j}^{n}+u_{j-1}^{n}}{h^{2}}\right]+\frac{f(x_j,t_{n+1})+f(x_j,t_n)}{2},</script><script type="math/tex; mode=display">u_{j}^{0}=\phi_{j}=\phi(x_{j}), \quad u_{0}^{n}=u_{M}^{n}=0.</script><p>以上格式可改写为</p>
 <script type="math/tex; mode=display">-\frac{r}{2} u_{j+1}^{n+1}+(1+r) u_{j}^{n+1}-\frac{r}{2} u_{j-1}^{n+1}=\frac{r}{2} u_{j+1}^{n}+(1-r) u_{j}^{n}+\frac{r}{2} u_{j-1}^{n}+\frac{\tau}{2}\left[f(x_j,t_{n+1})+f(x_j,t_n)\right].</script><script type="math/tex; mode=display">1 \leqslant j \leqslant M-1,\ 0 \leqslant n \leqslant N-1.</script><p>即</p>
-<script type="math/tex; mode=display">-r u_{j+1}^{n+1}+(2+2r) u_{j}^{n+1}-r u_{j-1}^{n+1}=r u_{j+1}^{n}+(2-2r) u_{j}^{n}+r u_{j-1}^{n}+\tau f(x_j,t_{n+1})+ \tau f(x_j,t_n).</script><script type="math/tex; mode=display">1 \leqslant j \leqslant M-1,\ 0 \leqslant n \leqslant N-1.</script><p>利用 $u_{j}^{0}$ 和边值便可逐层求到 $u$。六点对称格式是隐格式，由第 $n$ 层计算第（$n+1$）层时，需解线性代数方程组（因系数矩阵严格对角占优，方程组可唯一求解）。</p>
+<script type="math/tex; mode=display">-r u_{j+1}^{n+1}+(2+2r) u_{j}^{n+1}-r u_{j-1}^{n+1}=r u_{j+1}^{n}+(2-2r) u_{j}^{n}+r u_{j-1}^{n}+\tau f(x_j,t_{n+1})+ \tau f(x_j,t_n).</script><script type="math/tex; mode=display">1 \leqslant j \leqslant M-1,\ 0 \leqslant n \leqslant N-1.</script><p>利用 $u_{j}^{0}$ 和边值便可逐层求到 $u$。六点对称格式是隐格式，由第 $n$ 层计算第 $n+1$ 层时，需解线性代数方程组（因系数矩阵严格对角占优，方程组可唯一求解）。</p>
 <p>设 $\boldsymbol{u}^{n}=(u_{1}^{n}, u_{2}^{n}, \cdots, u_{M-2}^{n}, u_{M-1}^{n})^{\mathrm{T}}, \quad 0 \leqslant n \leqslant N.$</p>
 <p>差分格式可以写为矩阵形式：</p>
 <script type="math/tex; mode=display">\boldsymbol{A} \boldsymbol{u}^{n+1}=\boldsymbol{B}\boldsymbol{u}^{n}+\boldsymbol{f}^n, \quad 0 \leqslant n \leqslant N-1.</script><p>其中矩阵 $\boldsymbol{A}$、$\boldsymbol{B}$、向量 $\boldsymbol{f}^n$ 的定义如下，注意向量 $\boldsymbol{f}^n$ 的首尾元素已包含了边界条件。</p>
 <script type="math/tex; mode=display">
 \boldsymbol{A}=\left(\begin{array}{ccccc}2+2 r & -r & & & \\ -r & 2+2 r & -r & & \\ & \ddots & \ddots & \ddots & \\ & & -r & 2+2 r & -r \\ & & & -r & 2+2 r
-\end{array}\right)</script><script type="math/tex; mode=display">
+\end{array}\right),</script><script type="math/tex; mode=display">
 \boldsymbol{B}=\left(\begin{array}{ccccc} 2-2 r & r & & & \\ r & 2-2 r & r & & \\ & \ddots & \ddots & \ddots & \\ & & r & 2-2 r & r \\ & & & r & 2-2 r
-\end{array}\right)</script><script type="math/tex; mode=display">
+\end{array}\right),</script><script type="math/tex; mode=display">
 \boldsymbol{f}^n=
 \left(
 \begin{array}{c}
@@ -298,7 +298,7 @@
 \vdots  \\
 \tau f(x_{M-2},t_{n})+\tau f(x_{M-2},t_{n+1}) \\
 \tau f(x_{M-1},t_{n})+\tau f(x_{M-1},t_{n+1})+ru_M^{n}+ ru_M^{n} \\
-\end{array} \right)</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
+\end{array} \right).</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
 \left\{\begin{aligned}
 &\frac{\partial u}{\partial t}=\frac{\partial^{2} u}{\partial x^{2}}+f(x,t), \quad 0<x<1, \quad 0 <t \leqslant 1, \\
 &u(x, 0)=\sin (x), \quad 0 \leqslant x \leqslant 1, \\
