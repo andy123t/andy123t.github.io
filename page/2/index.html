@@ -199,6 +199,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/16/ODE03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liutao Tian">
+      <meta itemprop="description" content="放弃不难，但坚持一定很酷">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/16/ODE03/" class="post-title-link" itemprop="url">经典四阶 Runge-Kutta 方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-16 20:42:41" itemprop="dateCreated datePublished" datetime="2020-05-16T20:42:41+08:00">2020-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-21 19:35:53" itemprop="dateModified" datetime="2020-05-21T19:35:53+08:00">2020-05-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Numerical-ODEs/" itemprop="url" rel="index"><span itemprop="name">Numerical ODEs</span></a>
+                </span>
+            </span>
+
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文介绍如何计算经典四阶 Runge-Kutta 数值解及其收敛阶，并用 MATLAB 编程，最后展示了输出结果。</p>
+<h3 id="经典四阶-Runge-Kutta-方法"><a href="#经典四阶-Runge-Kutta-方法" class="headerlink" title="经典四阶 Runge-Kutta 方法"></a>经典四阶 Runge-Kutta 方法</h3><script type="math/tex; mode=display">
+\left\{
+  \begin{aligned}
+  &u_{n+1}=u_{n}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right), \\
+  &k_{1} =f\left(t_{n}, u_{n}\right), \\
+  &k_{2} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{1}\right), \\
+  &k_{3} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{2}\right), \\
+  &k_{4} =f\left(t_{n}+h, u_{n}+k_{3}\right).
+  \end{aligned}
+  \right.</script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/16/ODE03/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/16/ODE04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -968,89 +1061,6 @@ u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/10/SM00/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Liutao Tian">
-      <meta itemprop="description" content="放弃不难，但坚持一定很酷">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Andy123t">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/10/SM00/" class="post-title-link" itemprop="url">谱方法概述</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-10 12:05:00" itemprop="dateCreated datePublished" datetime="2020-05-10T12:05:00+08:00">2020-05-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-12 16:44:48" itemprop="dateModified" datetime="2020-05-12T16:44:48+08:00">2020-05-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spectral-Methods/" itemprop="url" rel="index"><span itemprop="name">Spectral Methods</span></a>
-                </span>
-            </span>
-
-          
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="谱方法简介"><a href="#谱方法简介" class="headerlink" title="谱方法简介"></a>谱方法简介</h3><p>谱方法是一种既古老又新兴的求解偏微分方程的数值方法。早在 1820 年, Navier 就运用双重三角级数求解弹性薄板问题。 但是，长期以来，由于它计算量大而一直没有被广泛使用，直到 1965 年快速 Fourier 变换的出现，才给谱方法带来了生机。 近几十多年来，谱方法得到了蓬勃的发展，不仅广泛地运用于物理、力学、大气、海洋等领域的数值计算，而且它的数值分析理论也不断地完善。 至今，谱方法已和有限差分法、有限元法一起成为偏微分方程数值求解的第三种基本方法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/10/SM00/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1122,20 +1132,20 @@ u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
