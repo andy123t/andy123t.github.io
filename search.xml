@@ -568,7 +568,7 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
   </entry>
   <entry>
     <title>LaTeX 之软件安装与配置</title>
-    <url>/2020/06/09/LaTeX-Install/</url>
+    <url>/2020/06/08/LaTeX-Install/</url>
     <content><![CDATA[<p>本文介绍 LaTeX 使用所需软件的安装与配置，主要包括 TeX Live 与 WinEdt 10.3。</p>
 <h3 id="关于-CEX-套装"><a href="#关于-CEX-套装" class="headerlink" title="关于 CEX 套装"></a>关于 CEX 套装</h3><p>CTeX 套装是因为 CJK 包的字体配置复杂，为了免去入门用户的配置成本而推出的。而现在因为 XeTeX 引擎以及 xeCJK 宏包的出现，CJK 包已经成为过去。因此 CTeX 曾经的优势实际上已经不成为优势，并且因其引起的各种国内期刊模板的老旧问题正不断成为阻碍中国 TeX 社区进步的因素。</p>
 <blockquote>
