@@ -594,7 +594,7 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
 <p><img src="https://i.loli.net/2020/06/09/aCxLTkmsbIDvcfW.png" alt="Texlive202001.jpg"></p>
 <p>直到出现下面这个页面，说明安装已经完成，</p>
 <p><img src="https://i.loli.net/2020/06/09/G7XTpjKL5CheWBU.png" alt="Texlive202002.jpg"></p>
-<h3 id="LaTeX-编辑器"><a href="#LaTeX-编辑器" class="headerlink" title="LaTeX 编辑器"></a>LaTeX 编辑器</h3><p>关于 LaTeX 的编辑器有很多：Texworks、 TeXstudio、 WinEdt、  Sublime Text 3、 VS Code、Vim、Emacs 等。</p>
+<h3 id="LaTeX-编辑器"><a href="#LaTeX-编辑器" class="headerlink" title="LaTeX 编辑器"></a>LaTeX 编辑器</h3><p>关于 LaTeX 的编辑器有很多：Texworks、TeXstudio、WinEdt、Sublime Text 3、VS Code、Vim、Emacs 等。</p>
 <p>Texworks 是 TeX Live 自带的编辑器，对英文支持比较好。</p>
 <h4 id="WinEdt-10"><a href="#WinEdt-10" class="headerlink" title="WinEdt 10"></a>WinEdt 10</h4><p>如果最早接触的是 CTEX 套装，应该对 WinEdt 6.0 或 WinEdt 7.0 很熟悉，其实 WinEdt 是一个收费软件，只是 CTEX 套装中的 WinEdt 被改了几行代码，30 天试用期就变成无限期试用。</p>
 <p>WinEdt 是 Windows 平台上一款功能强大，界面简洁的 LaTeX 编辑器。WinEdt 10 (最新的版本是 <strong>WinEdt 10.3</strong>) 相比老版本界面更加简洁，而且支持高分屏，更加好用。</p>
@@ -605,7 +605,7 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
 <ul>
 <li>SumatraPDF <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html" target="_blank" rel="noopener">下载地址</a></li>
 </ul>
-<p>如果先安装 TeX Live,后安装，后安装 WinEdt 10.3，WinEdt 10.3 与 TeX Live 的连接已经自动完成，只需要配置 PDF 阅读器 SumatraPDF 就可以了。点击菜单栏 <code>Options</code> 打开 <code>Execution Modes</code>，选择 <code>PDF Viewer</code>，选择已经安装的 <code>SumatraPDF</code></p>
+<p>如果先安装 TeX Live，后安装，后安装 WinEdt 10.3，WinEdt 10.3 与 TeX Live 的连接已经自动完成，只需要配置 PDF 阅读器 SumatraPDF 就可以了。点击菜单栏 <code>Options</code> 打开 <code>Execution Modes</code>，选择 <code>PDF Viewer</code>，选择已经安装的 <code>SumatraPDF</code></p>
 <p><img src="https://i.loli.net/2020/06/09/WJTLE9YmhbcQqdU.png" alt="LaTeX-WinEdt01.png"></p>
 <p>点击菜单栏 <code>Options</code> 打开 <code>Preferences</code>，选择 <code>Font</code>，可以调整 TeX 文本显示的字体，个人推荐 <strong>Consolas</strong> 字体，字体大小也可以调整。</p>
 <p><img src="https://i.loli.net/2020/06/09/ija7uT6BPlUwVZ4.png" alt="LaTeX-WinEdt02.png"></p>
@@ -624,7 +624,7 @@ u_{n+1}=\frac{2-h}{2+h} u_n+\frac{h}{2+h}[t_n^2+t_n+t_{n+1}^2+t_{n+1}].</script>
 <li><a href="https://liam.page/2013/11/13/Sublime-with-LaTeX/" target="_blank" rel="noopener">Sublime Text 作为 LaTeX 前端编辑器</a></li>
 </ul>
 <p><img src="https://i.loli.net/2020/06/09/7DibxcZrQk3Mzf6.png" alt="LaTeX-WinEdt03.png"></p>
-<h4 id="VS-Code"><a href="#VS-Code" class="headerlink" title="VS Code"></a>VS Code</h4><p>被称为宇宙第一编辑器的 VS Cvode (Visual Stuido Code) 当然也可以作为 LaTeX 的编辑器。</p>
+<h4 id="VS-Code"><a href="#VS-Code" class="headerlink" title="VS Code"></a>VS Code</h4><p>被称为「宇宙第一编辑器」的 VS Code (Visual Stuido Code) 当然也可以作为 LaTeX 的编辑器。</p>
 <p><a href="http://ddswhu.me/posts/2018-04/vs-code-for-latex/" target="_blank" rel="noopener">Configure Visual Stuido Code as LaTeX IDE</a></p>
 ]]></content>
       <categories>
