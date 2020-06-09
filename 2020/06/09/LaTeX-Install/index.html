@@ -30,8 +30,9 @@
 <meta property="og:image" content="https://i.loli.net/2020/06/09/G7XTpjKL5CheWBU.png">
 <meta property="og:image" content="https://i.loli.net/2020/06/09/WJTLE9YmhbcQqdU.png">
 <meta property="og:image" content="https://i.loli.net/2020/06/09/ija7uT6BPlUwVZ4.png">
+<meta property="og:image" content="https://i.loli.net/2020/06/09/7DibxcZrQk3Mzf6.png">
 <meta property="article:published_time" content="2020-06-09T10:00:00.000Z">
-<meta property="article:modified_time" content="2020-06-09T15:28:35.775Z">
+<meta property="article:modified_time" content="2020-06-09T15:44:12.626Z">
 <meta property="article:author" content="Liutao Tian">
 <meta property="article:tag" content="LaTeX">
 <meta property="article:tag" content="Software">
@@ -233,7 +234,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-06-09 18:00:00 / 修改时间：23:28:35" itemprop="dateCreated datePublished" datetime="2020-06-09T18:00:00+08:00">2020-06-09</time>
+              <time title="创建时间：2020-06-09 18:00:00 / 修改时间：23:44:12" itemprop="dateCreated datePublished" datetime="2020-06-09T18:00:00+08:00">2020-06-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,7 +277,7 @@
 <p><strong>推荐使用 TeX Live</strong>.</p>
 </blockquote>
 <p>TeX Live 在 macOS/OS X 上的名字是 MacTeX，官方网站 <a href="https://tug.org/mactex" target="_blank" rel="noopener">https://tug.org/mactex</a>.</p>
-<h4 id="Windows-用户下载"><a href="#Windows-用户下载" class="headerlink" title="Windows 用户下载"></a>Windows 用户下载</h4><p>TeX Live 的当前版本是2020,官方网站下载链接 </p>
+<h4 id="Windows-用户下载"><a href="#Windows-用户下载" class="headerlink" title="Windows 用户下载"></a>Windows 用户下载</h4><p>TeX Live 的当前版本是 2020，官方网站下载链接 </p>
 <ul>
 <li><a href="http://mirror.ctan.org/systems/texlive/Images/texlive2020.iso" target="_blank" rel="noopener">http://mirror.ctan.org/systems/texlive/Images/texlive2020.iso</a>.</li>
 </ul>
@@ -297,15 +298,15 @@
 <ul>
 <li>WinEdt 10.3 <a href="https://www.winedt.com/download.html" target="_blank" rel="noopener">下载地址</a></li>
 </ul>
-<p>浏览生成的 PDF 文件推荐安装轻量级 PDF 阅读器 <strong>SumatraPDF</strong>。</p>
+<p>浏览 PDF 文件推荐安装轻量级 PDF 阅读器 <strong>SumatraPDF</strong>。</p>
 <ul>
-<li>SumatraPDF <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html" target="_blank" rel="noopener">下载链接</a></li>
+<li>SumatraPDF <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html" target="_blank" rel="noopener">下载地址</a></li>
 </ul>
-<p>如果先安装 TeX Live,后安装，后安装 WinEdt 10.3，关于 WinEdt 1.0.3 与 TeX Live 的连接已经自动完成，只需要配置 PDF 阅读器 SumatraPDF，点击菜单栏 <code>Options</code> 打开 <code>Execution Modes</code>，选择 <code>PDF Viewer</code>，选择已经安装的 <code>SumatraPDF</code></p>
+<p>如果先安装 TeX Live,后安装，后安装 WinEdt 10.3，WinEdt 10.3 与 TeX Live 的连接已经自动完成，只需要配置 PDF 阅读器 SumatraPDF 就可以了。点击菜单栏 <code>Options</code> 打开 <code>Execution Modes</code>，选择 <code>PDF Viewer</code>，选择已经安装的 <code>SumatraPDF</code></p>
 <p><img src="https://i.loli.net/2020/06/09/WJTLE9YmhbcQqdU.png" alt="LaTeX-WinEdt01.png"></p>
-<p>还可以点击菜单栏 <code>Options</code> 打开 <code>Preferences</code>，选择 <code>Font</code>，可以调整页面显示的字体，个人推荐 <strong>Consolas</strong> 字体，字体大小也可以调整。</p>
+<p>点击菜单栏 <code>Options</code> 打开 <code>Preferences</code>，选择 <code>Font</code>，可以调整 TeX 文本显示的字体，个人推荐 <strong>Consolas</strong> 字体，字体大小也可以调整。</p>
 <p><img src="https://i.loli.net/2020/06/09/ija7uT6BPlUwVZ4.png" alt="LaTeX-WinEdt02.png"></p>
-<p>使用<strong>快捷键</strong>可以提高效率</p>
+<p>使用<strong>快捷键</strong>可以提高使用的效率</p>
 <ul>
 <li><code>Ctrl+Shift+P</code> 可以快速用 <code>PDFTeXify</code> 编译，而且生成的 PDF 直接打开显示；</li>
 <li><code>Ctrl+Shift+R</code> 可以快速打开 PDF 文件；</li>
@@ -313,12 +314,13 @@
 <li>LaTeX 反向搜索直接双击 PDF 的某一处即可直接跳转到相应的 TeX 文本位置；</li>
 <li>还可以自己配置快捷键，比如 <code>Ctrl+B</code> 直接用 XeLaTeX 编译。</li>
 </ul>
-<h4 id="TeXstudio"><a href="#TeXstudio" class="headerlink" title="TeXstudio"></a>TeXstudio</h4><p>TeXstudio 就是很多网友推荐的编辑器，它也非常好用。我使用 WinEdt 习惯了，所以没有用 TeXstudio。</p>
-<p>对于刚入门的 LaTeX 学习者，推荐使用 WinEdt 和 TeXstudio，因为它们属于专业的 IDE，也就是专门为 LaTeX 开发的软件。</p>
-<h4 id="Sublime-Text-3"><a href="#Sublime-Text-3" class="headerlink" title="Sublime Text 3"></a>Sublime Text 3</h4><p>Sublime Text 3 是个人特别喜欢的高级编辑器，用它来写代码非常炫酷，也可以配置 LaTeX 环境。高级编辑的查找功能比较好用。</p>
+<h4 id="TeXstudio"><a href="#TeXstudio" class="headerlink" title="TeXstudio"></a>TeXstudio</h4><p>TeXstudio 是很多网友推荐的编辑器，它也非常好用。我使用 WinEdt 习惯了，所以没有用 TeXstudio。</p>
+<p>对于刚入门的 LaTeX 学习者，推荐使用 WinEdt 或 TeXstudio，因为它们属于专业的 IDE，也就是专门为 LaTeX 开发的软件。</p>
+<h4 id="Sublime-Text-3"><a href="#Sublime-Text-3" class="headerlink" title="Sublime Text 3"></a>Sublime Text 3</h4><p>Sublime Text 3 是个人特别喜欢的高级编辑器，用它来写代码非常炫酷，也可以配置 LaTeX 环境。高级编辑器的查找功能特别好用。</p>
 <ul>
 <li><a href="https://liam.page/2013/11/13/Sublime-with-LaTeX/" target="_blank" rel="noopener">Sublime Text 作为 LaTeX 前端编辑器</a></li>
 </ul>
+<p><img src="https://i.loli.net/2020/06/09/7DibxcZrQk3Mzf6.png" alt="LaTeX-WinEdt03.png"></p>
 <h4 id="VS-Code"><a href="#VS-Code" class="headerlink" title="VS Code"></a>VS Code</h4><p>被称为宇宙第一编辑器的 VS Cvode (Visual Stuido Code) 当然也可以作为 LaTeX 的编辑器。</p>
 <p><a href="http://ddswhu.me/posts/2018-04/vs-code-for-latex/" target="_blank" rel="noopener">Configure Visual Stuido Code as LaTeX IDE</a></p>
 
