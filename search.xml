@@ -763,6 +763,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
     <content><![CDATA[<p><strong>上海师范大学研究生毕业论文 LaTeX 模板</strong></p>
 <p>LaTeX 模板及样例在 GitHub 仓库：<a href="https://github.com/andy123t/shnuthesis" target="_blank" rel="noopener">shnuthesis</a>，可以直接下载。</p>
 <p>本模板根据旧的硕士毕业论文 LaTeX 模板改写，参考了 <a href="https://github.com/skinaze/HUSTPaperTemp" target="_blank" rel="noopener">华中科技大学 LaTeX 模板</a>，格式配置放在了类文件 <strong>shnuthesis.cls</strong> 中，直接调用该类文件就可以使用。</p>
+<a id="more"></a>
 <p><strong>电脑本地使用</strong></p>
 <p>本模板需要安装 <strong>texlive</strong> 发行版，并且需要 <strong>XeLaTeX</strong> 编译运行！如需安装 texlive，可以参考：<a href="https://andy123t.github.io/2020/06/08/LaTeX-Install/">LaTeX 之软件安装与配置</a>，如果之前安装了 <strong>CTEX 套装</strong>，安装之前最好把它卸载干净。</p>
 <p><strong>在线使用</strong></p>
