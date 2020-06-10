@@ -199,6 +199,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/12/SMM01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liutao Tian">
+      <meta itemprop="description" content="放弃不难，但坚持一定很酷">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/12/SMM01/" class="post-title-link" itemprop="url">SMM01 微分矩阵</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-12 08:00:00" itemprop="dateCreated datePublished" datetime="2020-05-12T08:00:00+08:00">2020-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-15 23:04:51" itemprop="dateModified" datetime="2020-05-15T23:04:51+08:00">2020-05-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spectral-Methods/" itemprop="url" rel="index"><span itemprop="name">Spectral Methods</span></a>
+                </span>
+            </span>
+
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文是书籍 <strong>Spectral Method in MATLAB</strong> 第一章 <strong>Differentiation matrices 微分矩阵</strong> 笔记。</p>
+<p>从一个基本问题出发。 给定一组网格节点 $x_i$ 和相应的函数值 $u(x_i)$，如何使这些数据逼近 $u$ 的导数？可能立即想到的方法是某种有限差分公式。 我们将从有限差分方法开始去学习谱方法。</p>
+<h3 id="二阶差分"><a href="#二阶差分" class="headerlink" title="二阶差分"></a>二阶差分</h3><p>考虑等距剖分 $\{ x_{1},\ldots,x_{N}\}$, 对于每一个 $j$ 有 $x_{j+1}-x_{j}=h$，这组点对应的函数值 $\{u_{1}, \ldots, u_{N}\}$：</p>
+<p><img src="https://i.loli.net/2020/05/12/dpvkm4lHQiFeaZw.png" alt="SMM0101.png"></p>
+<p>令 $w_i$ 表示 $u’(x_i)$ 的逼近，$u’(x_i)$ 表示 $u$ 的导数在 $x_j$ 处的值。 标准二阶有限差分格式</p>
+<script type="math/tex; mode=display">w_{j}=\frac{u_{j+1}-u_{j-1}}{2 h}.</script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/12/SMM01/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/11/HomeScenery/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -936,7 +1024,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -949,7 +1037,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
