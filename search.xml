@@ -1443,9 +1443,9 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
     <title>LaTeX 排版学习笔记</title>
     <url>/2020/06/10/LaTeX-Notes/</url>
     <content><![CDATA[<p>LaTeX 排版过程中有不少（约定俗成的）规则，它们是区别「熟练掌握 LaTeX」与「会使用 LaTeX」的关键因素。这些规则或习惯，有一些不是必须的，做好以后排版会更加美观，有些则是必须的，做不好就是错误的。记录在此，以作备忘！</p>
-<a id="more"></a>
 <h4 id="文字间距与分段"><a href="#文字间距与分段" class="headerlink" title="文字间距与分段"></a>文字间距与分段</h4><p>正文部分用空格分开单词。一个换行符等同于ー个空格，多个空格的效果与一个相同。自然段分段是<strong>空一行</strong>，空多行相当于一行，少用 <code>\par</code> 与 <code>\\</code>。</p>
 <p>对于期刊模板，段落之间留不留空间，是期刊格式决定的，不要自己去改。</p>
+<a id="more"></a>
 <h4 id="改变字体属性"><a href="#改变字体属性" class="headerlink" title="改变字体属性"></a>改变字体属性</h4><p><code>\bf</code>、<code>\it</code>、<code>\sc</code> 不要用了，没有叠加效果、已过时。可以用 <code>\textbf{}</code>、<code>\textit{}</code>、<code>\textsc{}</code>。</p>
 <p><code>\textit</code> 和 <code>\emph</code> 不一样，有些语系排版「强调」不是用意大利体表现的。<br>「斜体」<code>\textsl</code> 和「意大利手写体」<code>\textit</code> 也不一样。</p>
 <p>中文字体与排版没有所谓的「斜体」，甚至有些字体没有粗体。中文有时可以用黑体来代替粗体，用楷体代替斜体。</p>
