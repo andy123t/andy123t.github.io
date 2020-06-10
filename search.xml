@@ -1452,7 +1452,7 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
 <p>times 和 txfonts 宏包已经过时了，很多 bug，尽量用 mathptm 或 newtxtext，newtxmath 宏包。</p>
 <h4 id="区分公式与文字"><a href="#区分公式与文字" class="headerlink" title="区分公式与文字"></a>区分公式与文字</h4><p>数学公式包含在 <script type="math/tex"> </script> 等数学环境中，排版后一般是斜体，字符加粗应该用 <code>\mathbf{}</code>、斜体变正体应该用 <code>\mathrm{}</code>，避免出现 <code>\textbf{}</code> 与 <code>\textrm{}</code>。<code>\bf A</code> $\rightarrow$ $\bf A$ 就是错误的数学字符输入方式，<code>\mathbf{A}</code> $\rightarrow$ $\mathbf{A}$。</p>
 <p>如果使用了 amsmath 宏包，公式中输入文本可以用 <code>\text{}</code>。</p>
-<p>本文数学字符命令省略了<script type="math/tex"> </script> 或其他数学环境 。</p>
+<p>本文数学字符命令省略了数学环境 。</p>
 <h4 id="特殊数学字体"><a href="#特殊数学字体" class="headerlink" title="特殊数学字体"></a>特殊数学字体</h4><p>可参考 <strong>lshort-zh-cn</strong> 或 <strong>symbols-a4</strong> 文档，也可以在命令行输入 <code>texdoc symbols</code> 即可打开 symbols-a4，前提是安装了 texlive。</p>
 <ul>
 <li><p><code>\mathcal</code> $\rightarrow$ $\mathcal{A}$ 是欧拉书写体字符；</p>
