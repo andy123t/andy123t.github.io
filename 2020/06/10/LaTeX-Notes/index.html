@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/06/10/OujKrcdepR7DvPL.png">
 <meta property="og:image" content="https://i.loli.net/2020/06/10/z6mTEi3qY8leMW4.png">
 <meta property="article:published_time" content="2020-06-10T10:00:00.000Z">
-<meta property="article:modified_time" content="2020-06-10T12:34:05.122Z">
+<meta property="article:modified_time" content="2020-06-10T12:58:35.387Z">
 <meta property="article:author" content="Liutao Tian">
 <meta property="article:tag" content="LaTeX">
 <meta property="article:tag" content="Note">
@@ -233,7 +233,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-06-10 18:00:00 / 修改时间：20:34:05" itemprop="dateCreated datePublished" datetime="2020-06-10T18:00:00+08:00">2020-06-10</time>
+              <time title="创建时间：2020-06-10 18:00:00 / 修改时间：20:58:35" itemprop="dateCreated datePublished" datetime="2020-06-10T18:00:00+08:00">2020-06-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,28 +275,30 @@
 <p>times 和 txfonts 宏包已经过时了，很多 bug，尽量用 mathptm 或 newtxtext，newtxmath 宏包。</p>
 <h4 id="区分公式与文字"><a href="#区分公式与文字" class="headerlink" title="区分公式与文字"></a>区分公式与文字</h4><p>数学公式包含在 <script type="math/tex"> </script> 等数学环境中，排版后一般是斜体，字符加粗应该用 <code>\mathbf{}</code>、斜体变正体应该用 <code>\mathrm{}</code>，避免出现 <code>\textbf{}</code> 与 <code>\textrm{}</code>。<code>\bf A</code> $\rightarrow$ $\bf A$ 就是错误的数学字符输入方式，<code>\mathbf{A}</code> $\rightarrow$ $\mathbf{A}$。</p>
 <p>如果使用了 amsmath 宏包，公式中输入文本可以用 <code>\text{}</code>。</p>
+<p>本文数学字符命令省略了<script type="math/tex"> </script> 或其他数学环境 。</p>
 <h4 id="特殊数学字体"><a href="#特殊数学字体" class="headerlink" title="特殊数学字体"></a>特殊数学字体</h4><p>可参考 <strong>lshort-zh-cn</strong> 或 <strong>symbols-a4</strong> 文档，也可以在命令行输入 <code>texdoc symbols</code> 即可打开 symbols-a4，前提是安装了 texlive。</p>
 <ul>
-<li><code>\mathcal</code> $\rightarrow$ $\mathcal{A}$ 是欧拉书写体字符；</li>
-<li><code>\mathbb</code> $\rightarrow$ $\mathbb{R}$ 是空心数学字符；</li>
-<li><code>\mathscr</code> $\rightarrow$ $\mathscr{A}$ 是花体手写字符，需要 mathrsfs 宏包。</li>
+<li><p><code>\mathcal</code> $\rightarrow$ $\mathcal{A}$ 是欧拉书写体字符；</p>
+</li>
+<li><p><code>\mathbb</code> $\rightarrow$ $\mathbb{R}$ 是空心数学字符；</p>
+</li>
+<li><p><code>\mathscr</code> $\rightarrow$ $\mathscr{A}$ 是花体手写字符，需要 mathrsfs 宏包。</p>
+</li>
 </ul>
-<h4 id="正确输入数学算符"><a href="#正确输入数学算符" class="headerlink" title="正确输入数学算符"></a>正确输入数学算符</h4><p><code>sin s</code> $\rightarrow$ $sin~x$，正确写法：<code>\sin x</code> $\rightarrow$ $\sin x$.</p>
-<p><code>ln s</code> $\rightarrow$ $ln~x$，正确写法：<code>\ln x</code> $\rightarrow$ $\ln x$.</p>
-<p><code>exp s</code> $\rightarrow$ $exp~x$，正确写法：<code>\exp x</code> $\rightarrow$ $\exp x$.</p>
-<p>更多算符请参考下表</p>
+<h4 id="正确输入数学算符"><a href="#正确输入数学算符" class="headerlink" title="正确输入数学算符"></a>正确输入数学算符</h4><p>错误写法：<code>sin s</code> $\rightarrow$ $sin~x$，正确写法：<code>\sin x</code> $\rightarrow$ $\sin x$.</p>
+<p>错误写法：<code>ln s</code> $\rightarrow$ $ln~x$，正确写法：<code>\ln x</code> $\rightarrow$ $\ln x$.</p>
+<p>错误写法：<code>exp s</code> $\rightarrow$ $exp~x$，正确写法：<code>\exp x</code> $\rightarrow$ $\exp x$.</p>
 <p><img src="https://i.loli.net/2020/06/10/l6RDv54snM8Ty7m.png" alt="LaTeX-Note01.png"></p>
 <p>单位直接在数学模式中书写</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% \usepackage&#123;siunitx&#125;</span><br><span class="line">\SI&#123;10&#125;&#123;kg&#125;</span><br></pre></td></tr></table></figure>
 <p>$\rightarrow$ 10 kg.</p>
-<p>以上数学字符命令省略了<script type="math/tex"> </script> 或其他数学环境 。</p>
 <h4 id="微分符号-mathrm-d-x"><a href="#微分符号-mathrm-d-x" class="headerlink" title="微分符号 $\mathrm{d}x$"></a>微分符号 $\mathrm{d}x$</h4><p>十分繁琐的输入微分符号 $\mathrm{d}x$</p>
 <ul>
-<li><p><script type="math/tex">\int f(x) dx</script> $\rightarrow$ $\int f(x) dx$</p>
+<li><p><code>\int f(x) dx</code> $\rightarrow$ $\int f(x) dx$</p>
 </li>
-<li><p><script type="math/tex">\int f(x) \,dx</script> $\rightarrow$ $\int f(x) \,dx$</p>
+<li><p><code>\int f(x) \,dx</code> $\rightarrow$ $\int f(x) \,dx$</p>
 </li>
-<li><p><script type="math/tex">\int f(x) \,\mathrm{d}x</script> $\rightarrow$ $\int f(x) \,\mathrm{d}x$</p>
+<li><p><code>\int f(x) \,\mathrm{d}x</code> $\rightarrow$ $\int f(x) \,\mathrm{d}x$</p>
 </li>
 </ul>
 <p>推荐写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% \newcommand*&#123;\dif&#125;&#123;\mathop&#123;&#125;\!\mathrm&#123;d&#125;&#125;</span><br><span class="line">$\int f(x) \dif&#123;x&#125;$</span><br></pre></td></tr></table></figure></p>
@@ -305,11 +307,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% \newcommand*&#123;\dif&#125;&#123;\mathop&#123;&#125;\!\mathrm&#123;d&#125;&#125;</span><br><span class="line">$\int f(x) \dif&#123;x&#125;$</span><br></pre></td></tr></table></figure>
 <p>$\rightarrow$ $\int f(x) \,\mathrm{d}x$</p>
 <h4 id="几种连接符"><a href="#几种连接符" class="headerlink" title="几种连接符"></a>几种连接符</h4><p>连字符 <code>-</code> 通常用来连接复合词，比如 daughter-in-law.</p>
-<p>连接号 — 通常用来表示范围，比如 <code>see pages 5--7</code> $\rightarrow$ see pages 5-7。如果真的希望连续输入两个连字符，使用 {-}{-}。</p>
+<p>连接号 <code>--</code> 通常用来表示范围，比如 <code>see pages 5--7</code> $\rightarrow$ see pages 5-7。如果真的希望连续输入两个连字符，使用 {-}{-}。</p>
 <p>破折号 <code>---</code> 是一个正规的标点符号，用来表示转折或者承上启下。要注意的是，破折号与其前后的单词之间不应该存在空格，例如</p>
 <p><code>A specter is haunting Europe --- the specter of Communism.</code> </p>
 <p>A specter is haunting Europe—the specter of Communism.</p>
-<p>排版中的减号应该比连字符要长，因此用来表示减号或者负号时，请严格使用数学模式 <script type="math/tex">-5</script> $\rightarrow$ $-5$ 而不要使用文字模式 -5。</p>
+<p>排版中的减号应该比连字符要长，因此用来表示减号或者负号时，请严格使用数学模式 <code>-5</code> $\rightarrow$ $-5$ 而不要使用文字模式 -5。</p>
 <h4 id="几种转置字符"><a href="#几种转置字符" class="headerlink" title="几种转置字符"></a>几种转置字符</h4><p>转置符号好像并没有严格的规定，好几种都在普遍被使用。但是有一点是明确的，转置符号不能是斜体。常见的转置符号大概有四种</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$\mathbf&#123;A&#125;^\mathrm&#123;T&#125;$</span><br><span class="line">$\mathbf&#123;A&#125;^\top$</span><br><span class="line">$\mathbf&#123;A&#125;^\mathsf&#123;T&#125;$</span><br><span class="line">$\mathbf&#123;A&#125;^\intercal$</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.loli.net/2020/06/10/VJ7AkaRsI8EvcGi.png" alt="LaTeX-Note02.png"></p>
@@ -324,7 +326,7 @@
 <h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ul>
 <li><p><a href="https://sikouhjw.gitee.io/2020/04/26/2020-04-26-Low-level-latex-works/" target="_blank" rel="noopener">低水平 LaTeX 作品的特点</a></p>
 </li>
-<li><p><a href="https://ridiqulous.com/latex-notes-details/" target="_blank" rel="noopener">强迫症的 Latex学习笔记</a></p>
+<li><p><a href="https://ridiqulous.com/latex-notes-details/" target="_blank" rel="noopener">强迫症的 LaTeX 学习笔记</a></p>
 </li>
 <li><p><a href="https://www.bilibili.com/video/BV1r4411o7KJ" target="_blank" rel="noopener">漫谈 LaTeX 排版常见概念误区</a></p>
 </li>
