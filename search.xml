@@ -589,7 +589,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <h4 id="文字间距与分段"><a href="#文字间距与分段" class="headerlink" title="文字间距与分段"></a>文字间距与分段</h4><p>正文部分用空格分开单词。一个换行符等同于ー个空格，多个空格的效果与一个相同。自然段分段是<strong>空一行</strong>，空多行相当于一行，少用 <code>\par</code> 与 <code>\\</code>。</p>
 <p>对于期刊模板，段落之间留不留空间，是期刊格式决定的，不要自己去改。</p>
 <a id="more"></a>
-<h4 id="改变字体属性"><a href="#改变字体属性" class="headerlink" title="改变字体属性"></a>改变字体属性</h4><p><code>\bf</code>、<code>\it</code>、<code>\sc</code> 不要用了，没有叠加效果、已过时。可以用 <code>\textbf{}</code>、<code>\textit{}</code>、<code>\textsc{}</code>。</p>
+<h4 id="改变字体属性"><a href="#改变字体属性" class="headerlink" title="改变字体属性"></a>改变字体属性</h4><p><code>\bf</code>、<code>\it</code>、<code>\rm</code>、<code>\sc</code>、<code>\sf</code> 不要用了，没有叠加效果、已过时。可以用 <code>\textbf{}</code>、<code>\textit{}</code>、<code>\textrm{}</code>、<code>\textsc{}</code>、、<code>\textsl{}</code>。</p>
 <p><code>\textit</code> 和 <code>\emph</code> 不一样，有些语系排版「强调」不是用意大利体表现的。<br>「斜体」<code>\textsl</code> 和「意大利手写体」<code>\textit</code> 也不一样。</p>
 <p>中文字体与排版没有所谓的「斜体」，甚至有些字体没有粗体。中文有时可以用黑体来代替粗体，用楷体代替斜体。</p>
 <p>times 和 txfonts 宏包已经过时了，很多 bug，尽量用 mathptm 或 newtxtext，newtxmath 宏包。</p>
@@ -612,6 +612,16 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <p>单位直接在数学模式中书写</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">% \usepackage&#123;siunitx&#125;</span><br><span class="line">\SI&#123;10&#125;&#123;kg&#125;</span><br></pre></td></tr></table></figure>
 <p>$\rightarrow$ 10 kg.</p>
+<h4 id="行间公式输入"><a href="#行间公式输入" class="headerlink" title="行间公式输入"></a>行间公式输入</h4><p>不用 <code>$$ $$</code>，而用 <code>\[ \]</code> 来排版行间公式。<code>$$ $$</code> 为 TeX 的原始定义，amsmath 重定义了 <code>\[ \]</code> 来表示未编号的行间公式。在公式的段落间距处理等方面  <code>\[ \]</code> 要优于 <code>$$ $$</code>，参考<a href="https://tex.stackexchange.com/questions/503/why-is-preferable-to/69854" target="_blank" rel="noopener">链接</a></p>
+<p>不用 eqnarray 来排多行公式，多用 align，因为看似 eqnarray 提供一些方便，却造成了严重的间隔混乱。align 是 amsmath 提供的环境，在对齐与间距等方面处理的更好。</p>
+<h4 id="公用编号的多行公式"><a href="#公用编号的多行公式" class="headerlink" title="公用编号的多行公式"></a>公用编号的多行公式</h4><p>多个公式组在一起公用一个编号，编号位于公式的居中位置，amsmath 宏包提供了诸如 aligned、gathered 等环境，与 equation 环境套用。</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;aligned&#125;</span></span></span><br><span class="line">a &amp;= b + c <span class="tag">\<span class="name">\</span></span></span><br><span class="line">d &amp;= e + f + g <span class="tag">\<span class="name">\</span></span></span><br><span class="line">h + i &amp;= j + k <span class="tag">\<span class="name">\</span></span></span><br><span class="line">l + m &amp;= n</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;aligned&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/06/12/NFYJPGsXI3CVLZu.png" alt="LaTeX-Note05.png"></p>
+<p>如果两列都要左对齐</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;aligned&#125;</span></span></span><br><span class="line">&amp;a = b + 1 &amp;&amp; e = c + f + g + 3 <span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp;c = d + e + 2 &amp;&amp; c = d + e + 2 <span class="tag">\<span class="name">\</span></span></span><br><span class="line">&amp;e = c + f + g + 3 &amp;&amp; a = b + 1 <span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;aligned&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/06/12/5xzmRB9nZMgylw2.png" alt="LaTeX-Note06.png"></p>
+<p>aligned 与 equation 环境套用，公式间距是自动调节的，如果有分式，分式也是 displaystyle.</p>
+<p>如果用 array 与 equation 环境套用，有时候需要手动调整公式行间距和 displaystyle.</p>
 <h4 id="微分符号-mathrm-d-x"><a href="#微分符号-mathrm-d-x" class="headerlink" title="微分符号 $\mathrm{d}x$"></a>微分符号 $\mathrm{d}x$</h4><p>十分繁琐的输入微分符号 $\mathrm{d}x$</p>
 <ul>
 <li><p><code>\int f(x) dx</code> $\rightarrow$ $\int f(x) dx$</p>
@@ -635,7 +645,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <h4 id="几种转置字符"><a href="#几种转置字符" class="headerlink" title="几种转置字符"></a>几种转置字符</h4><p>转置符号好像并没有严格的规定，好几种都在普遍被使用。但是有一点是明确的，转置符号不能是斜体。常见的转置符号大概有四种</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$\mathbf&#123;A&#125;^\mathrm&#123;T&#125;$</span><br><span class="line">$\mathbf&#123;A&#125;^\top$</span><br><span class="line">$\mathbf&#123;A&#125;^\mathsf&#123;T&#125;$</span><br><span class="line">$\mathbf&#123;A&#125;^\intercal$</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.loli.net/2020/06/10/VJ7AkaRsI8EvcGi.png" alt="LaTeX-Note02.png"></p>
-<h4 id="单双引号的使用"><a href="#单双引号的使用" class="headerlink" title="单双引号的使用"></a>单双引号的使用</h4><p>单双引号的使用。正确的单引号使用方式：左引号为 ` (全键盘上数字1左侧键位)，右引号为 ‘ (分号右侧键位)。双引号则重复输入两次即可（即 `` ‘’）。切记不是平常引号的输入方式。</p>
+<h4 id="单双引号的使用"><a href="#单双引号的使用" class="headerlink" title="单双引号的使用"></a>单双引号的使用</h4><p>单双引号的使用。正确的单引号使用方式：左引号为 ` (全键盘上数字1左侧键位)，右引号为 ‘ (分号右侧键位)。双引号则重复输入两次即可（即 `` “）。切记不是平常引号的输入方式。</p>
 <h4 id="英文简写的用法"><a href="#英文简写的用法" class="headerlink" title="英文简写的用法"></a>英文简写的用法</h4><p>一些英文简写的用法。<code>that is</code> 写作 <code>i.e.,</code>，<code>for example</code> 写为 <code>e.g.,</code>，而「参看/参考」简写为 <code>cf.</code>。注意，前两者有两个 <code>.</code> 且末尾要有 <code>,</code>，而「参考」的简写只有一个 <code>.</code>。</p>
 <p><img src="https://i.loli.net/2020/06/10/OujKrcdepR7DvPL.png" alt="LaTeX-Note03.png"></p>
 <h4 id="引用参考文献"><a href="#引用参考文献" class="headerlink" title="引用参考文献"></a>引用参考文献</h4><p>文中在引用参考文献时要用 <code>~</code>（而不是直接空格）来产生空格。例如，「state-of-the-art MIL algorithms, e.g., miFV~\cite{bibmiFV} and miGraph~\cite{bibmiGraph}, and …」用 <code>~</code> 来产生空格的好处是使得 miFV [5] 作为一个整体，在换行时不会发生 [5] 与前文分开而单独处于行首的错误情况。<code>~\ref{}</code> 命令同理。</p>
