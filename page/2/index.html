@@ -137,7 +137,7 @@
   </li>
         <li class="menu-item menu-item-guestbook">
 
-    <a href="/guestbook" rel="section"><i class="fa fa-sticky-note fa-fw"></i>留言板</a>
+    <a href="/guestbook" rel="section"><i class="fa fa-sticky-note fa-fw"></i>札记 & 留言板</a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -195,6 +195,95 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/24/FDM02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liutao Tian">
+      <meta itemprop="description" content="放弃不难，但坚持一定很酷">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/24/FDM02/" class="post-title-link" itemprop="url">矩形网的差分格式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-24 18:00:00" itemprop="dateCreated datePublished" datetime="2020-05-24T18:00:00+08:00">2020-05-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-29 12:34:18" itemprop="dateModified" datetime="2020-05-29T12:34:18+08:00">2020-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Numerical-PDEs/" itemprop="url" rel="index"><span itemprop="name">Numerical PDEs</span></a>
+                </span>
+            </span>
+
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>二维 Possion 方程<strong>五点差分格式</strong>的 <strong>MATLAB 编程实现</strong>。</p>
+<h3 id="二维-Possion-方程"><a href="#二维-Possion-方程" class="headerlink" title="二维 Possion 方程"></a>二维 Possion 方程</h3><p>考虑二维 Possion 方程:</p>
+<script type="math/tex; mode=display">
+\left\{ \begin{aligned}
+&-\Delta u=f(x,y),\quad (x,y)\in \Omega, \\
+&u|_{\partial \Omega}=\phi(x,y),\quad (x, y) \in \partial \Omega ,
+\end{aligned}\right.</script><p>其中 $\partial \Omega$ 为区域 $\Omega$ 的边界，$f(x,y)$ 和 $\phi(x)$ 为已知函数，$u|_{\partial \Omega}=\phi(x,y)$ 为边界条件。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/24/FDM02/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -994,85 +1083,6 @@ u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/14/XY10q/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Liutao Tian">
-      <meta itemprop="description" content="放弃不难，但坚持一定很酷">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Andy123t">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/14/XY10q/" class="post-title-link" itemprop="url">西游十问</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-14 22:00:00 / 修改时间：02:02:28" itemprop="dateCreated datePublished" datetime="2020-05-14T22:00:00+08:00">2020-05-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Literature/" itemprop="url" rel="index"><span itemprop="name">Literature</span></a>
-                </span>
-            </span>
-
-          
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>看过很多关于西游记的影视剧，但《西游记》书和影视剧有很大的不同，最直观的感受就是“真实”。在本科时期，讲明清小说的毛黎老师让我开始了解真实的西游记。虽然它是现实的，残酷的，我仍然愿意去了解它，因为现实就是残酷的。</p>
-<p>我以问题的形式梳理了我的所听所记所想！</p>
-<h3 id="一-《西游记》的主角是谁？"><a href="#一-《西游记》的主角是谁？" class="headerlink" title="一.《西游记》的主角是谁？"></a>一.《西游记》的主角是谁？</h3><p>孙悟空。有人认为是唐僧，比较一下两个人物就行了。小说的开头重笔墨演绎了猴王的出世和成长（出世、学艺、闹天宫、保唐僧），并且在唐僧取经的路上，所有故事中都已悟空历尽艰辛斩妖除魔的过程为主要情节。所以说唐僧取经只是故事的线索，小说要以唐僧取经始，并以唐僧取经收，但是真正的主人公是孙悟空。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/14/XY10q/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1144,7 +1154,7 @@ u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1157,7 +1167,7 @@ u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
