@@ -631,7 +631,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <li><p><code>\int f(x) \,\mathrm{d}x</code> $\rightarrow$ $\int f(x) \,\mathrm{d}x$</p>
 </li>
 </ul>
-<p>推荐写法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">% \newcommand*&#123;\dif&#125;&#123;\mathop&#123;&#125;\!\mathrm&#123;d&#125;&#125;</span><br><span class="line">$\int f(x) \dif&#123;x&#125;$</span><br></pre></td></tr></table></figure></p>
+<p>推荐写法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">% \usepackage&#123;physics&#125;</span><br><span class="line">$\int f(x) \dd&#123;x&#125;$</span><br></pre></td></tr></table></figure></p>
 <p>$\rightarrow$ $\int f(x) \,\mathrm{d}x$</p>
 <p>或者</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">% \newcommand*&#123;\dif&#125;&#123;\mathop&#123;&#125;\!\mathrm&#123;d&#125;&#125;</span><br><span class="line">$\int f(x) \dif&#123;x&#125;$</span><br></pre></td></tr></table></figure>
