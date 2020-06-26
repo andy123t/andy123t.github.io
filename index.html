@@ -199,6 +199,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/06/26/SM04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liutao Tian">
+      <meta itemprop="description" content="放弃不难，但坚持一定很酷">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/26/SM04/" class="post-title-link" itemprop="url">Chebyshev 谱方法一维算例</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-26 12:00:00 / 修改时间：12:20:21" itemprop="dateCreated datePublished" datetime="2020-06-26T12:00:00+08:00">2020-06-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spectral-Methods/" itemprop="url" rel="index"><span itemprop="name">Spectral Methods</span></a>
+                </span>
+            </span>
+
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>谱方法的正交多项式为 Chebyshev 多项式，为 Chebyshev 谱方法。这里介绍一维问题的 Chebyshev 谱方法，然后 MATLAB 编程算出数值解以及误差。</p>
+<h3 id="两点边值问题"><a href="#两点边值问题" class="headerlink" title="两点边值问题"></a>两点边值问题</h3><p>考虑两点边值问题：</p>
+<script type="math/tex; mode=display">\left\{\begin{aligned}
+&-u''(x)+\alpha u(x)=f(x),\quad x \in I=(-1,1), \\
+&u(-1)=0,\ u(1)=0.
+\end{aligned} \right.</script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/26/SM04/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/06/25/SM03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -222,10 +304,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-06-25 12:00:00 / 修改时间：18:03:31" itemprop="dateCreated datePublished" datetime="2020-06-25T12:00:00+08:00">2020-06-25</time>
+              <time title="创建时间：2020-06-25 12:00:00" itemprop="dateCreated datePublished" datetime="2020-06-25T12:00:00+08:00">2020-06-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-26 12:23:27" itemprop="dateModified" datetime="2020-06-26T12:23:27+08:00">2020-06-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,7 +339,7 @@
       
           <h3 id="两点边值问题"><a href="#两点边值问题" class="headerlink" title="两点边值问题"></a>两点边值问题</h3><p>考虑两点边值问题：</p>
 <script type="math/tex; mode=display">\left\{\begin{aligned}
-&-u''(y)+u(y)=f(y),\quad y\in \Lambda=[0,1], \\
+&-u''(y)+u(y)=f(y),\quad y\in \Lambda=(0,1), \\
 &u(0)=1,\ u'(1)=0.
 \end{aligned} \right.</script><p>这里 $y\in \Lambda=[0,1]$，通过变换方程的方式变到 $[-1,1]$ 的标准形式，再利用 Legendre 谱方法求解。</p>
           <!--noindex-->
@@ -311,7 +399,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-25 18:04:28" itemprop="dateModified" datetime="2020-06-25T18:04:28+08:00">2020-06-25</time>
+                <time title="修改时间：2020-06-25 22:54:01" itemprop="dateModified" datetime="2020-06-25T22:54:01+08:00">2020-06-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -399,7 +487,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-25 18:04:54" itemprop="dateModified" datetime="2020-06-25T18:04:54+08:00">2020-06-25</time>
+                <time title="修改时间：2020-06-25 22:58:13" itemprop="dateModified" datetime="2020-06-25T22:58:13+08:00">2020-06-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -955,91 +1043,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/06/06/Software03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Liutao Tian">
-      <meta itemprop="description" content="放弃不难，但坚持一定很酷">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Andy123t">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/06/Software03/" class="post-title-link" itemprop="url">Windows 软件推荐（三）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-06 18:00:00" itemprop="dateCreated datePublished" datetime="2020-06-06T18:00:00+08:00">2020-06-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-07 01:57:41" itemprop="dateModified" datetime="2020-06-07T01:57:41+08:00">2020-06-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Skills/" itemprop="url" rel="index"><span itemprop="name">Computer Skills</span></a>
-                </span>
-            </span>
-
-          
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本文继续推荐软件，包括 Quicker、讯飞输入法 PC 版、OneNote 和印象笔记。</p>
-<h3 id="效率神器：Quicker"><a href="#效率神器：Quicker" class="headerlink" title="效率神器：Quicker"></a>效率神器：Quicker</h3><p>Quicker 可以为计算机常用操作建立捷径，真正提高我们使用计算机的效率，很多网友说它是新一代的的效率神器。</p>
-<p>官方<a href="https://getquicker.net/" target="_blank" rel="noopener">网站</a>下载、安装、注册、登录后，就可以使用了。软件的使用方法：点击<strong>鼠标中键</strong>激活 Quicker 的快捷面板，点击快捷动作按钮，就可以马上执行此动作。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/06/Software03/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1111,7 +1114,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1124,7 +1127,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
