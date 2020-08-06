@@ -1894,4 +1894,52 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
         <tag>Book</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Legendre 配置法一维算例</title>
+    <url>/2020/08/05/SM05/</url>
+    <content><![CDATA[<p>谱配置方法也称配点法，选取节点为 Legendre 高斯节点称为 Legendre 配置方法。这里介绍两点边值问题的 Legendre 配置方法，然后 MATLAB 编程算出数值解以及误差。</p>
+<h3 id="两点边值问题"><a href="#两点边值问题" class="headerlink" title="两点边值问题"></a>两点边值问题</h3><p>考虑两点边值问题：</p>
+<script type="math/tex; mode=display">\left\{\begin{aligned}
+&-u''(x)+\nu u'(x)+\mu u(x)=f(x),\quad x \in I=(-1,1), \\
+&u(-1)=0,\ u(1)=0.
+\end{aligned} \right.</script><a id="more"></a>
+<h3 id="Legendre-Collocation-方法"><a href="#Legendre-Collocation-方法" class="headerlink" title="Legendre Collocation 方法"></a>Legendre Collocation 方法</h3><p>在区间 $[-1,1]$ 上选取配置点 $\left\{x_{j}\right\}_{j=0}^{N}$ 为 Legendre-Gauss-Lobatto 节点，其中 $x_{0}=-1$，$x_{N}=1$. 以上方程的配置法 (\label{equcm})</p>
+<script type="math/tex; mode=display">\left\{\begin{aligned}
+  &\text{Find } u \in P_N \text{ such that} \\
+  &-u_{N}^{\prime \prime}(x_{i})+\nu u_{N}^{\prime}(x_{i})+\mu u_{N}(x_{i})=f(x_{i}), \quad 1 \leq i \leq N-1, \\
+  &u_N(-1)=0, \quad u_N(1)=0.
+\end{aligned} \right.</script><p>逼近解展开</p>
+<script type="math/tex; mode=display">u_{N}(x)=\sum_{j=0}^{N} u_{N}\left(x_{j}\right) h_{j}(x).</script><p>其中 $h_j$ 是 Lagrange 基多项式（也称为节点基函数），即 $h_{j} \in P_{N}$，$h_{j}(x_{k})=\delta_{k j}$，令 $D=(d_{kj}:=h_j^{\prime}(x_k))_{k,j=1,2,\cdots,N.}$. 记 $w_j=u_{N}(x_j)$, 将 $u_{N}(x)$ 展开为 $u_{N}(x)=\sum_{j=0}^{N}w_j h_j(x)$， 可知</p>
+<script type="math/tex; mode=display">u_{N}\left(x_{k}\right)=\sum_{j=0}^{N} w_{j} h_{j}\left(x_{k}\right)=w_{k},</script><script type="math/tex; mode=display">\begin{aligned}
+u_{N}^{\prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime}(x_{k})=\sum_{j=0}^{N} d_{kj} w_{j} \\&=\sum_{j=1}^{N-1} d_{kj} w_{j}+d_{k0} w_{0}+d_{kN} w_{N},
+\end{aligned}</script><script type="math/tex; mode=display">\begin{aligned}
+u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=\sum_{j=0}^{N}(D^{2})_{k j} w_{j} \\
+&=\sum_{j=1}^{N-1}\left(D^{2}\right)_{k j} w_{j}+\left(D^{2}\right)_{k 0} w_{0}+\left(D^{2}\right)_{k N} w_{N}.
+\end{aligned}</script><p>将以上公式代入方程 (equcm) 可得</p>
+<script type="math/tex; mode=display">\left\{\begin{aligned}
+&\sum_{j=0}^{N}\left[-\left(D^{2}\right)_{ij}+\nu d_{i j}+\mu \delta_{i j}\right] w_{j}=f(x_{i}), \quad i=1,2, \cdots, N-1, \\
+&w_{0}=0, \quad w_{N}=0.
+\end{aligned} \right.</script><p>记</p>
+<script type="math/tex; mode=display">\begin{aligned}
+& a_{i j}=-(D^{2})_{ij}+\nu d_{ij}+\mu \delta_{ij}, \quad 1 \leq i \leq N-1,\, 0 \leq j \leq N, \\
+&a_{0 j}=\delta_{0 j},\quad a_{N j}=\delta_{N j}, \quad 0 \leq j \leq N, \\
+&\mathbf{b}=(0, f(x_{1}), f(x_{2}), \cdots, f(x_{N-1}), 0)^{T}, \\
+&\mathbf{w}=(w_{0}, w_{1}, \ldots, w_{N})^{T}, \quad A=\left(a_{i j}\right)_{0 \leq i, j \leq N}.
+\end{aligned}</script><p>线性系统可以简化为</p>
+<script type="math/tex; mode=display">A\mathbf{w}=\mathbf{b}.</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><p>对于前面提到的两点边值问题，取 $\nu=1$，$\mu=1$，如果取精确解为 $\sin (k \pi x)$，则右端项为 $f=k^2 \pi^2 \sin(k\pi x)+\nu k\pi \cos(k\pi x)+\mu \sin(k\pi x)$.</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% LegenCM2_error.m</span></span><br><span class="line"><span class="comment">% Legendre-collocation Method for the model equation: </span></span><br><span class="line"><span class="comment">% -u''(x)+mu*u'(x)+nu*u(x)=f(x),  x in (-1,1);</span></span><br><span class="line"><span class="comment">% % boundary condition: u(-1)=u(1)=0;</span></span><br><span class="line"><span class="comment">% exact solution: u=sin(kw*pi*x); </span></span><br><span class="line"><span class="comment">% RHS: f(x)=kw^2*pi^2*sin(kw*pi*x)+sin(kw*pi*x)+kw*pi*cos(kw*pi*x); </span></span><br><span class="line"><span class="comment">% Rmk: Use routines lepoly(); legslb(); legslbdm(); </span></span><br><span class="line">clear all;  clf</span><br><span class="line">kw=<span class="number">10</span>;</span><br><span class="line">nu=<span class="number">1</span>;</span><br><span class="line">mu=<span class="number">1</span>;</span><br><span class="line">Nvec=[<span class="number">32</span>:<span class="number">2</span>:<span class="number">76</span>];</span><br><span class="line"><span class="comment">% Initialization for error</span></span><br><span class="line">L2_Error=[];</span><br><span class="line">Max_Error=[];</span><br><span class="line"><span class="keyword">for</span> N=Nvec</span><br><span class="line">    [xv,wv]=legslb(N);          <span class="comment">% compute LGL nodes and weights</span></span><br><span class="line">    u=<span class="built_in">sin</span>(kw*<span class="built_in">pi</span>*xv);            <span class="comment">% test function</span></span><br><span class="line">    f=kw*kw*<span class="built_in">pi</span>^<span class="number">2</span>*<span class="built_in">sin</span>(kw*<span class="built_in">pi</span>*xv)+nu*kw*<span class="built_in">pi</span>*<span class="built_in">cos</span>(kw*<span class="built_in">pi</span>*xv)+mu*<span class="built_in">sin</span>(kw*<span class="built_in">pi</span>*xv);  <span class="comment">% RHS</span></span><br><span class="line">    <span class="comment">% Setup and solve the collocation system</span></span><br><span class="line">    D1=legslbdm(N);   <span class="comment">%1st order differentiation matrix</span></span><br><span class="line">    D2=D1*D1;            <span class="comment">% 2nd order differentiation matrix</span></span><br><span class="line">    D=-D2(<span class="number">2</span>:N<span class="number">-1</span>,<span class="number">2</span>:N<span class="number">-1</span>)+nu*D1(<span class="number">2</span>:N<span class="number">-1</span>,<span class="number">2</span>:N<span class="number">-1</span>)+mu*<span class="built_in">eye</span>(N<span class="number">-2</span>);    <span class="comment">% coefficient matrix</span></span><br><span class="line">    b=f(<span class="number">2</span>:N<span class="number">-1</span>);   <span class="comment">% RHS</span></span><br><span class="line">    un=D\b;</span><br><span class="line">    un=[<span class="number">0</span>;un;<span class="number">0</span>];  <span class="comment">% Solve the system </span></span><br><span class="line">    </span><br><span class="line">    L2_error=norm(<span class="built_in">abs</span>(un-u),<span class="number">2</span>);      <span class="comment">% L^2 error</span></span><br><span class="line">    Max_error=norm(<span class="built_in">abs</span>(un-u),<span class="built_in">inf</span>);   <span class="comment">% maximum pointwise error </span></span><br><span class="line">    L2_Error=[L2_Error;L2_error];</span><br><span class="line">    Max_Error=[Max_Error;Max_error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(Nvec,<span class="built_in">log10</span>(L2_Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(Nvec,<span class="built_in">log10</span>(Max_Error),<span class="string">'md-'</span>,<span class="string">'color'</span>,[<span class="number">0</span> <span class="number">0.5</span> <span class="number">0</span>],<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'L^2 error'</span>,<span class="string">'L^&#123;\infty&#125; error'</span>,<span class="string">'location'</span>,<span class="string">'NorthEast'</span>)</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'N'</span>,<span class="string">'fontsize'</span>, <span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% sets axis tick and axis limits</span></span><br><span class="line">xticks(<span class="number">30</span>:<span class="number">10</span>:<span class="number">80</span>)</span><br><span class="line">yticks(<span class="number">-15</span>:<span class="number">3</span>:<span class="number">0</span>)</span><br><span class="line">xlim([<span class="number">30</span> <span class="number">80</span>])</span><br><span class="line">ylim([<span class="number">-15</span> <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  LegenCM2_error.png</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/08/06/VYMafcD1Z7QB9y5.png" alt="LegenCM2_error.png"></p>
+<h3 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h3><ul>
+<li>Spectral Methods: Algorithms, Analysis and Applications</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Spectral Methods</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+        <tag>Collocation Method</tag>
+        <tag>Legendre Polynomial</tag>
+      </tags>
+  </entry>
 </search>
