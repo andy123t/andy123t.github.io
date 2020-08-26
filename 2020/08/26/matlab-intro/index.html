@@ -20,24 +20,23 @@
     var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本文介绍如何计算经典四阶 Runge-Kutta 数值解及其收敛阶，并用 MATLAB 编程，最后展示了输出结果。 经典四阶 Runge-Kutta 方法 \left\{   \begin{aligned}   &amp;u_{n+1}&#x3D;u_{n}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right), \\   &amp;k_{1} &#x3D;f\left(t_{n},">
+  <meta name="description" content="关于编程编程是一项翻译工作, 要把你做的事情翻译成为计算机理解的语言, 使得计算机能够根据你的指令一步一步去工作, 完成某种特定的任务。 计算机是一个高效但死板的执行者。  高效 是指它处理信息的速度是人的很多很多倍； 死板 指计算机听不懂人话, 你要按照它的方式告诉它你要干什么, 不然它执行不出来。  所以，编程的关键就是去学习怎么正确与计算机沟通。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="经典四阶 Runge-Kutta 方法">
-<meta property="og:url" content="https://andy123t.github.io/2020/05/16/ODE03/index.html">
+<meta property="og:title" content="MATLAB 入门">
+<meta property="og:url" content="https://andy123t.github.io/2020/08/26/matlab-intro/index.html">
 <meta property="og:site_name" content="Andy123t">
-<meta property="og:description" content="本文介绍如何计算经典四阶 Runge-Kutta 数值解及其收敛阶，并用 MATLAB 编程，最后展示了输出结果。 经典四阶 Runge-Kutta 方法 \left\{   \begin{aligned}   &amp;u_{n+1}&#x3D;u_{n}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right), \\   &amp;k_{1} &#x3D;f\left(t_{n},">
-<meta property="og:image" content="https://i.loli.net/2020/08/26/wgU9fkWCnBclFru.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/16/XPF63lsINM5ephQ.png">
-<meta property="article:published_time" content="2020-05-16T12:42:41.353Z">
-<meta property="article:modified_time" content="2020-08-26T13:37:13.544Z">
+<meta property="og:description" content="关于编程编程是一项翻译工作, 要把你做的事情翻译成为计算机理解的语言, 使得计算机能够根据你的指令一步一步去工作, 完成某种特定的任务。 计算机是一个高效但死板的执行者。  高效 是指它处理信息的速度是人的很多很多倍； 死板 指计算机听不懂人话, 你要按照它的方式告诉它你要干什么, 不然它执行不出来。  所以，编程的关键就是去学习怎么正确与计算机沟通。">
+<meta property="og:image" content="https://i.loli.net/2020/08/27/ahOvs5RU7JcD9rG.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/27/5Cmpl89BoXE6dwG.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/27/NqixTG31JgKrPlt.png">
+<meta property="article:published_time" content="2020-08-26T12:00:00.000Z">
+<meta property="article:modified_time" content="2020-08-26T16:48:38.892Z">
 <meta property="article:author" content="Liutao Tian">
 <meta property="article:tag" content="MATLAB">
-<meta property="article:tag" content="ODE">
-<meta property="article:tag" content="Runge-Kutta">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2020/08/26/wgU9fkWCnBclFru.png">
+<meta name="twitter:image" content="https://i.loli.net/2020/08/27/ahOvs5RU7JcD9rG.png">
 
-<link rel="canonical" href="https://andy123t.github.io/2020/05/16/ODE03/">
+<link rel="canonical" href="https://andy123t.github.io/2020/08/26/matlab-intro/">
 
 
 <script id="page-configurations">
@@ -50,7 +49,7 @@
   };
 </script>
 
-  <title>经典四阶 Runge-Kutta 方法 | Andy123t</title>
+  <title>MATLAB 入门 | Andy123t</title>
   
 
 
@@ -208,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/16/ODE03/">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/08/26/matlab-intro/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -221,7 +220,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          经典四阶 Runge-Kutta 方法
+          MATLAB 入门
         </h1>
 
         <div class="post-meta">
@@ -231,14 +230,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-16 20:42:41" itemprop="dateCreated datePublished" datetime="2020-05-16T20:42:41+08:00">2020-05-16</time>
+              <time title="创建时间：2020-08-26 20:00:00" itemprop="dateCreated datePublished" datetime="2020-08-26T20:00:00+08:00">2020-08-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-26 21:37:13" itemprop="dateModified" datetime="2020-08-26T21:37:13+08:00">2020-08-26</time>
+                <time title="修改时间：2020-08-27 00:48:38" itemprop="dateModified" datetime="2020-08-27T00:48:38+08:00">2020-08-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +245,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Numerical-ODEs/" itemprop="url" rel="index"><span itemprop="name">Numerical ODEs</span></a>
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
                 </span>
             </span>
 
@@ -270,32 +269,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本文介绍如何计算经典四阶 Runge-Kutta 数值解及其收敛阶，并用 MATLAB 编程，最后展示了输出结果。</p>
-<h3 id="经典四阶-Runge-Kutta-方法"><a href="#经典四阶-Runge-Kutta-方法" class="headerlink" title="经典四阶 Runge-Kutta 方法"></a>经典四阶 Runge-Kutta 方法</h3><script type="math/tex; mode=display">
-\left\{
-  \begin{aligned}
-  &u_{n+1}=u_{n}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right), \\
-  &k_{1} =f\left(t_{n}, u_{n}\right), \\
-  &k_{2} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{1}\right), \\
-  &k_{3} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{2}\right), \\
-  &k_{4} =f\left(t_{n}+h, u_{n}+k_{3}\right).
-  \end{aligned}
-  \right.</script><a id="more"></a>
-<p><strong>线性 ODE 例子</strong></p>
-<script type="math/tex; mode=display">
-\left\{\begin{aligned}
-&\frac{\mathrm{d}u}{\mathrm{d}t}=t^2+t-u ,\quad t \in [0,1] , \\
-&u(0)=0.
-\end{aligned} \right.</script><p>方程的真解：$u(x)=−e^{−t}+t^2−t+1$.</p>
-<h3 id="计算数值解"><a href="#计算数值解" class="headerlink" title="计算数值解"></a>计算数值解</h3><p><strong>MATLAB 程序</strong></p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% RungeKutta.m</span></span><br><span class="line"><span class="comment">% Runge-Kutta method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(x)=x^2+x-u, x in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(x)=-exp(-x)+x^2-x+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">h=<span class="number">0.1</span>;</span><br><span class="line">x=<span class="number">0</span>:h:<span class="number">1</span>;                     <span class="comment">% interval division</span></span><br><span class="line">N=<span class="built_in">length</span>(x)<span class="number">-1</span>;</span><br><span class="line">u(<span class="number">1</span>)=<span class="number">0</span>;                      <span class="comment">% initial value</span></span><br><span class="line">fun=@(x,u) x.^<span class="number">2</span>+x-u;         <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">    k1=fun(x(n),u(n));</span><br><span class="line">    k2=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k1/<span class="number">2</span>);</span><br><span class="line">    k3=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k2/<span class="number">2</span>);</span><br><span class="line">    k4=fun(x(n)+h,u(n)+h.*k3);</span><br><span class="line">    u(n+<span class="number">1</span>)=u(n)+h.*(k1+<span class="number">2.</span>*k2+<span class="number">2.</span>*k3+k4)./<span class="number">6</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;        <span class="comment">% exact solution</span></span><br><span class="line"><span class="built_in">plot</span>(x,ue,<span class="string">'b-'</span>,x,u,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact'</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'North'</span>)</span><br><span class="line"><span class="comment">% title('Runge-Kutta Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'x'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  RungeKutta.png</span></span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<p><img src="https://i.loli.net/2020/08/26/wgU9fkWCnBclFru.png" alt="RungeKutta.png"></p>
-<h3 id="计算误差阶"><a href="#计算误差阶" class="headerlink" title="计算误差阶"></a>计算误差阶</h3><p><strong>MATLAB 程序</strong></p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% RungeKutta_error.m</span></span><br><span class="line"><span class="comment">% Runge-Kutta method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(t)=t^2+t-u, t \in [0,2] </span></span><br><span class="line"><span class="comment">% Initial value : u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution : u(t)=-exp(-t)+t^2-t+1.</span></span><br><span class="line">clear all;  clf</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];        <span class="comment">% Number of divisions</span></span><br><span class="line">Error=[];</span><br><span class="line">fun=@(t,u) t.^<span class="number">2</span>+t-u;              <span class="comment">% RHS</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    x=<span class="number">0</span>:h:<span class="number">1</span>;                      <span class="comment">% interval division</span></span><br><span class="line">    u(<span class="number">1</span>)=<span class="number">0</span>;                       <span class="comment">% initial value</span></span><br><span class="line">    <span class="keyword">for</span> n=<span class="number">1</span>:N</span><br><span class="line">        k1=fun(x(n),u(n));</span><br><span class="line">        k2=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k1/<span class="number">2</span>);</span><br><span class="line">        k3=fun(x(n)+h./<span class="number">2</span>,u(n)+h.*k2/<span class="number">2</span>);</span><br><span class="line">        k4=fun(x(n)+h,u(n)+h.*k3);</span><br><span class="line">        u(n+<span class="number">1</span>)=u(n)+h.*(k1+<span class="number">2.</span>*k2+<span class="number">2.</span>*k3+k4)./<span class="number">6</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-x)+x.^<span class="number">2</span>-x+<span class="number">1</span>;         <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(u-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec), <span class="built_in">log10</span>(Nvec.^(<span class="number">-4</span>)), <span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Convergence of Runge-Kutta Method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -1 '</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computating convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  RungeKutta_error.png</span></span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">    1.0e-05 *</span><br><span class="line">        0.1051    0.0002    0.0000    0.0000    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    4.0193    4.0057    4.0025    3.9532</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2020/05/16/XPF63lsINM5ephQ.png" alt="RungeKutta_error.png"></p>
+        <h3 id="关于编程"><a href="#关于编程" class="headerlink" title="关于编程"></a>关于编程</h3><p>编程是一项翻译工作, 要把你做的事情翻译成为计算机理解的语言, 使得计算机能够根据你的指令一步一步去工作, 完成某种特定的任务。</p>
+<p>计算机是一个<strong>高效</strong>但<strong>死板</strong>的执行者。</p>
+<ul>
+<li><strong>高效</strong> 是指它处理信息的速度是人的很多很多倍；</li>
+<li><strong>死板</strong> 指计算机听不懂人话, 你要按照它的方式告诉它你要干什么, 不然它执行不出来。</li>
+</ul>
+<p>所以，编程的关键就是去学习怎么正确与计算机沟通。</p>
+<a id="more"></a>
+<h3 id="什么是-MATLAB"><a href="#什么是-MATLAB" class="headerlink" title="什么是 MATLAB"></a>什么是 MATLAB</h3><p>MATLAB 是美国 MathWorks 公司出品的商业数学软件，和 Mathematica、 Maple 并称为三大数学软件。它在数学类科技应用软件中越来越重要，特别是数值计算方面。</p>
+<p>MATLAB语言是一种高级的基于矩阵/数组的语言，它有程序流控制、函数、数据结构、输入/输出和面向对象编程等特色，用这种语言能够方便快捷建立起简单运行快的程序，也能建立复杂的程序。</p>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><p><strong>学习编程最高效的方法多写程序，多看程序！</strong></p>
+<p>学习一款软件最好的教程是 <strong>官方案例</strong>。</p>
+<p>MATLAB的优点就是：官方案例的种类全，质量高。</p>
+<p>MATLAB 2016a 后推出的 Live-script (实时脚本) 功能，对新手更为友好。 同 Jupyter notebook 有些类似，通过实时脚本的功能，现在可以享受自定义进度互动式的培训，可以很方便的对代码分节运行，并在此基础上分节输出结果和图像，并自动生成完整的 PDF 文档。</p>
+<p>学好 MATLAB 需要善用『帮助文档』功能。在命令窗口输入一下命令就可查询相应的信息。</p>
+<ul>
+<li>help 函数名  —- “查看函数帮助”</li>
+<li>doc 函数名 —- “查看函数文档”</li>
+<li>edit 函数名 —- “查看函数源码”</li>
+</ul>
+<p><strong>在线网站资源</strong></p>
+<ul>
+<li>MathWorks 官网 <a href="https://ww2.mathworks.cn" target="_blank" rel="noopener">https://ww2.mathworks.cn</a></li>
+<li>在线文档查找  <a href="https://ww2.mathworks.cn/help/index.html" target="_blank" rel="noopener">https://ww2.mathworks.cn/help/index.html</a></li>
+<li>MATLAB 在线课程 <a href="https://matlabacademy.mathworks.com/" target="_blank" rel="noopener">https://matlabacademy.mathworks.com/</a></li>
+<li>一个编程网站  <a href="https://projecteuler.net" target="_blank" rel="noopener">https://projecteuler.net</a></li>
+</ul>
+<p><strong>推荐书籍</strong></p>
+<ul>
+<li>Matlab官方手册 (matlab getstart)</li>
+<li>精通MATLAB科学计算</li>
+<li>MATLAB向量化编程基础精讲</li>
+<li>MATLAB数值分析</li>
+</ul>
+<h3 id="MATLAB-主界面及帮助界面"><a href="#MATLAB-主界面及帮助界面" class="headerlink" title="MATLAB 主界面及帮助界面"></a>MATLAB 主界面及帮助界面</h3><p>MATLAB 界面 (可调整为自己喜欢的风格)</p>
+<p><img src="https://i.loli.net/2020/08/27/ahOvs5RU7JcD9rG.png" alt="matlab-interface.png"></p>
+<p>查询帮助界面</p>
+<p><img src="https://i.loli.net/2020/08/27/5Cmpl89BoXE6dwG.png" alt="matlab-help.png"></p>
+<p><img src="https://i.loli.net/2020/08/27/NqixTG31JgKrPlt.png" alt="matlab-doc.png"></p>
+<h3 id="MATLAB-的编程模式"><a href="#MATLAB-的编程模式" class="headerlink" title="MATLAB 的编程模式"></a>MATLAB 的编程模式</h3><ul>
+<li>命令行 (Command line) (在命令窗口 )</li>
+<li>脚本文件 (Script) (.m 文件)</li>
+<li>函数文件 (Function) (.m 文件)</li>
+<li>实时脚本 (Live Script) (.mix 文件)</li>
+</ul>
+<h3 id="推荐资源"><a href="#推荐资源" class="headerlink" title="推荐资源"></a>推荐资源</h3><ul>
+<li>B站视频 <a href="https://www.bilibili.com/video/BV1GJ41137UH" target="_blank" rel="noopener">MATLAB教程_台大郭彦甫</a></li>
+<li>B站视频 <a href="https://www.bilibili.com/video/BV17s41167Cg" target="_blank" rel="noopener">MIT公开课 微分方程和MATLAB应用</a></li>
+</ul>
 
     </div>
 
@@ -306,8 +328,6 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
-              <a href="/tags/ODE/" rel="tag"># ODE</a>
-              <a href="/tags/Runge-Kutta/" rel="tag"># Runge-Kutta</a>
           </div>
 
         
@@ -316,13 +336,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/16/ODE04/" rel="prev" title="后退 Euler 求解非线性 ODE">
-      <i class="fa fa-chevron-left"></i> 后退 Euler 求解非线性 ODE
+    <a href="/2020/08/05/SM05/" rel="prev" title="Legendre 配置法一维算例">
+      <i class="fa fa-chevron-left"></i> Legendre 配置法一维算例
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/16/ODE05/" rel="next" title="隐式 Runge-Kutta (Gauss 2s)">
-      隐式 Runge-Kutta (Gauss 2s) <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -381,7 +398,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#经典四阶-Runge-Kutta-方法"><span class="nav-number">1.</span> <span class="nav-text">经典四阶 Runge-Kutta 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算数值解"><span class="nav-number">2.</span> <span class="nav-text">计算数值解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算误差阶"><span class="nav-number">3.</span> <span class="nav-text">计算误差阶</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于编程"><span class="nav-number">1.</span> <span class="nav-text">关于编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-MATLAB"><span class="nav-number">2.</span> <span class="nav-text">什么是 MATLAB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速入门"><span class="nav-number">3.</span> <span class="nav-text">快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MATLAB-主界面及帮助界面"><span class="nav-number">4.</span> <span class="nav-text">MATLAB 主界面及帮助界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MATLAB-的编程模式"><span class="nav-number">5.</span> <span class="nav-text">MATLAB 的编程模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐资源"><span class="nav-number">6.</span> <span class="nav-text">推荐资源</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

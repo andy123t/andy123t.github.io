@@ -1969,4 +1969,64 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
         <tag>Legendre Polynomial</tag>
       </tags>
   </entry>
+  <entry>
+    <title>MATLAB 入门</title>
+    <url>/2020/08/26/matlab-intro/</url>
+    <content><![CDATA[<h3 id="关于编程"><a href="#关于编程" class="headerlink" title="关于编程"></a>关于编程</h3><p>编程是一项翻译工作, 要把你做的事情翻译成为计算机理解的语言, 使得计算机能够根据你的指令一步一步去工作, 完成某种特定的任务。</p>
+<p>计算机是一个<strong>高效</strong>但<strong>死板</strong>的执行者。</p>
+<ul>
+<li><strong>高效</strong> 是指它处理信息的速度是人的很多很多倍；</li>
+<li><strong>死板</strong> 指计算机听不懂人话, 你要按照它的方式告诉它你要干什么, 不然它执行不出来。</li>
+</ul>
+<p>所以，编程的关键就是去学习怎么正确与计算机沟通。</p>
+<a id="more"></a>
+<h3 id="什么是-MATLAB"><a href="#什么是-MATLAB" class="headerlink" title="什么是 MATLAB"></a>什么是 MATLAB</h3><p>MATLAB 是美国 MathWorks 公司出品的商业数学软件，和 Mathematica、 Maple 并称为三大数学软件。它在数学类科技应用软件中越来越重要，特别是数值计算方面。</p>
+<p>MATLAB语言是一种高级的基于矩阵/数组的语言，它有程序流控制、函数、数据结构、输入/输出和面向对象编程等特色，用这种语言能够方便快捷建立起简单运行快的程序，也能建立复杂的程序。</p>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><p><strong>学习编程最高效的方法多写程序，多看程序！</strong></p>
+<p>学习一款软件最好的教程是 <strong>官方案例</strong>。</p>
+<p>MATLAB的优点就是：官方案例的种类全，质量高。</p>
+<p>MATLAB 2016a 后推出的 Live-script (实时脚本) 功能，对新手更为友好。 同 Jupyter notebook 有些类似，通过实时脚本的功能，现在可以享受自定义进度互动式的培训，可以很方便的对代码分节运行，并在此基础上分节输出结果和图像，并自动生成完整的 PDF 文档。</p>
+<p>学好 MATLAB 需要善用『帮助文档』功能。在命令窗口输入一下命令就可查询相应的信息。</p>
+<ul>
+<li>help 函数名  —- “查看函数帮助”</li>
+<li>doc 函数名 —- “查看函数文档”</li>
+<li>edit 函数名 —- “查看函数源码”</li>
+</ul>
+<p><strong>在线网站资源</strong></p>
+<ul>
+<li>MathWorks 官网 <a href="https://ww2.mathworks.cn" target="_blank" rel="noopener">https://ww2.mathworks.cn</a></li>
+<li>在线文档查找  <a href="https://ww2.mathworks.cn/help/index.html" target="_blank" rel="noopener">https://ww2.mathworks.cn/help/index.html</a></li>
+<li>MATLAB 在线课程 <a href="https://matlabacademy.mathworks.com/" target="_blank" rel="noopener">https://matlabacademy.mathworks.com/</a></li>
+<li>一个编程网站  <a href="https://projecteuler.net" target="_blank" rel="noopener">https://projecteuler.net</a></li>
+</ul>
+<p><strong>推荐书籍</strong></p>
+<ul>
+<li>Matlab官方手册 (matlab getstart)</li>
+<li>精通MATLAB科学计算</li>
+<li>MATLAB向量化编程基础精讲</li>
+<li>MATLAB数值分析</li>
+</ul>
+<h3 id="MATLAB-主界面及帮助界面"><a href="#MATLAB-主界面及帮助界面" class="headerlink" title="MATLAB 主界面及帮助界面"></a>MATLAB 主界面及帮助界面</h3><p>MATLAB 界面 (可调整为自己喜欢的风格)</p>
+<p><img src="https://i.loli.net/2020/08/27/ahOvs5RU7JcD9rG.png" alt="matlab-interface.png"></p>
+<p>查询帮助界面</p>
+<p><img src="https://i.loli.net/2020/08/27/5Cmpl89BoXE6dwG.png" alt="matlab-help.png"></p>
+<p><img src="https://i.loli.net/2020/08/27/NqixTG31JgKrPlt.png" alt="matlab-doc.png"></p>
+<h3 id="MATLAB-的编程模式"><a href="#MATLAB-的编程模式" class="headerlink" title="MATLAB 的编程模式"></a>MATLAB 的编程模式</h3><ul>
+<li>命令行 (Command line) (在命令窗口 )</li>
+<li>脚本文件 (Script) (.m 文件)</li>
+<li>函数文件 (Function) (.m 文件)</li>
+<li>实时脚本 (Live Script) (.mix 文件)</li>
+</ul>
+<h3 id="推荐资源"><a href="#推荐资源" class="headerlink" title="推荐资源"></a>推荐资源</h3><ul>
+<li>B站视频 <a href="https://www.bilibili.com/video/BV1GJ41137UH" target="_blank" rel="noopener">MATLAB教程_台大郭彦甫</a></li>
+<li>B站视频 <a href="https://www.bilibili.com/video/BV17s41167Cg" target="_blank" rel="noopener">MIT公开课 微分方程和MATLAB应用</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
 </search>
