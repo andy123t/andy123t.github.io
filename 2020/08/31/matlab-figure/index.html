@@ -20,24 +20,24 @@
     var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="MATLAB 绘图比较简单，但是要修饰好图形，我们就需要了解更多底层绘图函数。当然，很多图形修饰可以直接在图形上编辑，但这有点麻烦，用命令编辑会更方便。">
+  <meta name="description" content="MATLAB 绘图比较简单，但是要修饰好图形，我们就需要了解更多底层绘图函数。当然，很多图形修饰可以直接在图形上编辑，但这有点麻烦，用命令编辑会更方便。 MATLAB 绘图修饰包括 Line 属性、LineWidth 属性；LineStyle 属性；Color 属性、Marker 属性；MarkerSize 属性、title 属性、legend 属性、string 属性、FontSize 属性、x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MATLAB 图形修饰">
-<meta property="og:url" content="https://andy123t.github.io/2020/08/31/matlab-fig/index.html">
+<meta property="og:title" content="MATLAB 绘图与图形修饰">
+<meta property="og:url" content="https://andy123t.github.io/2020/08/31/matlab-figure/index.html">
 <meta property="og:site_name" content="Andy123t">
-<meta property="og:description" content="MATLAB 绘图比较简单，但是要修饰好图形，我们就需要了解更多底层绘图函数。当然，很多图形修饰可以直接在图形上编辑，但这有点麻烦，用命令编辑会更方便。">
+<meta property="og:description" content="MATLAB 绘图比较简单，但是要修饰好图形，我们就需要了解更多底层绘图函数。当然，很多图形修饰可以直接在图形上编辑，但这有点麻烦，用命令编辑会更方便。 MATLAB 绘图修饰包括 Line 属性、LineWidth 属性；LineStyle 属性；Color 属性、Marker 属性；MarkerSize 属性、title 属性、legend 属性、string 属性、FontSize 属性、x">
 <meta property="og:image" content="https://i.loli.net/2020/09/01/kNfr8DEmK9eWy2R.png">
 <meta property="og:image" content="https://i.loli.net/2020/09/01/HKJrT8C7a2SYiNR.png">
 <meta property="og:image" content="https://i.loli.net/2020/09/01/9fw8ed4FgQ5D1xY.png">
 <meta property="article:published_time" content="2020-08-31T12:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-01T07:06:35.617Z">
+<meta property="article:modified_time" content="2020-09-01T07:29:26.627Z">
 <meta property="article:author" content="Liutao Tian">
 <meta property="article:tag" content="MATLAB">
 <meta property="article:tag" content="Figure">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/09/01/kNfr8DEmK9eWy2R.png">
 
-<link rel="canonical" href="https://andy123t.github.io/2020/08/31/matlab-fig/">
+<link rel="canonical" href="https://andy123t.github.io/2020/08/31/matlab-figure/">
 
 
 <script id="page-configurations">
@@ -50,7 +50,7 @@
   };
 </script>
 
-  <title>MATLAB 图形修饰 | Andy123t</title>
+  <title>MATLAB 绘图与图形修饰 | Andy123t</title>
   
 
 
@@ -208,7 +208,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/08/31/matlab-fig/">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/08/31/matlab-figure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -221,7 +221,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          MATLAB 图形修饰
+          MATLAB 绘图与图形修饰
         </h1>
 
         <div class="post-meta">
@@ -238,7 +238,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-01 15:06:35" itemprop="dateModified" datetime="2020-09-01T15:06:35+08:00">2020-09-01</time>
+                <time title="修改时间：2020-09-01 15:29:26" itemprop="dateModified" datetime="2020-09-01T15:29:26+08:00">2020-09-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,6 +271,7 @@
 
       
         <p>MATLAB 绘图比较简单，但是要修饰好图形，我们就需要了解更多底层绘图函数。当然，很多图形修饰可以直接在图形上编辑，但这有点麻烦，用命令编辑会更方便。</p>
+<p>MATLAB 绘图修饰包括 Line 属性、LineWidth 属性；LineStyle 属性；Color 属性、Marker 属性；MarkerSize 属性、title 属性、legend 属性、string 属性、FontSize 属性、xlabel、ylabel 和 zlabel 属性、xlim、ylim 和 zlim 属性等等。</p>
 <a id="more"></a>
 <h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子 1"></a>例子 1</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">clear all, clear clf</span><br><span class="line"></span><br><span class="line">x=<span class="number">1</span>:<span class="number">22</span>;</span><br><span class="line">y=-x./<span class="number">2</span>;</span><br><span class="line">z=-x./<span class="number">2</span><span class="number">-2</span>;</span><br><span class="line">w=-x./<span class="number">2</span><span class="number">-4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 绘图以及设置图形属性</span></span><br><span class="line"><span class="built_in">plot</span>(x,y,<span class="string">'color'</span>,[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>],<span class="string">'Marker'</span>,<span class="string">'o'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(x,z,<span class="string">'color'</span>,[<span class="number">0</span> <span class="number">0.5</span> <span class="number">0</span>],<span class="string">'Marker'</span>,<span class="string">'s'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(x,w,<span class="string">'color'</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>],<span class="string">'Marker'</span>,<span class="string">'d'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">grid on</span><br><span class="line">xlabel(<span class="string">'N'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>), ylabel(<span class="string">'Error'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line">title(<span class="string">'figure 1'</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'label1'</span>,<span class="string">'label2'</span>,<span class="string">'label3'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 调整刻度值与坐标轴范围</span></span><br><span class="line">xticks(<span class="number">0</span>:<span class="number">2</span>:<span class="number">24</span>)</span><br><span class="line">yticks(<span class="number">-16</span>:<span class="number">2</span>:<span class="number">0</span>)</span><br><span class="line">xlim([<span class="number">0</span> <span class="number">24</span>])</span><br><span class="line">ylim([<span class="number">-16</span> <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line"><span class="comment">% set(gca,'FontName','Times New Roman','FontSize',12)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  figure1.png</span></span><br><span class="line"><span class="comment">% print -depsc2 figure1.eps</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://i.loli.net/2020/09/01/kNfr8DEmK9eWy2R.png" alt="figure1.png"></p>
