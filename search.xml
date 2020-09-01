@@ -1986,11 +1986,11 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
 <p>学习一款软件最好的教程是 <strong>官方案例</strong>。</p>
 <p>MATLAB的优点就是：官方案例的种类全，质量高。</p>
 <p>MATLAB 2016a 后推出的 Live-script (实时脚本) 功能，对新手更为友好。 同 Jupyter notebook 有些类似，通过实时脚本的功能，现在可以享受自定义进度互动式的培训，可以很方便的对代码分节运行，并在此基础上分节输出结果和图像，并自动生成完整的 PDF 文档。</p>
-<p>学好 MATLAB 需要善用『帮助文档』功能。在命令窗口输入一下命令就可查询相应的信息。</p>
+<p>学好 MATLAB 需要善用『帮助文档』功能。在命令窗口输入以下命令就可查询相应的信息。</p>
 <ul>
-<li>help 函数名  —- “查看函数帮助”</li>
-<li>doc 函数名 —- “查看函数文档”</li>
-<li>edit 函数名 —- “查看函数源码”</li>
+<li>help 函数名  —— “查看函数帮助”</li>
+<li>doc 函数名 —— “查看函数文档”</li>
+<li>edit 函数名 —— “查看函数源码”</li>
 </ul>
 <p><strong>在线网站资源</strong></p>
 <ul>
@@ -2012,7 +2012,7 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
 <p><img src="https://i.loli.net/2020/08/27/5Cmpl89BoXE6dwG.png" alt="matlab-help.png"></p>
 <p><img src="https://i.loli.net/2020/08/27/NqixTG31JgKrPlt.png" alt="matlab-doc.png"></p>
 <h3 id="MATLAB-的编程模式"><a href="#MATLAB-的编程模式" class="headerlink" title="MATLAB 的编程模式"></a>MATLAB 的编程模式</h3><ul>
-<li>命令行 (Command line) (在命令窗口 )</li>
+<li>命令行 (Command line) (在命令窗口输入)</li>
 <li>脚本文件 (Script) (.m 文件)</li>
 <li>函数文件 (Function) (.m 文件)</li>
 <li>实时脚本 (Live Script) (.mix 文件)</li>
@@ -2027,6 +2027,325 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
       </categories>
       <tags>
         <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MATLAB 基础</title>
+    <url>/2020/08/28/matlab-basic/</url>
+    <content><![CDATA[<p>MATLAB 是 MATrix LABoratory 的缩写，它将计算、可视化和编程功能集成在非常便于使用的环境中，是一个交互式的以矩阵计算为基础的科学和工程计算软件。其特点如下：</p>
+<ul>
+<li><strong>编程效率高</strong> 用它编程犹如在纸上书写公式，编程时间和程序量大大减少。</li>
+<li><strong>计算功能强</strong> 其数据对象为不必指定维数的矩阵和数组，矩阵和向量计算功能特别强。</li>
+<li><strong>使用简便</strong> 其语言灵活方便，将编译、连接、执行融为一体。</li>
+<li><strong>易于扩充</strong> 用户根据需要建立的文件可以和库函数一样被调用，提高了效率、扩充了计算功能</li>
+</ul>
+<p>此外 Matlab 还有很方便的绘图功能。</p>
+<a id="more"></a>
+<h3 id="简单的数学运算"><a href="#简单的数学运算" class="headerlink" title="简单的数学运算"></a>简单的数学运算</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; <span class="number">4</span>+<span class="number">6</span>+<span class="number">2</span> <span class="comment">% 键入回车, 下同</span></span><br><span class="line"><span class="built_in">ans</span>=</span><br><span class="line">    <span class="number">12</span></span><br><span class="line">&gt;&gt; <span class="number">4</span>*<span class="number">25</span>+<span class="number">6</span>*<span class="number">52</span>+<span class="number">2</span>*<span class="number">99</span></span><br><span class="line"><span class="built_in">ans</span>=</span><br><span class="line">    <span class="number">610</span></span><br></pre></td></tr></table></figure>
+<p>注：</p>
+<ol>
+<li>未指明建立变量时名为 <code>ans</code> 的变量自动建立 (作为结果的默认变量名)</li>
+<li>在大多情况下 Matlab 不会理会空格的存在。</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; a=<span class="number">4</span>;</span><br><span class="line">&gt;&gt; b=<span class="number">6</span>;</span><br><span class="line">&gt;&gt; c=<span class="number">2</span>;    <span class="comment">% 语句后加分号则语句被执行后不显示结果。</span></span><br><span class="line">&gt;&gt; item=a+b+c</span><br><span class="line">item=</span><br><span class="line">    <span class="number">12</span></span><br><span class="line">&gt;&gt; cost=a*<span class="number">25</span>+b*<span class="number">52</span>+c*<span class="number">99</span></span><br><span class="line">cost=</span><br><span class="line">    <span class="number">610</span></span><br><span class="line">&gt;&gt; average=cost/item</span><br><span class="line">average=</span><br><span class="line">    <span class="number">50.837</span></span><br></pre></td></tr></table></figure>
+<p>在 Matlab 中基本的数学运算符号： <code>+</code> <code>-</code>  <code>*</code> 右除<code>/</code> 左除<code>\</code> <code>^</code></p>
+<p>在 Matlab 中不管多少层括号，统一用小括号 <code>()</code></p>
+<p>复数：Matlab 在处理复数时 <code>i</code> 或 <code>j</code> 均表示虚数单位</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; c1=<span class="number">1</span><span class="number">-2</span><span class="built_in">i</span></span><br><span class="line">&gt;&gt; c2=<span class="number">1</span><span class="number">-2</span><span class="built_in">j</span></span><br><span class="line">&gt;&gt; c3=<span class="number">6</span>*<span class="built_in">sin</span>(<span class="number">.5</span>)*<span class="built_in">i</span></span><br><span class="line">&gt;&gt; c3r=<span class="built_in">real</span>(c3)    <span class="comment">% 获取c3的实部</span></span><br><span class="line">&gt;&gt; c3i=<span class="built_in">imag</span>(c3)    <span class="comment">% 获取c3的虚部</span></span><br></pre></td></tr></table></figure>
+<p>一个“=”表赋值 两个“==”表“等于”关系</p>
+<p>为了核对某个变量的值只需要在提示符后输入这个变量名。可以用 <code>who</code> 或 <code>whos</code> 来查看内存中 (工作区中) 现有的变量名列表。为了重新输入原来输入过的命令可以用键盘的上、下键。</p>
+<h3 id="矩阵-数组-函数"><a href="#矩阵-数组-函数" class="headerlink" title="矩阵 数组 函数"></a>矩阵 数组 函数</h3><h4 id="矩阵的输入和运算"><a href="#矩阵的输入和运算" class="headerlink" title="矩阵的输入和运算"></a>矩阵的输入和运算</h4><p>输入方法：</p>
+<ol>
+<li>直接输入每个元素，用逗号或空格及分号隔开</li>
+<li>由语句或函数生成</li>
+<li>在 m- 文件中生成</li>
+</ol>
+<p><strong>矩阵的直接输入举例</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; A=[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>;<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]    <span class="comment">% [表矩阵输入的开始，]表矩阵输入的结束</span></span><br><span class="line">A =</span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">4</span>     <span class="number">5</span>     <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>元素的引用</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; a=A(<span class="number">2</span>,<span class="number">1</span>)    <span class="comment">% 表示A的第二行第一列的元素</span></span><br></pre></td></tr></table></figure>
+<p>注：若不指定变量名 Matlab 自动生成一个 <code>ans</code> 变量（answer）</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; A(<span class="number">3</span>,<span class="number">4</span>)=<span class="number">1</span></span><br><span class="line">A =</span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">4</span>     <span class="number">5</span>     <span class="number">6</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>原来 A 没有 3 行 4 列，Matlab 自动增加行、列，对未指明的元素赋初值为 0.</p>
+<p><strong>函数生成矩阵</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; w=<span class="built_in">zeros</span>(<span class="number">2</span>,<span class="number">3</span>)    <span class="comment">% (2×3元素全为0矩阵)</span></span><br><span class="line">&gt;&gt; u=<span class="built_in">ones</span>(<span class="number">3</span>)       <span class="comment">% (3×3元素全为1矩阵)</span></span><br><span class="line">&gt;&gt; v=<span class="built_in">eye</span>(<span class="number">3</span>,<span class="number">4</span>)      <span class="comment">% (3×4对角线为1矩阵)</span></span><br><span class="line">&gt;&gt; x=<span class="built_in">rand</span>(<span class="number">1</span>,<span class="number">3</span>)     <span class="comment">% (1×3  (0,1)均匀分布矩阵)</span></span><br></pre></td></tr></table></figure>
+<h4 id="矩阵的裁剪与拼接"><a href="#矩阵的裁剪与拼接" class="headerlink" title="矩阵的裁剪与拼接"></a>矩阵的裁剪与拼接</h4><p>从一个矩阵取出若干行 (列) 构成新矩阵称为裁剪。<code>:</code> 是一个非常重要的裁剪工具</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; A(<span class="number">3</span>,:)           <span class="comment">% A的第三行, “:”表示“所有”</span></span><br><span class="line">&gt;&gt; A(:,<span class="number">2</span>)           <span class="comment">% A的第二列</span></span><br><span class="line">&gt;&gt; B=A(<span class="number">1</span>:<span class="number">2</span>,:)       <span class="comment">% A的第一、二行, “:”表示“到”</span></span><br><span class="line">&gt;&gt; C=A(:,<span class="number">2</span>:<span class="number">4</span>)       <span class="comment">% A的第二列到第四列</span></span><br><span class="line">&gt;&gt; D=A(<span class="number">2</span>:<span class="number">3</span>,<span class="number">2</span>:<span class="number">2</span>:<span class="number">4</span>)   <span class="comment">% A的第2、3行, 第2、4列</span></span><br></pre></td></tr></table></figure>
+<p>(2:2:4 表从第 2 到第 4，步长 2 (步长也可以为负))</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; A(<span class="number">1</span>:<span class="number">2</span>:<span class="number">3</span>,<span class="number">4</span>:<span class="number">-1</span>:<span class="number">2</span>)  <span class="comment">% A的第1、3行, 第4、3、2列</span></span><br><span class="line">&gt;&gt; D(:,<span class="number">1</span>)=[ ]       <span class="comment">% 删除D的第一列</span></span><br></pre></td></tr></table></figure>
+<p>若无等矩规律，最一般的状况：设 $A$ 为一四阶方阵选取任意子矩阵：<br><code>A([1,2,4],[1,3,4])</code> 选取的行数构成一行向量，选取的列数构成一行向量二者用逗号分隔。</p>
+<p>将几个矩阵拼接在一起时只需要注意：左右拼接时行数要相同，上下拼接时列数要相同。</p>
+<h4 id="矩阵的运算"><a href="#矩阵的运算" class="headerlink" title="矩阵的运算"></a>矩阵的运算</h4><p><code>+</code>  <code>-</code>  <code>/</code>  <code>*</code>  <code>^</code> <code>\</code>， <code>\</code>为左除， <code>/</code>为右除，说明如下：</p>
+<p>设定 $A$ 为可逆矩阵，$Ax=b$ 的解是 $A$ 左除 $b$，即 <code>x=A\b</code>；<br>$xA=c$ 的解 $x$ 是 $A$ 右除 $c$ 即 <code>x=c/A</code>.</p>
+<p>特别注意：<code>.*</code> 与 <code>*</code> 的区别 <code>.*</code> 为对应位置元素运算，<code>*</code> 为矩阵意义的运算.</p>
+<p><code>.^</code> 与 <code>^</code>、 <code>./</code> 与 <code>/</code>、 <code>.\</code> 与 <code>\</code> 类似</p>
+<p><code>rref(B)</code> 所做工作：将 $B$ 化为行阶梯型最简形</p>
+<p>$B=[A,b]$ 经过初等变换 $[A^{-1} A, A^{-1} b]$ 变成 $[E,x]$.</p>
+<h4 id="数组及其运算"><a href="#数组及其运算" class="headerlink" title="数组及其运算"></a>数组及其运算</h4><p>一行或一列的矩阵是向量或数组。</p>
+<p>数组的输入 <code>:</code> 和 <code>linspace</code> (注意用法的区别)</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; a=<span class="number">1</span>:<span class="number">5</span>       <span class="comment">% 默认公差为1</span></span><br><span class="line">a=</span><br><span class="line">    <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">&gt;&gt; b=<span class="number">1</span>:<span class="number">2</span>:<span class="number">7</span>     <span class="comment">% 与 b=1:2:8 效果相同 (公差可以为负)</span></span><br><span class="line">&gt;&gt;c=<span class="number">6</span>:<span class="number">-3</span>:<span class="number">-6</span>    <span class="comment">% (从6到-6公差为-3的等差数组) 格式：a:dt:b</span></span><br><span class="line">&gt;&gt;b=[<span class="number">0</span>:<span class="number">2</span>:<span class="number">8</span>,<span class="built_in">ones</span>(<span class="number">1</span>,<span class="number">3</span>)]    <span class="comment">% 数组与行向量拼接</span></span><br><span class="line">&gt;&gt;<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">1</span>,<span class="number">9</span>)</span><br></pre></td></tr></table></figure>
+<p><code>linspace(a,b,n)</code> 生成从a到b共n个数值的等差数组，公差 (b-a)/(n-1)，公差为 1 时不必给出。</p>
+<p>例：4 等分 $\pi$ 的数组</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt;x=<span class="number">0</span>:<span class="built_in">pi</span>/<span class="number">4</span>:<span class="built_in">pi</span></span><br><span class="line"><span class="comment">% 或者</span></span><br><span class="line">&gt;&gt;x=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="built_in">pi</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>数组的运算：</strong> <code>+</code>  <code>-</code>  <code>.*</code>  <code>.^</code>  <code>.\</code>  <code>./</code><br>数组的运算是对应位置元素的运算</p>
+<h3 id="语句-变量-表达式"><a href="#语句-变量-表达式" class="headerlink" title="语句  变量  表达式"></a>语句  变量  表达式</h3><p>语句形式：变量=表达式</p>
+<p>若 “变量=” 省略，名为 <code>ans</code> 的变量自动被建立。表达式后用回车，则在工作区显示结果，如果表达式后用分号 <code>;</code> 结束，则 Matlab 会计算，但不显示结果。一行中可以写几个语句，它们之间用逗号或分号隔开。</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>Matlab 有它自己的一套变量命名规则</p>
+<ol>
+<li>变量名区分大小写  <code>Cost</code>  <code>cost</code>  <code>CoST</code> 不同</li>
+<li>变量名最多包含 31 个字符，其后的字符被忽略</li>
+<li>变量名必须以一个字母开始，其后可以是限定条件内的任意数量的字母、数字、下划线，不允许出现标点符号。</li>
+</ol>
+<p>错误范例：<code>2a</code>   <code>_abc</code></p>
+<p><strong>Matlab 关键字不能用作变量名</strong>  保留字列表：</p>
+<p><code>for</code>   <code>end</code>   <code>if</code>  <code>while</code>   <code>function</code>  <code>return</code>   <code>elseif</code>    <code>case</code></p>
+<p><code>otherwise</code>   <code>switch</code>   <code>continue</code>   <code>else</code>   <code>try</code>   <code>catch</code> </p>
+<p><code>global</code>    <code>persistent</code>   <code>break</code></p>
+<p>用户如果把这些保留字用作了变量名，Matlab 将会给出一条错误信息，但是用户可以将这些保留字中的某个字母改成大写，这样就可以用与这些保留字类似的词作变量名了。但是“不推荐”。</p>
+<p><strong>变量命名</strong></p>
+<p>变量名称应该表示其含义或用途。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">z = x * y</span><br></pre></td></tr></table></figure>
+<p>对于程序阅读者来说，下面的表示更好</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">wage = hourlyRate * nHours</span><br></pre></td></tr></table></figure>
+<p>例子参考 <em>MATLAB Style Guideines 2.0</em></p>
+<p><strong>Matlab 的特殊变量</strong></p>
+<p><code>ans</code>   用作结果的默认变量名<br><code>beep</code>   嘟嘟声<br><code>pi</code>   圆周率<br><code>eps</code>    浮点相对误差限 (22204×10-16)<br><code>Inf</code>   无穷大，比如 1/0<br><code>NaN</code>   不定值 比如 0/0<br><code>i</code> 或 <code>j</code> 虚数单位<br><code>realmin</code>  <code>realmax</code>  <code>bitmax</code> 最大正整数  </p>
+<p>字符串为由单引号括起来的字符集合，可以像向量一样进行裁剪和拼接。</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p><strong>标量函数</strong> (函数名均为小写)</p>
+<p>三角函数：<br><code>sin</code>(弧度)  <code>cos</code>  <code>tan</code>  <code>cot</code>  <code>sec</code>  <code>csc</code>    <code>asin</code>  <code>acos</code>   <code>atan</code>  <code>acot</code> </p>
+<p><code>asec</code>  <code>acsc</code> <code>sinh</code>   <code>cosh</code>  <code>tanh</code>   <code>asinh</code>   <code>acosh</code>   <code>atanh</code></p>
+<p>其他基本函数：<br><code>sqrt</code>   <code>exp(x)</code>   <code>log</code> (表数学上 $ln$ 函数),  <code>log10</code> (表数学上 $lg$ 函数) </p>
+<p><code>abs</code>   <code>round</code>   <code>floor</code> (表达 $[x]$)  <code>ceil</code> (表示 $[x]+1$)  <code>fix</code> (向 0 方向取整)</p>
+<p><code>sign</code>   <code>real</code>   <code>imag</code>   <code>angle</code> 获取辐角    <code>conj</code>   <code>rat</code></p>
+<p>以上这些函数本质上是作用于标量的，当它们作用于矩阵或数组时是作用于矩阵或数组的每一个元素。举例：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; x=(<span class="number">0</span>:<span class="number">0.2</span>:<span class="number">1</span>).*<span class="built_in">pi</span>;   <span class="comment">% x是有6个元素的行向量</span></span><br><span class="line">&gt;&gt; y=<span class="built_in">sin</span>(x)           <span class="comment">% y也为6个元素的行向量</span></span><br></pre></td></tr></table></figure>
+<p>另一个计算函数值的命令是 <code>feval(F,x)</code>，F 是表示函数名的字符串。如：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; x=(<span class="number">0</span>:<span class="number">0.2</span>:<span class="number">1</span>).*<span class="built_in">pi</span>;    </span><br><span class="line">&gt;&gt; y=feval(‘sin',x)    可以得到与上面一样的结果。</span><br></pre></td></tr></table></figure>
+<p><strong>向量函数</strong></p>
+<p>此类函数作用于行向量或列向量时才有意义，称为向量函数，这些函数作用于矩阵时，其结果为一个行向量，行向量的每个元素是函数作用于矩阵的相应列向量的结果。常用的有：</p>
+<p><code>max</code>   <code>min</code>   <code>sum</code>   <code>length</code>   <code>mean</code>   <code>median</code>   <code>prod</code> 连乘  <code>sort</code> 排序</p>
+<p>具体用法 <code>[y,z]=sort(x)</code></p>
+<p><strong>矩阵函数</strong></p>
+<p>Matlab中处理矩阵的函数大体分为两大类：构造矩阵的函数与进行矩阵计算的函数。对前者常用的有：</p>
+<p><code>zeros</code>   (0 阵)   <code>ones</code>  (1 阵)  <code>eye</code>  (单位阵)  <code>rand</code>  (随机阵)</p>
+<p><code>randn</code>      <code>diag</code> 提取或者生成对角阵  <code>triu</code>   <code>tril</code></p>
+<p>对后者常用的有：<br><code>size</code> (阶数)   <code>det</code> (行列式)  <code>rank</code> (秩)  <code>inv</code> (矩阵求逆)  <code>eig</code> (特征值)  <code>trace</code> (迹)  <code>norm</code> (范数)  <code>cond</code> (条件数)</p>
+<p><code>lu</code>  (LU分解)   <code>orth</code>  (正交规范化)   <code>rref(A)</code>  将A化成行阶梯形的最简形式，其中单位阵是极大线性无关组，其他列向量的坐标值为其对应列向量由该无关组表示的系数</p>
+<h3 id="命令和窗口环境"><a href="#命令和窗口环境" class="headerlink" title="命令和窗口环境"></a>命令和窗口环境</h3><p><strong>数据显示格式</strong></p>
+<p>Matlab 在显示数据结果时遵循如下原则：如果数据是整数则显示整数，如果数据是一个实数，缺省情况下显示小数点后4位数字。用户可以在 ?File 菜单下 Preference 菜单项或在命令窗口提示符下键入相应的 <code>format</code> 命令来指定其他数据格式</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Matlab命令               pi效果                说明</span><br><span class="line">format short            3.1416                缺省 ，小数点后4位</span><br><span class="line">format long             3.14159265358979      15位数字</span><br><span class="line">format short e          3.1416e+000           小数点后4位+指数</span><br><span class="line">format long e           3.141592653589793e+000    15位数字+指数</span><br><span class="line">format bank             3.14                  短紧缩格式</span><br><span class="line">format +                +                    (+)(-)(0)</span><br><span class="line">format rat              355&#x2F;113              有理数近似</span><br></pre></td></tr></table></figure>
+<p>注意：<code>format</code> 只提供选择不同的显示格式，Matlab并没有改变数字的内部存储格式，仅是显示改变了而已。所有的计算仍然是用双精度计算的。</p>
+<p><strong>Matlab工作区</strong></p>
+<p>它是用来接受 Matla b命令的内存区域</p>
+<ol>
+<li>显示： <code>who</code>  <code>whos</code>  <code>disp()</code>   显示变量的内容</li>
+<li>清除：<code>clear</code>  <code>clear  A</code>  <code>clear  C*</code> (清除所有以C打头的变量)</li>
+<li>储存：<code>save</code>   用法： <code>save 文件名 变量名</code></li>
+<li>调出：<code>load</code>   用法： <code>load 文件名</code></li>
+<li>记录：<code>diary</code>  用法： <code>diary filename</code>  <code>diary off</code> 停止记录</li>
+<li>搜索： Matlab文件所在的所有目录的列表被称为 Matlab 的搜索路径 Matlabpath</li>
+</ol>
+<p>在Matlab启动时它将默认的搜索路径定义为它存储其文件的所有目录。修改方法是用路径浏览器 File-&gt;Set path项，更改的目的是将用户自己的包含 Matlab 文件的目录加入到搜索路径中。</p>
+<h3 id="MATLAB-程序控制结构"><a href="#MATLAB-程序控制结构" class="headerlink" title="MATLAB 程序控制结构"></a>MATLAB 程序控制结构</h3><h4 id="M-文件"><a href="#M-文件" class="headerlink" title="M 文件"></a>M 文件</h4><p>分类：</p>
+<p>脚本文件 (Script File)<br>函数文件 (Function File)</p>
+<p>区别：</p>
+<ul>
+<li>脚本文件没有输入，没有返回；</li>
+<li>脚本文件可以对工作空间的变量操作，结果返回工作空间，而函数文件中的变量为局部变量，函数执行完毕，变量被清除；</li>
+<li>脚本文件可以直接运行，函数文件见需要调用的形式运行 (除了特殊的函数文件外)。</li>
+</ul>
+<h4 id="顺序结构"><a href="#顺序结构" class="headerlink" title="顺序结构"></a>顺序结构</h4><p>按照代码顺序执行，即顺序结构，受控于代码前后位置；<br>使用于顺序结构中的简单输入和输出 (命令交互)：</p>
+<p>数据输入 (<code>input</code> 函数)</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; A=input(‘输入一个参数<span class="string">')</span></span><br></pre></td></tr></table></figure>
+<p>数据显示 (<code>disp</code> 函数)</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; <span class="built_in">disp</span>(A)</span><br></pre></td></tr></table></figure>
+<p>程序暂停 (<code>pause</code> 函数)<br>-&gt;&gt;pause(3)暂停 3 秒</p>
+<h4 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h4><p>分支结构，又称为选择结构，包括 if 分支，switch 分支和 try 分支。</p>
+<p>1、if 分支语句：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> 条件</span><br><span class="line">    语句组 <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    语句组 <span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>2、switch 分支语句</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span> 表达式</span><br><span class="line"><span class="keyword">case</span> 表达式 <span class="number">1</span></span><br><span class="line">    语句组 <span class="number">1</span></span><br><span class="line"><span class="keyword">case</span> 表达式 <span class="number">2</span></span><br><span class="line">    语句组 <span class="number">2</span></span><br><span class="line">…</span><br><span class="line"><span class="keyword">case</span> 表达式 n</span><br><span class="line">    语句组 n</span><br><span class="line"><span class="keyword">otherwise</span></span><br><span class="line">    语句组 m</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>3、try 分支语句</p>
+<p>在经典的程序设计语言中未出现，这是一种试探性的分支语句，也就是如果这条语句执行有错误，则不执行，或者执行其他的语句，提高了程序的容错性能。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">    语句组 <span class="number">1</span></span><br><span class="line"><span class="keyword">catch</span></span><br><span class="line">    语句组 <span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h4 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h4><p>按照给定条件，重复执行某些语句，包括 <code>for</code> 循环和 <code>while</code> 循环。</p>
+<p>1、for 循环语句</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> 循环变量=表达式 <span class="number">1</span>:表达式 <span class="number">2</span>:表达式 <span class="number">3</span>  <span class="comment">% 可以采用矩阵的形式</span></span><br><span class="line">    循环体</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>注意循环变量自动增加，在循环体内对循环变量的赋值操作会带来不可预料的程序执行。</p>
+<p>2、while 循环语句</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> 条件</span><br><span class="line">    循环体（<span class="keyword">break</span> 命令可跳出）</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>循环可以嵌套，但是在 MATLAB 中，循环的执行效率很低，因此应该尽量避免使用循环，更要避免使用两重以上的循环。</p>
+<p>怎样避免使用循环和提高循环效率？</p>
+<ul>
+<li>有些可以通过 MATLAB 的矢量化语言，通过矩阵或者向量操作完成；</li>
+<li>有些可以通过 MATLAB 提供的一些特殊操作工具箱函数完成；</li>
+<li>预分配的使用，会大大增加循环效率。</li>
+</ul>
+<h4 id="函数文件"><a href="#函数文件" class="headerlink" title="函数文件"></a>函数文件</h4><p>1、基本结构：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[输出形参]</span>=函数名（<span class="params">[输入形参]</span>）</span></span><br><span class="line">[注释说明]</span><br><span class="line">函数体</span><br></pre></td></tr></table></figure>
+<p>关于函数文件名：通常和函数名一致，如果不一致，那么忽略函数名，调用时使用函数文件名。</p>
+<p>注释部分：注释部分可以提供 <code>help</code> 以及 <code>lookfor</code> 命令的查找功能，例如：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">y</span> = <span class="title">add_fun</span><span class="params">(a,b)</span></span></span><br><span class="line"><span class="comment">% ADD_FUN   完成变量 a 和 b 的相加</span></span><br><span class="line"><span class="comment">% 输入：     a 加数 1</span></span><br><span class="line"><span class="comment">%           b 加数 2</span></span><br><span class="line"><span class="comment">% 输出：     y 为两个参数相加之和</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $Author：Name</span></span><br><span class="line"><span class="comment">% $Date: 2020.08</span></span><br><span class="line"><span class="comment">% Version: V1.0</span></span><br><span class="line"></span><br><span class="line">y = a + b</span><br></pre></td></tr></table></figure>
+<p>对命令行进行注释快捷方式 <code>Ctrl+R</code>，解除注释 <code>Ctrl+T</code></p>
+<p>2、函数参数的可调识别函数</p>
+<p>可以完成传递参数的可调功能，类似于高级语言中的函数重载和多态。</p>
+<ul>
+<li><code>nargin</code> 返回传递给该函数调用的输入参数的数目，仅可在函数体内使用；</li>
+<li><code>nargout</code> 返回该函数调用中指定的输出参数的数目；</li>
+<li><code>varargin</code> 可变长度输入参数列表；<code>c=varargin{1}</code></li>
+<li><code>varargout</code> 可变长度输出参数列表；</li>
+</ul>
+<p>前两者为输入输出参数个数，后面两个可以代表未知的输入输出变量。<br><code>error(nargchk(2,4,nargin))</code> 检测 <code>nargin</code> 的范围在 2 到 4，如果超出则报错。</p>
+<p>3、全局变量<br>使用 <code>global</code> 声明，可以提供不同的 M 文件访问同一个变量。<br>不同的函数之间访问同一个变量，可以通过返回参数来设置，或者使用全局变量。</p>
+<p>4、程序调试<br>断点和单步；<br>根据错误提示，初步确定错误内容；</p>
+<h3 id="图形功能"><a href="#图形功能" class="headerlink" title="图形功能"></a>图形功能</h3><h4 id="plot-函数"><a href="#plot-函数" class="headerlink" title="plot 函数"></a>plot 函数</h4><p>基本用法：<code>plot(x,y)</code><br>一般要求：<code>x</code> 和 <code>y</code> 为相同尺度的向量。</p>
+<p>特殊用法：</p>
+<ol>
+<li><code>x</code> 为向量，<code>y</code> 为矩阵，其中一维与 <code>x</code> 长度相同，则绘制多条不同色彩的曲线；</li>
+<li><code>x</code> 和 <code>y</code> 为同维的矩阵，以对应列绘制不同色彩的曲线；</li>
+<li><code>plot</code> 有一个参数，若 <code>x</code> 为实数向量，则绘制折线图，若 <code>x</code> 为复数向量，则以实部和虚部为横坐标绘图；</li>
+<li>多个输入参数；</li>
+<li>曲线选项。</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="built_in">plot</span>(x,y1,<span class="string">'k:'</span>,x,y2,<span class="string">'b-'</span>)</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; y=[<span class="number">0</span>  <span class="number">0.58</span>  <span class="number">0.70</span>  <span class="number">0.95</span>  <span class="number">0.83</span>  <span class="number">0.25</span>];</span><br><span class="line">&gt;&gt; <span class="built_in">plot</span>(y)</span><br></pre></td></tr></table></figure>
+<p>此时生成的是以序号1, 2, …, 6 为横坐标、数组 y 的数值为纵坐标的折线。</p>
+<p>示例：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; x=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">30</span>);</span><br><span class="line">&gt;&gt; y=<span class="built_in">sin</span>(x);</span><br><span class="line">&gt;&gt; <span class="built_in">plot</span>(x,y)</span><br><span class="line">&gt;&gt; title(<span class="string">'sine wave'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/08/30/foRMcxrB5z4HPTq.png" alt="matlab-basic-plotex.png"></p>
+<p>也可以在同一幅图上绘制多条曲线或直线</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; z=<span class="built_in">cos</span>(x); <span class="built_in">plot</span>(x,y,x,z)</span><br><span class="line"><span class="comment">%或</span></span><br><span class="line">&gt;&gt; w=[y;z]; <span class="built_in">plot</span>(x,w)    <span class="comment">% 二者效果相同。</span></span><br></pre></td></tr></table></figure>
+<p>用户也可以用 <code>hold on</code> 命令在一个已经存在的图形上添加新的图形，当用户输入<code>hold on</code> 命令后，在用户输入新的 <code>plot</code> 函数时，Matlab 不会将现有的坐标轴删除，如果新数据超出了当前坐标轴的限定范围，Matlab 就将坐标轴重新刻度。输入 <code>hold off</code> 命令就将当前图形窗口释放，用以绘制新的图形。</p>
+<p>示例：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; x=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">30</span>);  y=<span class="built_in">sin</span>(x);  z=<span class="built_in">cos</span>(x);</span><br><span class="line">&gt;&gt; <span class="built_in">plot</span>(x,y)</span><br><span class="line">&gt;&gt; <span class="built_in">hold</span> on</span><br><span class="line">&gt;&gt; is <span class="built_in">hold</span>   <span class="comment">% return 1 (true) if hold is on</span></span><br><span class="line"><span class="built_in">ans</span>=</span><br><span class="line">    <span class="number">1</span></span><br><span class="line">&gt;&gt; <span class="built_in">plot</span>(x,z,<span class="string">'m'</span>)</span><br><span class="line">&gt;&gt; <span class="built_in">hold</span> off</span><br></pre></td></tr></table></figure>
+<p><strong>线型、颜色</strong></p>
+<p>用户可以通过在 <code>plot</code> 函数的每一组数据组对后添加第三个参数，声明用户自己的颜色、标记和线型。这个参数(可选)是一个字符串，放在单引号中。<code>plot(x,y,‘s&#39;)</code></p>
+<p>具体参数含义：</p>
+<p><code>b</code>  蓝色   <code>g</code> 绿色  <code>r</code>红色  <code>c</code> 青色  <code>m</code> 洋红 <code>y</code> 黄色  <code>k</code> 黑色  <code>w</code> 白色</p>
+<p><code>.</code>  点  <code>o</code> 圆圈  <code>+</code> 加号  <code>*</code> 星号  <code>s</code> 方形  <code>d</code> 菱形  <code>v</code>  <code>^ &lt; &gt;</code> 三角形 (开口不同)</p>
+<p><code>-</code> 实线   <code>:</code>  点线  <code>-.</code> 点划线  <code>--</code> 虚线   <code>p</code> 五角星  <code>h</code> 六角星</p>
+<p><img src="https://i.loli.net/2020/08/30/pTvy6PhJN8CwoR5.png" alt="matlab-basic-plotpa.png"></p>
+<p><strong>网格与标记</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; grid on   <span class="comment">% 将格栅线添加到当前图形中</span></span><br><span class="line">&gt;&gt; grid off  <span class="comment">% 取消格栅线</span></span><br><span class="line">&gt;&gt; grid      <span class="comment">% 切换格栅线状态</span></span><br><span class="line">&gt;&gt; box off   <span class="comment">% 去掉边框</span></span><br><span class="line">&gt;&gt; xlabel(‘内容<span class="string">') % 横坐标添加标记</span></span><br><span class="line"><span class="string">&gt;&gt; ylabel(‘内容'</span>) <span class="comment">% 纵坐标添加标记</span></span><br><span class="line">&gt;&gt; title(‘内容<span class="string">')  % 图形上方添加标记</span></span><br></pre></td></tr></table></figure>
+<p>用户可以用 text 函数在用户图形的任何指定位置给图形添加一个标签或者其他文本字符串。语法为：<code>text(x,y,&#39;string&#39;)</code>，其中 <code>(x,y)</code> 标明了以图形坐标轴的单位表示的文本字符串左边界的位置。更方便的是用鼠标确定字符串的位置，函数为 <code>gtext(‘string&#39;)</code>。</p>
+<p><strong>坐标轴控制</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">axis equal  <span class="comment">% 矩形的坐标轴</span></span><br><span class="line">axis square <span class="comment">% 正方形的坐标轴</span></span><br><span class="line">axis auto   <span class="comment">% 自动坐标轴显示</span></span><br><span class="line">axis off    <span class="comment">% 关闭坐标轴</span></span><br><span class="line">axis on     <span class="comment">% 打开坐标轴</span></span><br><span class="line">axis([xmin xmax ymin ymax])  <span class="comment">% 设置坐标轴的显示范围</span></span><br><span class="line">xlim([xmin xmax])  <span class="comment">% 设置 x 坐标的显示范围</span></span><br><span class="line">ylim([ymin ymax])  <span class="comment">% 设置 x 坐标的显示范围</span></span><br></pre></td></tr></table></figure>
+<p><strong>多幅图形</strong></p>
+<p>一个图形窗口可以包含多套坐标轴系。命令 <code>subplot(m,n,p)</code> 将当前窗口分成一个维数为 $m\times n$ 的绘图区域数组并将第 p 个绘图区域选定为当前绘图区域，编号规则为从最上边一行开始从左往右，然后第二行从左往右，一直到最后一行进行编号。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; x=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">30</span>);  y=<span class="built_in">sin</span>(x);  z=<span class="built_in">cos</span>(x);</span><br><span class="line">&gt;&gt; a=<span class="number">2.</span>*<span class="built_in">sin</span>(x).*<span class="built_in">cos</span>(x);   v=<span class="built_in">sin</span>(x)./(<span class="built_in">cos</span>(x)+<span class="built_in">eps</span>);</span><br><span class="line">&gt;&gt; subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>),<span class="built_in">plot</span>(x,y), axis([<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">-1</span>,<span class="number">1</span>]), title(‘<span class="built_in">sin</span>(x)')</span><br><span class="line">&gt;&gt; subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>),<span class="built_in">plot</span>(x,z), axis([<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">-1</span>,<span class="number">1</span>]), title(‘<span class="built_in">cos</span>(x)')</span><br><span class="line">&gt;&gt; subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>),<span class="built_in">plot</span>(x,a),......</span><br></pre></td></tr></table></figure>
+<h4 id="基本底层绘图函数"><a href="#基本底层绘图函数" class="headerlink" title="基本底层绘图函数"></a>基本底层绘图函数</h4><p>1、line 对象和 line 函数</p>
+<p>示例：<code>h = line([-pi:0.01:pi],sin([-pi:0.01:pi]))</code><br>产生 line 对象，h 为 line 对象的句柄</p>
+<p>line 对象的修饰：<br>Color 属性；<br>LineWidth 属性；<br>LineStyle 属性；<br>Marker 属性；<br>MarkerSize 属性；<br>plot 绘制的图形也是 line 对象，可以通过 line 对象的修饰方法后期修饰。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">h = line(<span class="string">'XDate'</span>,[-<span class="built_in">pi</span>:<span class="number">0.1</span>:<span class="built_in">pi</span>],<span class="string">'YDate'</span>,<span class="built_in">sin</span>([-<span class="built_in">pi</span>:<span class="number">0.1</span>:<span class="built_in">pi</span>]),...</span><br><span class="line"><span class="string">'LineWidth'</span>,<span class="number">1</span>,<span class="string">'LineStyle'</span>,<span class="string">':'</span>,<span class="string">'Color'</span>,<span class="string">'r'</span>)</span><br><span class="line">set(h,<span class="string">'LineWidth'</span>,<span class="number">2</span>,<span class="string">'Marker'</span>,<span class="string">'p'</span>,<span class="string">'MarkerSize'</span>,<span class="string">'3'</span>)</span><br></pre></td></tr></table></figure>
+<p>2、底层标注</p>
+<p>text 对象和 text 函数</p>
+<p>常用修饰：<br>Color 属性；<br>String 属性；修改标注的内容<br>FontSize 属性；<br>Rotation 属性；</p>
+<p>3、底层坐标轴的控制</p>
+<p>axes 对象和 axes 函数</p>
+<p>修饰：<br>Box 属性；<br>GridLineStyle 属性；网格线型<br>Position 属性；<br>Units 属性；可以设置单位为归一化 normalized，便于图形缩放<br>XLabel、YLabel 和 ZLabel 属性；<br>Xlim、Ylim 和 Zlim 属性；</p>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MATLAB 数据储存与调用</title>
+    <url>/2020/08/30/matlab-data/</url>
+    <content><![CDATA[<p>MATLAB 编程过程中会产生很多数据，暂时储存在 Matlab 的右侧工作区中，这些数据可以复制、剪切，也可以保存在 mat 文件、dat 文件、txt 文件或 Excel 文件中。</p>
+<p>在编程过程中，要养成保存数据 (有用的数据) 的习惯，特别是非常运行时间比较长的程序。做完图就把数据丢了的做法是非常不明智的。</p>
+<a id="more"></a>
+<h3 id="mat-文件"><a href="#mat-文件" class="headerlink" title="mat 文件"></a>mat 文件</h3><p><strong>储存数据</strong></p>
+<ul>
+<li>点击菜单 <code>保存工作区</code> (<code>Save Workspace</code>) 就可以把工作区的所有数据保存到一个 mat 文件；</li>
+<li>命令行输入 <code>save data</code> 或 <code>save data.mat</code> 把工作区所有数据保存到 <code>data.mat</code> 文件；</li>
+<li>命令行输入 <code>save data A</code> 或 <code>save data.mat A</code> 把工作区中 A 矩阵保存到 <code>data.mat</code> 文件。</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear; a = <span class="built_in">magic</span>(<span class="number">4</span>);</span><br><span class="line">save data1.mat</span><br><span class="line">save data2.mat -ascii  <span class="comment">% 文本编辑器打开不会乱码</span></span><br></pre></td></tr></table></figure>
+<p><strong>加载数据</strong></p>
+<ul>
+<li>双击 mat 文件即可加载其中的数据；</li>
+<li>命令行输入 <code>load(&#39;data.mat&#39;)</code> 或 <code>load(&#39;data.mat&#39;,&#39;A&#39;)</code> 可以加载 <code>data.mat</code> 中的数据。</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">load(<span class="string">'data1.mat'</span>)</span><br><span class="line">load(<span class="string">'data2.mat'</span>,<span class="string">'-ascii'</span>)</span><br></pre></td></tr></table></figure>
+<p><code>dat</code> 文件保存与 <code>mat</code> 类似，保存或加载是必须加后缀 <code>.dat</code>，比如 <code>data.dat</code>.</p>
+<h3 id="Excel-文件"><a href="#Excel-文件" class="headerlink" title="Excel 文件"></a>Excel 文件</h3><p><strong>从 Excel 文件读取数据</strong> </p>
+<p><img src="https://i.loli.net/2020/09/01/OVNEKu1We2Ylmvh.png" alt="matlab-excel.png"></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; Score = xlsread(<span class="string">'Score.xlsx'</span>)</span><br><span class="line">Score =</span><br><span class="line">    <span class="number">94</span>    <span class="number">83</span>    <span class="number">89</span></span><br><span class="line">    <span class="number">76</span>    <span class="number">88</span>    <span class="number">82</span></span><br><span class="line">    <span class="number">68</span>    <span class="number">72</span>    <span class="number">75</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Score = xlsread(<span class="string">'Score.xlsx'</span>, <span class="string">'B2:D4'</span>)</span><br><span class="line">Score =</span><br><span class="line">    <span class="number">94</span>    <span class="number">83</span>    <span class="number">89</span></span><br><span class="line">    <span class="number">76</span>    <span class="number">88</span>    <span class="number">82</span></span><br><span class="line">    <span class="number">68</span>    <span class="number">72</span>    <span class="number">75</span></span><br></pre></td></tr></table></figure>
+<p><strong>Excel 文件数据写入</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">M = <span class="built_in">mean</span>(Score')';</span><br><span class="line">xlswrite(<span class="string">'Score.xlsx'</span>, M, <span class="number">1</span>, <span class="string">'E2:E4'</span>);</span><br><span class="line">xlswrite(<span class="string">'Score.xlsx'</span>, &#123;<span class="string">'Mean'</span>&#125;, <span class="number">1</span>, <span class="string">'E1'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/09/01/IW6uRf9T2B3O8mQ.png" alt="matlab-excel2.png"></p>
+<p>示例：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 建立Excel并输入数据</span></span><br><span class="line"><span class="comment">% values = &#123;1, 2, 3 ; 4, 5, 'x' ; 7, 8, 9&#125;;</span></span><br><span class="line">values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ; <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> ; <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];</span><br><span class="line">headers = &#123;<span class="string">'First'</span>,<span class="string">'Second'</span>,<span class="string">'Third'</span>&#125;;</span><br><span class="line">xlswrite(<span class="string">'data.xlsx'</span>, [headers; values]);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 读取Excel数据</span></span><br><span class="line">filename = <span class="string">'data.xlsx'</span>;</span><br><span class="line">A = xlsread(filename)</span><br><span class="line">subsetA = xlsread(<span class="string">'data'</span>, <span class="string">'B2:C3'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="文件输入与输出"><a href="#文件输入与输出" class="headerlink" title="文件输入与输出"></a>文件输入与输出</h3><p><strong>fopen 函数</strong></p>
+<ul>
+<li><code>fopen</code> 函数用来打开文件以供读取，其调用格式</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">fid = fopen (filename, permission)</span><br></pre></td></tr></table></figure>
+<p>permission：</p>
+<p><code>&#39;r&#39;</code> 打开要读取的文件。<br><code>&#39;w&#39;</code> 打开或创建要写入的新文件。放弃现有内容（如果有）。<br><code>&#39;a&#39;</code> 打开或创建要写入的新文件。追加数据到文件末尾。<br><code>&#39;r+&#39;</code> 打开要读写的文件。<br><code>&#39;w+&#39;</code> 打开或创建要读写的新文件。放弃现有内容（如果有）。<br><code>&#39;a+&#39;</code>打开或创建要读写的新文件。追加数据到文件末尾。</p>
+<p><strong>fclose 函数</strong></p>
+<ul>
+<li><code>fclose</code> 函数用于关闭已打开的文件，其调用格式</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">status = fclose(fid)</span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">x = <span class="number">0</span>:<span class="built_in">pi</span>/<span class="number">10</span>:<span class="built_in">pi</span>;</span><br><span class="line">y = <span class="built_in">sin</span>(x);</span><br><span class="line">fid = fopen(<span class="string">'sinx.txt'</span>,<span class="string">'w'</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">11</span></span><br><span class="line">    fprintf(fid,<span class="string">'%5.3f %8.4f\n'</span>, x(<span class="built_in">i</span>), y(<span class="built_in">i</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">fclose(fid);</span><br><span class="line"><span class="built_in">type</span> sinx.txt</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; text01</span><br><span class="line"></span><br><span class="line"><span class="number">0.000</span>   <span class="number">0.0000</span></span><br><span class="line"><span class="number">0.314</span>   <span class="number">0.3090</span></span><br><span class="line"><span class="number">0.628</span>   <span class="number">0.5878</span></span><br><span class="line"><span class="number">0.942</span>   <span class="number">0.8090</span></span><br><span class="line"><span class="number">1.257</span>   <span class="number">0.9511</span></span><br><span class="line"><span class="number">1.571</span>   <span class="number">1.0000</span></span><br><span class="line"><span class="number">1.885</span>   <span class="number">0.9511</span></span><br><span class="line"><span class="number">2.199</span>   <span class="number">0.8090</span></span><br><span class="line"><span class="number">2.513</span>   <span class="number">0.5878</span></span><br><span class="line"><span class="number">2.827</span>   <span class="number">0.3090</span></span><br><span class="line"><span class="number">3.142</span>   <span class="number">0.0000</span></span><br></pre></td></tr></table></figure>
+<p><strong>fscanf 函数</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A = fscanf(fid, format, sizeA);</span><br></pre></td></tr></table></figure>
+<p>将文件数据读取到维度为 <code>sizeA</code> 的数组 <code>A</code> 中，并将文件指针定位到最后读取的值之后。<code>fscanf</code> 按列顺序填充 <code>A</code>。<code>sizeA</code> 必须为正整数或采用 <code>[m n]</code> 的形式，其中 <code>m</code> 和 <code>n</code> 为正整数。</p>
+<p><strong>fprintf 函数</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">fprintf(fid, format, x, y,...);</span><br></pre></td></tr></table></figure>
+<p>按列顺序将 <code>format</code> 应用于数组 <code>x, y ,...</code> 的所有元素，并将数据写入到一个文本文件。<code>fprintf</code> 使用在对 <code>fopen</code> 的调用中指定的编码方案。</p>
+<p>asciiData.txt</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">John 1995 12 5 12.3 3.24</span><br><span class="line">Tom 1995 12 7 2.3 2.0</span><br><span class="line">Jean 1996 3 2 10.2 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">fid = fopen(<span class="string">'asciiData.txt'</span>,<span class="string">'r'</span>);</span><br><span class="line"><span class="built_in">i</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> ~feof(fid)</span><br><span class="line">    name(<span class="built_in">i</span>,:) = fscanf(fid,<span class="string">'%5c'</span>,<span class="number">1</span>);</span><br><span class="line">    year(<span class="built_in">i</span>) = fscanf(fid,<span class="string">'%d'</span>,<span class="number">1</span>);</span><br><span class="line">    no1(<span class="built_in">i</span>) = fscanf(fid,<span class="string">'%d'</span>,<span class="number">1</span>);</span><br><span class="line">    no2(<span class="built_in">i</span>) = fscanf(fid,<span class="string">'%d'</span>,<span class="number">1</span>);</span><br><span class="line">    no3(<span class="built_in">i</span>) = fscanf(fid,<span class="string">'%g'</span>,<span class="number">1</span>);</span><br><span class="line">    no4(<span class="built_in">i</span>) = fscanf(fid,<span class="string">'%g\n'</span>);</span><br><span class="line">    <span class="built_in">i</span>=<span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">fclose(fid);</span><br></pre></td></tr></table></figure>
+<h3 id="txt-文件实用示例"><a href="#txt-文件实用示例" class="headerlink" title="txt 文件实用示例"></a>txt 文件实用示例</h3><p><strong>例子 1</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear all</span><br><span class="line">x=<span class="number">0</span>:<span class="number">0.1</span>:<span class="number">1.0</span>;</span><br><span class="line">k=<span class="number">1</span>; mu=<span class="number">2</span>;</span><br><span class="line">Y=[x;mu*<span class="built_in">exp</span>(k*x)];</span><br><span class="line">fid=fopen(<span class="string">'demo.txt'</span>,<span class="string">'a+'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'\n'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'%36s  \n'</span>,<span class="string">'--- Function Data ---'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'\n'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'%5s %d %5s %d \n'</span>,<span class="string">'k ='</span>,k,<span class="string">'mu ='</span>,mu);</span><br><span class="line">fprintf(fid,<span class="string">'\n'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'%6.2f  %12.8f\n'</span>,Y);</span><br><span class="line">fclose(fid);</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<p>demo.txt</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">      --- Function Data ---  </span><br><span class="line"></span><br><span class="line">k &#x3D; 1  mu &#x3D; 2 </span><br><span class="line"></span><br><span class="line">0.00    2.00000000</span><br><span class="line">0.10    2.21034184</span><br><span class="line">0.20    2.44280552</span><br><span class="line">0.30    2.69971762</span><br><span class="line">0.40    2.98364940</span><br><span class="line">0.50    3.29744254</span><br><span class="line">0.60    3.64423760</span><br><span class="line">0.70    4.02750541</span><br><span class="line">0.80    4.45108186</span><br><span class="line">0.90    4.91920622</span><br><span class="line">1.00    5.43656366</span><br></pre></td></tr></table></figure>
+<p><strong>例子 2</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear all</span><br><span class="line">k=<span class="number">2</span>; mu=<span class="number">0.0001</span>; h=<span class="number">0.1</span>;</span><br><span class="line">funstr=<span class="string">'y=mu*sin(k*x)*exp(-x^2)'</span>;</span><br><span class="line">Xv=<span class="number">0.1</span>:h:<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 文件预处理</span></span><br><span class="line">fid=fopen(<span class="string">'Result.txt'</span>,<span class="string">'a+'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'\n'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'%54s  \r\n'</span>,<span class="string">'--- Numerical Results of Model Equation ---'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'\r\n'</span>);</span><br><span class="line">fun=@(x) mu*<span class="built_in">sin</span>(k*x)*<span class="built_in">exp</span>(-x.^<span class="number">2</span>);</span><br><span class="line">fprintf(fid,<span class="string">'%42s  \r\n'</span>,funstr);</span><br><span class="line">fprintf(fid,<span class="string">'\r\n'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'%15s%d, %5s%f, %5s%f \r\n'</span>,<span class="string">'k='</span>,k,<span class="string">'mu='</span>,mu,<span class="string">'h='</span>,h);</span><br><span class="line">fprintf(fid,<span class="string">'\r\n'</span>);</span><br><span class="line">fprintf(fid,<span class="string">'%4c %18s %25s \r\n'</span>,<span class="string">'X'</span>,<span class="string">'dataY'</span>,<span class="string">'dataZ'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 保存数据到文件</span></span><br><span class="line"><span class="keyword">for</span> N=<span class="number">1</span>:<span class="built_in">length</span>(Xv)</span><br><span class="line">    X=Xv(N);</span><br><span class="line">    dataY=fun(X);</span><br><span class="line">    dataZ=(fun(X)).^<span class="number">2</span>;</span><br><span class="line">    <span class="comment">% 保存每次循环得到的数据</span></span><br><span class="line">    fprintf(fid,<span class="string">'%6.2f %25.16d %25.16d  \r\n'</span>,X,dataY,dataZ);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 关闭文件</span></span><br><span class="line">fclose(fid);</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<p>Result.txt</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">         --- Numerical Results of Model Equation ---  </span><br><span class="line"></span><br><span class="line">                 y&#x3D;mu*sin(k*x)*exp(-x^2)  </span><br><span class="line"></span><br><span class="line">           k&#x3D;2,   mu&#x3D;0.000100,    h&#x3D;0.100000 </span><br><span class="line"></span><br><span class="line"> X              dataY                     dataZ </span><br><span class="line">0.10    1.9669253792470886e-05    3.8687954475263035e-10  </span><br><span class="line">0.20    3.7414903070235580e-05    1.3998749717551239e-09  </span><br><span class="line">0.30    5.1604436496440273e-05    2.6630178661151367e-09  </span><br><span class="line">0.40    6.1129053733710925e-05    3.7367612103789178e-09  </span><br><span class="line">0.50    6.5533826190025598e-05    4.2946823751044851e-09  </span><br><span class="line">0.60    6.5026160525221639e-05    4.2284015526518927e-09  </span><br><span class="line">0.70    6.0371251473283679e-05    3.6446880044504570e-09  </span><br><span class="line">0.80    5.2706758815719921e-05    2.7780024248584695e-09  </span><br><span class="line">0.90    4.3322397386826647e-05    1.8768301153421242e-09  </span><br><span class="line">1.00    3.3451182923926232e-05    1.1189816390099739e-09</span><br></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a href="https://www.bilibili.com/video/BV1GJ41137UH" target="_blank" rel="noopener">MATLAB教程_台大郭彦甫</a></li>
+<li>MATLAB 基础与应用教程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+        <tag>Data</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MATLAB 图形修饰</title>
+    <url>/2020/08/31/matlab-fig/</url>
+    <content><![CDATA[<p>MATLAB 绘图比较简单，但是要修饰好图形，我们就需要了解更多底层绘图函数。当然，很多图形修饰可以直接在图形上编辑，但这有点麻烦，用命令编辑会更方便。</p>
+<a id="more"></a>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子 1"></a>例子 1</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear all, clear clf</span><br><span class="line"></span><br><span class="line">x=<span class="number">1</span>:<span class="number">22</span>;</span><br><span class="line">y=-x./<span class="number">2</span>;</span><br><span class="line">z=-x./<span class="number">2</span><span class="number">-2</span>;</span><br><span class="line">w=-x./<span class="number">2</span><span class="number">-4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 绘图以及设置图形属性</span></span><br><span class="line"><span class="built_in">plot</span>(x,y,<span class="string">'color'</span>,[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>],<span class="string">'Marker'</span>,<span class="string">'o'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(x,z,<span class="string">'color'</span>,[<span class="number">0</span> <span class="number">0.5</span> <span class="number">0</span>],<span class="string">'Marker'</span>,<span class="string">'s'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(x,w,<span class="string">'color'</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>],<span class="string">'Marker'</span>,<span class="string">'d'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">grid on</span><br><span class="line">xlabel(<span class="string">'N'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>), ylabel(<span class="string">'Error'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line">title(<span class="string">'figure 1'</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'label1'</span>,<span class="string">'label2'</span>,<span class="string">'label3'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 调整刻度值与坐标轴范围</span></span><br><span class="line">xticks(<span class="number">0</span>:<span class="number">2</span>:<span class="number">24</span>)</span><br><span class="line">yticks(<span class="number">-16</span>:<span class="number">2</span>:<span class="number">0</span>)</span><br><span class="line">xlim([<span class="number">0</span> <span class="number">24</span>])</span><br><span class="line">ylim([<span class="number">-16</span> <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line"><span class="comment">% set(gca,'FontName','Times New Roman','FontSize',12)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  figure1.png</span></span><br><span class="line"><span class="comment">% print -depsc2 figure1.eps</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/09/01/kNfr8DEmK9eWy2R.png" alt="figure1.png"></p>
+<h3 id="例子-2"><a href="#例子-2" class="headerlink" title="例子 2"></a>例子 2</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear all, clear clf</span><br><span class="line"></span><br><span class="line">x=<span class="number">1</span>:<span class="number">22</span>;</span><br><span class="line">y=<span class="number">10.</span>^(-x./<span class="number">2</span>);</span><br><span class="line">z=<span class="number">10.</span>^(-x./<span class="number">2</span><span class="number">-2</span>);</span><br><span class="line">w=<span class="number">10.</span>^(-x./<span class="number">2</span><span class="number">-4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 绘图以及设置图形属性</span></span><br><span class="line"><span class="built_in">plot</span>(x,<span class="built_in">log10</span>(y),<span class="string">'color'</span>,[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>],<span class="string">'Marker'</span>,<span class="string">'o'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(x,<span class="built_in">log10</span>(z),<span class="string">'color'</span>,[<span class="number">0</span> <span class="number">0.5</span> <span class="number">0</span>],<span class="string">'Marker'</span>,<span class="string">'s'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(x,<span class="built_in">log10</span>(w),<span class="string">'color'</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>],<span class="string">'Marker'</span>,<span class="string">'d'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">grid on</span><br><span class="line">xlabel(<span class="string">'N'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'label1'</span>,<span class="string">'label2'</span>,<span class="string">'label3'</span>)</span><br><span class="line"><span class="comment">% title('figure 2')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 调整刻度值与坐标轴范围</span></span><br><span class="line">xticks(<span class="number">0</span>:<span class="number">2</span>:<span class="number">24</span>)</span><br><span class="line">yticks(<span class="number">-16</span>:<span class="number">2</span>:<span class="number">0</span>)</span><br><span class="line">xlim([<span class="number">0</span> <span class="number">24</span>])</span><br><span class="line">ylim([<span class="number">-16</span> <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line"><span class="comment">%set(gca,'FontName','Times New Roman','FontSize',12)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  figure2.png</span></span><br><span class="line"><span class="comment">% print -depsc2 figure2.eps</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/09/01/HKJrT8C7a2SYiNR.png" alt="figure2.png"></p>
+<h3 id="例子-3"><a href="#例子-3" class="headerlink" title="例子 3"></a>例子 3</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear all, clear clf</span><br><span class="line"></span><br><span class="line">x=<span class="number">1</span>:<span class="number">22</span>;</span><br><span class="line">y=<span class="number">10.</span>^(-x./<span class="number">2</span>);</span><br><span class="line">z=<span class="number">10.</span>^(-x./<span class="number">2</span><span class="number">-2</span>);</span><br><span class="line">w=<span class="number">10.</span>^(-x./<span class="number">2</span><span class="number">-4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 绘图以及设置图形属性</span></span><br><span class="line">semilogy(x,y,<span class="string">'color'</span>,[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>],<span class="string">'Marker'</span>,<span class="string">'o'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">semilogy(x,z,<span class="string">'color'</span>,[<span class="number">0</span> <span class="number">0.5</span> <span class="number">0</span>],<span class="string">'Marker'</span>,<span class="string">'s'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">semilogy(x,w,<span class="string">'color'</span>,[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>],<span class="string">'Marker'</span>,<span class="string">'d'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line">grid on</span><br><span class="line">xlabel(<span class="string">'N'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>), ylabel(<span class="string">'Error'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'label1'</span>,<span class="string">'label2'</span>,<span class="string">'label3'</span>)</span><br><span class="line"><span class="comment">% title('figure 3')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 调整刻度值与坐标轴范围</span></span><br><span class="line">xticks(<span class="number">0</span>:<span class="number">2</span>:<span class="number">24</span>)</span><br><span class="line">yticks(<span class="number">10.</span>^[<span class="number">-16</span>:<span class="number">2</span>:<span class="number">0</span>])</span><br><span class="line">xlim([<span class="number">0</span> <span class="number">24</span>])</span><br><span class="line">ylim([<span class="number">10</span>^(<span class="number">-16</span>) <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">set(gca,<span class="string">'FontName'</span>,<span class="string">'Times New Roman'</span>,<span class="string">'FontSize'</span>,<span class="number">12</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  figure3.png</span></span><br><span class="line"><span class="comment">% print -depsc2 figure3.eps</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/09/01/9fw8ed4FgQ5D1xY.png" alt="figure3.png"></p>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+        <tag>Figure</tag>
       </tags>
   </entry>
 </search>
