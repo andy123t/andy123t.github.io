@@ -2107,7 +2107,7 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">z = x * y</span><br></pre></td></tr></table></figure>
 <p>对于程序阅读者来说，下面的表示更好</p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">wage = hourlyRate * nHours</span><br></pre></td></tr></table></figure>
-<p>例子参考 <em>MATLAB Style Guideines 2.0</em></p>
+<p>例子参考 <em>MATLAB Style Guidelines 2.0</em></p>
 <p><strong>Matlab 的特殊变量</strong></p>
 <p><code>ans</code>   用作结果的默认变量名<br><code>beep</code>   嘟嘟声<br><code>pi</code>   圆周率<br><code>eps</code>    浮点相对误差限 (22204×10-16)<br><code>Inf</code>   无穷大，比如 1/0<br><code>NaN</code>   不定值 比如 0/0<br><code>i</code> 或 <code>j</code> 虚数单位<br><code>realmin</code>  <code>realmax</code>  <code>bitmax</code> 最大正整数  </p>
 <p>字符串为由单引号括起来的字符集合，可以像向量一样进行裁剪和拼接。</p>
