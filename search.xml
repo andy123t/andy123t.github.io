@@ -1395,12 +1395,12 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h+\frac{2ht_{n+1}}{X_k
 <script type="math/tex; mode=display">\left\{\begin{aligned}
   &\text{Find } u_N \in X_N \text{ such that} \\
   &(u_N',v_N')+(u_N,v_N)=(f,v_N),\quad v_N \in X_N.
-\end{aligned} \right.</script><p>将 $u_{N}(x)$ 的展开式代入谱格式方程。令</p>
+\end{aligned} \right.</script><p>将 $u_{N}(x)$ 的展开式代入谱格式方程，取 $v_N=\phi_{k}$。令</p>
 <script type="math/tex; mode=display">\begin{aligned}
 &f_{k}=\int_{I} f_{N} \phi_{k} d x, \quad \boldsymbol{f}=\left(f_{0}, f_{1}, \ldots, f_{N-2}\right)^{T}, \\
 &u_{N}=\sum_{j=0}^{N-2} \hat{u}_{j} \phi_{j}, \quad \boldsymbol{u}=\left(\hat{u}_{0}, \hat{u}_{1}, \ldots, \hat{u}_{N-2}\right)^{T}, \\
 &s_{k j}=-\int_{I} \phi_{j}^{\prime \prime} \phi_{k} d x, \quad m_{k j}=\int_{I} \phi_{j} \phi_{k} d x, \\
-\end{aligned}</script><script type="math/tex; mode=display">S=\left(s_{k j}\right)_{0 \leq k, j \leq N-2}, \quad M=\left(m_{k j}\right)_{0 \leq k, j \leq N-2}.</script><p>取 $v_N=\phi_{k}$，可得到以下方程组</p>
+\end{aligned}</script><script type="math/tex; mode=display">S=\left(s_{k j}\right)_{0 \leq k, j \leq N-2}, \quad M=\left(m_{k j}\right)_{0 \leq k, j \leq N-2}.</script><p>可得以下方程组</p>
 <script type="math/tex; mode=display">(S+\alpha M) \boldsymbol{u}=\boldsymbol{f}.</script><p>刚度矩阵 $S=(s_{jk})$ 是一个对角矩阵 [P146-4.22]：</p>
 <script type="math/tex; mode=display">s_{kk}=-(4 k+6)b_{k}=4k+6,\quad k=0,1,\cdots,N-2.</script><p>质量矩阵 $M=(m_{jk})$ 是一个对称的五对角矩阵 [P146-4.23]：</p>
 <script type="math/tex; mode=display">m_{jk}=m_{kj}=\left\{
