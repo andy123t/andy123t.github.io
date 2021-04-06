@@ -280,7 +280,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
     <url>/2020/05/27/FDM04/</url>
     <content><![CDATA[<p>一维热传导方程 Crank-Nicolson 格式的 <strong>MATLAB 编程实现</strong>。</p>
 <h3 id="一维热传导方程"><a href="#一维热传导方程" class="headerlink" title="一维热传导方程"></a>一维热传导方程</h3><script type="math/tex; mode=display">\left\{\begin{aligned}
-&\frac{\partial u}{\partial t}=a \frac{\partial^{2} u}{\partial x^{2}}+f(x, t), && 0<x<1,\ 0<t \leqslant T,\\
+&\frac{\partial u}{\partial t}=a \frac{\partial^{2} u}{\partial x^{2}}+f(x, t), && 0<x<1,\ 0 <t \leqslant T,\\
 & u(x, 0)=\phi(x), && 0 \leqslant x \leqslant 1, \\
 & u(0, t)=\alpha(t), u(1, t)=\beta(t), && 0 < t \leqslant T.
 \end{aligned}\right.</script><p>其中 $a$ 是正常数，$f(x,t)$、$\phi(x)$、$\alpha(x)$ 和 $\beta(x)$ 为已知函数。$u(x, 0)=\phi(x)$ 为初始条件，$u(0,t)=\alpha(t)$ 和 $u(1,t)=\beta(t)$ 为边界条件。</p>
@@ -301,11 +301,11 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 \boldsymbol{f}^n=
 \left(
 \begin{array}{c}
-\tau f(x_{1},t_{n})+\tau f(x_{1},t_{n+1})+ru_0^{n}+ ru_0^{n}   \\
+\tau f(x_{1},t_{n})+\tau f(x_{1},t_{n+1})+ru_0^{n}+ ru_0^{n+1}   \\
 \tau f(x_{2},t_{n})+\tau f(x_{2},t_{n+1})  \\
 \vdots  \\
 \tau f(x_{M-2},t_{n})+\tau f(x_{M-2},t_{n+1}) \\
-\tau f(x_{M-1},t_{n})+\tau f(x_{M-1},t_{n+1})+ru_M^{n}+ ru_M^{n} \\
+\tau f(x_{M-1},t_{n})+\tau f(x_{M-1},t_{n+1})+ru_M^{n}+ ru_M^{n+1} \\
 \end{array} \right).</script><h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><script type="math/tex; mode=display">
 \left\{\begin{aligned}
 &\frac{\partial u}{\partial t}=\frac{\partial^{2} u}{\partial x^{2}}+f(x,t), \quad 0<x<1, \quad 0 <t \leqslant 1, \\
@@ -2439,6 +2439,53 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
       <tags>
         <tag>MATLAB</tag>
         <tag>Data</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极坐标形式的差分格式</title>
+    <url>/2021/04/05/FDM06/</url>
+    <content><![CDATA[<p>极坐标形式的 Poisson 方程差分方法的 <strong>MATLAB 编程实现</strong>。</p>
+<h3 id="极坐标形式的-Poisson-方程"><a href="#极坐标形式的-Poisson-方程" class="headerlink" title="极坐标形式的 Poisson 方程"></a>极坐标形式的 Poisson 方程</h3><script type="math/tex; mode=display">
+-\Delta_{r, \theta} u=-\left[\frac{1}{r} \frac{\partial}{\partial r}\left(r \frac{\partial u}{\partial r}\right)+\frac{1}{r^{2}} \frac{\partial^{2} u}{\partial \theta^{2}}\right]=f(r, \theta),</script><p>其中 $r=\sqrt{x^{2}+y^{2}},~\tan \theta =y / x$, 整个 $xy$ 平面变成 $r \theta$ 平面上的半带形域 $\{0 \leqslant r &lt; \infty, 0 \leqslant \theta \leqslant 2\pi \}$.</p>
+<a id="more"></a>
+<p>方程的系数于 $r=0$ 处奇异, 因此只当 $r&gt;0$ 时有意义。在 $r=0$ 需补充 $u$ 为光滑的条件 (原点是可去奇点). 由 $u(0, \theta)=u(r, \theta)-r u_{r}(r, \theta)+O(r^{2})$, $r \rightarrow 0$, 则知</p>
+<script type="math/tex; mode=display">\lim _{r \rightarrow 0^{+}} r \frac{\partial u}{\partial r}=0.</script><!-- more -->
+<h3 id="差分格式"><a href="#差分格式" class="headerlink" title="差分格式"></a>差分格式</h3><p>对变量 $r, \theta$ 分别取等步长 $h_r$ 和 $h_{\theta}$. 令</p>
+<script type="math/tex; mode=display">r_{i}=(i+0.5) h_{r},\ i=0,1,2, \cdots,N-1,</script><script type="math/tex; mode=display">\theta_{j}=(j+1) h_{\theta},\ j=0,1, \cdots, M-1,\ h_{\theta}=2 \pi / M.</script><p>则半带形域的网格节点为 $(r_i,\theta_j)$, 它们在 $r\theta$ 平面上的分布如图</p>
+<p><img src="https://i.loli.net/2021/04/06/yu16veIxSRBDOni.png" alt="fem_polar_mesh.png"></p>
+<p>差分方程：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&-\frac{1}{r_{i}} \frac{r_{i+\frac{1}{2}} u_{i+1, j}-\left(r_{i+\frac{1}{2}}+r_{i-\frac{1}{2}}\right) u_{i j}+r_{i-\frac{1}{2}} u_{i-1, j}}{h_{r}^{2}} \\
+&-\frac{1}{r_{i}^{2}} \frac{u_{i, j+1}-2 u_{i j}+u_{i, j-1}}{h_{\theta}^{2}}=f\left(r_{i}, \theta_{j}\right),\quad 1 \leqslant i \leqslant N-1.
+\end{aligned}</script><p>下面是关于点 $(r_0, \theta_{j})$ 的差分方程</p>
+<script type="math/tex; mode=display">-\frac{2}{h_{r}} \frac{u_{1 j}-u_{0 j}}{h_{r}}-\frac{4}{h_{r}^{2}} \frac{u_{0, j+1}-2 u_{0 j}+u_{0, j-1}}{h_{\theta}^{2}}=f_{0 j}.</script><p>这样就得到 $N~(i=0,1,\cdots,N-1)$ 个方程的方程组.</p>
+<p><strong>注意：</strong> 实际计算时, 取 $(N+h_r/2)$ 为边界比较合适.</p>
+<h3 id="数值例子"><a href="#数值例子" class="headerlink" title="数值例子"></a>数值例子</h3><p>单位圆上的 Poisson 方程边值问题：</p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}
+&-\Delta u=1, \quad \Omega=\left\{(x,y) \mid x^{2}+y^{2}<1\right\}, \\
+&\left.u\right|_{\partial \Omega}=0.
+\end{aligned}\right.</script><p>方程的真解：</p>
+<script type="math/tex; mode=display">u(x, y)=\frac{1-x^{2}-y^{2}}{4}.</script><p><strong>计算数值解</strong></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% fdm_polar.m</span></span><br><span class="line"><span class="comment">% finite difference method for polar coordinate problem</span></span><br><span class="line"><span class="comment">% -&#123;Delta&#125;_&#123;r,theta&#125;u(r,theta)=f(r,theta), [0,1]x[0,2*pi]</span></span><br><span class="line"><span class="comment">% u(1,theta)=0,  theta in [0,2*pi]</span></span><br><span class="line"><span class="comment">% exact solution: ue=(1-r^2)/4.</span></span><br><span class="line">clear</span><br><span class="line">N=<span class="number">50</span>;</span><br><span class="line">M=<span class="number">100</span>;</span><br><span class="line">dr=<span class="number">1</span>/(N+<span class="number">1</span>/<span class="number">2</span>);</span><br><span class="line">dthe=<span class="number">2</span>*<span class="built_in">pi</span>/M;</span><br><span class="line">r=(dr/<span class="number">2</span>:dr:<span class="number">1</span>)';</span><br><span class="line">the=(dthe:dthe:<span class="number">2</span>*<span class="built_in">pi</span>)';</span><br><span class="line"><span class="comment">% generate coordinates on the grid</span></span><br><span class="line">[The,R]=<span class="built_in">meshgrid</span>(the,r);</span><br><span class="line"><span class="comment">% generate the matrix of RHS</span></span><br><span class="line">f=<span class="built_in">ones</span>(M,N);</span><br><span class="line"><span class="comment">% constructing the coefficient matrix</span></span><br><span class="line">e=[<span class="number">2</span>/dr^<span class="number">2</span>+<span class="number">8</span>/(dr^<span class="number">2</span>*dthe^<span class="number">2</span>);(<span class="number">2.</span>/(dthe^<span class="number">2</span>*r(<span class="number">2</span>:N).^<span class="number">2</span>)+<span class="number">2</span>/dr^<span class="number">2</span>)];</span><br><span class="line">e1=[<span class="number">-2</span>/dr^<span class="number">2</span>;-(r(<span class="number">2</span>:N<span class="number">-1</span>)+dr/<span class="number">2</span>)./(dr^<span class="number">2</span>*r(<span class="number">2</span>:N<span class="number">-1</span>))];</span><br><span class="line">e2=-(r(<span class="number">2</span>:N)-dr/<span class="number">2</span>)./(dr^<span class="number">2</span>*r(<span class="number">2</span>:N));</span><br><span class="line">C=<span class="built_in">diag</span>(e)+<span class="built_in">diag</span>(e1,<span class="number">1</span>)+<span class="built_in">diag</span>(e2,<span class="number">-1</span>);</span><br><span class="line">D=<span class="built_in">diag</span>([<span class="number">-4</span>/(dr^<span class="number">2</span>*dthe^<span class="number">2</span>);<span class="number">-1.</span>/(dthe^<span class="number">2</span>*r(<span class="number">2</span>:N).^<span class="number">2</span>)]);</span><br><span class="line">E=<span class="built_in">diag</span>([<span class="number">-4</span>/(dr^<span class="number">2</span>*dthe^<span class="number">2</span>);<span class="number">-1.</span>/(dthe^<span class="number">2</span>*r(<span class="number">2</span>:N).^<span class="number">2</span>)]);</span><br><span class="line">A=kron(<span class="built_in">eye</span>(M),C)+kron(<span class="built_in">diag</span>(<span class="built_in">ones</span>(M<span class="number">-1</span>,<span class="number">1</span>),<span class="number">1</span>)+<span class="built_in">diag</span>(<span class="number">1</span>,<span class="number">1</span>-M),D)...</span><br><span class="line">    +kron(<span class="built_in">diag</span>(<span class="built_in">ones</span>(M<span class="number">-1</span>,<span class="number">1</span>),<span class="number">-1</span>)+<span class="built_in">diag</span>(<span class="number">1</span>,M<span class="number">-1</span>),E);</span><br><span class="line"><span class="comment">% solving the linear system</span></span><br><span class="line">f=f';</span><br><span class="line">uh=<span class="built_in">reshape</span>(A\f(:),N,M);</span><br><span class="line">un=[uh;<span class="built_in">zeros</span>(<span class="number">1</span>,M)];</span><br><span class="line">ue=(<span class="number">1</span>-R.^<span class="number">2</span>)/<span class="number">4</span>;</span><br><span class="line"><span class="comment">% error on the node of the mesh</span></span><br><span class="line">Err=<span class="built_in">abs</span>(un-ue);</span><br><span class="line"><span class="comment">% compute maximum error</span></span><br><span class="line">MaxErr=<span class="built_in">max</span>(<span class="built_in">max</span>(<span class="built_in">abs</span>(un-ue)))</span><br><span class="line"><span class="comment">% plot the figure</span></span><br><span class="line">[X,Y] = <span class="built_in">pol2cart</span>(The,R);</span><br><span class="line">mesh(X,Y,un)</span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'x'</span>,<span class="string">'fontsize'</span>, <span class="number">16</span>)</span><br><span class="line">ylabel(<span class="string">'y'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line">zlabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>,<span class="string">'Rotation'</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600  fdm_polar.png</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MaxErr &#x3D;</span><br><span class="line">   1.9429e-14</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当我取不同的步长 $h_r$, 误差总是这么小, 是解的性质太好还是其他方面有问题, 还值得思考.</p>
+</blockquote>
+<p><img src="https://i.loli.net/2021/04/06/rUmwne8jDZdQ6ic.png" alt="fdm_polar.png"></p>
+<h3 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h3><ul>
+<li>李荣华, 微分方程数值解法, 第四版.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Numerical PDEs</category>
+      </categories>
+      <tags>
+        <tag>Finite Difference</tag>
+        <tag>PDE</tag>
+        <tag>MATLAB</tag>
       </tags>
   </entry>
 </search>
