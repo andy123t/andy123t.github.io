@@ -2446,7 +2446,7 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
     <url>/2021/04/05/FDM06/</url>
     <content><![CDATA[<p>极坐标形式的 Poisson 方程差分方法的 <strong>MATLAB 编程实现</strong>。</p>
 <h3 id="极坐标形式的-Poisson-方程"><a href="#极坐标形式的-Poisson-方程" class="headerlink" title="极坐标形式的 Poisson 方程"></a>极坐标形式的 Poisson 方程</h3><script type="math/tex; mode=display">
--\Delta_{r, \theta} u=-\left[\frac{1}{r} \frac{\partial}{\partial r}\left(r \frac{\partial u}{\partial r}\right)+\frac{1}{r^{2}} \frac{\partial^{2} u}{\partial \theta^{2}}\right]=f(r, \theta),</script><p>其中 $r=\sqrt{x^{2}+y^{2}},~\tan \theta =y / x$, 整个 $xy$ 平面变成 $r \theta$ 平面上的半带形域 $\{0 \leqslant r &lt; \infty, 0 \leqslant \theta \leqslant 2\pi \}$.</p>
+-\Delta_{r, \theta} u=-\left[\frac{1}{r} \frac{\partial}{\partial r}\left(r \frac{\partial u}{\partial r}\right)+\frac{1}{r^{2}} \frac{\partial^{2} u}{\partial \theta^{2}}\right]=f(r, \theta),</script><p>其中 $r=\sqrt{x^{2}+y^{2}},~\tan \theta =y / x$, $r \theta$ 平面半带形域 $\{0 \leqslant r &lt; \infty, 0 \leqslant \theta \leqslant 2\pi \}$.</p>
 <a id="more"></a>
 <p>方程的系数于 $r=0$ 处奇异, 因此只当 $r&gt;0$ 时有意义。在 $r=0$ 需补充 $u$ 为光滑的条件 (原点是可去奇点). 由 $u(0, \theta)=u(r, \theta)-r u_{r}(r, \theta)+O(r^{2})$, $r \rightarrow 0$, 则知</p>
 <script type="math/tex; mode=display">\lim _{r \rightarrow 0^{+}} r \frac{\partial u}{\partial r}=0.</script><!-- more -->
