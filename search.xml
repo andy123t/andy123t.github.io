@@ -1044,7 +1044,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <p><strong>在线使用</strong></p>
 <p>本模板还可以上传到在线 LaTeX 网站 <a href="https://www.overleaf.com" target="_blank" rel="noopener">Overeaf</a>，在线使用 LaTeX 写文章，也非常方便。</p>
 <p>在线使用也需要 <strong>XeLaTeX</strong> 编译，找到当前项目左上角 <code>Menu</code> 下面 Compiler 设置，修改 <code>PDFLaTeX</code> 为 <code>XeLaTeX</code> 即可。</p>
-<p><img src="https://i.loli.net/2020/06/06/SLzUIl4d3gNOfmp.png" alt="Overleaf-Thesis.png"></p>
+<p><img src="https://i.loli.net/2020/12/25/WpPtxey5RnuOQ3h.png" alt="overleaf-shnuthesis.png"></p>
 <p>如有不足之处，欢迎提出意见或建议。</p>
 ]]></content>
       <categories>
