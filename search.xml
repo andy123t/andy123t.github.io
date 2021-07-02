@@ -1157,14 +1157,26 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
     <url>/2020/06/12/LaTeX-Thesis/</url>
     <content><![CDATA[<p><strong>上海师范大学研究生毕业论文 LaTeX 模板</strong></p>
 <p>LaTeX 模板及样例在 GitHub 仓库：<a href="https://github.com/andy123t/shnuthesis" target="_blank" rel="noopener">shnuthesis</a>，可以直接下载。</p>
-<p>本模板根据旧的硕士毕业论文 LaTeX 模板改写，参考了 <a href="https://github.com/skinaze/HUSTPaperTemp" target="_blank" rel="noopener">华中科技大学 LaTeX 模板</a>，格式配置放在了类文件 <strong>shnuthesis.cls</strong> 中，直接调用该类文件就可以使用。</p>
+<p><strong>注意：</strong> 本模板需要安装 <strong>texlive</strong> 发行版，并且需要 <strong>XeLaTeX</strong> 编译运行！</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,print]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>shnuthesis 文档类可指定的选项包括</p>
+<ul>
+<li>master 硕士学位论文，不能省略</li>
+<li>doctor 博士学位论文，不能省略</li>
+<li>print 用于打印，封面等生成空白页，可省略</li>
+<li>提交给图书馆的电子版，不要选 print</li>
+</ul>
+<p>本模板为非官方的研究生学位论文 LaTeX 模板，参考了《上海师范大学研究生学位论文规范》，文档类文件为 <strong>shnuthesis.cls</strong></p>
 <a id="more"></a>
 <p><strong>电脑本地使用</strong></p>
 <p>本模板需要安装 <strong>texlive</strong> 发行版，并且需要 <strong>XeLaTeX</strong> 编译运行！如需安装 texlive，可以参考：<a href="https://andy123t.github.io/2020/06/08/LaTeX-Install/">LaTeX 之软件安装与配置</a>，如果之前安装了 <strong>CTEX 套装</strong>，安装之前最好把它卸载干净。</p>
+<p>对于 Windows 系统电脑，如果安装了 texlive 2021 版本，需要声明使用 Windows 字体 (fontset = windows)，建议都加上此命令。</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,print,fontset=windows]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>在线使用</strong></p>
-<p>本模板还可以上传到在线 LaTeX 网站 <a href="https://www.overleaf.com" target="_blank" rel="noopener">Overeaf</a>，在线使用 LaTeX 写文章，也非常方便。</p>
+<p>本模板还可以上传到在线 LaTeX 网站 <a href="https://www.overleaf.com" target="_blank" rel="noopener">Overeaf</a>，在线使用 LaTeX 写文章，也非常方便。如果在线使用，需要自行设置字体 (fontset = ubuntu)，字体与 Windows 字体有些不同。</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,print,fontset=ubuntu]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p>在线使用也需要 <strong>XeLaTeX</strong> 编译，找到当前项目左上角 <code>Menu</code> 下面 Compiler 设置，修改 <code>PDFLaTeX</code> 为 <code>XeLaTeX</code> 即可。</p>
-<p><img src="https://i.loli.net/2020/12/25/WpPtxey5RnuOQ3h.png" alt="overleaf-shnuthesis.png"></p>
+<p><img src="https://i.loli.net/2021/07/02/smxSE5znKJvu9w1.png" alt="overleaf-shnuthesis.png"></p>
 <p>如有不足之处，欢迎提出意见或建议。</p>
 ]]></content>
       <categories>
