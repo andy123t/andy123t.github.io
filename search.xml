@@ -962,15 +962,15 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <p><strong>推荐使用 TeX Live</strong>.</p>
 </blockquote>
 <p>TeX Live 在 macOS/OS X 上的名字是 MacTeX，官方网站 <a href="https://tug.org/mactex" target="_blank" rel="noopener">https://tug.org/mactex</a>.</p>
-<h4 id="Windows-用户下载"><a href="#Windows-用户下载" class="headerlink" title="Windows 用户下载"></a>Windows 用户下载</h4><p>TeX Live 的当前版本是 2020，官方网站下载链接 </p>
+<h4 id="Windows-用户下载"><a href="#Windows-用户下载" class="headerlink" title="Windows 用户下载"></a>Windows 用户下载</h4><p>TeX Live 的当前版本是 2021，官方网站下载链接 </p>
 <ul>
-<li><a href="http://mirror.ctan.org/systems/texlive/Images/texlive2020.iso" target="_blank" rel="noopener">http://mirror.ctan.org/systems/texlive/Images/texlive2020.iso</a>.</li>
+<li><a href="http://mirror.ctan.org/systems/texlive/Images" target="_blank" rel="noopener">http://mirror.ctan.org/systems/texlive/Images</a>.</li>
 </ul>
 <p>也可以使用其他国内镜像</p>
 <ul>
-<li><a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2020.iso" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2020.iso</a></li>
-<li><a href="https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/texlive2020.iso" target="_blank" rel="noopener">https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/texlive2020.iso</a></li>
-<li><a href="https://mirrors.cloud.tencent.com/CTAN/systems/texlive/Images/texlive2020.iso" target="_blank" rel="noopener">https://mirrors.cloud.tencent.com/CTAN/systems/texlive/Images/texlive2020.iso</a></li>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images</a></li>
+<li><a href="https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images" target="_blank" rel="noopener">https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images</a></li>
+<li><a href="https://mirrors.cloud.tencent.com/CTAN/systems/texlive/Images" target="_blank" rel="noopener">https://mirrors.cloud.tencent.com/CTAN/systems/texlive/Images</a></li>
 </ul>
 <h4 id="TeX-Live-安装"><a href="#TeX-Live-安装" class="headerlink" title="TeX Live 安装"></a>TeX Live 安装</h4><p>打开 <strong>texlive2020.iso</strong>，然后双击 <code>install-tl-windows.bat</code> 就可以开始安装。</p>
 <p><img src="https://i.loli.net/2020/06/09/aCxLTkmsbIDvcfW.png" alt="Texlive202001.jpg"></p>
