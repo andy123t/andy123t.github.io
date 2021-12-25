@@ -128,7 +128,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
       </tags>
   </entry>
   <entry>
-    <title>一维热传导方程的 Crank-Nicolson 格式</title>
+    <title>一维热传导方程的 CN 格式</title>
     <url>/2020/05/27/FDM04/</url>
     <content><![CDATA[<p>一维热传导方程 Crank-Nicolson 格式的 <strong>MATLAB 编程实现</strong>。</p>
 <h3 id="一维热传导方程"><a href="#一维热传导方程" class="headerlink" title="一维热传导方程"></a>一维热传导方程</h3><script type="math/tex; mode=display">\left\{\begin{aligned}
