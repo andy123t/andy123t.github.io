@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Andy123t">
 <meta property="og:description" content="在数值分析中，先验误差和后验误差的区别是什么？ 误差估计通常有以下形式： \left\|u-u_{h}\right\| \leq C(h),其中 $u$ 是方程的精确解，$u_h$ 是计算出的近似解，$h$ 是可控制的参数，$C(h)$ 是 $h$ 的某个函数。">
 <meta property="article:published_time" content="2021-12-24T10:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-25T14:09:22.533Z">
+<meta property="article:modified_time" content="2021-12-25T15:47:22.392Z">
 <meta property="article:author" content="Liutao Tian">
 <meta property="article:tag" content="PDE">
 <meta property="article:tag" content="Finite Element">
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-25 22:09:22" itemprop="dateModified" datetime="2021-12-25T22:09:22+08:00">2021-12-25</time>
+                <time title="修改时间：2021-12-25 23:47:22" itemprop="dateModified" datetime="2021-12-25T23:47:22+08:00">2021-12-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,18 +267,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在数值分析中，<a href="https://scicomp.stackexchange.com/questions/23202/what-are-differences-between-a-priori-and-posteriori-error-estimate-in-numer" target="_blank" rel="noopener">先验误差和后验误差的区别是什么？</a></p>
+        <p>在数值分析中，先验误差和后验误差的区别是什么？</p>
 <p>误差估计通常有以下形式：</p>
 <script type="math/tex; mode=display">\left\|u-u_{h}\right\| \leq C(h),</script><p>其中 $u$ 是方程的精确解，$u_h$ 是计算出的近似解，$h$ 是可控制的参数，$C(h)$ 是 $h$ 的某个函数。</p>
 <a id="more"></a>
 <p>在有限元方法中，$u$ 是偏微分方程的解，$u_h$ 是网格大小为 $h$ 的有限元解，但是在反问题中 (用正则化参数 $\alpha$ 代替 $h$) 或者用迭代方法来解方程或者优化问题 (用迭代指数 $k$ — 或者更确切地说 $1/k$ 代替 $h$)，它们具有相同的结构。这样估算的目的是帮助回答这样一个问题： “如果我们想要在逼近解的误差不超过 $10^{-3}$，我必须选择多小的 $h$ ？”</p>
 <p>先验估计和后验估计之间的差异取决于右端项的 $C(h)$ 的表达式：</p>
-<ul>
-<li><p>在<strong>先验估计</strong>中，右端取决于 $h$ (通常是显式的) 和 $u$，但不取决于 $u_h$。例如 Possion 方程 $-\Delta u=f$ 的有限元逼近的典型先验估计有这样的具体形式<br><script type="math/tex">\left\|u-u_{h}\right\|_{L^{2}} \leq c h^{2}|u|_{H^{2}},</script> 其中常数 $c$ 取决于区域和网格的几何形状。原则上，可以在计算 $u_h$ 之前对右端项进行求值 (因此得名)，因此可以在解决问题之前选择 $h$。实际上，$c$ 或 $|u|_{H^{2}}$ 都不知道 ($u$ 是首先要求解的)，但是可以通过推导证明得到 $c$ 的阶或量级估计，通过 $f$ (已知) 得到 $|u|$ 估计。它的主要用途是做定性估计 — 如果你想使误差减小四倍，你需要把 $h$ 减半。</p>
-</li>
-<li><p>在<strong>后验估计</strong>中，右端项取决于 $h$ 和 $u_h$，但不取决于 $u$。一个基于残差的 Possion 方程的后验估计将是<br><script type="math/tex">\left\|u-u_{h}\right\|_{L^{2}} \leq c h\left\|f+\Delta u_{h}\right\|_{H^{-1}},</script> 理论上可以在计算 $u_h$ 后进行评估。在实践中，$H^{-1}$ 范数的计算是有问题的，需要进一步操作右端项以获得单元的界<br><script type="math/tex">\left\|u-u_{h}\right\|_{L^{2}} \leq c\left(\sum_{K} h_{K}^{2}\left\|f+\Delta u_{h}\right\|_{L^{2}(K)}+\sum_{F} h_{K}^{3 / 2}\left\|j\left(\nabla u_{h}\right)\right\|_{L^{2}(F)}\right),</script> 其中第一个求和在三角剖分的单元 $K$ 上，$h_K$ 是单元 $K$ 的大小，第二个求和在所有单元边界 $F$ 上，$j(\nabla u_{h})$ 表示 $u_h$ 的一般导数在 $F$ 上的跳跃。除常数 $c$ 外，通过得到的 $u_h$ 可以完全计算该值。同样，这个估计主要是定性的 — 它告诉你哪些元素比其他元素产生更大的误差，因此，不必均匀地减少 $h$，只需选择一些误差较大的元素，通过细分它们使其更小。这是自适应有限元方法的基础。</p>
-</li>
-</ul>
+<p>$\bullet~$  在<strong>先验估计</strong>中，右端取决于 $h$ (通常是显式的) 和 $u$，但不取决于 $u_h$。例如 Possion 方程 $-\Delta u=f$ 的有限元逼近的典型先验估计有这样的具体形式</p>
+<script type="math/tex; mode=display">\left\|u-u_{h}\right\|_{L^{2}} \leq c h^{2}|u|_{H^{2}},</script><p>其中常数 $c$ 取决于区域和网格的几何形状。原则上，可以在计算 $u_h$ 之前对右端项进行求值 (因此得名)，因此可以在解决问题之前选择 $h$。实际上，$c$ 或 $|u|_{H^{2}}$ 都不知道 ($u$ 是首先要求解的)，但是可以通过推导证明得到 $c$ 的阶或量级估计，通过 $f$ (已知) 得到 $|u|$ 估计。它的主要用途是做定性估计 — 如果你想使误差减小四倍，你需要把 $h$ 减半。</p>
+<p>$\bullet~$ 在<strong>后验估计</strong>中，右端项取决于 $h$ 和 $u_h$，但不取决于 $u$。一个基于残差的 Possion 方程的后验估计将是</p>
+<script type="math/tex; mode=display">\left\|u-u_{h}\right\|_{L^{2}} \leq c h\left\|f+\Delta u_{h}\right\|_{H^{-1}},</script><p>理论上可以在计算 $u_h$ 后进行评估。在实践中，$H^{-1}$ 范数的计算是有问题的，需要进一步操作右端项以获得单元的界</p>
+<p><script type="math/tex">\left\|u-u_{h}\right\|_{L^{2}} \leq c\left(\sum_{K} h_{K}^{2}\left\|f+\Delta u_{h}\right\|_{L^{2}(K)}+\sum_{F} h_{K}^{3 / 2}\left\|j\left(\nabla u_{h}\right)\right\|_{L^{2}(F)}\right),</script> 其中第一个求和在三角剖分的单元 $K$ 上，$h_K$ 是单元 $K$ 的大小，第二个求和在所有单元边界 $F$ 上，$j(\nabla u_{h})$ 表示 $u_h$ 的一般导数在 $F$ 上的跳跃。除常数 $c$ 外，通过得到的 $u_h$ 可以完全计算该值。同样，这个估计主要是定性的 — 它告诉你哪些元素比其他元素产生更大的误差，因此，不必均匀地减少 $h$，只需选择一些误差较大的元素，通过细分它们使其更小。这是自适应有限元方法的基础。</p>
+<p>参考：<a href="https://scicomp.stackexchange.com/questions/23202/what-are-differences-between-a-priori-and-posteriori-error-estimate-in-numer" target="_blank" rel="noopener">What are differences between <strong>a priori</strong> and <strong>posteriori</strong> error estimate in numerical analysis?</a></p>
 
     </div>
 
