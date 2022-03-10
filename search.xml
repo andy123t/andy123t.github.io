@@ -1223,7 +1223,7 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h-\frac{2ht_{n+1}}{X_k
     <content><![CDATA[<p><strong>上海师范大学研究生毕业论文 LaTeX 模板</strong></p>
 <p>LaTeX 模板及样例在 GitHub 仓库：<a href="https://github.com/andy123t/shnuthesis" target="_blank" rel="noopener">shnuthesis</a>，可以直接下载。</p>
 <p><strong>注意：</strong> 本模板需要安装 <strong>texlive</strong> 发行版，并且需要 <strong>XeLaTeX</strong> 编译运行！</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,print]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,12pt]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p>shnuthesis 文档类可指定的选项包括</p>
 <ul>
 <li>master 硕士学位论文，不能省略</li>
@@ -1234,12 +1234,13 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h-\frac{2ht_{n+1}}{X_k
 <p>本模板为非官方的研究生学位论文 LaTeX 模板，参考了《上海师范大学研究生学位论文规范》，文档类文件为 <strong>shnuthesis.cls</strong></p>
 <a id="more"></a>
 <p><strong>电脑本地使用</strong></p>
-<p>本模板需要安装 <strong>texlive</strong> 发行版，并且需要 <strong>XeLaTeX</strong> 编译运行！如需安装 texlive，可以参考：<a href="https://andy123t.github.io/2020/06/08/LaTeX-Install/">LaTeX 之软件安装与配置</a>，如果之前安装了 <strong>CTEX 套装</strong>，安装之前最好把它卸载干净。</p>
-<p>对于 Windows 系统电脑，如果安装了 texlive 2021 版本，需要声明使用 Windows 字体 (fontset = windows)，建议都加上此命令。</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,print,fontset=windows]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>本模板需要安装 <strong>texlive</strong> 发行版，并且需要 <strong>XeLaTeX</strong> 编译运行！如需安装 texlive，可以参考：<a href="https://andy123t.github.io/2020/06/08/LaTeX-Install/">LaTeX 之软件安装与配置</a> 和 <a href="https://www.bilibili.com/video/BV1Pm4y1d7wv/" target="_blank" rel="noopener">视频教程</a>，如果之前安装了 <strong>CTEX 套装</strong>，安装之前最好把它卸载干净。</p>
+<p>本人安装的是 texlive 2020，直接使用模板的设置即可。</p>
+<p>如果安装了 texlive 2021 版本，可能需要声明使用 Windows 字体 (fontset = windows)，才能调用通常的宋体、楷体和黑体。</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,12pt,fontset=windows]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>在线使用</strong></p>
 <p>本模板还可以上传到在线 LaTeX 网站 <a href="https://www.overleaf.com" target="_blank" rel="noopener">Overeaf</a>，在线使用 LaTeX 写文章，也非常方便。如果在线使用，需要自行设置字体 (fontset = ubuntu)，字体与 Windows 字体有些不同。</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,print,fontset=ubuntu]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,12pt,fontset=ubuntu]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p>在线使用也需要 <strong>XeLaTeX</strong> 编译，找到当前项目左上角 <code>Menu</code> 下面 Compiler 设置，修改 <code>PDFLaTeX</code> 为 <code>XeLaTeX</code> 即可。</p>
 <p><img src="https://i.loli.net/2021/07/02/smxSE5znKJvu9w1.png" alt="overleaf-shnuthesis.png"></p>
 <p>如有不足之处，欢迎提出意见或建议。</p>
@@ -2570,6 +2571,35 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
       </categories>
       <tags>
         <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shnuthesis 在线使用教程</title>
+    <url>/2022/03/10/LaTeX-Online/</url>
+    <content><![CDATA[<p><strong>上海师范大学研究生毕业论文 LaTeX 模板在线使用教程</strong></p>
+<p>使用国内 LaTeX 在线编辑平台 <a href="https://www.texpage.com" target="_blank" rel="noopener">TeXPage</a>，能够满足研究生毕业论文的要求。</p>
+<a id="more"></a>
+<p>本模板<strong>推荐</strong>安装 <strong>texlive 发行版</strong>，并且需要 <strong>XeLaTeX</strong> 编译运行！参考<a href="https://andy123t.github.io/2020/06/12/LaTeX-Thesis/">模板说明</a>。</p>
+<p>不支持 CTEX 套装，直接使用会出现很多问题。</p>
+<p>如果条件不允许，或者临时使用，可以使用在线 LaTeX 编辑平台。(有些科研人员把在线 LaTeX 平台作为主力的情况也是有的，在线平台备份做的很好)。</p>
+<p>本模板可以使用到在线 LaTeX 编辑网站 Overleaf 上使用，设置字体 (fontset = ubuntu) 可以使用，这样使用的问题是汉字就不是通常的宋体、楷体和黑体，而是开源的 Fandol 字体，不符合学校对毕业论文的要求。<strong>不推荐使用</strong></p>
+<p>注：对于英文论文，推荐使用 Overleaf，但对国内的网不是特别友好。</p>
+<p><strong>推荐使用 TeXPage 平台</strong></p>
+<p>TeXPage 网站 <a href="https://www.texpage.com" target="_blank" rel="noopener">https://www.texpage.com</a> 最好使用火狐浏览器或 Google 浏览器登录。</p>
+<p><img src="https://s2.loli.net/2022/03/10/SpMLJHoGNizVaEg.png" alt="texpage1.png"></p>
+<p>模板最好从 Github 下载最新版 <a href="https://github.com/andy123t/shnuthesis" target="_blank" rel="noopener">https://github.com/andy123t/shnuthesis</a>， 注册 TeXPage 账号，然后按要求将模板上传到网站 (空项目上传文件或上传 zip 压缩文件)。</p>
+<p><img src="https://s2.loli.net/2022/03/10/Un8lFW24EpykVaD.png" alt="texpage2.png"></p>
+<p><strong>注意</strong>：设置使用 Windows 字体 (通常的宋体、楷体、黑体以及英文字体) ：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,12pt,fontset=windows]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.loli.net/2022/03/10/WXA26VKD4kBfmHg.png" alt="texpage3.png"></p>
+<p>选择菜单栏『更多』可以直接下载编译完成的PDF 文件。</p>
+]]></content>
+      <categories>
+        <category>LaTeX</category>
+      </categories>
+      <tags>
+        <tag>LaTeX</tag>
+        <tag>shnuthesis</tag>
       </tags>
   </entry>
 </search>
