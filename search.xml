@@ -1828,7 +1828,7 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h-\frac{2ht_{n+1}}{X_k
 (\rm II)\left\{\begin{aligned}
 &y_{n+1}=y_{n}+h \sum_{i=1}^{s} b_{i} f\left(x_{n}+c_{i} h, Y_{i}\right), \\
 &Y_{i}=y_{n}+h \sum_{j=1}^{s} a_{i j} f\left(x_{n}+c_{j} h, Y_{j}\right), \quad i=1,2, \ldots, s.
-\end{aligned}\right.</script><p>形式 (I) 与形式 (II) 等价，可以通过插值 $ k_{i}=f\left(x_{n}+c_{i} h, Y_{i}\right), i=1,2, \dots, s$ 证明。</p>
+\end{aligned}\right.</script><p>形式 (I) 与形式 (II) 等价，可以通过变换 $ k_{i}=f\left(x_{n}+c_{i} h, Y_{i}\right),~i=1,2, \dots, s$ 得到。</p>
 <h3 id="Gauss-Method-2-级-4-阶"><a href="#Gauss-Method-2-级-4-阶" class="headerlink" title="Gauss Method 2 级 4 阶"></a>Gauss Method 2 级 4 阶</h3><script type="math/tex; mode=display">
 \left\{
 \begin{aligned}
@@ -2600,6 +2600,43 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
       <tags>
         <tag>Reading</tag>
         <tag>Book</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>迎风格式</title>
+    <url>/2022/05/29/FDM07/</url>
+    <content><![CDATA[<p>对单波方程构造差分格式：</p>
+<script type="math/tex; mode=display">\frac{\partial u}{\partial t}+a \frac{\partial u}{\partial x}=0, ~~ x_{L} \leqslant x  \leqslant x_{R},~t\geqslant 0.</script><p>“迎风格式” 就是在构造差分格式的时候, 尽可能多地利用上游传来的信息, 这种格式更加稳定。</p>
+<a id="more"></a>
+<h3 id="迎风格式"><a href="#迎风格式" class="headerlink" title="迎风格式"></a>迎风格式</h3><p>网格剖分中, $h$ 为空间方向步长, $\tau$ 为时间方向步长. 根据 $a$ 的取值进行讨论：</p>
+<p>1、当 $a&gt;0$ 时, 波动的传播方向从 $x_{L}$ 到 $x_{R}$,</p>
+<p><img src="https://s2.loli.net/2022/05/29/GJ64EiIqNDLdgyA.jpg" alt="upwind1.jpg"></p>
+<p>对应的迎风格式：</p>
+<script type="math/tex; mode=display">\frac{u_{j}^{n+1}-u_{j}^{n}}{\tau}+a \frac{u_{j}^{n}-u_{j-1}^{n}}{h}=0,</script><p>令 $r=\frac{a\tau}{h}$, 于是</p>
+<script type="math/tex; mode=display">u_{j}^{n+1}=r u_{j-1}^{n}+(1-r) u_{j}^{n}.</script><p>当 $|\frac{a\tau}{h}|\leqslant 1$ 时, 格式稳定.</p>
+<p>2、当 $a&lt;0$, 波动的传播方向从 $x_{R}$ 到 $x_{L}$,</p>
+<p><img src="https://s2.loli.net/2022/05/29/7V8JYCha3k9XWSe.jpg" alt="upwind2.jpg"></p>
+<p>对应的迎风格式：</p>
+<script type="math/tex; mode=display">\frac{u_{j}^{n+1}-u_{j}^{n}}{\tau}+a \frac{u_{j+1}^{n}-u_{j}^{n}}{h}=0,</script><p>于是</p>
+<script type="math/tex; mode=display">u_{j}^{n+1}=(1+r) u_{j}^{n}-r u_{j+1}^{n}.</script><p>当 $|\frac{a\tau}{h}|\leqslant 1$ 时, 格式稳定.</p>
+<p>3、无论 $a$ 取何值, 中心差分格式</p>
+<script type="math/tex; mode=display">\frac{u_{j}^{n+1}-u_{j}^{n}}{\tau}+a \frac{u_{j+1}^{n}-u_{j-1}^{n}}{2 h}=0</script><p>都是不稳定的, 不能用于数值计算.</p>
+<h3 id="迎风格式的构建"><a href="#迎风格式的构建" class="headerlink" title="迎风格式的构建"></a>迎风格式的构建</h3><p>用 Taylor 展开构建迎风格式：</p>
+<p>用 $j-1$, $j$ 两点</p>
+<script type="math/tex; mode=display">(\frac{\partial u}{\partial x})_{j}=\frac{u_{j}-u_{j-1}}{\Delta x} + \mathcal{O}(\Delta x).</script><p>此为一阶迎风格式.</p>
+<p>用 $j-1$, $j$, $j+1$ 三点</p>
+<script type="math/tex; mode=display">(\frac{\partial u}{\partial x})_{j}=\frac{3u_{j+1}-4u_{j}+u_{j-1}}{2\Delta x} + \mathcal{O}(\Delta x^2).</script><p>此为二阶迎风格式.</p>
+<h3 id="通用格式"><a href="#通用格式" class="headerlink" title="通用格式"></a>通用格式</h3><p>对于这样的方程形式：</p>
+<script type="math/tex; mode=display">\frac{\partial u}{\partial t}+\frac{\partial f(u)}{\partial x}=0.</script><p>不知道波的传播方向, 采用矢量分裂的方法将该波分为两种波：</p>
+<script type="math/tex; mode=display">f(u)=f^{+}(u)+f^{-}(u).</script><p>一条从左向右传播，另一条从右向左传播。在构造差分的过程中对它们分别进行差分：</p>
+<script type="math/tex; mode=display">\frac{\partial u}{\partial t}+\frac{\partial f^{+}}{\partial x}+\frac{\partial f^{-}}{\partial x}=0.</script>]]></content>
+      <categories>
+        <category>Numerical PDEs</category>
+      </categories>
+      <tags>
+        <tag>PDE</tag>
+        <tag>Finite Difference</tag>
+        <tag>Upwind Scheme</tag>
       </tags>
   </entry>
 </search>
