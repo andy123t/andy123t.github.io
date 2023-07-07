@@ -199,6 +199,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/20/Software02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liutao Tian">
+      <meta itemprop="description" content="知人者智，自知者明">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/20/Software02/" class="post-title-link" itemprop="url">Windows 软件推荐（二）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-20 18:00:00" itemprop="dateCreated datePublished" datetime="2020-05-20T18:00:00+08:00">2020-05-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-21 01:54:49" itemprop="dateModified" datetime="2020-05-21T01:54:49+08:00">2020-05-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Skills/" itemprop="url" rel="index"><span itemprop="name">Computer Skills</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文继续推荐软件，包括 Typora、CCleaner、IDM、Adobe Acrobat Pro DC、PotPlayer、foobar2000。</p>
+<h3 id="Markdown-编辑器：Typora"><a href="#Markdown-编辑器：Typora" class="headerlink" title="Markdown 编辑器：Typora"></a>Markdown 编辑器：Typora</h3><p><strong>Typora</strong> 界面只有菜单栏若干几个选项和一个空白的输入区域，但这个简约的软件所支持的功能特别多。</p>
+<ul>
+<li>支持实时预览 Markdown 格式效果，同时还保留了「源代码模式」，快捷键 <code>Ctrl + /</code> 随时切换源码与预览（它的 Markdown 输入手感真是一流！）；</li>
+<li>配合 <strong>Pandoc</strong> 你可以轻松地将文件导出为 PDF、HTML、Word、移动端长图，以及许多学术相关的文件格式；</li>
+<li>支持 LaTeX 等公式符号、表格、代码、图片外链。基本你能想到的文稿内容它都支持并可以实时预览。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/20/Software02/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/18/Software01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -403,7 +490,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-25 19:44:23" itemprop="dateModified" datetime="2021-12-25T19:44:23+08:00">2021-12-25</time>
+                <time title="修改时间：2023-07-07 17:00:54" itemprop="dateModified" datetime="2023-07-07T17:00:54+08:00">2023-07-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -432,9 +519,9 @@
   \begin{aligned}
   &u_{n+1}=u_{n}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right), \\
   &k_{1} =f\left(t_{n}, u_{n}\right), \\
-  &k_{2} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{1}\right), \\
-  &k_{3} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{2}\right), \\
-  &k_{4} =f\left(t_{n}+h, u_{n}+k_{3}\right).
+  &k_{2} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{h}{2}k_{1}\right), \\
+  &k_{3} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{h}{2}k_{2}\right), \\
+  &k_{4} =f\left(t_{n}+h, u_{n}+hk_{3}\right).
   \end{aligned}
   \right.</script>
           <!--noindex-->
@@ -585,7 +672,7 @@ u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-25 19:43:48" itemprop="dateModified" datetime="2021-12-25T19:43:48+08:00">2021-12-25</time>
+                <time title="修改时间：2023-07-07 17:00:06" itemprop="dateModified" datetime="2023-07-07T17:00:06+08:00">2023-07-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -975,83 +1062,6 @@ u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/05/11/HomeScenery/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Liutao Tian">
-      <meta itemprop="description" content="知人者智，自知者明">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Andy123t">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/11/HomeScenery/" class="post-title-link" itemprop="url">傍晚的美景</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-11 20:00:00 / 修改时间：22:22:22" itemprop="dateCreated datePublished" datetime="2020-05-11T20:00:00+08:00">2020-05-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天是 2020 年 05 月 11 日，还没有开学，吃过晚饭后出去溜达了一圈，看到这傍晚的美景！</p>
-<p>走出村庄的路上</p>
-<p><img src="https://i.loli.net/2020/05/11/2VjsGhIFrl8QWi6.jpg" alt="2020051101.JPG"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/11/HomeScenery/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1123,7 +1133,7 @@ u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1136,7 +1146,7 @@ u_{n+1}=\frac{1}{1+h}(u_n+ht_{n+1}^2+ht_{n+1}).</script><p>显格式比较容易
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

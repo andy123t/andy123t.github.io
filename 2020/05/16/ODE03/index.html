@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/08/26/wgU9fkWCnBclFru.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/16/XPF63lsINM5ephQ.png">
 <meta property="article:published_time" content="2020-05-16T12:42:41.353Z">
-<meta property="article:modified_time" content="2021-12-25T11:44:23.511Z">
+<meta property="article:modified_time" content="2023-07-07T09:00:54.848Z">
 <meta property="article:author" content="Liutao Tian">
 <meta property="article:tag" content="MATLAB">
 <meta property="article:tag" content="ODE">
@@ -238,7 +238,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-25 19:44:23" itemprop="dateModified" datetime="2021-12-25T19:44:23+08:00">2021-12-25</time>
+                <time title="修改时间：2023-07-07 17:00:54" itemprop="dateModified" datetime="2023-07-07T17:00:54+08:00">2023-07-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,9 +274,9 @@
   \begin{aligned}
   &u_{n+1}=u_{n}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right), \\
   &k_{1} =f\left(t_{n}, u_{n}\right), \\
-  &k_{2} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{1}\right), \\
-  &k_{3} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{1}{2}k_{2}\right), \\
-  &k_{4} =f\left(t_{n}+h, u_{n}+k_{3}\right).
+  &k_{2} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{h}{2}k_{1}\right), \\
+  &k_{3} =f\left(t_{n}+\frac{h}{2}, u_{n}+\frac{h}{2}k_{2}\right), \\
+  &k_{4} =f\left(t_{n}+h, u_{n}+hk_{3}\right).
   \end{aligned}
   \right.</script><a id="more"></a>
 <p><strong>线性 ODE 例子</strong></p>
@@ -395,7 +395,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -408,7 +408,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-andy.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-andy.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-andy.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文用 BDF2 方法（属于线性多步法）求解ODE，需要用到方程的牛顿迭代，然后用 MATLAB 编程，最后输出结果的误差阶为 2。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BDF2 方法">
+<meta property="og:url" content="https://andy123t.github.io/2023/07/07/ODE06/index.html">
+<meta property="og:site_name" content="Andy123t">
+<meta property="og:description" content="本文用 BDF2 方法（属于线性多步法）求解ODE，需要用到方程的牛顿迭代，然后用 MATLAB 编程，最后输出结果的误差阶为 2。">
+<meta property="og:image" content="https://s2.loli.net/2023/07/07/2Qnxj4kJMKmuHDC.png">
+<meta property="og:image" content="https://s2.loli.net/2023/07/07/P7AByQt8Yijegsl.png">
+<meta property="og:image" content="https://s2.loli.net/2023/07/07/oW1ntifPyK9DkTq.png">
+<meta property="og:image" content="https://s2.loli.net/2023/07/07/euY9g3Mj5HV4fnR.png">
+<meta property="article:published_time" content="2023-07-07T10:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-07T09:58:24.463Z">
+<meta property="article:author" content="Liutao Tian">
+<meta property="article:tag" content="MATLAB">
+<meta property="article:tag" content="ODE">
+<meta property="article:tag" content="Newton Iteration">
+<meta property="article:tag" content="Linear Multistep Method">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/07/07/2Qnxj4kJMKmuHDC.png">
+
+<link rel="canonical" href="https://andy123t.github.io/2023/07/07/ODE06/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>BDF2 方法 | Andy123t</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Andy123t</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-notes">
+
+    <a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>系列笔记</a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook" rel="section"><i class="fa fa-sticky-note fa-fw"></i>札记 & 留言板</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2023/07/07/ODE06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liutao Tian">
+      <meta itemprop="description" content="知人者智，自知者明">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          BDF2 方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-07 18:00:00 / 修改时间：17:58:24" itemprop="dateCreated datePublished" datetime="2023-07-07T18:00:00+08:00">2023-07-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Numerical-ODEs/" itemprop="url" rel="index"><span itemprop="name">Numerical ODEs</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文用 BDF2 方法（属于线性多步法）求解ODE，需要用到方程的牛顿迭代，然后用 MATLAB 编程，最后输出结果的误差阶为 2。</p>
+<a id="more"></a>
+<h3 id="BDF-方法"><a href="#BDF-方法" class="headerlink" title="BDF 方法"></a>BDF 方法</h3><p>考虑常微分方程初值问题</p>
+<script type="math/tex; mode=display">u^{\prime}=f(t, u), \quad u(0)=u_{0}.</script><p>向后微分公式 (Backward differentiation formula, BDF) 是数值求解常微分方程的隐式线性多步方法. 由于该方法是 A 稳定的, 通常用来求刚性微分方程.</p>
+<p>BDF1 方法就是隐式 Euler 方法 (或后退 Euler 方法)：</p>
+<script type="math/tex; mode=display">u_{n+1} = u_n + h f(t_{n+1}, u_{n+1}),\quad n=0,1, \cdots, N-1.</script><p>BDF2 方法：</p>
+<script type="math/tex; mode=display">u_{n+2} - \tfrac{4}{3} u_{n+1} + \tfrac{1}{3} u_n = \tfrac{2}{3} h f(t_{n+2}, u_{n+2}),\quad n=0,1, \cdots, N-2.</script><p>即</p>
+<script type="math/tex; mode=display">u_{n+2} = \tfrac{4}{3} u_{n+1} - \tfrac{1}{3} u_n + \tfrac{2}{3} h f(t_{n+2}, u_{n+2}),\quad n=0,1, \cdots, N-2.</script><p>BDF3 方法：</p>
+<script type="math/tex; mode=display">u_{n+3} - \tfrac{18}{11} u_{n+2} + \tfrac{9}{11} u_{n+1} - \tfrac{2}{11} u_n = \tfrac6{11} h f(t_{n+3}, u_{n+3}),\quad n=0,1, \cdots, N-3.</script><p>下面使用 BDF2 方法求解常微分方程初值问题.</p>
+<h3 id="线性-ODE-例子"><a href="#线性-ODE-例子" class="headerlink" title="线性 ODE 例子"></a>线性 ODE 例子</h3><script type="math/tex; mode=display">
+\left\{\begin{aligned}
+&\frac{\mathrm{d}u}{\mathrm{d}t}=t^2+t-u, \quad 0 < t \leqslant 1, \\
+&u(0)=0.
+\end{aligned}\right.</script><p>方程的真解：$u(t)=-e^{-t}+t^{2}-t+1$.</p>
+<p>BDF2 方法求解方程的步骤：</p>
+<ol>
+<li><p>使用梯形公式计算 $u_1$,</p>
+<script type="math/tex; mode=display">u_1 = u_0 + \tfrac{h}{2}f(t_0,u_0) + \tfrac{h}{2}f(t_1,u_1).</script><p>可知：</p>
+<script type="math/tex; mode=display">u_1 = \tfrac{2}{2+h}u_0 + \tfrac{h}{2+h}(t_0^2+t_0 - u_0) + \tfrac{h}{2+h}(t_1^2+t_1).</script></li>
+<li><p>使用 BDF2 方法计算 $u_n$, $n\geq 2$,</p>
+<script type="math/tex; mode=display">y_{n+2} = \tfrac{4}{3} y_{n+1} - \tfrac{1}{3} y_n + \tfrac{2}{3} h f(t_{n+2}, y_{n+2}),\quad n=0,1, \cdots, N-2.</script><p>计算可得</p>
+<script type="math/tex; mode=display">u_{n+2} = \tfrac{4}{3+2h} u_{n+1} - \tfrac{1}{3+2h} u_n + \tfrac{2h}{3+2h} (t_{n+2}^2 + t_{n+2}), \quad n=0,1, \cdots, N-2.</script></li>
+</ol>
+<p><strong>计算数值解</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% BDF2.m</span></span><br><span class="line"><span class="comment">% BDF method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(t)=t^2+t-u, t in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(t)=-exp(-t)+t^2-t+1.</span></span><br><span class="line">clear all; close all;</span><br><span class="line">h=<span class="number">0.1</span>;</span><br><span class="line">t=<span class="number">0</span>:h:<span class="number">1</span>;                       <span class="comment">% interval partition</span></span><br><span class="line">N=<span class="built_in">length</span>(t)<span class="number">-1</span>;</span><br><span class="line">un=<span class="built_in">zeros</span>(<span class="number">1</span>,N+<span class="number">1</span>);</span><br><span class="line">un(<span class="number">1</span>)=<span class="number">0</span>;                       <span class="comment">% initial value</span></span><br><span class="line"><span class="comment">% Trapezoidal rule to compute un(2)</span></span><br><span class="line">un(<span class="number">2</span>)=<span class="number">2</span>/(<span class="number">2</span>+h)*un(<span class="number">1</span>)+h/(<span class="number">2</span>+h)*(t(<span class="number">1</span>)^<span class="number">2</span>+t(<span class="number">1</span>)+un(<span class="number">1</span>))+h/(<span class="number">2</span>+h)*(t(<span class="number">2</span>)^<span class="number">2</span>+t(<span class="number">2</span>));</span><br><span class="line"><span class="comment">% BDF2 method</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N<span class="number">-1</span></span><br><span class="line">    un(n+<span class="number">2</span>)=<span class="number">4</span>/(<span class="number">3</span>+<span class="number">2</span>*h)*un(n+<span class="number">1</span>)<span class="number">-1</span>/(<span class="number">3</span>+<span class="number">2</span>*h)*un(n)+<span class="number">2</span>*h/(<span class="number">3</span>+<span class="number">2</span>*h)*(t(n+<span class="number">2</span>)^<span class="number">2</span>+t(n+<span class="number">2</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=-<span class="built_in">exp</span>(-t)+t.^<span class="number">2</span>-t+<span class="number">1</span>;          <span class="comment">% exact solution</span></span><br><span class="line"><span class="built_in">plot</span>(t,ue,<span class="string">'b-'</span>,t,un,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact'</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'northwest'</span>)</span><br><span class="line"><span class="comment">% title('BDF2 method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'t'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computing error</span></span><br><span class="line">error=<span class="built_in">max</span>(<span class="built_in">abs</span>(un-ue))</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600 BDF2.png</span></span><br><span class="line"><span class="comment">% print -depsc2 BDF2.eps</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.loli.net/2023/07/07/2Qnxj4kJMKmuHDC.png" alt="BDF2.png"></p>
+<p><strong>计算误差阶</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% BDF2_error.m</span></span><br><span class="line"><span class="comment">% BDF method for the ODE model</span></span><br><span class="line"><span class="comment">% u'(t)=t^2+t-u, t in [0,1] </span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=0 ;</span></span><br><span class="line"><span class="comment">% Exact solution: u(t)=-exp(-t)+t^2-t+1.</span></span><br><span class="line">clear all; close all;</span><br><span class="line">Nvec=[<span class="number">10</span> <span class="number">50</span> <span class="number">100</span> <span class="number">500</span> <span class="number">1000</span>];   <span class="comment">% Number of partitions</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    t=<span class="number">0</span>:h:<span class="number">1</span>;                 <span class="comment">% interval partition</span></span><br><span class="line">    un(<span class="number">1</span>)=<span class="number">0</span>;                 <span class="comment">% initial value</span></span><br><span class="line">    <span class="comment">% Trapezoidal rule to compute un(2)</span></span><br><span class="line">    un(<span class="number">2</span>)=<span class="number">2</span>/(<span class="number">2</span>+h)*un(<span class="number">1</span>)+h/(<span class="number">2</span>+h)*(t(<span class="number">1</span>)^<span class="number">2</span>+t(<span class="number">1</span>)+un(<span class="number">1</span>))+h/(<span class="number">2</span>+h)*(t(<span class="number">2</span>)^<span class="number">2</span>+t(<span class="number">2</span>));</span><br><span class="line">    <span class="comment">% BDF2 method</span></span><br><span class="line">    <span class="keyword">for</span> n=<span class="number">1</span>:N<span class="number">-1</span></span><br><span class="line">        un(n+<span class="number">2</span>)=<span class="number">4</span>/(<span class="number">3</span>+<span class="number">2</span>*h)*un(n+<span class="number">1</span>)<span class="number">-1</span>/(<span class="number">3</span>+<span class="number">2</span>*h)*un(n)+<span class="number">2</span>*h/(<span class="number">3</span>+<span class="number">2</span>*h)*(t(n+<span class="number">2</span>)^<span class="number">2</span>+t(n+<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ue=-<span class="built_in">exp</span>(-t)+t.^<span class="number">2</span>-t+<span class="number">1</span>;    <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(un-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)),<span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">%title('Convergence of BDF2 method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -2'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computing convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600 BDF2_error.png</span></span><br><span class="line"><span class="comment">% print -depsc2 BDF2_error.eps</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">   1.0e-06 *</span><br><span class="line">    0.3778    0.0006    0.0000    0.0000    0.0000    0.0000</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    4.0004    4.0001    3.9990    3.9310    4.3726</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.loli.net/2023/07/07/P7AByQt8Yijegsl.png" alt="BDF2_error.png"></p>
+<h3 id="非线性例子"><a href="#非线性例子" class="headerlink" title="非线性例子"></a>非线性例子</h3><script type="math/tex; mode=display">
+\left\{\begin{aligned}
+&\frac{\mathrm{d} u}{\mathrm{d} t}=u-\frac{2t}{u}, \quad 0 < t \leqslant 1,\\
+&u(0)=1.
+\end{aligned} \right.</script><p>方程的真解：$u(t)=\sqrt{2t+1}$.</p>
+<p>BDF2 方法求解方程的步骤：</p>
+<ol>
+<li><p>使用梯形公式计算 $u_1$,</p>
+<script type="math/tex; mode=display">u_1 = u_0 + \tfrac{h}{2}f(t_0,u_0) + \tfrac{h}{2}f(t_1,u_1).</script><p>这里需要用牛顿迭代求解一个非线性方程.</p>
+</li>
+<li><p>使用 BDF2 方法计算 $u_n$, $n\geq 2$,</p>
+<script type="math/tex; mode=display">u_{n+2} = \tfrac{4}{3} u_{n+1} - \tfrac{1}{3} u_n + \tfrac{2}{3} h f(t_{n+2}, u_{n+2}),\quad n=0,1, \cdots, N-2.</script><p>这里每一步都需要用牛顿迭代求解一个非线性方程.</p>
+</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% BDF2Non.m</span></span><br><span class="line"><span class="comment">% BDF method for the nonlinear ODE model</span></span><br><span class="line"><span class="comment">% u'(t)=u-2t/u, t in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1;</span></span><br><span class="line"><span class="comment">% Exact solution: u(t)=sqrt(2*t+1)</span></span><br><span class="line">clear all; close all;</span><br><span class="line">h=<span class="number">0.1</span>;</span><br><span class="line">t=<span class="number">0</span>:h:<span class="number">1</span>;          <span class="comment">% interval partition</span></span><br><span class="line">N=<span class="built_in">length</span>(t)<span class="number">-1</span>;</span><br><span class="line">un=<span class="built_in">zeros</span>(<span class="number">1</span>,N+<span class="number">1</span>);</span><br><span class="line">un(<span class="number">1</span>)=<span class="number">1</span>;          <span class="comment">% initial value</span></span><br><span class="line">NI(<span class="number">1</span>,N)=<span class="number">0</span>;        <span class="comment">% Record the number of iterations</span></span><br><span class="line"><span class="comment">% Trapezoidal rule to compute un(2)</span></span><br><span class="line">X=un(<span class="number">1</span>);</span><br><span class="line">Xprev=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">abs</span>(X-Xprev) &gt; <span class="built_in">abs</span>(X)*<span class="number">1e-14</span></span><br><span class="line">    Xprev=X;</span><br><span class="line">    X=X-(X-h/<span class="number">2</span>*X+h*t(<span class="number">2</span>)/X-un(<span class="number">1</span>)-h/<span class="number">2</span>*(un(<span class="number">1</span>)...</span><br><span class="line">        <span class="number">-2</span>*t(<span class="number">1</span>)/un(<span class="number">1</span>)))./(<span class="number">1</span>-h/<span class="number">2</span>-h*t(<span class="number">2</span>)/(X^<span class="number">2</span>));</span><br><span class="line">    un(<span class="number">2</span>)=X;</span><br><span class="line">    NI(<span class="number">1</span>)=NI(<span class="number">1</span>)+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% BDF2 method</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N<span class="number">-1</span></span><br><span class="line">    X=un(n+<span class="number">1</span>);</span><br><span class="line">    Xprev=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">abs</span>(X-Xprev) &gt; <span class="built_in">abs</span>(X)*<span class="number">1e-14</span></span><br><span class="line">    Xprev=X;</span><br><span class="line">    X=X-(X<span class="number">-2</span>/<span class="number">3</span>*h*X+<span class="number">4</span>/<span class="number">3</span>*h*t(n+<span class="number">2</span>)/X<span class="number">-4</span>/<span class="number">3</span>*un(n+<span class="number">1</span>)...</span><br><span class="line">        +<span class="number">1</span>/<span class="number">3</span>*un(n))./(<span class="number">1</span><span class="number">-2</span>/<span class="number">3</span>*h<span class="number">-4</span>/<span class="number">3</span>*h*t(n+<span class="number">2</span>)/(X^<span class="number">2</span>));</span><br><span class="line">    NI(n+<span class="number">1</span>)=NI(n+<span class="number">1</span>)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    un(n+<span class="number">2</span>)=X;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ue=<span class="built_in">sqrt</span>(<span class="number">2</span>*t+<span class="number">1</span>);    <span class="comment">% exact solution</span></span><br><span class="line"><span class="built_in">plot</span>(t,ue,<span class="string">'b-'</span>,t,un,<span class="string">'r+'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">'Exact'</span>,<span class="string">'Numerical'</span>,<span class="string">'location'</span>,<span class="string">'northwest'</span>)</span><br><span class="line"><span class="comment">% title('BDF2 method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'t'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>), ylabel(<span class="string">'u'</span>,<span class="string">'fontsize'</span>,<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computing error</span></span><br><span class="line">error=<span class="built_in">max</span>(<span class="built_in">abs</span>(un-ue))</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600 BDF2Non.png</span></span><br><span class="line"><span class="comment">% print -depsc2 BDF2Non.eps</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.loli.net/2023/07/07/oW1ntifPyK9DkTq.png" alt="BDF2Non.png"></p>
+<p><strong>计算误差阶</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% BDF2Non_error.m</span></span><br><span class="line"><span class="comment">% BDF method for the nonlinear ODE model</span></span><br><span class="line"><span class="comment">% u'(t)=u-2t/u, t in [0,1]</span></span><br><span class="line"><span class="comment">% Initial condition: u(0)=1;</span></span><br><span class="line"><span class="comment">% Exact solution: u(t)=sqrt(2*t+1)</span></span><br><span class="line">clear all; close all;</span><br><span class="line">Nvec=[<span class="number">100</span> <span class="number">500</span> <span class="number">1000</span> <span class="number">5000</span> <span class="number">10000</span>];  <span class="comment">% Number of partitions</span></span><br><span class="line">Error=[];</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)</span><br><span class="line">    N=Nvec(k);</span><br><span class="line">    h=<span class="number">1</span>/N;</span><br><span class="line">    t=<span class="number">0</span>:h:<span class="number">1</span>;          <span class="comment">% interval partition</span></span><br><span class="line">    un(<span class="number">1</span>)=<span class="number">1</span>;          <span class="comment">% initial value</span></span><br><span class="line">    NI(<span class="number">1</span>,N)=<span class="number">0</span>;        <span class="comment">% Record the number of iterations</span></span><br><span class="line">    <span class="comment">% Trapezoidal rule to compute un(2)</span></span><br><span class="line">    X=un(<span class="number">1</span>);</span><br><span class="line">    Xprev=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">abs</span>(X-Xprev) &gt; <span class="built_in">abs</span>(X)*<span class="number">1e-12</span></span><br><span class="line">        Xprev=X;</span><br><span class="line">        X=X-(X-h/<span class="number">2</span>*X+h*t(<span class="number">2</span>)/X-un(<span class="number">1</span>)-h/<span class="number">2</span>*(un(<span class="number">1</span>)...</span><br><span class="line">            <span class="number">-2</span>*t(<span class="number">1</span>)/un(<span class="number">1</span>)))./(<span class="number">1</span>-h/<span class="number">2</span>-h*t(<span class="number">2</span>)/(X^<span class="number">2</span>));</span><br><span class="line">        un(<span class="number">2</span>)=X;</span><br><span class="line">        NI(<span class="number">1</span>)=NI(<span class="number">1</span>)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">% BDF2 method</span></span><br><span class="line">    <span class="keyword">for</span> n=<span class="number">1</span>:N<span class="number">-1</span></span><br><span class="line">        X=un(n+<span class="number">1</span>);</span><br><span class="line">        Xprev=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">abs</span>(X-Xprev) &gt; <span class="built_in">abs</span>(X)*<span class="number">1e-12</span></span><br><span class="line">            Xprev=X;</span><br><span class="line">            X=X-(X<span class="number">-2</span>/<span class="number">3</span>*h*X+<span class="number">4</span>/<span class="number">3</span>*h*t(n+<span class="number">2</span>)/X<span class="number">-4</span>/<span class="number">3</span>*un(n+<span class="number">1</span>)...</span><br><span class="line">                +<span class="number">1</span>/<span class="number">3</span>*un(n))./(<span class="number">1</span><span class="number">-2</span>/<span class="number">3</span>*h<span class="number">-4</span>/<span class="number">3</span>*h*t(n+<span class="number">2</span>)/(X^<span class="number">2</span>));</span><br><span class="line">            NI(n+<span class="number">1</span>)=NI(n+<span class="number">1</span>)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        un(n+<span class="number">2</span>)=X;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ue=<span class="built_in">sqrt</span>(<span class="number">2</span>*t+<span class="number">1</span>);    <span class="comment">% exact solution</span></span><br><span class="line">    error=<span class="built_in">max</span>(<span class="built_in">abs</span>(un-ue));</span><br><span class="line">    Error=[Error,error];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Error),<span class="string">'ro-'</span>,<span class="string">'MarkerFaceColor'</span>,<span class="string">'w'</span>,<span class="string">'LineWidth'</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">log10</span>(Nvec),<span class="built_in">log10</span>(Nvec.^(<span class="number">-2</span>)),<span class="string">'--'</span>)</span><br><span class="line">grid on</span><br><span class="line"><span class="comment">% title('Convergence of BDF2 method','fontsize',12)</span></span><br><span class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'log_&#123;10&#125;N'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>), ylabel(<span class="string">'log_&#123;10&#125;Error'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% add annotation of slope</span></span><br><span class="line">ax = [<span class="number">0.57</span> <span class="number">0.53</span>];</span><br><span class="line">ay = [<span class="number">0.68</span> <span class="number">0.63</span>];</span><br><span class="line">annotation(<span class="string">'textarrow'</span>,ax,ay,<span class="string">'String'</span>,<span class="string">'slope = -2'</span>,<span class="string">'fontsize'</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">% computing convergence order</span></span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:<span class="built_in">length</span>(Nvec)<span class="number">-1</span></span><br><span class="line">    order(n)=-<span class="built_in">log</span>(Error(n)/Error(n+<span class="number">1</span>))/(<span class="built_in">log</span>(Nvec(n)/Nvec(n+<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Error</span><br><span class="line">order</span><br><span class="line"></span><br><span class="line"><span class="comment">% print -dpng -r600 BDF2Non_error.png</span></span><br><span class="line"><span class="comment">% print -depsc2 BDF2Non_error.eps</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Error &#x3D;</span><br><span class="line">   1.0e-04 *</span><br><span class="line">    0.8167    0.0334    0.0084    0.0003    0.0001</span><br><span class="line"></span><br><span class="line">order &#x3D;</span><br><span class="line">    1.9858    1.9958    1.9986    2.0000</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.loli.net/2023/07/07/euY9g3Mj5HV4fnR.png" alt="BDF2Non_error.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
+              <a href="/tags/ODE/" rel="tag"># ODE</a>
+              <a href="/tags/Newton-Iteration/" rel="tag"># Newton Iteration</a>
+              <a href="/tags/Linear-Multistep-Method/" rel="tag"># Linear Multistep Method</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/29/FDM07/" rel="prev" title="迎风格式">
+      <i class="fa fa-chevron-left"></i> 迎风格式
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#BDF-方法"><span class="nav-number">1.</span> <span class="nav-text">BDF 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性-ODE-例子"><span class="nav-number">2.</span> <span class="nav-text">线性 ODE 例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非线性例子"><span class="nav-number">3.</span> <span class="nav-text">非线性例子</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Liutao Tian"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Liutao Tian</p>
+  <div class="site-description" itemprop="description">知人者智，自知者明</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/andy123t" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;andy123t" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:andy123t@163.com" title="E-Mail → mailto:andy123t@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://liam.page/" title="https:&#x2F;&#x2F;liam.page&#x2F;" rel="noopener" target="_blank">Liam</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://johnhu94.github.io/" title="https:&#x2F;&#x2F;johnhu94.github.io&#x2F;" rel="noopener" target="_blank">JohnHu</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liutao Tian</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+
+</body>
+</html>
