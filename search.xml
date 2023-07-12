@@ -2737,7 +2737,7 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate your_env_name</span><br></pre></td></tr></table></figure>
 <ul>
-<li>查看通过 conda 安装的安装包</li>
+<li>查看通过 conda 安装的库</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure>
 <ul>
@@ -2745,11 +2745,11 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install package_name</span><br></pre></td></tr></table></figure>
 <ul>
-<li>安装指定版本的包</li>
+<li>安装指定版本的库</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install package_name=X.X</span><br></pre></td></tr></table></figure>
 <ul>
-<li>卸载包</li>
+<li>卸载库</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda uninstall package_name</span><br></pre></td></tr></table></figure>
 <ul>
