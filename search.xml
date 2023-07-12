@@ -2707,4 +2707,105 @@ u_{N}^{\prime \prime}(x_{k})&=\sum_{j=0}^{N} w_{j} h_{j}^{\prime \prime}(x_{k})=
         <tag>Linear Multistep Method</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Miniconnda 安装与基础环境配置</title>
+    <url>/2023/07/12/Miniconda/</url>
+    <content><![CDATA[<p>本文介绍 Miniconda 安装与深度学习环境配置，另外给出一些基本的 Conda 常用指令。</p>
+<p>为了实践李沐的深度学习课程 <a href="https://space.bilibili.com/1567748478/channel/seriesdetail?sid=358497" target="_blank" rel="noopener">动手学深度学习 PyTorch 版</a>，创建 d2l 环境并安装相关库。</p>
+<a id="more"></a>
+<h3 id="下载-Miniconda"><a href="#下载-Miniconda" class="headerlink" title="下载 Miniconda"></a>下载 Miniconda</h3><p>建议下载 Python 3.9 版本的 Miniconda3。</p>
+<p>Windows 系统下载如下版本</p>
+<p><img src="https://s2.loli.net/2023/07/12/6413x2qOkvYitHr.png" alt="Miniconda1.png"></p>
+<p>这里安装选 All Users (也可选 Just Me)，安装文件夹为 Miniconda3 (直接在 C 盘或 D 盘下)，后面的配置基于这些设定。</p>
+<h3 id="Conda-配置"><a href="#Conda-配置" class="headerlink" title="Conda 配置"></a>Conda 配置</h3><p>浏览器输入”清华源镜像”，找到 <a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/" target="_blank" rel="noopener">Anaconda 镜像使用帮助</a>，创建 .condarc 文件，更换为国内源</p>
+<p><img src="https://s2.loli.net/2023/07/12/9MxjVoeLpUrmETi.png" alt="Miniconda2.png"></p>
+<p>Miniconda3 文件夹的权限可能不够，导致不能安装虚拟环境及相关库到 Miniconda3 文件夹下的 envs，这里修改权限</p>
+<p><img src="https://s2.loli.net/2023/07/12/tlrIxPyEcj96SGf.png" alt="Miniconda3.png"></p>
+<p>打开 Anaconda Prompt 输入以下命令进行测试</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n  python=3.10</span><br></pre></td></tr></table></figure>
+<p>以上操作可参考 B 站视频 <a href="https://www.bilibili.com/video/BV1b84y1N7PU" target="_blank" rel="noopener">Miniconda 安装及使用</a></p>
+<h3 id="Conda-常用指令"><a href="#Conda-常用指令" class="headerlink" title="Conda 常用指令"></a>Conda 常用指令</h3><ul>
+<li>查看虚拟环境</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建虚拟环境</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n your_env_name python=X.X</span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入虚拟环境</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate your_env_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看通过 conda 安装的安装包</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装包</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install package_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装指定版本的包</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install package_name=X.X</span><br></pre></td></tr></table></figure>
+<ul>
+<li>卸载包</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda uninstall package_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出虚拟环境</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除环境</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda remove -n your_env_name all</span><br></pre></td></tr></table></figure>
+<h3 id="创建-d2l-环境并安装相关库"><a href="#创建-d2l-环境并安装相关库" class="headerlink" title="创建 d2l 环境并安装相关库"></a>创建 d2l 环境并安装相关库</h3><ul>
+<li>并使用下面的命令创建⼀个新的环境 d2l：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name d2l python=3.9 -y</span><br></pre></td></tr></table></figure>
+<ul>
+<li>激活d2l 环境：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate d2l</span><br></pre></td></tr></table></figure>
+<ul>
+<li>按如下方法安装 PyTorch 的 CPU 或 GPU 版本：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install torch==1.12.0</span><br><span class="line">pip install torchvision==0.13.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装 d2l 库，以方便调取本书中经常使用的函数和类：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install d2l==0.17.6</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载 D2L Notebook</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir d2l-zh &amp;&amp; <span class="built_in">cd</span> d2l-zh</span><br><span class="line">curl https://zh-v2.d2l.ai/d2l-zh-2.0.0.zip -o d2l-zh.zip</span><br><span class="line">unzip d2l-zh.zip &amp;&amp; rm d2l-zh.zip</span><br><span class="line"><span class="built_in">cd</span> pytorch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>过运行以下命令打开 Jupyter 笔记</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出 d2l 环境</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+<p>课程网站</p>
+<p><a href="https://d2l.ai/" target="_blank" rel="noopener">https://d2l.ai/</a></p>
+<p><a href="https://zh.d2l.ai/" target="_blank" rel="noopener">https://zh.d2l.ai/</a></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>安装集成环境 Spyder</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install spyder</span><br></pre></td></tr></table></figure>
+<p>或者多个库一起安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install spyder numpy scipy pandas matplotlib sympy cython</span><br></pre></td></tr></table></figure>
+<p>安装 Jupyter notebook</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install jupyter notebook</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Computer Skills</category>
+      </categories>
+      <tags>
+        <tag>Miniconda</tag>
+        <tag>Conda</tag>
+        <tag>Deep Learning</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
 </search>
