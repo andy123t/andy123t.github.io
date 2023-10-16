@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本文用后退 Euler 方法求解非线性 ODE，需要用到牛顿迭代，然后用 MATLAB 编程，最后展示了输出结果。 后退 Euler 方法 u_{n+1}&#x3D;u_{n}+hf(t_{n+1},u_{n+1}).线性 ODE 例子（做对比）  \left\{\begin{aligned}   &amp;\frac{du}{dt}&#x3D;t^2+t-u ,\quad 0 &lt; t \leqslant 1, \\   &amp;">
@@ -33,9 +33,9 @@
 <meta property="article:modified_time" content="2021-12-25T11:45:23.478Z">
 <meta property="article:author" content="Liutao Tian">
 <meta property="article:tag" content="MATLAB">
+<meta property="article:tag" content="Newton Iteration">
 <meta property="article:tag" content="Backward Euler">
 <meta property="article:tag" content="Nonlinear ODE">
-<meta property="article:tag" content="Newton Iteration">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/05/16/JwRqdYlWIb3hmQF.png">
 
@@ -329,9 +329,9 @@ X_{k+1}=X_{k}-\frac{X_k-u_n-hX_k+\frac{2ht_{n+1}}{X_k}}{1-h-\frac{2ht_{n+1}}{X_k
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
+              <a href="/tags/Newton-Iteration/" rel="tag"># Newton Iteration</a>
               <a href="/tags/Backward-Euler/" rel="tag"># Backward Euler</a>
               <a href="/tags/Nonlinear-ODE/" rel="tag"># Nonlinear ODE</a>
-              <a href="/tags/Newton-Iteration/" rel="tag"># Newton Iteration</a>
           </div>
 
         
