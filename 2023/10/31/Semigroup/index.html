@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Andy123t">
 <meta property="og:description" content="本文介绍半群方法，它把抛物型方程解的正则性完全归结为椭圆型方程的正则性。半群方法是目前处理发展方程的标准方法。 引入半群考虑热方程  \left\{\begin{aligned} &amp;\frac{\mathrm{d}u}{\mathrm{d}t}-\frac{\mathrm{d}^2u}{\mathrm{d}x^2}&#x3D;0,\quad x \in [0,\pi] \\ &amp;u(0,t)&#x3D;u(\pi,0)">
 <meta property="article:published_time" content="2023-10-31T10:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-02T16:45:56.370Z">
+<meta property="article:modified_time" content="2023-11-13T02:46:28.535Z">
 <meta property="article:author" content="Liutao Tian">
 <meta property="article:tag" content="PDE">
 <meta property="article:tag" content="Semigroup">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-11-03 00:45:56" itemprop="dateModified" datetime="2023-11-03T00:45:56+08:00">2023-11-03</time>
+                <time title="修改时间：2023-11-13 10:46:28" itemprop="dateModified" datetime="2023-11-13T10:46:28+08:00">2023-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,15 +281,15 @@
 \end{aligned}</script><p>以上不等式右端是依赖于时间 $t$ 的，所以解不会爆破 (Blow up)，说明解是有意义的。</p>
 <p>希望解能有这样的形式：</p>
 <script type="math/tex; mode=display">u(x,t)=S(t) u_0(x)=\sum_{k=0}^{\infty}a_k e^{-k^2t} \sin(kx)</script><script type="math/tex; mode=display">S(t): u_0(x,t) \mapsto u(x,t).</script><p>对于这个例子</p>
-<script type="math/tex; mode=display">u(x,t)=\sum_{k=0}^{\infty} \left[\frac{2}{\pi}\left(\int_{0}^{\pi}u_0(x)\sin(kx)\mathrm{d}x\right) \sin(kx)\right]e^{-k^2t}.</script><p>$S(t)$ 关于 $u_0$ 是线性的</p>
+<script type="math/tex; mode=display">u(x,t)=\sum_{k=1}^{\infty} \left[\frac{2}{\pi}\left(\int_{0}^{\pi}u_0(x)\sin(kx)\mathrm{d}x\right) \sin(kx)\right]e^{-k^2t}.</script><p>$S(t)$ 关于 $u_0$ 是线性的</p>
 <script type="math/tex; mode=display">S(t)(\alpha u_{0,1}+\beta u_{0,2})=\alpha S(t) u_{0,1}+ \beta S(t) u_{0,2}.</script><p><strong>1、$S(t)$ 的性质 (必要条件)</strong></p>
 <p>(i) $S(0)=I$，$u(x,t)=S(t) u_0(x)$.</p>
 <p>当 $t=0$ 时，$u(x,0)=u_0(t)=S(0) u_0(x)$，所以 $S(0)$ 为恒等映射。</p>
 <p>(ii) $S(t_1+t_2)=S(t_1) S(t_2)=S(t_2) S(t_1)$.</p>
 <script type="math/tex; mode=display">S(t_2)\cdot S(t_1) u_0(x)=\sum_{k=0}^{\infty} (a_k e^{-k^2 t_2})e^{-k^2 t_1}\sin(kx).</script><p>这里可令 $u_{0,1}(x)=S(t_1) u_0(x)$ 进行计算</p>
 <script type="math/tex; mode=display">\begin{aligned}
-&\sum_{l=1}^{\infty}\left[\frac{2}{\pi}\int_{0}^{\pi}\left(\sum_{k=0}^{\infty}\frac{2}{\pi}\int_{0}^{\pi}u_0(x)\sin(kx)\mathrm{d}x \sin(kx)e^{-k^2t_1}\right)\sin(kx)\mathrm{d}x\right] e^{-k^2t_2}\sin(kx) \\
-&=\sum_{k=0}^{\infty}\left(\frac{2}{\pi}\int_{0}^{\pi}u_0(x)\sin(kx)\mathrm{d}x\right) e^{-k^2 t_2}e^{-k^2 t_1}\sin(kx) \\
+&\sum_{k=1}^{\infty}\left[\frac{2}{\pi}\int_{0}^{\pi}\left(\sum_{k=1}^{\infty}\frac{2}{\pi}\int_{0}^{\pi}u_0(x)\sin(kx)\mathrm{d}x \sin(kx)e^{-k^2t_1}\right)\sin(kx)\mathrm{d}x\right] e^{-k^2t_2}\sin(kx) \\
+&=\sum_{k=1}^{\infty}\left(\frac{2}{\pi}\int_{0}^{\pi}u_0(x)\sin(kx)\mathrm{d}x\right) e^{-k^2 t_2}e^{-k^2 t_1}\sin(kx) \\
 &=S(t_1+t_2)=S(t_1)S(t_2).
 \end{aligned}.</script><p>(iii) $|S(t)| \leqslant 1$. 这里的范数是关于时间 $t$ 的.</p>
 <script type="math/tex; mode=display">\begin{aligned}
@@ -300,20 +300,20 @@
 <script type="math/tex; mode=display">S(t)u_0 \in C([0,+\infty);L^2(0,\pi)),</script><script type="math/tex; mode=display">\|S(t)u_0\|_{L^2(0,\pi)}=f(t) \in C([0,+\infty)).</script><p>可知 $S(t)u_0$ 和 $f(t)$ 是依赖于时间的，关于时间是连续的。</p>
 <p><strong>2、无穷小生成元</strong></p>
 <p>$\{S(t); t\geqslant 0\}$ 在 Banach 空间 $B$ 上，并且  $|S(t)| \leqslant 1$.</p>
-<script type="math/tex; mode=display">D=\left\{x\in B \big| \lim_{h\to 0^{+}}\frac{S(h)x-x}{h} \text{~存在}\right\}</script><p>$D$ 中的元素为满足 $\lim\limits_{h\to 0^{+}}\frac{S(h)x-x}{h}&lt;+\infty$ 的 $x$.</p>
+<script type="math/tex; mode=display">D=\left\{x\in B \big| \lim_{h\to 0^{+}}\frac{S(h)x-x}{h}~ \text{存在}\right\}</script><p>$D$ 中的元素为满足 $\lim\limits_{h\to 0^{+}}\frac{S(h)x-x}{h}&lt;+\infty$ 的 $x$.</p>
 <p>定义无穷小生成元</p>
-<script type="math/tex; mode=display">-Ax=\lim_{h\to 0^{+}}\frac{S(h)x-x}{h}.</script><p>这里 $-A=\lim\limits_{h\to 0^{+}}\frac{S(h)-S(0)}{h}$. </p>
-<p>$D=D(A)$，$A$ 是 $\{S(t)|t\geqslant 0\}$ 的无穷小生成元，即 $A$ 是这个强压缩算子半群的无穷小生成元。</p>
+<script type="math/tex; mode=display">-Ax=\lim_{h\to 0^{+}}\frac{S(h)x-x}{h}.</script><p>这里 $-A=\lim\limits_{h\to 0^{+}}\frac{S(h)-S(0)}{h}$，$S(h)x-x=(S(h)-S(0))x$.</p>
+<p>定义域 $D=D(A)$，$A$ 是 $\{S(t)|t\geqslant 0\}$ 的无穷小生成元，即 $A$ 是这个强压缩算子半群的无穷小生成元。</p>
 <h3 id="算子半群的一些引理"><a href="#算子半群的一些引理" class="headerlink" title="算子半群的一些引理"></a>算子半群的一些引理</h3><p><strong>引理 1：</strong> 对 $\forall x \in D=D(A)$, 有 $S(t)x \in C^1([0,+\infty);B)$.</p>
 <p>另外，对任意的 $t \geqslant 0$，有</p>
 <script type="math/tex; mode=display">x-S(t)x=\int_{0}^{t}AS(\tau)x\mathrm{d}\tau=\int_{0}^{t}S(\tau)Ax\mathrm{d}\tau,</script><script type="math/tex; mode=display">\frac{\mathrm{d}(S(t)x)}{\mathrm{d}t}+A(S(t)x)=0.</script><p>证明：对 $x \in D$，$h&gt;0$，</p>
 <script type="math/tex; mode=display">\frac{S(t+h)x-S(t)x}{h}=\frac{(S(h)-I)S(t)x}{h}=S(t)\frac{(S(h)-I)x}{h}.</script><p>当 $h\to 0^{+}$，$x \in D$，</p>
 <script type="math/tex; mode=display">\frac{S(t)x-S(t-h)x}{h}=S(t-h)\frac{(S(h)-I)x}{h}</script><p>于是对 $h\to 0^{+}$，$x \in D$，有 $-AS(t)x=-S(t)Ax$.</p>
-<script type="math/tex; mode=display">\frac{\mathrm{d}}{\mathrm{d}t}(S(t)x)=-S(t)Ax=-AS(t)x</script><p>因为</p>
+<script type="math/tex; mode=display">\frac{\mathrm{d}}{\mathrm{d}t}(S(t)x)=-S(t)Ax=-AS(t)x. \quad (*)</script><p>因为</p>
 <script type="math/tex; mode=display">\lim_{h\to 0^{+}}\frac{S(t+h)x-S(t)x}{h}=S(t)\lim_{h \to 0^{+}}\frac{S(h)x-x}{h}=S(t)(-Ax).</script><p>两边关于 $t$ 进行积分</p>
 <script type="math/tex; mode=display">S(t)x\Big|_{0}^{t}=-\int_{0}^{t}S(\tau)Ax\mathrm{d}\tau=-\int_{0}^{t}AS(\tau)x\mathrm{d}\tau,</script><p>于是</p>
 <script type="math/tex; mode=display">-(S(t)x-S(0)x)=-(S(t)x-x)=x-S(t)x,</script><p>可得</p>
-<script type="math/tex; mode=display">x-S(t)x=\int_{0}^{t}AS(t)x\mathrm{d}\tau=\int_{0}^{t}S(\tau)Ax\mathrm{d}\tau.</script><p>前面某式可得</p>
+<script type="math/tex; mode=display">x-S(t)x=\int_{0}^{t}AS(t)x\mathrm{d}\tau=\int_{0}^{t}S(\tau)Ax\mathrm{d}\tau.</script><p>根据 $(*)$ 式可得</p>
 <script type="math/tex; mode=display">\frac{\mathrm{d}(S(t)x)}{\mathrm{d}t}+A(S(t)x)=0.</script><p>我们可以求解开始提出的热方程。$\quad\square$</p>
 <p><strong>注：</strong> </p>
 <script type="math/tex; mode=display">
@@ -349,7 +349,7 @@
 <script type="math/tex; mode=display">\lim_{h\to 0^{+}}\frac{-S(h)x_{t}+x_{t}}{h}=x-S(t)x,</script><script type="math/tex; mode=display">D=\left\{x\in B~\big| \lim_{h\to 0^{+}} \frac{S(h)x-x}{h}< \infty\right\}.</script><p>所以 $x_{t} \in D$， 即 </p>
 <script type="math/tex; mode=display">\int_{0}^{t}S(t)x\mathrm{d}t \in D.</script><h3 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h3><ul>
 <li>视频：<a href="https://www.bilibili.com/video/BV1M24y1h78b" target="_blank" rel="noopener">发展方程中的算子半群</a></li>
-<li>郑宋穆，Nonlinear Parabolic Equations and yperbolic-Parabolic Coupled Systems</li>
+<li>郑宋穆，Nonlinear Parabolic Equations and Hyperbolic-Parabolic Coupled Systems</li>
 </ul>
 
     </div>
