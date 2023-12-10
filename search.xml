@@ -1092,7 +1092,7 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <p>模板最好从 Github 下载最新版 <a href="https://github.com/andy123t/shnuthesis" target="_blank" rel="noopener">https://github.com/andy123t/shnuthesis</a>， 注册 TeXPage 账号，然后按要求将模板上传到网站 (空项目上传文件或上传 zip 压缩文件)。</p>
 <p>用户可以在 TeXPage 模板库搜索上海师范大学研究生毕业论文 LaTeX 模板，使用此模板新建项目。</p>
 <p><img src="https://s2.loli.net/2023/02/13/pHXiJfTZYlCtO1P.png" alt="texpage4.png"></p>
-<p>LaTeX 编辑器选择 <strong>XeLaTeX</strong>，TeX Live 版本选择 <strong>2021</strong> (texlive 2022 不能用)，主文件为 <strong>example.tex</strong></p>
+<p>LaTeX 编辑器选择一个 TeX Live 版本使用 <strong>XeLaTeX</strong> 编译，主文件为 <strong>example.tex</strong></p>
 <p><img src="https://s2.loli.net/2023/02/13/7zupswRxV6EvSUQ.png" alt="texpage2.png"></p>
 <p><strong>注意</strong>：设置使用 Windows 字体 (通常的宋体、楷体、黑体以及英文字体) ：</p>
 <figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,fontset=windows]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
@@ -1223,8 +1223,8 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <a id="more"></a>
 <p><strong>电脑本地使用</strong></p>
 <p>本模板需要安装 <strong>texlive</strong> 发行版，并且需要 <strong>XeLaTeX</strong> 编译运行！如需安装 texlive，可以参考：<a href="https://andy123t.github.io/2020/06/08/LaTeX-Install/">LaTeX 之软件安装与配置</a> 和 <a href="https://www.bilibili.com/video/BV1Pm4y1d7wv/" target="_blank" rel="noopener">视频教程</a>，如果之前安装了 <strong>CTEX 套装</strong>，安装之前最好把它卸载干净。</p>
-<p>本人安装的是 texlive 2020，直接使用模板的设置即可。</p>
-<p>如果安装了 texlive 2021 版本，可能需要声明使用 Windows 字体 (<code>fontset = windows</code>)，才能调用通常的宋体、楷体和黑体。</p>
+<p>本地测试环境：Windows 10 安装 texlive 发行版。</p>
+<p>某些 texlive 版本可能需要声明使用 Windows 字体 (<code>fontset = windows</code>)，才能调用通常的宋体、楷体和黑体。</p>
 <figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,fontset=windows]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>在线使用</strong></p>
 <p>在线 LaTeX 编辑可以使用 <a href="https://www.texpage.com/" target="_blank" rel="noopener">TeXPage</a>，设置字体 (<code>fontset=windows</code>) 后符合学校要求，推荐使用。</p>
