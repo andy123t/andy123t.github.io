@@ -1088,15 +1088,15 @@ L_{h} u_{i} \equiv & -\frac{2}{h_{i}+h_{i+1}}\left[p_{i+\frac{1}{2}} \frac{u_{i+
 <p>注：对于英文论文，推荐使用 Overleaf，但在国内的网络环境下不流畅。</p>
 <p><strong>推荐使用 TeXPage 平台</strong></p>
 <p>TeXPage 网站 <a href="https://www.texpage.com" target="_blank" rel="noopener">https://www.texpage.com</a> 最好使用火狐浏览器或 Google 浏览器登录。</p>
-<p><img src="https://s2.loli.net/2022/03/10/SpMLJHoGNizVaEg.png" alt="texpage1.png"></p>
+<p><img src="https://s2.loli.net/2024/03/03/IjW8xPVdRZtO45s.png" alt="texpage1.png"></p>
 <p>模板最好从 Github 下载最新版 <a href="https://github.com/andy123t/shnuthesis" target="_blank" rel="noopener">https://github.com/andy123t/shnuthesis</a>， 注册 TeXPage 账号，然后按要求将模板上传到网站 (空项目上传文件或上传 zip 压缩文件)。</p>
 <p>用户可以在 TeXPage 模板库搜索上海师范大学研究生毕业论文 LaTeX 模板，使用此模板新建项目。</p>
-<p><img src="https://s2.loli.net/2023/02/13/pHXiJfTZYlCtO1P.png" alt="texpage4.png"></p>
+<p><img src="https://s2.loli.net/2024/03/03/wB6GSFdvPmb9DtQ.png" alt="texpage2.png"></p>
 <p>LaTeX 编辑器选择一个 TeX Live 版本使用 <strong>XeLaTeX</strong> 编译，主文件为 <strong>example.tex</strong></p>
-<p><img src="https://s2.loli.net/2023/02/13/7zupswRxV6EvSUQ.png" alt="texpage2.png"></p>
+<p><img src="https://s2.loli.net/2024/03/03/g8nxCM2FJoUy9v7.png" alt="texpage3.png"></p>
 <p><strong>注意</strong>：设置使用 Windows 字体 (通常的宋体、楷体、黑体以及英文字体) ：</p>
 <figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[master,fontset=windows]</span><span class="string">&#123;shnuthesis&#125;</span></span></span><br></pre></td></tr></table></figure>
-<p><img src="https://s2.loli.net/2023/02/13/JC4a1furBe2FIdN.png" alt="texpage3.png"></p>
+<p><img src="https://s2.loli.net/2024/03/03/BuGZgQbhTydfPet.png" alt="texpage4.png"></p>
 <p>选择菜单栏『更多』可以直接下载源文件或编译完成的 PDF 文件。</p>
 ]]></content>
       <categories>
