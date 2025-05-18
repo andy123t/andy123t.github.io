@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-andy.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-andy.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-andy.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在现代社会，数据安全变得越来越重要。无论是个人数据、工作文件还是珍贵的照片，数据丢失都可能带来巨大的损失。因此，定期备份数据是保护信息安全的有效措施。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据防丢指南：备份是关键">
+<meta property="og:url" content="https://andy123t.github.io/2025/03/19/backup/index.html">
+<meta property="og:site_name" content="Andy123t">
+<meta property="og:description" content="在现代社会，数据安全变得越来越重要。无论是个人数据、工作文件还是珍贵的照片，数据丢失都可能带来巨大的损失。因此，定期备份数据是保护信息安全的有效措施。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-03-19T10:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-18T13:07:13.397Z">
+<meta property="article:author" content="Liutao Tian">
+<meta property="article:tag" content="Data">
+<meta property="article:tag" content="Back-up">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://andy123t.github.io/2025/03/19/backup/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>数据防丢指南：备份是关键 | Andy123t</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Andy123t</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">49</span></a>
+
+  </li>
+        <li class="menu-item menu-item-notes">
+
+    <a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>系列笔记</a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook" rel="section"><i class="fa fa-sticky-note fa-fw"></i>札记 & 留言板</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2025/03/19/backup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liutao Tian">
+      <meta itemprop="description" content="知人者智，自知者明">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据防丢指南：备份是关键
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-19 18:00:00" itemprop="dateCreated datePublished" datetime="2025-03-19T18:00:00+08:00">2025-03-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-05-18 21:07:13" itemprop="dateModified" datetime="2025-05-18T21:07:13+08:00">2025-05-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Skills/" itemprop="url" rel="index"><span itemprop="name">Computer Skills</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在现代社会，数据安全变得越来越重要。无论是个人数据、工作文件还是珍贵的照片，数据丢失都可能带来巨大的损失。因此，定期备份数据是保护信息安全的有效措施。</p>
+<span id="more"></span>
+<h3 id="备份的重要性"><a href="#备份的重要性" class="headerlink" title="备份的重要性"></a>备份的重要性</h3><p>数据丢失的风险无处不在，无论是硬件故障、病毒攻击，还是意外误删，均可能导致数据的永久丢失。很多人忽视了数据备份这一关键环节，甚至对最重要的数据也未进行备份。诚然，电脑崩溃属于小概率事件，但一旦发生，后果往往不堪设想。</p>
+<p>数据丢失的潜在风险有很多：不管是电脑蓝屏，咖啡或水洒到键盘上，硬件的意外损坏，还是电脑中病毒，都有可能导致数据丢失。想象一下，辛苦撰写的科研论文、精心整理的数据，瞬间化为乌有，多年的心血付诸东流。这种打击对于科研人员来说，可能是毁灭性的。</p>
+<p>面对如此多的数据丢失风险，科研人员必须学会备份。</p>
+<h3 id="备份的类型和策略"><a href="#备份的类型和策略" class="headerlink" title="备份的类型和策略"></a>备份的类型和策略</h3><p>以下为大家提供三条实用的备份策略。</p>
+<p><strong>1. 移动硬盘备份</strong></p>
+<p>购买一块大容量的移动硬盘，定期将电脑上的所有数据备份到移动硬盘上。这种方式可以实现对大量数据的整体备份，几百G的内存数据都能妥善存储。但需要注意的是，定期备份需要科研人员具备较强的自律性，毕竟让人定期执行备份操作本身就是一件反人性的事情。</p>
+<p><strong>2. U 盘备份</strong></p>
+<p>选择一个质量好的 U 盘，经常将重要数据备份到 U 盘中。这种方式适合对个人文档、科研论文和数据等几个 G 的重要数据进行备份。相较于移动硬盘备份，使用 U 盘备份的频率可以更高，操作也相对便捷一些。这同样需要科研人员主动去执行备份操作。</p>
+<p><strong>3. 同步盘备份</strong></p>
+<p>使用同步盘同步重要数据是最为便捷的方式。同步盘能够每时每刻自动同步数据，并且还可以直接恢复到最近的某个版本。对于科研人员来说，这意味着即使在操作失误导致数据错误的情况下，也能轻松找回之前正确的版本。如果说前两种备份方式有一定的执行难度，那么同步盘备份则是底线。即使电脑瞬间报废，最重要的数据依然能够得以保存。</p>
+<p>在同步盘的选择上，首先推荐微软的 OneDrive，每个 Windows 用户都拥有 5G 的免费存储空间，通过花几块钱在淘宝上就能扩容到最多 15G。而且，对于 Mac 系统和手机也能很好地支持。此外，坚果云也是不错的选择。而 Dropbox 由于需要科学上网，在使用上可能对部分用户存在一定限制。</p>
+<p>注：除了同步盘备份之外，最好再手动备份一下，周期可以长一些。</p>
+<p>以我个人经历为例，我曾遭遇过两次电脑蓝屏，电脑系统崩溃后只能格式化再安装新系统，导致电脑上的数据全部丢失。幸运的是，我提前进行了数据备份，才避免了重大损失。这两次经历让我深刻认识到数据备份的重要性，也希望广大科研人员能够引以为戒，重视数据备份，为自己的科研成果保驾护航。不要等到数据丢失才追悔莫及，从现在开始，选择适合自己的备份方式，让数据安全得到可靠保障。</p>
+<p>另外，很多备份软件如 FreeFileSync 可以实现增量备份和差异备份。有更高需求的用户也可以配置 NAS 来实现数据备份。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Data/" rel="tag"># Data</a>
+              <a href="/tags/Back-up/" rel="tag"># Back-up</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/31/Semigroup/" rel="prev" title="算子的连续半群">
+      <i class="fa fa-chevron-left"></i> 算子的连续半群
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">备份的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%AD%96%E7%95%A5"><span class="nav-number">2.</span> <span class="nav-text">备份的类型和策略</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Liutao Tian"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Liutao Tian</p>
+  <div class="site-description" itemprop="description">知人者智，自知者明</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/andy123t" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;andy123t" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:andy123t@163.com" title="E-Mail → mailto:andy123t@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://liam.page/" title="https:&#x2F;&#x2F;liam.page&#x2F;" rel="noopener" target="_blank">Liam</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://johnhu94.github.io/" title="https:&#x2F;&#x2F;johnhu94.github.io&#x2F;" rel="noopener" target="_blank">JohnHu</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liutao Tian</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
