@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-andy.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-andy.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-andy.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="MATLAB 是 MATrix LABoratory 的缩写，它将计算、可视化和编程功能集成在非常便于使用的环境中，是一个交互式的以矩阵计算为基础的科学和工程计算软件。其特点如下：  编程效率高 用它编程犹如在纸上书写公式，编程时间和程序量大大减少。 计算功能强 其数据对象为不必指定维数的矩阵和数组，矩阵和向量计算功能特别强。 使用简便 其语言灵活方便，将编译、连接、执行融为一体。 易于扩充 用户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MATLAB 基础">
+<meta property="og:url" content="https://andy123t.github.io/2020/08/28/matlab-basic/index.html">
+<meta property="og:site_name" content="Andy123t">
+<meta property="og:description" content="MATLAB 是 MATrix LABoratory 的缩写，它将计算、可视化和编程功能集成在非常便于使用的环境中，是一个交互式的以矩阵计算为基础的科学和工程计算软件。其特点如下：  编程效率高 用它编程犹如在纸上书写公式，编程时间和程序量大大减少。 计算功能强 其数据对象为不必指定维数的矩阵和数组，矩阵和向量计算功能特别强。 使用简便 其语言灵活方便，将编译、连接、执行融为一体。 易于扩充 用户">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2020/08/30/foRMcxrB5z4HPTq.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/30/pTvy6PhJN8CwoR5.png">
+<meta property="article:published_time" content="2020-08-28T12:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-25T15:07:33.000Z">
+<meta property="article:author" content="Liutao Tian">
+<meta property="article:tag" content="MATLAB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/08/30/foRMcxrB5z4HPTq.png">
+
+<link rel="canonical" href="https://andy123t.github.io/2020/08/28/matlab-basic/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>MATLAB 基础 | Andy123t</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Andy123t</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">48</span></a>
+
+  </li>
+        <li class="menu-item menu-item-notes">
+
+    <a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>系列笔记</a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook" rel="section"><i class="fa fa-sticky-note fa-fw"></i>札记 & 留言板</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2020/08/28/matlab-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liutao Tian">
+      <meta itemprop="description" content="知人者智，自知者明">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MATLAB 基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-28 20:00:00" itemprop="dateCreated datePublished" datetime="2020-08-28T20:00:00+08:00">2020-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-25 23:07:33" itemprop="dateModified" datetime="2020-10-25T23:07:33+08:00">2020-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>MATLAB 是 MATrix LABoratory 的缩写，它将计算、可视化和编程功能集成在非常便于使用的环境中，是一个交互式的以矩阵计算为基础的科学和工程计算软件。其特点如下：</p>
+<ul>
+<li><strong>编程效率高</strong> 用它编程犹如在纸上书写公式，编程时间和程序量大大减少。</li>
+<li><strong>计算功能强</strong> 其数据对象为不必指定维数的矩阵和数组，矩阵和向量计算功能特别强。</li>
+<li><strong>使用简便</strong> 其语言灵活方便，将编译、连接、执行融为一体。</li>
+<li><strong>易于扩充</strong> 用户根据需要建立的文件可以和库函数一样被调用，提高了效率、扩充了计算功能</li>
+</ul>
+<p>此外 Matlab 还有很方便的绘图功能。</p>
+<span id="more"></span>
+<h3 id="简单的数学运算"><a href="#简单的数学运算" class="headerlink" title="简单的数学运算"></a>简单的数学运算</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="number">4</span>+<span class="number">6</span>+<span class="number">2</span> <span class="comment">% 键入回车, 下同</span></span><br><span class="line"><span class="built_in">ans</span>=</span><br><span class="line">    <span class="number">12</span></span><br><span class="line">&gt;&gt; <span class="number">4</span>*<span class="number">25</span>+<span class="number">6</span>*<span class="number">52</span>+<span class="number">2</span>*<span class="number">99</span></span><br><span class="line"><span class="built_in">ans</span>=</span><br><span class="line">    <span class="number">610</span></span><br></pre></td></tr></table></figure>
+<p>注：</p>
+<ol>
+<li>未指明建立变量时名为 <code>ans</code> 的变量自动建立 (作为结果的默认变量名)</li>
+<li>在大多情况下 Matlab 不会理会空格的存在。</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; a=<span class="number">4</span>;</span><br><span class="line">&gt;&gt; b=<span class="number">6</span>;</span><br><span class="line">&gt;&gt; c=<span class="number">2</span>;    <span class="comment">% 语句后加分号则语句被执行后不显示结果。</span></span><br><span class="line">&gt;&gt; item=a+b+c</span><br><span class="line">item=</span><br><span class="line">    <span class="number">12</span></span><br><span class="line">&gt;&gt; cost=a*<span class="number">25</span>+b*<span class="number">52</span>+c*<span class="number">99</span></span><br><span class="line">cost=</span><br><span class="line">    <span class="number">610</span></span><br><span class="line">&gt;&gt; average=cost/item</span><br><span class="line">average=</span><br><span class="line">    <span class="number">50.837</span></span><br></pre></td></tr></table></figure>
+<p>在 Matlab 中基本的数学运算符号： <code>+</code> <code>-</code>  <code>*</code> 右除<code>/</code> 左除<code>\</code> <code>^</code></p>
+<p>在 Matlab 中不管多少层括号，统一用小括号 <code>()</code></p>
+<p>复数：Matlab 在处理复数时 <code>i</code> 或 <code>j</code> 均表示虚数单位</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; c1=<span class="number">1</span><span class="number">-2</span><span class="built_in">i</span></span><br><span class="line">&gt;&gt; c2=<span class="number">1</span><span class="number">-2</span><span class="built_in">j</span></span><br><span class="line">&gt;&gt; c3=<span class="number">6</span>*<span class="built_in">sin</span>(<span class="number">.5</span>)*<span class="built_in">i</span></span><br><span class="line">&gt;&gt; c3r=<span class="built_in">real</span>(c3)    <span class="comment">% 获取c3的实部</span></span><br><span class="line">&gt;&gt; c3i=<span class="built_in">imag</span>(c3)    <span class="comment">% 获取c3的虚部</span></span><br></pre></td></tr></table></figure>
+<p>一个“=”表赋值 两个“==”表“等于”关系</p>
+<p>为了核对某个变量的值只需要在提示符后输入这个变量名。可以用 <code>who</code> 或 <code>whos</code> 来查看内存中 (工作区中) 现有的变量名列表。为了重新输入原来输入过的命令可以用键盘的上、下键。</p>
+<h3 id="矩阵-数组-函数"><a href="#矩阵-数组-函数" class="headerlink" title="矩阵 数组 函数"></a>矩阵 数组 函数</h3><h4 id="矩阵的输入和运算"><a href="#矩阵的输入和运算" class="headerlink" title="矩阵的输入和运算"></a>矩阵的输入和运算</h4><p>输入方法：</p>
+<ol>
+<li>直接输入每个元素，用逗号或空格及分号隔开</li>
+<li>由语句或函数生成</li>
+<li>在 m- 文件中生成</li>
+</ol>
+<p><strong>矩阵的直接输入举例</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; A=[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>;<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]    <span class="comment">% [表矩阵输入的开始，]表矩阵输入的结束</span></span><br><span class="line">A =</span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">4</span>     <span class="number">5</span>     <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>元素的引用</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; a=A(<span class="number">2</span>,<span class="number">1</span>)    <span class="comment">% 表示A的第二行第一列的元素</span></span><br></pre></td></tr></table></figure>
+<p>注：若不指定变量名 Matlab 自动生成一个 <code>ans</code> 变量（answer）</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; A(<span class="number">3</span>,<span class="number">4</span>)=<span class="number">1</span></span><br><span class="line">A =</span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">4</span>     <span class="number">5</span>     <span class="number">6</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>原来 A 没有 3 行 4 列，Matlab 自动增加行、列，对未指明的元素赋初值为 0.</p>
+<p><strong>函数生成矩阵</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; w=<span class="built_in">zeros</span>(<span class="number">2</span>,<span class="number">3</span>)    <span class="comment">% (2×3元素全为0矩阵)</span></span><br><span class="line">&gt;&gt; u=<span class="built_in">ones</span>(<span class="number">3</span>)       <span class="comment">% (3×3元素全为1矩阵)</span></span><br><span class="line">&gt;&gt; v=<span class="built_in">eye</span>(<span class="number">3</span>,<span class="number">4</span>)      <span class="comment">% (3×4对角线为1矩阵)</span></span><br><span class="line">&gt;&gt; x=<span class="built_in">rand</span>(<span class="number">1</span>,<span class="number">3</span>)     <span class="comment">% (1×3  (0,1)均匀分布矩阵)</span></span><br></pre></td></tr></table></figure>
+<h4 id="矩阵的裁剪与拼接"><a href="#矩阵的裁剪与拼接" class="headerlink" title="矩阵的裁剪与拼接"></a>矩阵的裁剪与拼接</h4><p>从一个矩阵取出若干行 (列) 构成新矩阵称为裁剪。<code>:</code> 是一个非常重要的裁剪工具</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; A(<span class="number">3</span>,:)           <span class="comment">% A的第三行, “:”表示“所有”</span></span><br><span class="line">&gt;&gt; A(:,<span class="number">2</span>)           <span class="comment">% A的第二列</span></span><br><span class="line">&gt;&gt; B=A(<span class="number">1</span>:<span class="number">2</span>,:)       <span class="comment">% A的第一、二行, “:”表示“到”</span></span><br><span class="line">&gt;&gt; C=A(:,<span class="number">2</span>:<span class="number">4</span>)       <span class="comment">% A的第二列到第四列</span></span><br><span class="line">&gt;&gt; D=A(<span class="number">2</span>:<span class="number">3</span>,<span class="number">2</span>:<span class="number">2</span>:<span class="number">4</span>)   <span class="comment">% A的第2、3行, 第2、4列</span></span><br></pre></td></tr></table></figure>
+<p>(2:2:4 表从第 2 到第 4，步长 2 (步长也可以为负))</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; A(<span class="number">1</span>:<span class="number">2</span>:<span class="number">3</span>,<span class="number">4</span>:<span class="number">-1</span>:<span class="number">2</span>)  <span class="comment">% A的第1、3行, 第4、3、2列</span></span><br><span class="line">&gt;&gt; D(:,<span class="number">1</span>)=[ ]       <span class="comment">% 删除D的第一列</span></span><br></pre></td></tr></table></figure>
+<p>若无等矩规律，最一般的状况：设 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.697ex" height="1.62ex" role="img" focusable="false" viewBox="0 -716 750 716"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g></g></g></svg></mjx-container> 为一四阶方阵选取任意子矩阵：<br><code>A([1,2,4],[1,3,4])</code> 选取的行数构成一行向量，选取的列数构成一行向量二者用逗号分隔。</p>
+<p>将几个矩阵拼接在一起时只需要注意：左右拼接时行数要相同，上下拼接时列数要相同。</p>
+<h4 id="矩阵的运算"><a href="#矩阵的运算" class="headerlink" title="矩阵的运算"></a>矩阵的运算</h4><p><code>+</code>  <code>-</code>  <code>/</code>  <code>*</code>  <code>^</code> <code>\</code>， <code>\</code>为左除， <code>/</code>为右除，说明如下：</p>
+<p>设定 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.697ex" height="1.62ex" role="img" focusable="false" viewBox="0 -716 750 716"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g></g></g></svg></mjx-container> 为可逆矩阵，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="6.979ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 3084.6 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mi" transform="translate(750,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(1599.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(2655.6,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g></g></g></svg></mjx-container> 的解是 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.697ex" height="1.62ex" role="img" focusable="false" viewBox="0 -716 750 716"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g></g></g></svg></mjx-container> 左除 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.971ex" height="1.595ex" role="img" focusable="false" viewBox="0 -694 429 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g></g></g></svg></mjx-container>，即 <code>x=A\b</code>；<br><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="6.988ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 3088.6 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mi" transform="translate(572,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(1599.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(2655.6,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g></g></g></svg></mjx-container> 的解 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.294ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 572 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g></g></g></svg></mjx-container> 是 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.697ex" height="1.62ex" role="img" focusable="false" viewBox="0 -716 750 716"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g></g></g></svg></mjx-container> 右除 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.98ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 433 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g></g></g></svg></mjx-container> 即 <code>x=c/A</code>.</p>
+<p>特别注意：<code>.*</code> 与 <code>*</code> 的区别 <code>.*</code> 为对应位置元素运算，<code>*</code> 为矩阵意义的运算.</p>
+<p><code>.^</code> 与 <code>^</code>、 <code>./</code> 与 <code>/</code>、 <code>.\</code> 与 <code>\</code> 类似</p>
+<p><code>rref(B)</code> 所做工作：将 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.717ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 759 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g></g></g></svg></mjx-container> 化为行阶梯型最简形</p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="9.666ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 4272.2 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mo" transform="translate(1036.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(2092.6,0)"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="mi" transform="translate(2370.6,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(3120.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(3565.2,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mo" transform="translate(3994.2,0)"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g></g></g></svg></mjx-container> 经过初等变换 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="12.79ex" height="2.452ex" role="img" focusable="false" viewBox="0 -833.9 5653 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="msup" transform="translate(278,0)"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="TeXAtom" transform="translate(783,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(778,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g><g data-mml-node="mi" transform="translate(2014.7,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(2764.7,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msup" transform="translate(3209.3,0)"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="TeXAtom" transform="translate(783,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(778,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g><g data-mml-node="mi" transform="translate(4946,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mo" transform="translate(5375,0)"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g></g></g></svg></mjx-container> 变成 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.287ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2336.7 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="mi" transform="translate(278,0)"><path data-c="1D438" d="M492 213Q472 213 472 226Q472 230 477 250T482 285Q482 316 461 323T364 330H312Q311 328 277 192T243 52Q243 48 254 48T334 46Q428 46 458 48T518 61Q567 77 599 117T670 248Q680 270 683 272Q690 274 698 274Q718 274 718 261Q613 7 608 2Q605 0 322 0H133Q31 0 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H757Q764 676 764 669Q764 664 751 557T737 447Q735 440 717 440H705Q698 445 698 453L701 476Q704 500 704 528Q704 558 697 578T678 609T643 625T596 632T532 634H485Q397 633 392 631Q388 629 386 622Q385 619 355 499T324 377Q347 376 372 376H398Q464 376 489 391T534 472Q538 488 540 490T557 493Q562 493 565 493T570 492T572 491T574 487T577 483L544 351Q511 218 508 216Q505 213 492 213Z"></path></g><g data-mml-node="mo" transform="translate(1042,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(1486.7,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(2058.7,0)"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g></g></g></svg></mjx-container>.</p>
+<h4 id="数组及其运算"><a href="#数组及其运算" class="headerlink" title="数组及其运算"></a>数组及其运算</h4><p>一行或一列的矩阵是向量或数组。</p>
+<p>数组的输入 <code>:</code> 和 <code>linspace</code> (注意用法的区别)</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; a=<span class="number">1</span>:<span class="number">5</span>       <span class="comment">% 默认公差为1</span></span><br><span class="line">a=</span><br><span class="line">    <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">&gt;&gt; b=<span class="number">1</span>:<span class="number">2</span>:<span class="number">7</span>     <span class="comment">% 与 b=1:2:8 效果相同 (公差可以为负)</span></span><br><span class="line">&gt;&gt;c=<span class="number">6</span>:<span class="number">-3</span>:<span class="number">-6</span>    <span class="comment">% (从6到-6公差为-3的等差数组) 格式：a:dt:b</span></span><br><span class="line">&gt;&gt;b=[<span class="number">0</span>:<span class="number">2</span>:<span class="number">8</span>,<span class="built_in">ones</span>(<span class="number">1</span>,<span class="number">3</span>)]    <span class="comment">% 数组与行向量拼接</span></span><br><span class="line">&gt;&gt;<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">1</span>,<span class="number">9</span>)</span><br></pre></td></tr></table></figure>
+<p><code>linspace(a,b,n)</code> 生成从a到b共n个数值的等差数组，公差 (b-a)/(n-1)，公差为 1 时不必给出。</p>
+<p>例：4 等分 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.29ex" height="1ex" role="img" focusable="false" viewBox="0 -431 570 442"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D70B" d="M132 -11Q98 -11 98 22V33L111 61Q186 219 220 334L228 358H196Q158 358 142 355T103 336Q92 329 81 318T62 297T53 285Q51 284 38 284Q19 284 19 294Q19 300 38 329T93 391T164 429Q171 431 389 431Q549 431 553 430Q573 423 573 402Q573 371 541 360Q535 358 472 358H408L405 341Q393 269 393 222Q393 170 402 129T421 65T431 37Q431 20 417 5T381 -10Q370 -10 363 -7T347 17T331 77Q330 86 330 121Q330 170 339 226T357 318T367 358H269L268 354Q268 351 249 275T206 114T175 17Q164 -11 132 -11Z"></path></g></g></g></svg></mjx-container> 的数组</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;x=<span class="number">0</span>:<span class="built_in">pi</span>/<span class="number">4</span>:<span class="built_in">pi</span></span><br><span class="line"><span class="comment">% 或者</span></span><br><span class="line">&gt;&gt;x=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="built_in">pi</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>数组的运算：</strong> <code>+</code>  <code>-</code>  <code>.*</code>  <code>.^</code>  <code>.\</code>  <code>./</code><br>数组的运算是对应位置元素的运算</p>
+<h3 id="语句-变量-表达式"><a href="#语句-变量-表达式" class="headerlink" title="语句  变量  表达式"></a>语句  变量  表达式</h3><p>语句形式：变量=表达式</p>
+<p>若 “变量=” 省略，名为 <code>ans</code> 的变量自动被建立。表达式后用回车，则在工作区显示结果，如果表达式后用分号 <code>;</code> 结束，则 Matlab 会计算，但不显示结果。一行中可以写几个语句，它们之间用逗号或分号隔开。</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>Matlab 有它自己的一套变量命名规则</p>
+<ol>
+<li>变量名区分大小写  <code>Cost</code>  <code>cost</code>  <code>CoST</code> 不同</li>
+<li>变量名最多包含 31 个字符，其后的字符被忽略</li>
+<li>变量名必须以一个字母开始，其后可以是限定条件内的任意数量的字母、数字、下划线，不允许出现标点符号。</li>
+</ol>
+<p>错误范例：<code>2a</code>   <code>_abc</code></p>
+<p><strong>Matlab 关键字不能用作变量名</strong>  保留字列表：</p>
+<p><code>for</code>   <code>end</code>   <code>if</code>  <code>while</code>   <code>function</code>  <code>return</code>   <code>elseif</code>    <code>case</code></p>
+<p><code>otherwise</code>   <code>switch</code>   <code>continue</code>   <code>else</code>   <code>try</code>   <code>catch</code> </p>
+<p><code>global</code>    <code>persistent</code>   <code>break</code></p>
+<p>用户如果把这些保留字用作了变量名，Matlab 将会给出一条错误信息，但是用户可以将这些保留字中的某个字母改成大写，这样就可以用与这些保留字类似的词作变量名了。但是“不推荐”。</p>
+<p><strong>变量命名</strong></p>
+<p>变量名称应该表示其含义或用途。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = x * y</span><br></pre></td></tr></table></figure>
+<p>对于程序阅读者来说，下面的表示更好</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wage = hourlyRate * nHours</span><br></pre></td></tr></table></figure>
+<p>例子参考 <em>MATLAB Style Guidelines 2.0</em></p>
+<p><strong>Matlab 的特殊变量</strong></p>
+<p><code>ans</code>   用作结果的默认变量名<br><code>beep</code>   嘟嘟声<br><code>pi</code>   圆周率<br><code>eps</code>    浮点相对误差限 (22204×10-16)<br><code>Inf</code>   无穷大，比如 1/0<br><code>NaN</code>   不定值 比如 0/0<br><code>i</code> 或 <code>j</code> 虚数单位<br><code>realmin</code>  <code>realmax</code>  <code>bitmax</code> 最大正整数  </p>
+<p>字符串为由单引号括起来的字符集合，可以像向量一样进行裁剪和拼接。</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p><strong>标量函数</strong> (函数名均为小写)</p>
+<p>三角函数：<br><code>sin</code>(弧度)  <code>cos</code>  <code>tan</code>  <code>cot</code>  <code>sec</code>  <code>csc</code>    <code>asin</code>  <code>acos</code>   <code>atan</code>  <code>acot</code> </p>
+<p><code>asec</code>  <code>acsc</code> <code>sinh</code>   <code>cosh</code>  <code>tanh</code>   <code>asinh</code>   <code>acosh</code>   <code>atanh</code></p>
+<p>其他基本函数：<br><code>sqrt</code>   <code>exp(x)</code>   <code>log</code> (表数学上 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.032ex" height="1.595ex" role="img" focusable="false" viewBox="0 -694 898 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(298,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 函数),  <code>log10</code> (表数学上 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.464ex;" xmlns="http://www.w3.org/2000/svg" width="1.753ex" height="2.034ex" role="img" focusable="false" viewBox="0 -694 775 899"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(298,0)"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g></g></g></svg></mjx-container> 函数) </p>
+<p><code>abs</code>   <code>round</code>   <code>floor</code> (表达 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="2.552ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 1128 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="mi" transform="translate(278,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(850,0)"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g></g></g></svg></mjx-container>)  <code>ceil</code> (表示 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="6.449ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2850.4 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="mi" transform="translate(278,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(850,0)"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g><g data-mml-node="mo" transform="translate(1350.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(2350.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg></mjx-container>)  <code>fix</code> (向 0 方向取整)</p>
+<p><code>sign</code>   <code>real</code>   <code>imag</code>   <code>angle</code> 获取辐角    <code>conj</code>   <code>rat</code></p>
+<p>以上这些函数本质上是作用于标量的，当它们作用于矩阵或数组时是作用于矩阵或数组的每一个元素。举例：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; x=(<span class="number">0</span>:<span class="number">0.2</span>:<span class="number">1</span>).*<span class="built_in">pi</span>;   <span class="comment">% x是有6个元素的行向量</span></span><br><span class="line">&gt;&gt; y=<span class="built_in">sin</span>(x)           <span class="comment">% y也为6个元素的行向量</span></span><br></pre></td></tr></table></figure>
+<p>另一个计算函数值的命令是 <code>feval(F,x)</code>，F 是表示函数名的字符串。如：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; x=(<span class="number">0</span>:<span class="number">0.2</span>:<span class="number">1</span>).*<span class="built_in">pi</span>;    </span><br><span class="line">&gt;&gt; y=feval(‘sin',x)    可以得到与上面一样的结果。</span><br></pre></td></tr></table></figure>
+<p><strong>向量函数</strong></p>
+<p>此类函数作用于行向量或列向量时才有意义，称为向量函数，这些函数作用于矩阵时，其结果为一个行向量，行向量的每个元素是函数作用于矩阵的相应列向量的结果。常用的有：</p>
+<p><code>max</code>   <code>min</code>   <code>sum</code>   <code>length</code>   <code>mean</code>   <code>median</code>   <code>prod</code> 连乘  <code>sort</code> 排序</p>
+<p>具体用法 <code>[y,z]=sort(x)</code></p>
+<p><strong>矩阵函数</strong></p>
+<p>Matlab中处理矩阵的函数大体分为两大类：构造矩阵的函数与进行矩阵计算的函数。对前者常用的有：</p>
+<p><code>zeros</code>   (0 阵)   <code>ones</code>  (1 阵)  <code>eye</code>  (单位阵)  <code>rand</code>  (随机阵)</p>
+<p><code>randn</code>      <code>diag</code> 提取或者生成对角阵  <code>triu</code>   <code>tril</code></p>
+<p>对后者常用的有：<br><code>size</code> (阶数)   <code>det</code> (行列式)  <code>rank</code> (秩)  <code>inv</code> (矩阵求逆)  <code>eig</code> (特征值)  <code>trace</code> (迹)  <code>norm</code> (范数)  <code>cond</code> (条件数)</p>
+<p><code>lu</code>  (LU分解)   <code>orth</code>  (正交规范化)   <code>rref(A)</code>  将A化成行阶梯形的最简形式，其中单位阵是极大线性无关组，其他列向量的坐标值为其对应列向量由该无关组表示的系数</p>
+<h3 id="命令和窗口环境"><a href="#命令和窗口环境" class="headerlink" title="命令和窗口环境"></a>命令和窗口环境</h3><p><strong>数据显示格式</strong></p>
+<p>Matlab 在显示数据结果时遵循如下原则：如果数据是整数则显示整数，如果数据是一个实数，缺省情况下显示小数点后4位数字。用户可以在 ?File 菜单下 Preference 菜单项或在命令窗口提示符下键入相应的 <code>format</code> 命令来指定其他数据格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Matlab命令               pi效果                说明</span><br><span class="line">format short            3.1416                缺省 ，小数点后4位</span><br><span class="line">format long             3.14159265358979      15位数字</span><br><span class="line">format short e          3.1416e+000           小数点后4位+指数</span><br><span class="line">format long e           3.141592653589793e+000    15位数字+指数</span><br><span class="line">format bank             3.14                  短紧缩格式</span><br><span class="line">format +                +                    (+)(-)(0)</span><br><span class="line">format rat              355/113              有理数近似</span><br></pre></td></tr></table></figure>
+<p>注意：<code>format</code> 只提供选择不同的显示格式，Matlab并没有改变数字的内部存储格式，仅是显示改变了而已。所有的计算仍然是用双精度计算的。</p>
+<p><strong>Matlab工作区</strong></p>
+<p>它是用来接受 Matla b命令的内存区域</p>
+<ol>
+<li>显示： <code>who</code>  <code>whos</code>  <code>disp()</code>   显示变量的内容</li>
+<li>清除：<code>clear</code>  <code>clear  A</code>  <code>clear  C*</code> (清除所有以C打头的变量)</li>
+<li>储存：<code>save</code>   用法： <code>save 文件名 变量名</code></li>
+<li>调出：<code>load</code>   用法： <code>load 文件名</code></li>
+<li>记录：<code>diary</code>  用法： <code>diary filename</code>  <code>diary off</code> 停止记录</li>
+<li>搜索： Matlab文件所在的所有目录的列表被称为 Matlab 的搜索路径 Matlabpath</li>
+</ol>
+<p>在Matlab启动时它将默认的搜索路径定义为它存储其文件的所有目录。修改方法是用路径浏览器 File-&gt;Set path项，更改的目的是将用户自己的包含 Matlab 文件的目录加入到搜索路径中。</p>
+<h3 id="MATLAB-程序控制结构"><a href="#MATLAB-程序控制结构" class="headerlink" title="MATLAB 程序控制结构"></a>MATLAB 程序控制结构</h3><h4 id="M-文件"><a href="#M-文件" class="headerlink" title="M 文件"></a>M 文件</h4><p>分类：</p>
+<p>脚本文件 (Script File)<br>函数文件 (Function File)</p>
+<p>区别：</p>
+<ul>
+<li>脚本文件没有输入，没有返回；</li>
+<li>脚本文件可以对工作空间的变量操作，结果返回工作空间，而函数文件中的变量为局部变量，函数执行完毕，变量被清除；</li>
+<li>脚本文件可以直接运行，函数文件见需要调用的形式运行 (除了特殊的函数文件外)。</li>
+</ul>
+<h4 id="顺序结构"><a href="#顺序结构" class="headerlink" title="顺序结构"></a>顺序结构</h4><p>按照代码顺序执行，即顺序结构，受控于代码前后位置；<br>使用于顺序结构中的简单输入和输出 (命令交互)：</p>
+<p>数据输入 (<code>input</code> 函数)</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; A=input(‘输入一个参数<span class="string">')</span></span><br></pre></td></tr></table></figure>
+<p>数据显示 (<code>disp</code> 函数)</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="built_in">disp</span>(A)</span><br></pre></td></tr></table></figure>
+<p>程序暂停 (<code>pause</code> 函数)<br>-&gt;&gt;pause(3)暂停 3 秒</p>
+<h4 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h4><p>分支结构，又称为选择结构，包括 if 分支，switch 分支和 try 分支。</p>
+<p>1、if 分支语句：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> 条件</span><br><span class="line">    语句组 <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    语句组 <span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>2、switch 分支语句</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> 表达式</span><br><span class="line"><span class="keyword">case</span> 表达式 <span class="number">1</span></span><br><span class="line">    语句组 <span class="number">1</span></span><br><span class="line"><span class="keyword">case</span> 表达式 <span class="number">2</span></span><br><span class="line">    语句组 <span class="number">2</span></span><br><span class="line">…</span><br><span class="line"><span class="keyword">case</span> 表达式 n</span><br><span class="line">    语句组 n</span><br><span class="line"><span class="keyword">otherwise</span></span><br><span class="line">    语句组 m</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>3、try 分支语句</p>
+<p>在经典的程序设计语言中未出现，这是一种试探性的分支语句，也就是如果这条语句执行有错误，则不执行，或者执行其他的语句，提高了程序的容错性能。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">    语句组 <span class="number">1</span></span><br><span class="line"><span class="keyword">catch</span></span><br><span class="line">    语句组 <span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h4 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h4><p>按照给定条件，重复执行某些语句，包括 <code>for</code> 循环和 <code>while</code> 循环。</p>
+<p>1、for 循环语句</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 循环变量=表达式 <span class="number">1</span>:表达式 <span class="number">2</span>:表达式 <span class="number">3</span>  <span class="comment">% 可以采用矩阵的形式</span></span><br><span class="line">    循环体</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>注意循环变量自动增加，在循环体内对循环变量的赋值操作会带来不可预料的程序执行。</p>
+<p>2、while 循环语句</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> 条件</span><br><span class="line">    循环体（<span class="keyword">break</span> 命令可跳出）</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>循环可以嵌套，但是在 MATLAB 中，循环的执行效率很低，因此应该尽量避免使用循环，更要避免使用两重以上的循环。</p>
+<p>怎样避免使用循环和提高循环效率？</p>
+<ul>
+<li>有些可以通过 MATLAB 的矢量化语言，通过矩阵或者向量操作完成；</li>
+<li>有些可以通过 MATLAB 提供的一些特殊操作工具箱函数完成；</li>
+<li>预分配的使用，会大大增加循环效率。</li>
+</ul>
+<h4 id="函数文件"><a href="#函数文件" class="headerlink" title="函数文件"></a>函数文件</h4><p>1、基本结构：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[输出形参]</span>=函数名（<span class="params">[输入形参]</span>）</span></span><br><span class="line">[注释说明]</span><br><span class="line">函数体</span><br></pre></td></tr></table></figure>
+<p>关于函数文件名：通常和函数名一致，如果不一致，那么忽略函数名，调用时使用函数文件名。</p>
+<p>注释部分：注释部分可以提供 <code>help</code> 以及 <code>lookfor</code> 命令的查找功能，例如：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">y</span> = <span class="title">add_fun</span><span class="params">(a,b)</span></span></span><br><span class="line"><span class="comment">% ADD_FUN   完成变量 a 和 b 的相加</span></span><br><span class="line"><span class="comment">% 输入：     a 加数 1</span></span><br><span class="line"><span class="comment">%           b 加数 2</span></span><br><span class="line"><span class="comment">% 输出：     y 为两个参数相加之和</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $Author：Name</span></span><br><span class="line"><span class="comment">% $Date: 2020.08</span></span><br><span class="line"><span class="comment">% Version: V1.0</span></span><br><span class="line"></span><br><span class="line">y = a + b</span><br></pre></td></tr></table></figure>
+<p>对命令行进行注释快捷方式 <code>Ctrl+R</code>，解除注释 <code>Ctrl+T</code></p>
+<p>2、函数参数的可调识别函数</p>
+<p>可以完成传递参数的可调功能，类似于高级语言中的函数重载和多态。</p>
+<ul>
+<li><code>nargin</code> 返回传递给该函数调用的输入参数的数目，仅可在函数体内使用；</li>
+<li><code>nargout</code> 返回该函数调用中指定的输出参数的数目；</li>
+<li><code>varargin</code> 可变长度输入参数列表；<code>c=varargin{1}</code></li>
+<li><code>varargout</code> 可变长度输出参数列表；</li>
+</ul>
+<p>前两者为输入输出参数个数，后面两个可以代表未知的输入输出变量。<br><code>error(nargchk(2,4,nargin))</code> 检测 <code>nargin</code> 的范围在 2 到 4，如果超出则报错。</p>
+<p>3、全局变量<br>使用 <code>global</code> 声明，可以提供不同的 M 文件访问同一个变量。<br>不同的函数之间访问同一个变量，可以通过返回参数来设置，或者使用全局变量。</p>
+<p>4、程序调试<br>断点和单步；<br>根据错误提示，初步确定错误内容；</p>
+<h3 id="图形功能"><a href="#图形功能" class="headerlink" title="图形功能"></a>图形功能</h3><h4 id="plot-函数"><a href="#plot-函数" class="headerlink" title="plot 函数"></a>plot 函数</h4><p>基本用法：<code>plot(x,y)</code><br>一般要求：<code>x</code> 和 <code>y</code> 为相同尺度的向量。</p>
+<p>特殊用法：</p>
+<ol>
+<li><code>x</code> 为向量，<code>y</code> 为矩阵，其中一维与 <code>x</code> 长度相同，则绘制多条不同色彩的曲线；</li>
+<li><code>x</code> 和 <code>y</code> 为同维的矩阵，以对应列绘制不同色彩的曲线；</li>
+<li><code>plot</code> 有一个参数，若 <code>x</code> 为实数向量，则绘制折线图，若 <code>x</code> 为复数向量，则以实部和虚部为横坐标绘图；</li>
+<li>多个输入参数；</li>
+<li>曲线选项。</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(x,y1,<span class="string">'k:'</span>,x,y2,<span class="string">'b-'</span>)</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; y=[<span class="number">0</span>  <span class="number">0.58</span>  <span class="number">0.70</span>  <span class="number">0.95</span>  <span class="number">0.83</span>  <span class="number">0.25</span>];</span><br><span class="line">&gt;&gt; <span class="built_in">plot</span>(y)</span><br></pre></td></tr></table></figure>
+<p>此时生成的是以序号1, 2, …, 6 为横坐标、数组 y 的数值为纵坐标的折线。</p>
+<p>示例：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; x=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">30</span>);</span><br><span class="line">&gt;&gt; y=<span class="built_in">sin</span>(x);</span><br><span class="line">&gt;&gt; <span class="built_in">plot</span>(x,y)</span><br><span class="line">&gt;&gt; title(<span class="string">'sine wave'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/08/30/foRMcxrB5z4HPTq.png" alt="matlab-basic-plotex.png"></p>
+<p>也可以在同一幅图上绘制多条曲线或直线</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; z=<span class="built_in">cos</span>(x); <span class="built_in">plot</span>(x,y,x,z)</span><br><span class="line"><span class="comment">%或</span></span><br><span class="line">&gt;&gt; w=[y;z]; <span class="built_in">plot</span>(x,w)    <span class="comment">% 二者效果相同。</span></span><br></pre></td></tr></table></figure>
+<p>用户也可以用 <code>hold on</code> 命令在一个已经存在的图形上添加新的图形，当用户输入<code>hold on</code> 命令后，在用户输入新的 <code>plot</code> 函数时，Matlab 不会将现有的坐标轴删除，如果新数据超出了当前坐标轴的限定范围，Matlab 就将坐标轴重新刻度。输入 <code>hold off</code> 命令就将当前图形窗口释放，用以绘制新的图形。</p>
+<p>示例：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; x=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">30</span>);  y=<span class="built_in">sin</span>(x);  z=<span class="built_in">cos</span>(x);</span><br><span class="line">&gt;&gt; <span class="built_in">plot</span>(x,y)</span><br><span class="line">&gt;&gt; <span class="built_in">hold</span> on</span><br><span class="line">&gt;&gt; is <span class="built_in">hold</span>   <span class="comment">% return 1 (true) if hold is on</span></span><br><span class="line"><span class="built_in">ans</span>=</span><br><span class="line">    <span class="number">1</span></span><br><span class="line">&gt;&gt; <span class="built_in">plot</span>(x,z,<span class="string">'m'</span>)</span><br><span class="line">&gt;&gt; <span class="built_in">hold</span> off</span><br></pre></td></tr></table></figure>
+<p><strong>线型、颜色</strong></p>
+<p>用户可以通过在 <code>plot</code> 函数的每一组数据组对后添加第三个参数，声明用户自己的颜色、标记和线型。这个参数(可选)是一个字符串，放在单引号中。<code>plot(x,y,‘s')</code></p>
+<p>具体参数含义：</p>
+<p><code>b</code>  蓝色   <code>g</code> 绿色  <code>r</code>红色  <code>c</code> 青色  <code>m</code> 洋红 <code>y</code> 黄色  <code>k</code> 黑色  <code>w</code> 白色</p>
+<p><code>.</code>  点  <code>o</code> 圆圈  <code>+</code> 加号  <code>*</code> 星号  <code>s</code> 方形  <code>d</code> 菱形  <code>v</code>  <code>^ &lt; &gt;</code> 三角形 (开口不同)</p>
+<p><code>-</code> 实线   <code>:</code>  点线  <code>-.</code> 点划线  <code>--</code> 虚线   <code>p</code> 五角星  <code>h</code> 六角星</p>
+<p><img src="https://i.loli.net/2020/08/30/pTvy6PhJN8CwoR5.png" alt="matlab-basic-plotpa.png"></p>
+<p><strong>网格与标记</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; grid on   <span class="comment">% 将格栅线添加到当前图形中</span></span><br><span class="line">&gt;&gt; grid off  <span class="comment">% 取消格栅线</span></span><br><span class="line">&gt;&gt; grid      <span class="comment">% 切换格栅线状态</span></span><br><span class="line">&gt;&gt; box off   <span class="comment">% 去掉边框</span></span><br><span class="line">&gt;&gt; xlabel(‘内容<span class="string">') % 横坐标添加标记</span></span><br><span class="line"><span class="string">&gt;&gt; ylabel(‘内容'</span>) <span class="comment">% 纵坐标添加标记</span></span><br><span class="line">&gt;&gt; title(‘内容<span class="string">')  % 图形上方添加标记</span></span><br></pre></td></tr></table></figure>
+<p>用户可以用 text 函数在用户图形的任何指定位置给图形添加一个标签或者其他文本字符串。语法为：<code>text(x,y,'string')</code>，其中 <code>(x,y)</code> 标明了以图形坐标轴的单位表示的文本字符串左边界的位置。更方便的是用鼠标确定字符串的位置，函数为 <code>gtext(‘string')</code>。</p>
+<p><strong>坐标轴控制</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axis equal  <span class="comment">% 矩形的坐标轴</span></span><br><span class="line">axis square <span class="comment">% 正方形的坐标轴</span></span><br><span class="line">axis auto   <span class="comment">% 自动坐标轴显示</span></span><br><span class="line">axis off    <span class="comment">% 关闭坐标轴</span></span><br><span class="line">axis on     <span class="comment">% 打开坐标轴</span></span><br><span class="line">axis([xmin xmax ymin ymax])  <span class="comment">% 设置坐标轴的显示范围</span></span><br><span class="line">xlim([xmin xmax])  <span class="comment">% 设置 x 坐标的显示范围</span></span><br><span class="line">ylim([ymin ymax])  <span class="comment">% 设置 x 坐标的显示范围</span></span><br></pre></td></tr></table></figure>
+<p><strong>多幅图形</strong></p>
+<p>一个图形窗口可以包含多套坐标轴系。命令 <code>subplot(m,n,p)</code> 将当前窗口分成一个维数为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="6.11ex" height="1.136ex" role="img" focusable="false" viewBox="0 -491 2700.4 502"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1100.2,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mi" transform="translate(2100.4,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 的绘图区域数组并将第 p 个绘图区域选定为当前绘图区域，编号规则为从最上边一行开始从左往右，然后第二行从左往右，一直到最后一行进行编号。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; x=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">30</span>);  y=<span class="built_in">sin</span>(x);  z=<span class="built_in">cos</span>(x);</span><br><span class="line">&gt;&gt; a=<span class="number">2.</span>*<span class="built_in">sin</span>(x).*<span class="built_in">cos</span>(x);   v=<span class="built_in">sin</span>(x)./(<span class="built_in">cos</span>(x)+<span class="built_in">eps</span>);</span><br><span class="line">&gt;&gt; subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>),<span class="built_in">plot</span>(x,y), axis([<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">-1</span>,<span class="number">1</span>]), title(‘<span class="built_in">sin</span>(x)')</span><br><span class="line">&gt;&gt; subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>),<span class="built_in">plot</span>(x,z), axis([<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">-1</span>,<span class="number">1</span>]), title(‘<span class="built_in">cos</span>(x)')</span><br><span class="line">&gt;&gt; subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>),<span class="built_in">plot</span>(x,a),......</span><br></pre></td></tr></table></figure>
+<h4 id="基本底层绘图函数"><a href="#基本底层绘图函数" class="headerlink" title="基本底层绘图函数"></a>基本底层绘图函数</h4><p>1、line 对象和 line 函数</p>
+<p>示例：<code>h = line([-pi:0.01:pi],sin([-pi:0.01:pi]))</code><br>产生 line 对象，h 为 line 对象的句柄</p>
+<p>line 对象的修饰：<br>Color 属性；<br>LineWidth 属性；<br>LineStyle 属性；<br>Marker 属性；<br>MarkerSize 属性；<br>plot 绘制的图形也是 line 对象，可以通过 line 对象的修饰方法后期修饰。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h = line(<span class="string">'XDate'</span>,[-<span class="built_in">pi</span>:<span class="number">0.1</span>:<span class="built_in">pi</span>],<span class="string">'YDate'</span>,<span class="built_in">sin</span>([-<span class="built_in">pi</span>:<span class="number">0.1</span>:<span class="built_in">pi</span>]),...</span><br><span class="line"><span class="string">'LineWidth'</span>,<span class="number">1</span>,<span class="string">'LineStyle'</span>,<span class="string">':'</span>,<span class="string">'Color'</span>,<span class="string">'r'</span>)</span><br><span class="line">set(h,<span class="string">'LineWidth'</span>,<span class="number">2</span>,<span class="string">'Marker'</span>,<span class="string">'p'</span>,<span class="string">'MarkerSize'</span>,<span class="string">'3'</span>)</span><br></pre></td></tr></table></figure>
+<p>2、底层标注</p>
+<p>text 对象和 text 函数</p>
+<p>常用修饰：<br>Color 属性；<br>String 属性；修改标注的内容<br>FontSize 属性；<br>Rotation 属性；</p>
+<p>3、底层坐标轴的控制</p>
+<p>axes 对象和 axes 函数</p>
+<p>修饰：<br>Box 属性；<br>GridLineStyle 属性；网格线型<br>Position 属性；<br>Units 属性；可以设置单位为归一化 normalized，便于图形缩放<br>XLabel、YLabel 和 ZLabel 属性；<br>Xlim、Ylim 和 Zlim 属性；</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/26/matlab-intro/" rel="prev" title="MATLAB 入门">
+      <i class="fa fa-chevron-left"></i> MATLAB 入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/30/matlab-data/" rel="next" title="MATLAB 数据储存与调用">
+      MATLAB 数据储存与调用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">简单的数学运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5-%E6%95%B0%E7%BB%84-%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">矩阵 数组 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E8%BE%93%E5%85%A5%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">2.1.</span> <span class="nav-text">矩阵的输入和运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E8%A3%81%E5%89%AA%E4%B8%8E%E6%8B%BC%E6%8E%A5"><span class="nav-number">2.2.</span> <span class="nav-text">矩阵的裁剪与拼接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">2.3.</span> <span class="nav-text">矩阵的运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97"><span class="nav-number">2.4.</span> <span class="nav-text">数组及其运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E5%8F%A5-%E5%8F%98%E9%87%8F-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">语句  变量  表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">3.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%92%8C%E7%AA%97%E5%8F%A3%E7%8E%AF%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text">命令和窗口环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MATLAB-%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84"><span class="nav-number">5.</span> <span class="nav-text">MATLAB 程序控制结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#M-%E6%96%87%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">M 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="nav-number">5.2.</span> <span class="nav-text">顺序结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="nav-number">5.3.</span> <span class="nav-text">分支结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-number">5.4.</span> <span class="nav-text">循环结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%96%87%E4%BB%B6"><span class="nav-number">5.5.</span> <span class="nav-text">函数文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E5%8A%9F%E8%83%BD"><span class="nav-number">6.</span> <span class="nav-text">图形功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#plot-%E5%87%BD%E6%95%B0"><span class="nav-number">6.1.</span> <span class="nav-text">plot 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%BA%95%E5%B1%82%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0"><span class="nav-number">6.2.</span> <span class="nav-text">基本底层绘图函数</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Liutao Tian"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Liutao Tian</p>
+  <div class="site-description" itemprop="description">知人者智，自知者明</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/andy123t" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;andy123t" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:andy123t@163.com" title="E-Mail → mailto:andy123t@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://liam.page/" title="https:&#x2F;&#x2F;liam.page&#x2F;" rel="noopener" target="_blank">Liam</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://johnhu94.github.io/" title="https:&#x2F;&#x2F;johnhu94.github.io&#x2F;" rel="noopener" target="_blank">JohnHu</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liutao Tian</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>
