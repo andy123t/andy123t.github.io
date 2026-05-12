@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-andy.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-andy.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-andy.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"andy123t.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文介绍 Miniforge 安装与 Python 环境配置，主要包括 Miniforge、Anaconda 和 Miniconda 的区别，Miniforge 的下载与安装，Conda 与 Mamba 的基本配置，以及常用 Python 第三方库的安装方法。 如果只是为了管理 Python 虚拟环境，个人更推荐使用 Miniforge。它更轻量，默认使用 conda-forge 社区源，并且自带">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Miniforge 安装与 Python 环境配置">
+<meta property="og:url" content="https://andy123t.github.io/2026/05/12/Miniforge/index.html">
+<meta property="og:site_name" content="Andy123t">
+<meta property="og:description" content="本文介绍 Miniforge 安装与 Python 环境配置，主要包括 Miniforge、Anaconda 和 Miniconda 的区别，Miniforge 的下载与安装，Conda 与 Mamba 的基本配置，以及常用 Python 第三方库的安装方法。 如果只是为了管理 Python 虚拟环境，个人更推荐使用 Miniforge。它更轻量，默认使用 conda-forge 社区源，并且自带">
+<meta property="og:locale">
+<meta property="og:image" content="https://files.seeusercontent.com/2026/05/12/n4Lt/Miniforge01.png">
+<meta property="og:image" content="https://files.seeusercontent.com/2026/05/12/Pt5a/Miniforge02.png">
+<meta property="article:published_time" content="2026-05-12T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-12T14:50:50.567Z">
+<meta property="article:author" content="Liutao Tian">
+<meta property="article:tag" content="Conda">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Miniforge">
+<meta property="article:tag" content="Mamba">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://files.seeusercontent.com/2026/05/12/n4Lt/Miniforge01.png">
+
+<link rel="canonical" href="https://andy123t.github.io/2026/05/12/Miniforge/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Miniforge 安装与 Python 环境配置 | Andy123t</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Andy123t</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">52</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">51</span></a>
+
+  </li>
+        <li class="menu-item menu-item-notes">
+
+    <a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>系列笔记</a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook" rel="section"><i class="fa fa-sticky-note fa-fw"></i>札记 & 留言板</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://andy123t.github.io/2026/05/12/Miniforge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liutao Tian">
+      <meta itemprop="description" content="知人者智，自知者明">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Andy123t">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Miniforge 安装与 Python 环境配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-12 18:00:00 / 修改时间：22:50:50" itemprop="dateCreated datePublished" datetime="2026-05-12T18:00:00+08:00">2026-05-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文介绍 Miniforge 安装与 Python 环境配置，主要包括 Miniforge、Anaconda 和 Miniconda 的区别，Miniforge 的下载与安装，Conda 与 Mamba 的基本配置，以及常用 Python 第三方库的安装方法。</p>
+<p>如果只是为了管理 Python 虚拟环境，个人更推荐使用 <strong>Miniforge</strong>。它更轻量，默认使用 <strong>conda-forge</strong> 社区源，并且自带 <code>mamba</code>，安装科学计算和深度学习相关库会更方便。</p>
+<span id="more"></span>
+<h3 id="Miniforge-是什么"><a href="#Miniforge-是什么" class="headerlink" title="Miniforge 是什么"></a>Miniforge 是什么</h3><p>Miniforge 是 conda-forge 社区维护的 Conda 发行版。它的目标很简单：提供 <code>conda</code> 和 <code>mamba</code> 命令，让用户可以方便地创建 Python 环境和安装第三方库。</p>
+<p>与 Anaconda 和 Miniconda 相比，Miniforge 最大的特点是默认使用 <strong>conda-forge</strong> 作为软件源。conda-forge 是一个社区维护的包仓库，很多科学计算、机器学习、数据处理相关库更新比较及时，包也比较全。</p>
+<h3 id="Anaconda、Miniconda-与-Miniforge"><a href="#Anaconda、Miniconda-与-Miniforge" class="headerlink" title="Anaconda、Miniconda 与 Miniforge"></a>Anaconda、Miniconda 与 Miniforge</h3><p><strong>Anaconda</strong> 是完整版 Python 科学计算发行版，安装后自带大量常用库，比如 NumPy、Pandas、Matplotlib、Jupyter 等。它适合刚入门、希望安装后直接使用的用户。不过 Anaconda 体积比较大，而且 Anaconda 官方仓库在商业使用方面有一些协议限制，需要根据实际情况注意。</p>
+<p><strong>Miniconda</strong> 是 Anaconda 的精简版，只包含 Conda、Python 和少量基础组件。它体积小，可以按需安装第三方库，适合想自己管理环境的用户。Miniconda 默认使用 Anaconda 官方源，也可以手动配置 conda-forge。</p>
+<p><strong>Miniforge</strong> 可以看作是面向 conda-forge 的轻量 Conda 发行版。它和 Miniconda 一样精简，但默认使用 conda-forge，并且安装后可以直接使用 <code>mamba</code>。对于科研、数据分析、机器学习和深度学习环境配置来说，Miniforge 更省心一些。</p>
+<h3 id="推荐使用-Miniforge"><a href="#推荐使用-Miniforge" class="headerlink" title="推荐使用 Miniforge"></a>推荐使用 Miniforge</h3><p>Miniforge 的优点主要有以下几个：</p>
+<ul>
+<li><strong>完全开源</strong>：由 conda-forge 社区维护，适合个人、科研和一般开发使用；</li>
+<li><strong>体积较小</strong>：不像 Anaconda 那样预装大量软件，后续按需安装即可；</li>
+<li><strong>默认 conda-forge</strong>：不用额外切换源，第三方库覆盖范围广；</li>
+<li><strong>自带 Mamba</strong>：安装和解析依赖速度比 Conda 更快；</li>
+<li><strong>跨平台支持好</strong>：支持 Windows、macOS、Linux，也支持 Apple Silicon 等平台。</li>
+</ul>
+<p>这里的建议是：如果你只是日常配置 Python 环境，不需要 Anaconda Navigator 这类图形界面工具，直接安装 Miniforge 就够用了。</p>
+<h3 id="下载-Miniforge"><a href="#下载-Miniforge" class="headerlink" title="下载 Miniforge"></a>下载 Miniforge</h3><p>官方下载地址：</p>
+<ul>
+<li>Miniforge GitHub 仓库：<a target="_blank" rel="noopener" href="https://github.com/conda-forge/miniforge">https://github.com/conda-forge/miniforge</a></li>
+<li>conda-forge 下载页面：<a target="_blank" rel="noopener" href="https://conda-forge.org/download/">https://conda-forge.org/download/</a></li>
+</ul>
+<p>不同系统根据需求下载：</p>
+<p><img src="https://files.seeusercontent.com/2026/05/12/n4Lt/Miniforge01.png" alt="Miniforge01.png"></p>
+<h3 id="Windows-安装-Miniforge"><a href="#Windows-安装-Miniforge" class="headerlink" title="Windows 安装 Miniforge"></a>Windows 安装 Miniforge</h3><p>下载 <code>Miniforge3-Windows-x86_64.exe</code> 后，双击运行安装程序。</p>
+<p><img src="https://files.seeusercontent.com/2026/05/12/Pt5a/Miniforge02.png" alt="Miniforge02.png"></p>
+<p>选择 <code>Just Me</code> 直接安装在 C 盘用户路径下面。选择 <code>All Users</code> 可以安装自定义路径，建议不要包含中文、空格和特殊字符，可以安装到类似下面的位置：</p>
+<p><code>C:\Miniforge3</code> 或者 <code>D:\Miniforge3</code></p>
+<p>官方说明中也提到，Windows 安装路径中如果包含特殊字符或空格，可能会出现一些问题，所以安装路径尽量简单一些。</p>
+<p>安装时会看到一些选项，其中比较重要的是：</p>
+<ul>
+<li><strong>Create shortcuts</strong>：建议勾选，这样可以在开始菜单中打开 Miniforge Prompt；</li>
+<li><strong>Register Miniforge3 as the system Python 3.xx</strong>：建议勾选，VSCode、PyCharm 等可以使用 Miniforge3 下的环境。</li>
+<li><strong>Clear the package cache upon completion</strong>: 建议勾选，不勾选影响也不大。</li>
+</ul>
+<p>注意：如果不添加到 PATH，<code>conda</code> 和 <code>mamba</code> 默认只能在 <strong>Miniforge Prompt</strong> 中直接使用。对于大多数 Windows 用户来说，用 Miniforge Prompt 就够用了，也比较省心。</p>
+<p>安装完成后，在开始菜单中打开 <strong>Miniforge Prompt</strong>，输入以下命令测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br><span class="line">mamba --version</span><br><span class="line">python --version</span><br></pre></td></tr></table></figure>
+<p>如果可以正常显示版本号，说明 Miniforge 安装成功。如果想在 Windows 的 PowerShell 中使用，需要使用 <code>conda init</code> 命令初始化或把直接添加 <code>C：\Users\myusername\miniforge3\condabin\</code> 文件夹到系统环境变量.</p>
+<h3 id="macOS-与-Linux-安装-Miniforge"><a href="#macOS-与-Linux-安装-Miniforge" class="headerlink" title="macOS 与 Linux 安装 Miniforge"></a>macOS 与 Linux 安装 Miniforge</h3><p>macOS 和 Linux 可以通过终端下载安装脚本。官方给出的通用下载命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L -O <span class="string">&quot;https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-<span class="subst">$(uname)</span>-<span class="subst">$(uname -m)</span>.sh&quot;</span></span><br></pre></td></tr></table></figure>
+<p>或者使用 <code>wget</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">&quot;https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-<span class="subst">$(uname)</span>-<span class="subst">$(uname -m)</span>.sh&quot;</span></span><br></pre></td></tr></table></figure>
+<p>下载完成后，运行安装脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Miniforge3-$(<span class="built_in">uname</span>)-$(<span class="built_in">uname</span> -m).sh</span><br></pre></td></tr></table></figure>
+<p>安装过程中会询问是否初始化 Conda，一般选择 <code>yes</code> 即可。安装完成后，关闭并重新打开终端。</p>
+<p>如果是非交互式安装，可以使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Miniforge3-$(<span class="built_in">uname</span>)-$(<span class="built_in">uname</span> -m).sh -b</span><br></pre></td></tr></table></figure>
+<p>这种方式不会自动初始化 Conda，需要手动执行类似下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/miniforge3/bin/conda init</span><br></pre></td></tr></table></figure>
+<h3 id="Conda-基本配置"><a href="#Conda-基本配置" class="headerlink" title="Conda 基本配置"></a>Conda 基本配置</h3><p>安装完成后，可以先查看当前 Conda 配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --show</span><br></pre></td></tr></table></figure>
+<p>Miniforge 默认使用 conda-forge，一般不需要再添加 <code>defaults</code>。如果之前安装过 Anaconda 或 Miniconda，并且用户目录下已经有 <code>.condarc</code> 文件，建议先检查一下，避免旧配置影响 Miniforge。</p>
+<p>查看源配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --show channels</span><br></pre></td></tr></table></figure>
+<p>Miniforge 默认应该能看到 <code>conda-forge</code>。</p>
+<p><strong>注：</strong> 如果使用网络使用”魔法”的情况下，安装第三方库会直接使用 <code>conda-forge</code> 官方源。如果没有使用”魔法”，可以在 <code>.condarc</code> 文件配置国内的镜像源</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br></pre></td></tr></table></figure>
+<p>为了避免每次打开终端都自动进入 <code>base</code> 环境，推荐关闭自动激活：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --<span class="built_in">set</span> auto_activate_base <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>设置完成后，重新打开终端，默认就不会自动进入 <code>base</code> 环境。需要使用时再手动激活：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate base</span><br></pre></td></tr></table></figure>
+<h3 id="常用环境管理命令"><a href="#常用环境管理命令" class="headerlink" title="常用环境管理命令"></a>常用环境管理命令</h3><p>Miniforge 安装后可以同时使用 <code>conda</code> 和 <code>mamba</code>。二者大部分命令是兼容的，日常使用可以简单理解为：</p>
+<ul>
+<li><code>conda</code> 用来创建环境、激活环境、退出环境；</li>
+<li><code>mamba</code> 用来安装第三方库，速度更快一些。</li>
+</ul>
+<p>注意：<code>conda activate</code> 仍然使用 <code>conda</code> 命令，不需要写成 <code>mamba activate</code>。</p>
+<p>查看所有虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
+<p>创建虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n your_env_name python=3.12</span><br></pre></td></tr></table></figure>
+<p>进入虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate your_env_name</span><br></pre></td></tr></table></figure>
+<p>退出虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+<p>查看当前环境已安装的包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure>
+<p>删除虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n your_env_name --all</span><br></pre></td></tr></table></figure>
+<p>清理缓存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda clean --all</span><br></pre></td></tr></table></figure>
+<p>安装第三方库，可以优先使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba install package_name</span><br></pre></td></tr></table></figure>
+<p>如果想先搜索某个包是否存在，可以使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba search 包名</span><br></pre></td></tr></table></figure>
+<p>卸载第三方库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba uninstall package_name</span><br></pre></td></tr></table></figure>
+<h3 id="base-环境安装常用库"><a href="#base-环境安装常用库" class="headerlink" title="base 环境安装常用库"></a>base 环境安装常用库</h3><p>如果只是日常使用，可以在 <code>base</code> 环境中安装一些常用基础库。打开 Miniforge Prompt，先进入 <code>base</code> 环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate base</span><br></pre></td></tr></table></figure>
+<p><strong>科学计算核心基础库</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba install numpy scipy sympy cython</span><br></pre></td></tr></table></figure>
+<p><strong>数据处理与 Excel 文件操作</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba install pandas openpyxl</span><br></pre></td></tr></table></figure>
+<p><strong>数据可视化绘图库</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba install matplotlib seaborn</span><br></pre></td></tr></table></figure>
+<p><strong>机器学习与计算机视觉库</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba install scikit-learn opencv</span><br></pre></td></tr></table></figure>
+<p><strong>交互式开发与集成编程环境</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba install ipython jupyter spyder</span><br></pre></td></tr></table></figure>
+<p><strong>高性能 DataFrame 库</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba install polars</span><br></pre></td></tr></table></figure>
+<p>安装完成后，可以输入以下命令查看已经安装的包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure>
+<p>如果需要启动 Jupyter Notebook，可以输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+<p>如果需要启动 Spyder，可以输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spyder</span><br></pre></td></tr></table></figure>
+<h3 id="深度学习环境搭建"><a href="#深度学习环境搭建" class="headerlink" title="深度学习环境搭建"></a>深度学习环境搭建</h3><p>深度学习环境建议单独创建虚拟环境，不要直接装在 <code>base</code> 环境中。这样环境之间互不影响，后期删除或重装也比较方便。</p>
+<p><strong>第一步：创建环境</strong></p>
+<p>这里创建一个名为 <code>pytorch</code> 的环境，并指定 Python 版本为 3.12：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n pytorch python=3.12</span><br></pre></td></tr></table></figure>
+<p><strong>第二步：进入环境</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate pytorch</span><br></pre></td></tr></table></figure>
+<p>进入环境后，命令行前面会出现 <code>(pytorch)</code>，说明当前已经切换到 <code>pytorch</code> 环境。</p>
+<p><strong>第三步：先安装 PyTorch</strong></p>
+<p>PyTorch 建议优先安装。它依赖比较多，先安装 PyTorch 可以减少后面依赖冲突的可能。</p>
+<p>CPU 版本安装命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba install pytorch torchvision torchaudio cpuonly -c pytorch</span><br></pre></td></tr></table></figure>
+<p>注意：如果需要安装 GPU 版本，应根据自己的显卡和 CUDA 版本，到 PyTorch 官网选择对应命令，不要直接照抄 CPU 版本命令。</p>
+<p><strong>第四步：安装常用科学计算包</strong></p>
+<p>PyTorch 安装完成后，再一次性安装常用科学计算和开发工具：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mamba install scipy pandas openpyxl matplotlib seaborn scikit-learn opencv ipython jupyter</span><br></pre></td></tr></table></figure>
+<p>安装完成后，测试 PyTorch 是否可用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python</span><br></pre></td></tr></table></figure>
+<p>进入 Python 后输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="built_in">print</span>(torch.__version__)</span><br><span class="line"><span class="built_in">print</span>(torch.cuda.is_available())</span><br></pre></td></tr></table></figure>
+<p>如果 CPU 版本安装正常，<code>torch.cuda.is_available()</code> 通常会显示：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">False</span><br></pre></td></tr></table></figure>
+<p>这并不是错误，只是说明当前安装的是 CPU 版本。</p>
+<h3 id="在-VSCode-中运行-Python"><a href="#在-VSCode-中运行-Python" class="headerlink" title="在 VSCode 中运行 Python"></a>在 VSCode 中运行 Python</h3><p>VSCode 可以直接运行 python 和 jupyter notebook 文件。安装 <code>python</code> 和 <code>jupyter</code> 插件后，选择 Miniforge 下的 Python 解释器即可运行 Python 代码。对于 python 文件，需要配置在运行前自动激活环境，在用户设置 (User Setting) 中加入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;python-envs.terminal.autoActivationType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shellStartup&quot;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p><strong>不要把所有库都装进 base 环境。</strong> <code>base</code> 环境可以安装一些基础工具，但深度学习、项目开发、课程实验最好单独创建环境。</p>
+<p><strong>优先使用 mamba 安装 Conda 包。</strong> 大多数情况下，<code>mamba install</code> 比 <code>conda install</code> 快很多，尤其是安装 PyTorch、Jupyter、OpenCV 这类依赖比较多的库。</p>
+<p><strong>不要混用太多源。</strong> Miniforge 默认使用 conda-forge，通常够用了。如果某个库需要指定源，比如 PyTorch，可以临时加 <code>-c pytorch</code>。</p>
+<p><strong>pip 作为补充使用。</strong> 如果某个包在 Conda 或 conda-forge 中没有，再考虑使用 <code>pip install</code>。同一个环境中混用 Conda 和 pip 时，建议先用 Conda/Mamba 安装大部分库，最后再用 pip 补充少量包。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li>Miniforge GitHub 仓库：<a target="_blank" rel="noopener" href="https://github.com/conda-forge/miniforge">https://github.com/conda-forge/miniforge</a></li>
+<li>conda-forge 下载页面：<a target="_blank" rel="noopener" href="https://conda-forge.org/download/">https://conda-forge.org/download/</a></li>
+<li>VS Code 下载页面：<a href="htps://code.visualstudio.com/">htps://code.visualstudio.com/</a></li>
+<li>PyTorch 官网：<a target="_blank" rel="noopener" href="https://pytorch.org/">https://pytorch.org/</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Conda/" rel="tag"># Conda</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Miniforge/" rel="tag"># Miniforge</a>
+              <a href="/tags/Mamba/" rel="tag"># Mamba</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/03/19/backup/" rel="prev" title="数据防丢指南：备份是关键">
+      <i class="fa fa-chevron-left"></i> 数据防丢指南：备份是关键
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Miniforge-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">Miniforge 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anaconda%E3%80%81Miniconda-%E4%B8%8E-Miniforge"><span class="nav-number">2.</span> <span class="nav-text">Anaconda、Miniconda 与 Miniforge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8-Miniforge"><span class="nav-number">3.</span> <span class="nav-text">推荐使用 Miniforge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-Miniforge"><span class="nav-number">4.</span> <span class="nav-text">下载 Miniforge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows-%E5%AE%89%E8%A3%85-Miniforge"><span class="nav-number">5.</span> <span class="nav-text">Windows 安装 Miniforge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS-%E4%B8%8E-Linux-%E5%AE%89%E8%A3%85-Miniforge"><span class="nav-number">6.</span> <span class="nav-text">macOS 与 Linux 安装 Miniforge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conda-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="nav-number">7.</span> <span class="nav-text">Conda 基本配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">8.</span> <span class="nav-text">常用环境管理命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E5%BA%93"><span class="nav-number">9.</span> <span class="nav-text">base 环境安装常用库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">10.</span> <span class="nav-text">深度学习环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-VSCode-%E4%B8%AD%E8%BF%90%E8%A1%8C-Python"><span class="nav-number">11.</span> <span class="nav-text">在 VSCode 中运行 Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">12.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">13.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Liutao Tian"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Liutao Tian</p>
+  <div class="site-description" itemprop="description">知人者智，自知者明</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/andy123t" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;andy123t" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:andy123t@163.com" title="E-Mail → mailto:andy123t@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://liam.page/" title="https:&#x2F;&#x2F;liam.page&#x2F;" rel="noopener" target="_blank">Liam</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://johnhu94.github.io/" title="https:&#x2F;&#x2F;johnhu94.github.io&#x2F;" rel="noopener" target="_blank">JohnHu</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liutao Tian</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
